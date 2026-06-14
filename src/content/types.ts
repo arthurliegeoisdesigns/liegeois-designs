@@ -1,0 +1,77 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// CMS Content Types — Liegeois Designs
+// All content collections are typed here.
+// To edit content: update the corresponding collection file in src/content/.
+// ─────────────────────────────────────────────────────────────────────────────
+
+export type ServiceFormat =
+  | 'Pitch & Investor Deck'
+  | 'Executive Presentation'
+  | 'Sales & Agency Deck'
+  | 'Training Presentation'
+  | 'Strategic Narrative'
+
+export type CaseStudy = {
+  /** URL slug — used for /work/[slug] pages */
+  slug: string
+  /** Client name as it appears publicly */
+  client: string
+  /** Project/deck title */
+  project: string
+  /** Presentation format */
+  format: ServiceFormat
+  /** Industry vertical */
+  industry: string
+  /** Year delivered */
+  year: number
+  /** One-line description shown in portfolio cards */
+  tagline: string
+  /**
+   * 3–5 curated slide images (paths relative to /public).
+   * First image is the hero/thumbnail shown in the grid.
+   */
+  images: string[]
+  /** Show on homepage portfolio grid */
+  featured: boolean
+  /** Order within the homepage grid (lower = earlier) */
+  order?: number
+}
+
+export type BlogPost = {
+  /** URL slug — used for /blog/[slug] pages */
+  slug: string
+  title: string
+  /** 1–2 sentence teaser shown in blog cards */
+  excerpt: string
+  /** Estimated read time, e.g. "8 min read" */
+  readTime: string
+  /** ISO date string */
+  publishedAt: string
+  /** Category tags */
+  tags: string[]
+  /** true = post exists as draft only, not published */
+  draft: boolean
+  /** Cover image path relative to /public (optional) */
+  coverImage?: string
+}
+
+export type Testimonial = {
+  id: string
+  quote: string
+  author: string
+  title: string
+  company: string
+  /** Optional headshot path relative to /public */
+  avatar?: string
+}
+
+export type Client = {
+  id: string
+  name: string
+  /** SVG or image path relative to /public */
+  logo: string
+  /** Used for logo inversion in dark sections */
+  logoOnDark?: string
+  /** Optional URL */
+  url?: string
+}
