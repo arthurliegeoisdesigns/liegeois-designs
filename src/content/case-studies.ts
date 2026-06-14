@@ -1,9 +1,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 // Case Studies Collection — Liegeois Designs
 //
-// Each entry maps to a portfolio card and (eventually) a /work/[slug] detail page.
-// Images are paths relative to /public — served directly by Next.js.
-// The first image in each array is the card thumbnail.
+// Images are hosted on Cloudinary (cloud: dryyhpqew, folder: liegeois-designs).
+// Base URL: https://res.cloudinary.com/dryyhpqew/image/upload/liegeois-designs/
 //
 // featured: true  → appears in the homepage portfolio grid (max 6)
 // featured: false → appears on the full /work page only
@@ -11,6 +10,8 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 import type { CaseStudy } from './types'
+
+const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload/liegeois-designs'
 
 export const caseStudies: CaseStudy[] = [
   // ── FEATURED ───────────────────────────────────────────────────────────────
@@ -22,12 +23,12 @@ export const caseStudies: CaseStudy[] = [
     format: 'Executive Presentation',
     industry: 'Energy / Sustainability',
     year: 2025,
-    tagline: 'A strategic narrative that reframed an energy giant\'s future.',
+    tagline: "A strategic narrative that reframed an energy giant's future.",
     images: [
-      '/images/Case Studies-slides/Fivestone-Chevron-New-Energies/Fivestone-Chevron-New-Energies-slides/250923_Fivestone-Studios-Chevron/250923_Fivestone-Studios-Chevron.010.jpeg',
-      '/images/Case Studies-slides/Fivestone-Chevron-New-Energies/Fivestone-Chevron-New-Energies-slides/250923_Fivestone-Studios-Chevron/250923_Fivestone-Studios-Chevron.002.jpeg',
-      '/images/Case Studies-slides/Fivestone-Chevron-New-Energies/Fivestone-Chevron-New-Energies-slides/250923_Fivestone-Studios-Chevron/250923_Fivestone-Studios-Chevron.025.jpeg',
-      '/images/Case Studies-slides/Fivestone-Chevron-New-Energies/Fivestone-Chevron-New-Energies-slides/250923_Fivestone-Studios-Chevron/250923_Fivestone-Studios-Chevron.030.jpeg',
+      `${CDN}/chevron-01.jpg`,
+      `${CDN}/chevron-02.jpg`,
+      `${CDN}/chevron-03.jpg`,
+      `${CDN}/chevron-04.jpg`,
     ],
     featured: true,
     order: 1,
@@ -42,9 +43,9 @@ export const caseStudies: CaseStudy[] = [
     year: 2025,
     tagline: 'A content strategy deck as cinematic as the brands it represents.',
     images: [
-      '/images/Case Studies-slides/Marriott - Luxury Group/Marriott-Luxury-Group-slides/Slide1.jpeg',
-      '/images/Case Studies-slides/Marriott - Luxury Group/Marriott-Luxury-Group-slides/Slide10.jpeg',
-      '/images/Case Studies-slides/Marriott - Luxury Group/Marriott-Luxury-Group-slides/Slide12.jpeg',
+      `${CDN}/marriott-01.jpg`,
+      `${CDN}/marriott-02.jpg`,
+      `${CDN}/marriott-03.jpg`,
     ],
     featured: true,
     order: 2,
@@ -59,10 +60,10 @@ export const caseStudies: CaseStudy[] = [
     year: 2024,
     tagline: 'Culture presented with the same craft it celebrates.',
     images: [
-      '/images/Case Studies-slides/Echo Society/Echo Society Deck 1/Echo Society Deck 1/Echo Society Deck 1.001.jpeg',
-      '/images/Case Studies-slides/Echo Society/Echo Society Deck 1/Echo Society Deck 1/Echo Society Deck 1.006.jpeg',
-      '/images/Case Studies-slides/Echo Society/Echo Society Deck 1/Echo Society Deck 1/Echo Society Deck 1.012.jpeg',
-      '/images/Case Studies-slides/Echo Society/Echo Society Deck 1/Echo Society Deck 1/Echo Society Deck 1.020.jpeg',
+      `${CDN}/echo-01.jpg`,
+      `${CDN}/echo-02.jpg`,
+      `${CDN}/echo-03.jpg`,
+      `${CDN}/echo-04.jpg`,
     ],
     featured: true,
     order: 3,
@@ -77,9 +78,9 @@ export const caseStudies: CaseStudy[] = [
     year: 2024,
     tagline: 'A pitch deck that made the stakes of ESG feel cosmic.',
     images: [
-      '/images/Case Studies-slides/The Spaceship/The Spaceship Deck Images/The Spaceship - Investor Deck_Page_01.jpg',
-      '/images/Case Studies-slides/The Spaceship/The Spaceship Deck Images/The Spaceship - Investor Deck_Page_05.jpg',
-      '/images/Case Studies-slides/The Spaceship/The Spaceship Deck Images/The Spaceship - Investor Deck_Page_09.jpg',
+      `${CDN}/spaceship-01.jpg`,
+      `${CDN}/spaceship-02.jpg`,
+      `${CDN}/spaceship-03.jpg`,
     ],
     featured: true,
     order: 4,
@@ -94,9 +95,9 @@ export const caseStudies: CaseStudy[] = [
     year: 2023,
     tagline: 'Persona strategy presented with the precision it deserved.',
     images: [
-      '/images/Case Studies-slides/RAPP/RAPP-Capital-One-Personas/Slide1.jpeg',
-      '/images/Case Studies-slides/RAPP/RAPP-Capital-One-Personas/Slide10.jpeg',
-      '/images/Case Studies-slides/RAPP/RAPP-Capital-One-Personas/Slide12.jpeg',
+      `${CDN}/capitalOne-01.jpg`,
+      `${CDN}/capitalOne-02.jpg`,
+      `${CDN}/capitalOne-03.jpg`,
     ],
     featured: true,
     order: 5,
@@ -111,8 +112,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2024,
     tagline: 'Bold visual design for a pitch that had to command the room.',
     images: [
-      '/images/Case Studies-slides/MCS Healthcare/MCS-Healthcare-JandJ/MCS-Healthcare-JandJ-1/Slide1.jpeg',
-      '/images/Case Studies-slides/MCS Healthcare/MCS-Healthcare-JandJ/MCS-Healthcare-JandJ-1/Slide10.jpeg',
+      `${CDN}/mcs-jj-01.jpg`,
+      `${CDN}/mcs-jj-02.jpg`,
     ],
     featured: true,
     order: 6,
@@ -129,8 +130,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2024,
     tagline: 'Technical complexity — made human.',
     images: [
-      '/images/Case Studies-slides/Philips Healthcare/Philips Healthcare-slides/Slide1.jpeg',
-      '/images/Case Studies-slides/Philips Healthcare/Philips Healthcare-slides/Slide14.jpeg',
+      `${CDN}/philips-01.jpg`,
+      `${CDN}/philips-02.jpg`,
     ],
     featured: false,
   },
@@ -144,8 +145,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2024,
     tagline: 'Field training that reps actually wanted to sit through.',
     images: [
-      '/images/Case Studies-slides/ToddStreet/OCA Jan2024 POA New Resources WS FG_D2_v25_011224_LMRC_IC_PL added dsm-ali/Slide1.jpeg',
-      '/images/Case Studies-slides/ToddStreet/OCA Jan2024 POA New Resources WS FG_D2_v25_011224_LMRC_IC_PL added dsm-ali/Slide10.jpeg',
+      `${CDN}/intercept-01.jpg`,
+      `${CDN}/intercept-02.jpg`,
     ],
     featured: false,
   },
@@ -159,8 +160,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2025,
     tagline: 'A data story that made complexity look like clarity.',
     images: [
-      '/images/Case Studies-slides/RAPP/OPMG/250418_Connected Data Deck Update _USE THIS VERSION - Edits Arthur-fixed/250418_Connected Data Deck Update _USE THIS VERSION - Edits Arthur-fixed.005.jpeg',
-      '/images/Case Studies-slides/RAPP/OPMG/250418_Connected Data Deck Update _USE THIS VERSION - Edits Arthur-fixed/250418_Connected Data Deck Update _USE THIS VERSION - Edits Arthur-fixed.001.jpeg',
+      `${CDN}/opmg-01.jpg`,
+      `${CDN}/opmg-02.jpg`,
     ],
     featured: false,
   },
@@ -174,9 +175,9 @@ export const caseStudies: CaseStudy[] = [
     year: 2023,
     tagline: 'A geo-centric travel app — pitched with the same sense of adventure.',
     images: [
-      '/images/Case Studies-slides/Underpin/230417_Underpin_Deck.jpg',
-      '/images/Case Studies-slides/Underpin/230417_Underpin_Deck10.jpg',
-      '/images/Case Studies-slides/Underpin/230417_Underpin_Deck12.jpg',
+      `${CDN}/underpin-01.jpg`,
+      `${CDN}/underpin-02.jpg`,
+      `${CDN}/underpin-03.jpg`,
     ],
     featured: false,
   },
@@ -190,8 +191,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2022,
     tagline: 'Social entrepreneurship — framed to inspire and fund.',
     images: [
-      '/images/Case Studies-slides/University Startups/221113_Presentation_University-Startups_2_Compressed/Slide1.jpeg',
-      '/images/Case Studies-slides/University Startups/221113_Presentation_University-Startups_2_Compressed/Slide10.jpeg',
+      `${CDN}/unistartups-01.jpg`,
+      `${CDN}/unistartups-02.jpg`,
     ],
     featured: false,
   },
@@ -205,8 +206,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2024,
     tagline: 'A sensitive subject — handled with authority and care.',
     images: [
-      '/images/Case Studies-slides/MCS Healthcare/MCS-Healthcare-Lupus-JPMorgan-slides/Slide1.jpeg',
-      '/images/Case Studies-slides/MCS Healthcare/MCS-Healthcare-Lupus-JPMorgan-slides/Slide10.jpeg',
+      `${CDN}/mcs-lupus-01.jpg`,
+      `${CDN}/mcs-lupus-02.jpg`,
     ],
     featured: false,
   },
@@ -220,8 +221,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2023,
     tagline: 'Agency thinking — made tangible for an enterprise client.',
     images: [
-      '/images/Case Studies-slides/RAPP/RAPP-Spectrum/Rapp-Spectrum-Enterprise-slides/Slide1.jpeg',
-      '/images/Case Studies-slides/RAPP/RAPP-Spectrum/Rapp-Spectrum-Enterprise-slides/Slide10.jpeg',
+      `${CDN}/spectrum-01.jpg`,
+      `${CDN}/spectrum-02.jpg`,
     ],
     featured: false,
   },
@@ -235,8 +236,8 @@ export const caseStudies: CaseStudy[] = [
     year: 2023,
     tagline: 'A brand concept — pitched with the confidence to match.',
     images: [
-      '/images/Case Studies-slides/ProjectBe/ProjectBe-Colorcode/Slide1.jpeg',
-      '/images/Case Studies-slides/ProjectBe/ProjectBe-Colorcode/Slide50.jpeg',
+      `${CDN}/projectbe-01.jpg`,
+      `${CDN}/projectbe-02.jpg`,
     ],
     featured: false,
   },

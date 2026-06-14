@@ -1,0 +1,2 @@
+# Large local asset folders — images are served from CDN, not bundled in deployment
+public/images

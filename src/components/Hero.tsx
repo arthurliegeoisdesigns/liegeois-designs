@@ -10,12 +10,14 @@ import {
   MotionValue,
 } from 'framer-motion'
 
+const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload/liegeois-designs'
+
 const layers = [
-  { src: '/images/Case Studies-slides/Fivestone-Chevron-New-Energies/Fivestone-Chevron-New-Energies-slides/250923_Fivestone-Studios-Chevron/250923_Fivestone-Studios-Chevron.010.jpeg', depth: 0.18, rotate: -4, top: '12%', left: '4%',  right: undefined, width: '22%' },
-  { src: '/images/Case Studies-slides/Marriott - Luxury Group/Marriott-Luxury-Group-slides/Slide1.jpeg',                            depth: 0.28, rotate:  3, top: '8%',  left: undefined, right: '6%', width: '20%' },
-  { src: '/images/Case Studies-slides/Echo Society/Echo Society Deck 1/Echo Society Deck 1/Echo Society Deck 1.001.jpeg',            depth: 0.38, rotate: -6, top: '52%', left: '2%',  right: undefined, width: '18%' },
-  { src: '/images/Case Studies-slides/RAPP/RAPP-Capital-One-Personas/Slide1.jpeg',                                                  depth: 0.45, rotate:  5, top: '55%', left: undefined, right: '4%', width: '24%' },
-  { src: '/images/Case Studies-slides/The Spaceship/The Spaceship Deck Images/The Spaceship - Investor Deck_Page_01.jpg',            depth: 0.55, rotate: -2, top: '30%', left: '18%', right: undefined, width: '16%' },
+  { src: `${CDN}/chevron-01.jpg`,    depth: 0.18, rotate: -4, top: '12%', left: '4%',  right: undefined, width: '22%' },
+  { src: `${CDN}/marriott-01.jpg`,   depth: 0.28, rotate:  3, top: '8%',  left: undefined, right: '6%', width: '20%' },
+  { src: `${CDN}/echo-01.jpg`,       depth: 0.38, rotate: -6, top: '52%', left: '2%',  right: undefined, width: '18%' },
+  { src: `${CDN}/capitalOne-01.jpg`, depth: 0.45, rotate:  5, top: '55%', left: undefined, right: '4%', width: '24%' },
+  { src: `${CDN}/spaceship-01.jpg`,  depth: 0.55, rotate: -2, top: '30%', left: '18%', right: undefined, width: '16%' },
 ]
 
 type LayerData = typeof layers[0]
