@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['AI & Design', 'Design Process', 'Personal'],
     theme: 'ai-in-design',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f83e8_683f46b95f3aad03b0cb2e3a_681ba9dcdcb982e09a6e1696_Portfolio_Slides_Philips-Experience-Intro_0001.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/think_like_a_filmmaker_fgaps0',
   },
   {
     slug: 'big-picture-vision-tiny-picture-doubts',
