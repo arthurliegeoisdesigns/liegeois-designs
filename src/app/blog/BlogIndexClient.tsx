@@ -7,8 +7,9 @@ import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { blogPosts, publishedPosts } from '@/content/blog-posts'
 import { blogThemes } from '@/content/blog-themes'
 
-const allPosts =
+const allPosts = (
   process.env.NODE_ENV === 'development' ? blogPosts : publishedPosts
+).slice().sort((a, b) => b.publishedAt.localeCompare(a.publishedAt))
 
 const cardVariants = {
   hidden: { opacity: 0, y: 20 },
