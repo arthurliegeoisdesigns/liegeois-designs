@@ -1,0 +1,21 @@
+import type { Metadata } from 'next'
+import AboutPage from './AboutPage'
+
+export const metadata: Metadata = {
+  title: 'About — Liégeois Designs',
+  description:
+    'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline: turning complex ideas into stories people actually feel.',
+  alternates: { canonical: 'https://liegeoisdesigns.com/about' },
+  openGraph: {
+    title: 'About — Liégeois Designs',
+    description:
+      'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline.',
+    url: 'https://liegeoisdesigns.com/about',
+    siteName: 'Liégeois Designs',
+    type: 'website',
+  },
+}
+
+export default function Page() {
+  return <AboutPage />
+}

@@ -42,3 +42,11 @@ next-env.d.ts
 
 # images — stored externally (Vercel Blob / CDN), not in git
 /public/images
+
+# videos — large binary files, serve from CDN
+/public/videos
+
+# Cowork / Claude agent internals
+.agents/
+.claude/
+skills-lock.json

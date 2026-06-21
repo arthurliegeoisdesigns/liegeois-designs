@@ -28,26 +28,20 @@ export default function WorkPageClient() {
       : caseStudies.filter((cs) => cs.format === activeFormat)
 
   return (
-    <main style={{ background: 'var(--color-dark)', minHeight: '100vh' }}>
+    <main style={{ background: '#ffffff', minHeight: '100vh' }}>
       {/* Back link */}
-      <div
-        style={{
-          padding: '22px var(--section-pad-x)',
-          position: 'relative',
-          zIndex: 10,
-        }}
-      >
+      <div style={{ paddingTop: 'calc(80px + 20px)', paddingLeft: 'var(--section-pad-x)', paddingRight: 'var(--section-pad-x)', paddingBottom: '16px', position: 'relative', zIndex: 10 }}>
         <Link
           href="/"
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '13px',
-            color: 'var(--color-on-dark-muted)',
+            fontSize: '0.8125rem',
+            color: 'var(--color-text-secondary)',
             textDecoration: 'none',
             transition: 'color var(--duration-fast) ease',
           }}
-          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-on-dark)')}
-          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-on-dark-muted)')}
+          onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-text-primary)')}
+          onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-secondary)')}
         >
           ← Home
         </Link>
@@ -64,13 +58,13 @@ export default function WorkPageClient() {
           >
             <h1
               className="type-display"
-              style={{ color: 'var(--color-on-dark)', margin: '0 0 20px' }}
+              style={{ color: 'var(--color-text-primary)', margin: '0 0 20px' }}
             >
               Work that changed the room.
             </h1>
             <p
               className="type-body-lg"
-              style={{ color: 'var(--color-on-dark-muted)', margin: 0, maxWidth: '560px' }}
+              style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '560px' }}
             >
               Every deck built to shift something — in the room, in the market,
               in how an audience sees a brand.
@@ -79,12 +73,7 @@ export default function WorkPageClient() {
 
           {/* Filters */}
           <motion.div
-            style={{
-              display: 'flex',
-              flexWrap: 'wrap',
-              gap: '8px',
-              marginBottom: '48px',
-            }}
+            style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '48px' }}
             initial={reduced ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
@@ -95,27 +84,18 @@ export default function WorkPageClient() {
                 onClick={() => setActiveFormat(format)}
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '12px',
-                  fontWeight: 500,
+                  fontSize: '0.75rem',
+                  fontWeight: 400,
                   letterSpacing: '0.06em',
-                  padding: '9px 18px',
+                  padding: '10px 18px',
+                  minHeight: '44px',
                   borderRadius: 'var(--radius-full)',
                   border: '1px solid',
-                  borderColor:
-                    activeFormat === format
-                      ? 'var(--color-on-dark)'
-                      : 'var(--color-on-dark-border)',
-                  background:
-                    activeFormat === format
-                      ? 'var(--color-on-dark)'
-                      : 'transparent',
-                  color:
-                    activeFormat === format
-                      ? 'var(--color-dark)'
-                      : 'var(--color-on-dark-muted)',
+                  borderColor: activeFormat === format ? 'var(--color-text-primary)' : 'var(--color-border-mid)',
+                  background: activeFormat === format ? 'var(--color-text-primary)' : 'transparent',
+                  color: activeFormat === format ? '#ffffff' : 'var(--color-text-secondary)',
                   cursor: 'pointer',
-                  transition:
-                    'background var(--duration-fast) var(--ease-out-expo), color var(--duration-fast) var(--ease-out-expo), border-color var(--duration-fast) var(--ease-out-expo)',
+                  transition: 'background 150ms ease, color 150ms ease, border-color 150ms ease',
                 }}
               >
                 {format}
@@ -124,66 +104,42 @@ export default function WorkPageClient() {
           </motion.div>
 
           {/* Grid */}
-          <motion.div
-            key={activeFormat}
-            className="grid-3"
-            variants={
-              reduced
-                ? undefined
-                : {
-                    hidden: {},
-                    visible: { transition: { staggerChildren: 0.06 } },
-                  }
-            }
-            initial={reduced ? false : 'hidden'}
-            animate="visible"
-          >
-            {filtered.map((cs) => (
+          <div key={activeFormat} className="grid-3">
+            {filtered.map((cs, idx) => (
               <motion.article
                 key={cs.slug}
                 className="portfolio-card"
-                style={{ background: 'var(--color-cream)' }}
                 variants={reduced ? undefined : cardVariants}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                initial={reduced ? false : 'hidden'}
+                whileInView="visible"
+                viewport={{ once: true, margin: '-50px' }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: idx * 0.05 }}
               >
-                <div className="portfolio-card-image">
-                  <Image
-                    src={cs.images[0]}
-                    alt={`${cs.client} — ${cs.project}`}
-                    fill
-                    style={{ objectFit: 'cover' }}
-                    sizes="(max-width: 768px) 100vw, 33vw"
-                  />
-                </div>
-                <div className="portfolio-card-body">
-                  <p
-                    className="type-label"
-                    style={{
-                      color: 'var(--color-text-secondary)',
-                      marginBottom: '6px',
-                    }}
-                  >
-                    {cs.format} · {cs.year}
-                  </p>
-                  <h3
-                    className="type-h3"
-                    style={{
-                      color: 'var(--color-text-primary)',
-                      margin: '0 0 6px',
-                    }}
-                  >
-                    {cs.client}
-                  </h3>
-                  <p
-                    className="type-caption"
-                    style={{ color: 'var(--color-text-secondary)', margin: 0 }}
-                  >
-                    {cs.tagline}
-                  </p>
-                </div>
+                <Link href={`/work/${cs.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
+                  <div className="portfolio-card-image">
+                    <Image
+                      src={cs.images[0]}
+                      alt={`${cs.client} — ${cs.project}`}
+                      fill
+                      style={{ objectFit: 'cover' }}
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                    />
+                  </div>
+                  <div className="portfolio-card-body">
+                    <p className="type-label" style={{ color: 'var(--color-text-secondary)', marginBottom: '6px' }}>
+                      {cs.format} · {cs.year}
+                    </p>
+                    <h2 className="type-h3" style={{ color: 'var(--color-text-primary)', margin: '0 0 6px' }}>
+                      {cs.client}
+                    </h2>
+                    <p className="type-caption" style={{ color: 'var(--color-text-secondary)', margin: 0 }}>
+                      {cs.tagline}
+                    </p>
+                  </div>
+                </Link>
               </motion.article>
             ))}
-          </motion.div>
+          </div>
         </div>
       </section>
     </main>

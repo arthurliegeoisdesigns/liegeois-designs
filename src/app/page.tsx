@@ -1,25 +1,22 @@
 import Hero from '@/components/Hero'
 import Logos from '@/components/Logos'
-import Portfolio from '@/components/Portfolio'
+import FeaturedWork from '@/components/FeaturedWork'
 import Services from '@/components/Services'
 import About from '@/components/About'
 import Testimonials from '@/components/Testimonials'
 import Blog from '@/components/Blog'
 import CTA from '@/components/CTA'
-import Footer from '@/components/Footer'
-
 export default function Home() {
   return (
     <main>
       <Hero />
       <Logos />
-      <Portfolio />
+      <FeaturedWork />
       <Services />
       <About />
-      <Testimonials />
       <Blog />
+      <Testimonials />
       <CTA />
-      <Footer />
     </main>
   )
 }

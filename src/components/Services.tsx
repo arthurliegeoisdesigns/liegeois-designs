@@ -1,41 +1,24 @@
 'use client'
 
 import { motion, useReducedMotion } from 'framer-motion'
-import SectionCut from './SectionCut'
+import Link from 'next/link'
+import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 
-const formats = [
+const services = [
   {
-    num: '01',
-    label: 'FORMAT 01',
+    number: '01',
     title: 'Pitch & Investor Decks',
     description: 'For founders raising capital. Built to move money.',
   },
   {
-    num: '02',
-    label: 'FORMAT 02',
+    number: '02',
     title: 'Executive Presentations',
     description: 'Board meetings, all-hands, keynotes. High stakes by definition.',
   },
   {
-    num: '03',
-    label: 'FORMAT 03',
+    number: '03',
     title: 'Sales & Agency Decks',
     description: "Proposals that don't wait for a follow-up email.",
-  },
-]
-
-const subItems = [
-  {
-    title: 'Message Architecture',
-    body: 'Structuring the narrative before a slide is touched',
-  },
-  {
-    title: 'Visual Systems',
-    body: 'A coherent visual language that travels across every asset',
-  },
-  {
-    title: 'Content Direction',
-    body: 'Copy, hierarchy, and flow — reviewed and refined',
   },
 ]
 
@@ -43,118 +26,178 @@ export default function Services() {
   const reduced = useReducedMotion()
 
   return (
-    <section className="section section-dark">
-      <div className="container">
-        {/* Header */}
-        <motion.div
-          style={{ marginBottom: '48px', maxWidth: '600px' }}
-          initial={reduced ? false : { opacity: 0, y: 24 }}
+    <section
+      className="section-dark"
+      style={{
+        position: 'relative',
+        overflow: 'hidden',
+        padding: 'var(--section-pad-y) var(--section-pad-x)',
+      }}
+    >
+      <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+
+        {/* ── Eyebrow ──────────────────────────────────────────── */}
+        <ScrambleEyebrow style={{ marginBottom: '40px' }}>Services</ScrambleEyebrow>
+
+        {/* ── Cinematic headline ───────────────────────────────── */}
+        <motion.h2
+          className="type-display"
+          style={{
+            color: 'var(--color-text-primary)',
+            margin: 0,
+            maxWidth: '820px',
+            lineHeight: 1.0,
+          }}
+          initial={reduced ? false : { opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          <h2 className="type-h1" style={{ color: 'var(--color-on-dark)', margin: '0 0 16px' }}>
-            Strategy, story, design.
-            <br />
+          Strategy, story, design.
+          <br />
+          <em
+            style={{
+              fontStyle: 'italic',
+              color: 'var(--color-text-muted)',
+            }}
+          >
             In that order.
-          </h2>
-          <p className="type-body" style={{ color: 'var(--color-on-dark-muted)', margin: 0 }}>
-            Every project starts with one question: what do we need people to think, feel, or do?
-            The answer shapes everything that follows.
-          </p>
-        </motion.div>
+          </em>
+        </motion.h2>
 
-        {/* Tier 1 — Discipline card */}
-        <motion.div
-          className="services-discipline-grid"
+        {/* ── Lede ─────────────────────────────────────────────── */}
+        <motion.p
+          className="type-body-lg"
           style={{
-            border: '0.5px solid var(--color-on-dark-border)',
-            borderRadius: 'var(--radius-md)',
-            padding: '36px',
-            marginBottom: '12px',
+            color: 'var(--color-text-secondary)',
+            margin: 'clamp(32px, 4vw, 56px) 0 0',
+            maxWidth: '480px',
           }}
-          initial={reduced ? false : { opacity: 0, y: 24 }}
+          initial={reduced ? false : { opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          {/* Left */}
-          <div>
-            <h3 className="type-h2" style={{ color: 'var(--color-on-dark)', margin: '0 0 16px' }}>
-              Strategic Visual Storytelling
-            </h3>
-            <p className="type-body" style={{ color: 'var(--color-on-dark-muted)', margin: '0 0 24px' }}>
-              The discipline that sits at the intersection of strategy, narrative, and design.
-              Not decoration — direction.
-            </p>
-            <p
-              className="type-quote"
-              style={{ color: 'var(--color-on-dark-faint)', margin: 0, borderLeft: '2px solid var(--color-on-dark-border)', paddingLeft: '16px' }}
-            >
-              &ldquo;Narrative-led. Always.&rdquo;
-            </p>
-          </div>
+          Every project starts with one question: what do we need people to
+          think, feel, or do? The answer shapes everything that follows.
+        </motion.p>
 
-          {/* Right */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            {subItems.map((item) => (
-              <div
-                key={item.title}
-                style={{ borderLeft: '2px solid var(--color-accent)', paddingLeft: '16px' }}
-              >
-                <p
-                  className="type-h3"
-                  style={{ color: 'var(--color-on-dark)', margin: '0 0 6px' }}
-                >
-                  {item.title}
-                </p>
-                <p className="type-body" style={{ color: 'var(--color-on-dark-muted)', margin: 0 }}>
-                  {item.body}
-                </p>
-              </div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Tier 2 — Format cards */}
+        {/* ── Full-width top rule ──────────────────────────────── */}
         <motion.div
-          className="services-formats-grid"
-          style={{
-            border: '0.5px solid var(--color-on-dark-border)',
-            borderRadius: 'var(--radius-md)',
-          }}
-          initial={reduced ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+          style={{ height: '0.5px', background: 'var(--color-border-mid)', marginTop: 'clamp(64px, 8vw, 112px)' }}
+          initial={reduced ? false : { scaleX: 0, originX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: '-80px' }}
-        >
-          {formats.map((f, i) => (
-            <div
-              key={f.num}
-              className="services-format-item"
+        />
+
+        {/* ── Service rows ─────────────────────────────────────── */}
+        {services.map((s, i) => (
+          <motion.div
+            key={s.number}
+            className="services-row"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '72px 1fr auto',
+              alignItems: 'center',
+              gap: 'clamp(24px, 4vw, 64px)',
+              padding: 'clamp(28px, 3.5vw, 44px) 0',
+              borderBottom: '0.5px solid var(--color-border)',
+              cursor: 'default',
+            }}
+            initial={reduced ? false : { opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: i * 0.08 }}
+            viewport={{ once: true, margin: '-60px' }}
+          >
+            {/* Number */}
+            <span
               style={{
-                padding: '28px 24px',
-                borderRight: i < 2 ? '0.5px solid var(--color-on-dark-border)' : 'none',
+                fontFamily: 'var(--font-display)',
+                fontSize: 'clamp(1.25rem, 2vw, 1.75rem)',
+                fontWeight: 300,
+                color: 'var(--color-text-muted)',
+                letterSpacing: '-0.01em',
+                userSelect: 'none',
               }}
             >
-              <p
-                className="type-label"
-                style={{ color: 'var(--color-on-dark-muted)', marginBottom: '16px' }}
-              >
-                {f.label}
-              </p>
-              <h4 className="type-h3" style={{ color: 'var(--color-on-dark)', margin: '0 0 10px' }}>
-                {f.title}
-              </h4>
-              <p className="type-body" style={{ color: 'var(--color-on-dark-muted)', margin: 0 }}>
-                {f.description}
-              </p>
-            </div>
-          ))}
-        </motion.div>
-      </div>
+              {s.number}
+            </span>
 
-      <SectionCut from="dark" to="cream" />
+            {/* Title */}
+            <h3
+              className="type-h2"
+              style={{
+                color: 'var(--color-text-primary)',
+                margin: 0,
+                fontWeight: 400,
+              }}
+            >
+              {s.title}
+            </h3>
+
+            {/* Description */}
+            <p
+              className="type-body services-row-desc"
+              style={{
+                color: 'var(--color-text-secondary)',
+                margin: 0,
+                maxWidth: '280px',
+                textAlign: 'right',
+              }}
+            >
+              {s.description}
+            </p>
+          </motion.div>
+        ))}
+
+        {/* ── CTA row ──────────────────────────────────────────── */}
+        <motion.div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            paddingTop: 'clamp(32px, 4vw, 48px)',
+          }}
+          initial={reduced ? false : { opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.8, ease: 'easeOut', delay: 0.3 }}
+          viewport={{ once: true, margin: '-60px' }}
+        >
+          <p
+            className="type-body"
+            style={{
+              color: 'var(--color-text-muted)',
+              margin: 0,
+              fontStyle: 'italic',
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(0.875rem, 1.2vw, 1.0625rem)',
+            }}
+          >
+            Every engagement is custom — no off-the-shelf packages.
+          </p>
+          <Link
+            href="/services"
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.8125rem',
+              fontWeight: 400,
+              letterSpacing: '0.04em',
+              color: 'var(--color-text-primary)',
+              textDecoration: 'none',
+              borderBottom: '0.5px solid var(--color-text-secondary)',
+              paddingBottom: '2px',
+              transition: 'border-color 200ms ease, color 200ms ease',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+              marginLeft: '40px',
+            }}
+          >
+            All services →
+          </Link>
+        </motion.div>
+
+      </div>
     </section>
   )
 }

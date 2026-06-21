@@ -1,117 +1,84 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
-
-const testimonials = [
-  {
-    name: 'Anya Pechko',
-    role: 'Founder, Project Be',
-    initials: 'AP',
-    color: '#D63108',
-    quote:
-      'Arthur is a rare creative mind with the discipline of a strategist. His ability to weave narrative with visuals is unmatched. The decks he built didn\'t just support my presentations — they elevated them.',
-  },
-  {
-    name: 'Tracy Redfern',
-    role: 'Global Culture & People Ops, Bloomberg',
-    initials: 'TR',
-    color: '#0F0D0A',
-    quote:
-      'Arthur makes magic with your content, bringing it to life through storytelling. He is professional, timely, thoughtful and delivers a product you will be happy to showcase.',
-  },
-  {
-    name: 'Harley Saftler',
-    role: 'Global Director of Excellence, Ogilvy',
-    initials: 'HS',
-    color: '#7A7068',
-    quote:
-      'He worked quickly and delivered fire design under extremely high-pressured timelines. Fun, collaborative and always asks the right questions. A killer designer.',
-  },
-  {
-    name: 'Kristen Hartley',
-    role: 'Director, Global Content Marketing, Marriott',
-    initials: 'KH',
-    color: '#0F0D0A',
-    quote:
-      'His creativity and efficiency make the process feel effortless. His ability to understand intricate subject matter and create insightful data visualizations is unbelievable.',
-  },
-]
-
-const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-}
+import { useRef } from 'react'
+import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
+import { TestimonialsWidget } from '@/components/ui/TestimonialsWidget'
+import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 
 export default function Testimonials() {
   const reduced = useReducedMotion()
+  const sectionRef = useRef<HTMLElement>(null)
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start'],
+  })
+  const orbX = useTransform(scrollYProgress, [0, 1], ['-20%', '20%'])
 
   return (
-    <section className="section section-surface">
-      <div className="container">
-        <motion.h2
-          className="type-h1"
-          style={{ color: 'var(--color-text-primary)', margin: '0 0 40px', maxWidth: '520px' }}
-          initial={reduced ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+    <section
+      ref={sectionRef}
+      className="section section-dark section-surface section-glow-top"
+      style={{ overflow: 'hidden', position: 'relative' }}
+
+    >
+      {/* Subtle ambient texture */}
+      {!reduced && (
+        <motion.div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            top: '30%',
+            left: '50%',
+            width: '600px',
+            height: '400px',
+            borderRadius: '50%',
+            background: 'radial-gradient(ellipse, rgba(255,255,255,0.015) 0%, transparent 70%)',
+            filter: 'blur(80px)',
+            pointerEvents: 'none',
+            x: orbX,
+            transform: 'translateX(-50%)',
+          }}
+        />
+      )}
+
+      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        {/* Section header */}
+        <motion.div
+          style={{ marginBottom: 'clamp(40px, 5vw, 72px)', maxWidth: '520px' }}
+          initial={reduced ? false : { opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          The kind of words you can&apos;t write yourself.
-        </motion.h2>
+          <ScrambleEyebrow>Client Love</ScrambleEyebrow>
+          <h2 className="type-h1" style={{ color: 'var(--color-text-primary)', margin: 0 }}>
+            The kind of words you can&apos;t write yourself.
+          </h2>
+        </motion.div>
 
+        {/* New pill-avatar testimonials widget */}
         <motion.div
-          className="grid-2"
-          variants={reduced ? undefined : {
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.06 } },
-          }}
-          initial={reduced ? false : 'hidden'}
-          whileInView="visible"
-          viewport={{ once: true }}
+          initial={reduced ? false : { opacity: 0, scale: 0.97 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+          viewport={{ once: true, margin: '-80px' }}
+          className="glass-card"
+          style={{ position: 'relative', overflow: 'hidden' }}
         >
-          {testimonials.map((t) => (
-            <motion.div
-              key={t.name}
-              className="testimonial-card"
-              variants={reduced ? undefined : cardVariants}
-              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            >
-              <p
-                className="type-quote"
-                style={{ color: 'var(--color-text-primary)', margin: '0 0 20px' }}
-              >
-                &ldquo;{t.quote}&rdquo;
-              </p>
-              <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
-                <div
-                  className="testimonial-avatar"
-                  style={{ background: t.color }}
-                  aria-hidden="true"
-                >
-                  {t.initials}
-                </div>
-                <div>
-                  <p
-                    style={{
-                      fontFamily: 'var(--font-body)',
-                      fontSize: '13px',
-                      fontWeight: 500,
-                      color: 'var(--color-text-primary)',
-                      margin: 0,
-                    }}
-                  >
-                    {t.name}
-                  </p>
-                  <p
-                    className="type-caption"
-                    style={{ color: 'var(--color-text-secondary)', margin: 0 }}
-                  >
-                    {t.role}
-                  </p>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+          {/* Top rule */}
+          <div
+            aria-hidden="true"
+            style={{
+              position: 'absolute',
+              top: 0,
+              left: '5%',
+              right: '5%',
+              height: '0.5px',
+              background: 'rgba(255,255,255,0.08)',
+            }}
+          />
+          <TestimonialsWidget />
         </motion.div>
       </div>
     </section>

@@ -1,203 +1,390 @@
 'use client'
 
+import { motion, useReducedMotion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
+import { useRef, useState, useEffect } from 'react'
+import Link from 'next/link'
 import Image from 'next/image'
-import {
-  motion,
-  useMotionValue,
-  useSpring,
-  useTransform,
-  useReducedMotion,
-  MotionValue,
-} from 'framer-motion'
+import { TextScramble } from '@/components/ui/TextScramble'
 
-const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload/liegeois-designs'
+const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs'
 
-const layers = [
-  { src: `${CDN}/chevron-01.jpg`,    depth: 0.18, rotate: -4, top: '12%', left: '4%',  right: undefined, width: '22%' },
-  { src: `${CDN}/marriott-01.jpg`,   depth: 0.28, rotate:  3, top: '8%',  left: undefined, right: '6%', width: '20%' },
-  { src: `${CDN}/echo-01.jpg`,       depth: 0.38, rotate: -6, top: '52%', left: '2%',  right: undefined, width: '18%' },
-  { src: `${CDN}/capitalOne-01.jpg`, depth: 0.45, rotate:  5, top: '55%', left: undefined, right: '4%', width: '24%' },
-  { src: `${CDN}/spaceship-01.jpg`,  depth: 0.55, rotate: -2, top: '30%', left: '18%', right: undefined, width: '16%' },
+/* ── Work samples ────────────────────────────────────────────── */
+const SLIDES = [
+  {
+    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc74bd6bad20709672_683f46b683ae96a1c334fcb4_6830bafcc24aad0888102a9b_Fivestone%252520-%252520Chevron%2525201_1.jpeg',
+    alt: 'Chevron presentation',
+    client: 'Chevron',
+  },
+  {
+    src: `${CDN}/spaceship-11.jpg`,
+    alt: 'The Spaceship investor deck',
+    client: 'The Spaceship',
+  },
+  {
+    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68cae362b6f7edca9f846307_Marriott_The_Luxury_Group_Slide_1.avif',
+    alt: 'Marriott Luxury Group presentation',
+    client: 'Marriott',
+  },
+  {
+    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdca84275b62afc2282_6851c05f787e5e92c62ed1eb_221114_Echo_Society_Show_009.001.jpeg',
+    alt: 'Echo Society event design',
+    client: 'Echo Society',
+  },
+  {
+    src: `${CDN}/spaceship-22.jpg`,
+    alt: 'The Spaceship investor deck',
+    client: 'The Spaceship',
+  },
+  {
+    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f83e8_683f46b95f3aad03b0cb2e3a_681ba9dcdcb982e09a6e1696_Portfolio_Slides_Philips-Experience-Intro_0001.jpeg',
+    alt: 'Philips experience presentation',
+    client: 'Philips',
+  },
 ]
 
-type LayerData = typeof layers[0]
+const INTERVAL = 5200
 
-function ParallaxLayer({
-  layer,
-  smoothX,
-  smoothY,
-  reduced,
-}: {
-  layer: LayerData
-  smoothX: MotionValue<number>
-  smoothY: MotionValue<number>
-  reduced: boolean
-}) {
-  const x = useTransform(smoothX, (v) => (reduced ? 0 : v * layer.depth * 60))
-  const y = useTransform(smoothY, (v) => (reduced ? 0 : v * layer.depth * 40))
-
-  return (
-    <motion.div
-      style={{
-        position: 'absolute',
-        top: layer.top,
-        left: layer.left,
-        right: layer.right,
-        width: layer.width,
-        rotate: layer.rotate,
-        x,
-        y,
-        zIndex: 1,
-      }}
-    >
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          aspectRatio: '4/3',
-          borderRadius: '6px',
-          overflow: 'hidden',
-          boxShadow: '0 24px 64px rgba(0,0,0,0.5)',
-        }}
-      >
-        <Image
-          src={layer.src}
-          alt=""
-          fill
-          style={{ objectFit: 'cover' }}
-          sizes="25vw"
-          priority
-        />
-      </div>
-    </motion.div>
-  )
-}
+/* ── Headline tokens ─────────────────────────────────────────── */
+const HEADLINE = ['Story', '>', 'You', '>', 'Audience.']
 
 export default function Hero() {
   const reduced = useReducedMotion() ?? false
+  const sectionRef = useRef<HTMLElement>(null)
+  const [activeIdx, setActiveIdx] = useState(0)
+  const [prevIdx, setPrevIdx] = useState<number | null>(null)
 
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
-
-  const springConfig = { damping: 20, stiffness: 80 }
-  const smoothX = useSpring(mouseX, springConfig)
-  const smoothY = useSpring(mouseY, springConfig)
-
-  function handleMouseMove(e: React.MouseEvent<HTMLElement>) {
+  /* Auto-advance slides */
+  useEffect(() => {
     if (reduced) return
-    const { clientX, clientY, currentTarget } = e
-    const { width, height } = (currentTarget as HTMLElement).getBoundingClientRect()
-    mouseX.set((clientX / width - 0.5) * 2)
-    mouseY.set((clientY / height - 0.5) * 2)
-  }
+    const id = setInterval(() => {
+      setActiveIdx(i => {
+        setPrevIdx(i)
+        return (i + 1) % SLIDES.length
+      })
+    }, INTERVAL)
+    return () => clearInterval(id)
+  }, [reduced])
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start start', 'end start'],
+  })
+
+  const contentY  = useTransform(scrollYProgress, [0, 1], ['0%', '14%'])
+  const contentOp = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
   return (
     <section
+      ref={sectionRef}
       style={{
-        background: 'var(--color-dark)',
-        minHeight: '100vh',
         position: 'relative',
+        width: '100%',
+        minHeight: '100dvh',
         overflow: 'hidden',
+        background: 'var(--color-void)',
       }}
-      onMouseMove={handleMouseMove}
     >
-      {/* Parallax image layers */}
-      {layers.map((layer, i) => (
-        <ParallaxLayer
-          key={i}
-          layer={layer}
-          smoothX={smoothX}
-          smoothY={smoothY}
-          reduced={reduced}
-        />
-      ))}
 
-      {/* Vignette overlay */}
+      {/* ── Work samples crossfade ───────────────────────────── */}
+      <div
+        aria-hidden="true"
+        style={{ position: 'absolute', inset: 0, zIndex: 1 }}
+      >
+        <AnimatePresence>
+          {SLIDES.map((slide, idx) =>
+            idx === activeIdx ? (
+              <motion.div
+                key={slide.src}
+                style={{
+                  position: 'absolute',
+                  inset: 0,
+                  willChange: 'opacity',
+                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1.4, ease: 'easeInOut' }}
+              >
+                {/* Ken Burns zoom */}
+                <motion.div
+                  style={{ position: 'absolute', inset: 0 }}
+                  initial={{ scale: 1.08 }}
+                  animate={{ scale: 1.0 }}
+                  transition={{ duration: INTERVAL / 1000 + 1.4, ease: 'linear' }}
+                >
+                  <Image
+                    src={slide.src}
+                    alt={slide.alt}
+                    fill
+                    priority={idx === 0}
+                    sizes="100vw"
+                    style={{ objectFit: 'cover', objectPosition: 'center' }}
+                  />
+                </motion.div>
+              </motion.div>
+            ) : null
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* ── Gradient overlays ────────────────────────────────── */}
       <div
         aria-hidden="true"
         style={{
-          background:
-            'radial-gradient(ellipse 58% 66% at 50% 48%, rgba(10,9,9,0.06) 0%, rgba(10,9,9,0.70) 72%, rgba(10,9,9,0.96) 100%)',
           position: 'absolute',
           inset: 0,
-          pointerEvents: 'none',
           zIndex: 2,
+          background: [
+            'linear-gradient(to top, rgba(8,8,9,1) 0%, rgba(8,8,9,0.92) 20%, rgba(8,8,9,0.55) 50%, rgba(8,8,9,0.15) 75%, transparent 100%)',
+            'linear-gradient(to right, rgba(8,8,9,0.85) 0%, rgba(8,8,9,0.45) 35%, rgba(8,8,9,0.10) 65%, transparent 85%)',
+            'linear-gradient(to bottom, rgba(8,8,9,0.50) 0%, transparent 20%)',
+          ].join(', '),
+          pointerEvents: 'none',
         }}
       />
 
-      {/* Text content */}
+      {/* ── Grain texture ────────────────────────────────────── */}
       <div
-        style={{
-          position: 'relative',
-          zIndex: 3,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          justifyContent: 'center',
-          minHeight: '100vh',
-          textAlign: 'center',
-          padding: '0 var(--section-pad-x)',
-        }}
-      >
-        <motion.h1
-          className="type-display"
-          style={{ color: 'var(--color-on-dark)', margin: '0 0 20px', maxWidth: '860px' }}
-          initial={reduced ? false : { opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-        >
-          Pretty doesn&apos;t convert.
-          <br />
-          Strategy does.
-        </motion.h1>
+        aria-hidden="true"
+        className="hero-grain"
+        style={{ position: 'absolute', inset: 0, zIndex: 3, pointerEvents: 'none' }}
+      />
 
-        <motion.p
-          className="type-body-lg"
-          style={{ color: 'var(--color-on-dark-muted)', margin: '0 0 40px', maxWidth: '500px' }}
-          initial={reduced ? false : { opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
-        >
-          Visual storytelling for brands that refuse to blend in.
-        </motion.p>
-
-        <motion.div
-          style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', justifyContent: 'center' }}
-          initial={reduced ? false : { opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1], delay: 0.55 }}
-        >
-          <a href="#work" className="btn-primary">See the Work</a>
-          <a href="#contact" className="btn-ghost">Book a Call</a>
-        </motion.div>
-      </div>
-
-      {/* Scroll indicator */}
+      {/* ── Content ──────────────────────────────────────────── */}
       <motion.div
         style={{
           position: 'absolute',
-          bottom: '40px',
+          inset: 0,
+          zIndex: 4,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'flex-end',
+          alignItems: 'flex-start',
+          padding: 'clamp(40px, 6vw, 80px)',
+          paddingBottom: 'clamp(80px, 9vw, 120px)',
+          y: reduced ? 0 : contentY,
+          opacity: reduced ? 1 : contentOp,
+        }}
+      >
+
+        {/* Eyebrow */}
+        <motion.div
+          style={{ margin: '0 0 28px' }}
+          initial={reduced ? false : { opacity: 0, x: -14 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+        >
+          <TextScramble
+            as="p"
+            className="type-label"
+            style={{
+              color: 'var(--color-on-dark-faint)',
+              letterSpacing: '0.18em',
+              fontSize: '0.6875rem',
+              margin: 0,
+            }}
+            duration={1.2}
+            speed={0.03}
+            trigger={!reduced}
+          >
+            Presentation Design · Visual Storytelling
+          </TextScramble>
+        </motion.div>
+
+        {/* Headline — "Story > You > Audience." */}
+        <h1
+          className="type-display hero-headline"
+          style={{
+            color: 'var(--color-on-dark)',
+            margin: '0 0 28px',
+          }}
+        >
+          {reduced ? (
+            <>
+              <span>Story </span>
+              <span style={{ fontWeight: 100, opacity: 0.45 }}>{'>'}</span>
+              <span> You </span>
+              <span style={{ fontWeight: 100, opacity: 0.45 }}>{'>'}</span>
+              <span> Audience.</span>
+            </>
+          ) : (
+            HEADLINE.map((token, i) => {
+              const isArrow = token === '>'
+              return (
+                <motion.span
+                  key={i}
+                  style={{
+                    display: 'inline-block',
+                    marginRight: isArrow ? '0.20em' : '0.18em',
+                    marginLeft: isArrow ? '0.12em' : 0,
+                    fontWeight: isArrow ? 100 : 300,
+                    opacity: 1,
+                    color: isArrow ? 'var(--color-on-dark-faint)' : 'var(--color-on-dark)',
+                  }}
+                  initial={{ opacity: 0, y: 36, filter: 'blur(10px)' }}
+                  animate={{
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                  }}
+                  transition={{
+                    duration: 0.90,
+                    delay: 0.50 + i * 0.10,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                >
+                  {token}
+                </motion.span>
+              )
+            })
+          )}
+        </h1>
+
+        {/* Subtext */}
+        <motion.p
+          className="type-body-lg"
+          style={{
+            color: 'var(--color-on-dark-muted)',
+            margin: '0 0 44px',
+            maxWidth: '460px',
+            lineHeight: 1.6,
+          }}
+          initial={reduced ? false : { opacity: 0, y: 18 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 1.10 }}
+        >
+          I build presentations for founders, executives, and brands with something important to say — and the ambition to make it land.
+        </motion.p>
+
+        {/* CTAs */}
+        <motion.div
+          style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}
+          initial={reduced ? false : { opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.25 }}
+        >
+          <Link
+            href="/work"
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.875rem',
+              fontWeight: 400,
+              letterSpacing: '0.02em',
+              padding: '14px 28px',
+              background: '#ffffff',
+              color: '#0d0d0d',
+              borderRadius: '3px',
+              border: 'none',
+              textDecoration: 'none',
+              display: 'inline-block',
+              lineHeight: 1,
+              transition: 'opacity 150ms ease',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+          >
+            See the Work
+          </Link>
+          <Link
+            href="/contact"
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.875rem',
+              fontWeight: 400,
+              letterSpacing: '0.02em',
+              padding: '13px 27px',
+              background: 'transparent',
+              color: '#ffffff',
+              borderRadius: '3px',
+              border: '1px solid rgba(255,255,255,0.32)',
+              textDecoration: 'none',
+              display: 'inline-block',
+              lineHeight: 1,
+              transition: 'border-color 150ms ease, background 150ms ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.65)'
+              e.currentTarget.style.background = 'rgba(255,255,255,0.07)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.32)'
+              e.currentTarget.style.background = 'transparent'
+            }}
+          >
+            Let&apos;s Talk
+          </Link>
+        </motion.div>
+
+        {/* Slide indicator dots */}
+        {!reduced && (
+          <motion.div
+            style={{ display: 'flex', gap: '6px', marginTop: '36px' }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 1.6 }}
+          >
+            {SLIDES.map((_, i) => (
+              <button
+                key={i}
+                aria-label={`View ${SLIDES[i].client}`}
+                onClick={() => { setPrevIdx(activeIdx); setActiveIdx(i) }}
+                style={{
+                  width: i === activeIdx ? '24px' : '6px',
+                  height: '2px',
+                  background: i === activeIdx ? 'var(--color-on-dark)' : 'var(--color-on-dark-ghost)',
+                  border: 'none',
+                  padding: 0,
+                  cursor: 'pointer',
+                  transition: 'width 400ms var(--ease-out-expo), background 300ms ease',
+                }}
+              />
+            ))}
+          </motion.div>
+        )}
+
+      </motion.div>
+
+      {/* ── Scroll indicator ─────────────────────────────────── */}
+      <motion.div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          bottom: '32px',
           left: '50%',
-          translateX: '-50%',
-          zIndex: 3,
+          transform: 'translateX(-50%)',
+          zIndex: 5,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
-          gap: '8px',
+          gap: '10px',
         }}
-        initial={reduced ? false : { opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1, delay: 1.2 }}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: reduced ? 0 : 0.45 }}
+        transition={{ duration: 1.2, delay: 2.0 }}
       >
-        <span className="type-label" style={{ color: 'var(--color-on-dark-muted)' }}>
-          SCROLL
+        <span
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.5625rem',
+            letterSpacing: '0.22em',
+            color: 'var(--color-on-dark)',
+            textTransform: 'uppercase',
+          }}
+        >
+          Scroll
         </span>
         <motion.div
-          style={{ width: '1px', height: '26px', background: 'var(--color-on-dark-muted)' }}
-          animate={reduced ? {} : { opacity: [1, 0.1, 1] }}
-          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+          style={{
+            width: '1px',
+            height: '44px',
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.5), transparent)',
+            originY: 0,
+          }}
+          animate={{ scaleY: [0.3, 1, 0.3], opacity: [0.4, 0.8, 0.4] }}
+          transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
         />
       </motion.div>
+
     </section>
   )
 }

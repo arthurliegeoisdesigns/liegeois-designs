@@ -27,7 +27,7 @@ export type CaseStudy = {
   /** One-line description shown in portfolio cards */
   tagline: string
   /**
-   * 3–5 curated slide images (paths relative to /public).
+   * 3–6 curated slide images.
    * First image is the hero/thumbnail shown in the grid.
    */
   images: string[]
@@ -35,6 +35,18 @@ export type CaseStudy = {
   featured: boolean
   /** Order within the homepage grid (lower = earlier) */
   order?: number
+  /** Agency partner, if applicable */
+  agency?: string
+  /** Brief summary of the project */
+  summary?: string
+  /** What the client asked for */
+  theAsk?: string
+  /** Key challenges faced */
+  challenge?: string
+  /** How we solved it */
+  solution?: string
+  /** Results and impact */
+  outcome?: string
 }
 
 export type BlogPost = {
@@ -49,6 +61,8 @@ export type BlogPost = {
   publishedAt: string
   /** Category tags */
   tags: string[]
+  /** Blog theme slug — links to blog-themes collection */
+  theme?: string
   /** true = post exists as draft only, not published */
   draft: boolean
   /** Cover image path relative to /public (optional) */

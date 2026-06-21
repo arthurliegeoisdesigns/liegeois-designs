@@ -1,19 +1,12 @@
 import type { Metadata } from 'next'
-import { Fraunces, Instrument_Sans } from 'next/font/google'
+import { Inter } from 'next/font/google'
 import './globals.css'
 import Nav from '@/components/Nav'
+import Footer from '@/components/Footer'
 
-const fraunces = Fraunces({
+const inter = Inter({
   subsets: ['latin'],
-  axes: ['opsz'],
-  style: ['normal', 'italic'],
-  variable: '--font-display',
-  display: 'swap',
-})
-
-const instrumentSans = Instrument_Sans({
-  subsets: ['latin'],
-  weight: ['400', '500'],
+  weight: ['300', '400'],
   variable: '--font-body',
   display: 'swap',
 })
@@ -44,11 +37,19 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${fraunces.variable} ${instrumentSans.variable}`}>
-      <head />
+    <html lang="en" className={inter.variable}>
+      <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        <link rel="dns-prefetch" href="https://cdn.prod.website-files.com" />
+        <link rel="preconnect" href="https://cdn.prod.website-files.com" crossOrigin="anonymous" />
+      </head>
       <body>
+        <a href="#main-content" className="skip-link">Skip to content</a>
         <Nav />
-        {children}
+        <div id="main-content">
+          {children}
+        </div>
+        <Footer />
       </body>
     </html>
   )

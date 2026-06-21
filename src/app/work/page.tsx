@@ -4,7 +4,7 @@ import WorkPageClient from './WorkPageClient'
 export const metadata: Metadata = {
   title: 'Work — Liégeois Designs',
   description:
-    'Case studies in presentation design, pitch decks, and strategic narratives for brands like Chevron, Marriott, and Capital One.',
+    'Case studies in presentation design, pitch decks, and strategic narratives for brands like Chevron, Marriott, and Philips.',
   alternates: { canonical: 'https://liegeoisdesigns.com/work' },
   openGraph: {
     title: 'Work — Liégeois Designs',

@@ -1,8 +1,3 @@
-type ClassValue = string | number | boolean | undefined | null | ClassValue[]
-
-export function cn(...inputs: ClassValue[]): string {
-  return inputs
-    .flat(Infinity as 20)
-    .filter(Boolean)
-    .join(' ')
+export function cn(...classes: (string | undefined | null | false)[]) {
+  return classes.filter(Boolean).join(' ')
 }

@@ -1,7 +1,11 @@
 import Link from 'next/link'
 import { links } from '@/lib/config'
 
-const cols = [
+const cols: Array<{
+  heading: string | null
+  isWordmark?: boolean
+  links: Array<{ label: string; href: string; external?: boolean }>
+}> = [
   {
     heading: null,
     isWordmark: true,
@@ -10,34 +14,33 @@ const cols = [
   {
     heading: 'STUDIO',
     links: [
-      { label: 'About', href: '#about' },
-      { label: 'Process', href: '#process' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'About', href: '/about' },
+      { label: 'Services', href: '/services' },
+      { label: 'Contact', href: '/contact' },
     ],
   },
   {
     heading: 'WORK',
     links: [
-      { label: 'Portfolio', href: '#work' },
-      { label: 'Case Studies', href: '#cases' },
-      { label: 'Clients', href: '#clients' },
+      { label: 'Case Studies', href: '/work' },
+      { label: 'Blog', href: '/blog' },
     ],
   },
   {
     heading: 'CONNECT',
     links: [
+      { label: 'Book a Call ↗', href: links.calendly, external: true },
       { label: 'LinkedIn ↗', href: links.linkedin, external: true },
       { label: 'YouTube ↗', href: links.youtube, external: true },
-      { label: 'Newsletter', href: '#newsletter' },
     ],
   },
 ]
 
 const linkStyle: React.CSSProperties = {
   display: 'block',
-  color: 'rgba(246,240,232,0.45)',
+  color: 'var(--color-on-dark-muted)',
   textDecoration: 'none',
-  fontSize: '13px',
+  fontSize: '0.8125rem',
   fontFamily: 'var(--font-body)',
   lineHeight: 1.8,
   transition: 'color 200ms',
@@ -48,34 +51,46 @@ export default function Footer() {
     <footer
       style={{
         background: 'var(--color-dark)',
-        borderTop: '0.5px solid rgba(246,240,232,0.07)',
+        borderTop: 'none',
         padding: 'clamp(48px,6vw,80px) var(--section-pad-x) 32px',
+        position: 'relative',
       }}
     >
+      {/* Top rule */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '0.5px',
+          background: 'var(--color-dark-border)',
+        }}
+      />
       <div className="container footer-grid">
         {/* Wordmark column */}
         <div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/images/logo-liegeois-footer-white.svg"
+            alt="Liégeois Designs"
+            className="footer-logo"
+            style={{
+              height: '120px',
+              width: 'auto',
+              objectFit: 'contain',
+              marginBottom: '20px',
+              display: 'block',
+            }}
+          />
           <p
             style={{
               fontFamily: 'var(--font-body)',
-              fontSize: '11px',
-              fontWeight: 500,
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              color: 'rgba(246,240,232,0.45)',
-              margin: '0 0 12px',
-            }}
-          >
-            Liégeois Designs
-          </p>
-          <p
-            style={{
-              fontFamily: 'var(--font-display)',
-              fontStyle: 'italic',
-              fontSize: '14px',
-              color: 'rgba(246,240,232,0.30)',
+              fontSize: '0.8125rem',
+              color: 'var(--color-on-dark-faint)',
               margin: 0,
-              fontVariationSettings: "'opsz' 14, 'WONK' 0",
+              letterSpacing: '0.01em',
             }}
           >
             &ldquo;Where strategy finds its voice.&rdquo;
@@ -88,11 +103,11 @@ export default function Footer() {
             <p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '10px',
-                fontWeight: 500,
+                fontSize: '0.625rem',
+                fontWeight: 400,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',
-                color: 'rgba(246,240,232,0.25)',
+                color: 'var(--color-on-dark-hint)',
                 margin: '0 0 16px',
               }}
             >
@@ -124,28 +139,36 @@ export default function Footer() {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '12px',
-            color: 'rgba(246,240,232,0.20)',
+            fontSize: '0.75rem',
+            color: 'var(--color-on-dark-faint)',
             margin: 0,
           }}
         >
           © 2026 Liégeois Designs. All rights reserved.
         </p>
         <div style={{ display: 'flex', gap: '20px' }}>
-          {['Privacy Policy', 'Terms of Use'].map((label) => (
-            <Link
-              key={label}
-              href="#"
-              style={{
-                fontFamily: 'var(--font-body)',
-                fontSize: '12px',
-                color: 'rgba(246,240,232,0.20)',
-                textDecoration: 'none',
-              }}
-            >
-              {label}
-            </Link>
-          ))}
+          <Link
+            href="/privacy-policy"
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.75rem',
+              color: 'var(--color-on-dark-faint)',
+              textDecoration: 'none',
+            }}
+          >
+            Privacy Policy
+          </Link>
+          <Link
+            href="/terms-of-use"
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.75rem',
+              color: 'var(--color-on-dark-faint)',
+              textDecoration: 'none',
+            }}
+          >
+            Terms of Use
+          </Link>
         </div>
       </div>
     </footer>
