@@ -1,2 +1,11 @@
-# Large local asset folders — images are served from CDN, not bundled in deployment
-public/images
+# Vercel deployment exclusions
+# This file overrides .gitignore for Vercel deploys.
+# Only exclude large binary assets served from CDN.
+
+/public/images/Case Studies-slides
+/public/videos
+
+# Cowork / Claude agent internals
+.agents/
+.claude/
+skills-lock.json

@@ -529,7 +529,7 @@ body {
   width: auto;
   max-width: 240px;
   filter: grayscale(1);
-  opacity: 0.35;
+  opacity: 0.6;
   object-fit: contain;
   display: block;
 }
