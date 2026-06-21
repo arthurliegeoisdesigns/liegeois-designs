@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import { Fraunces, Instrument_Sans } from 'next/font/google'
 import './globals.css'
 import Nav from '@/components/Nav'
+import { Analytics } from '@vercel/analytics/next'
 
 const fraunces = Fraunces({
   subsets: ['latin'],
@@ -49,6 +50,7 @@ export default function RootLayout({
       <body>
         <Nav />
         {children}
+        <Analytics />
       </body>
     </html>
   )
