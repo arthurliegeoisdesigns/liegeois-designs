@@ -1106,6 +1106,10 @@ footer {
 
 @media (max-width: 768px) {
   .services-nav-arrow { display: none !important; }
+  .services-bottom-grid {
+    grid-template-columns: 1fr !important;
+    gap: 28px !important;
+  }
 }
 
 /* ============================================================

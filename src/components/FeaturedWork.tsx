@@ -45,6 +45,8 @@ export default function FeaturedWork() {
         style={{
           paddingTop: 'var(--section-pad-y)',
           paddingBottom: 'clamp(40px, 5vw, 64px)',
+          paddingLeft: 'var(--section-pad-x)',
+          paddingRight: 'var(--section-pad-x)',
         }}
       >
         <motion.div

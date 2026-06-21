@@ -364,6 +364,7 @@ export default function ServicesPage() {
             {/* Bottom row: description + deliverables + CTA */}
             <div style={{ position: 'relative', zIndex: 1 }}>
               <div
+                className="services-bottom-grid"
                 style={{
                   display: 'grid',
                   gridTemplateColumns: '1fr auto',
