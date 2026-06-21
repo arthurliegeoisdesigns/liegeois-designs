@@ -17,7 +17,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['AI & Design', 'Design Process', 'Personal'],
     theme: 'ai-in-design',
     draft: false,
-    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782075443/think_like_a_filmmaker_fgaps0.jpg',
+    coverImage: '',
   },
   {
     slug: 'big-picture-vision-tiny-picture-doubts',
@@ -338,7 +338,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bddb9f8ccfbb9fdf2f4_6857ffa73c86e278c148b5e4_ADM-Productions-TGIF-1.webp',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782075443/think_like_a_filmmaker_fgaps0.jpg',
   },
   {
     slug: 'less-is-more-in-presentations',
