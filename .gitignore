@@ -40,8 +40,11 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# images — stored externally (Vercel Blob / CDN), not in git
-/public/images
+# Large binary images — served from Cloudinary CDN, not in git
+/public/images/Case Studies-slides
+
+# logos and brand assets — small SVGs, committed to git
+# /public/images/logos is intentionally NOT excluded
 
 # videos — large binary files, serve from CDN
 /public/videos
