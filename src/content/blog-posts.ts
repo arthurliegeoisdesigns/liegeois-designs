@@ -9,6 +9,17 @@ import type { BlogPost } from './types'
 export const blogPosts: BlogPost[] = [
   // ── Published ──────────────────────────────────────────────────────────────
   {
+    slug: 'i-built-this-website-with-ai-heres-what-actually-happened',
+    title: 'I Built This Website With AI. Here\'s What Actually Happened.',
+    excerpt: 'The honest version — bugs, broken deploys, missing skills, and what AI tooling can and can\'t do for a designer who\'s willing to stay in the loop.',
+    readTime: '9 min read',
+    publishedAt: '2026-06-21',
+    tags: ['AI & Design', 'Design Process', 'Personal'],
+    theme: 'ai-in-design',
+    draft: false,
+    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f83e8_683f46b95f3aad03b0cb2e3a_681ba9dcdcb982e09a6e1696_Portfolio_Slides_Philips-Experience-Intro_0001.jpeg',
+  },
+  {
     slug: 'big-picture-vision-tiny-picture-doubts',
     title: 'Big Picture Vision, Tiny Picture Doubts',
     excerpt: 'How fear paralyzes, and how micro-steps unlock courage.',
