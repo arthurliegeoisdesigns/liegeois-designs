@@ -2,76 +2,76 @@ Instagram will tell you it takes three skills and an afternoon.
 
 It doesn't.
 
-I built this website — the one you're reading this on — using Claude Cowork, Claude Code, a Terminal window I kept open for weeks, and a collection of AI skills I had to hunt for, install, customize, and occasionally curse at. It took multiple sessions spread over several weeks. It involved real bugs, real debugging, and moments where I had to understand exactly what was happening in my codebase to fix it.
+I built this website — the one you're reading this on — using a stack of AI tools I'd never touched before, a Terminal window I kept open for weeks, and a steep learning curve I wasn't warned about. It took multiple sessions spread over several weeks. It involved real bugs, real confusion, and more than a few moments where I had absolutely no idea what I was doing.
 
 It also produced something I'm genuinely proud of. That's the honest version.
 
-## What I was actually trying to build
+## Starting from zero
 
-Not a brochure site. A premium visual storytelling studio — dark, cinematic, with a horizontal-scroll services experience, a multi-image draggable portfolio gallery, scroll-triggered animations, a full blog system, case study pages, security headers, analytics, and a deployment pipeline connected to GitHub and Vercel.
+Let me be clear about where I started: I am a designer, not a developer. I had never used most of the tools involved in this build. I didn't know what a CDN was in practice. I'd never pushed a commit from the command line. I didn't know GitHub Desktop was even a thing. The terminal was something I'd opened maybe twice in my life and immediately closed.
 
-The kind of site that, if I'd hired a developer, would have taken months and a significant budget. I wanted to see how far AI tooling could take me — and where the ceiling was.
+The learning curve was steep. Not brutal — but steep. And the content creators who skip that part are doing you a real disservice.
 
-## The setup: what I actually used
+## What I actually used — and what each thing does
 
-Claude Cowork was the primary interface. Think of it as a persistent AI workspace that can read and write files in your project, run terminal commands, and remember context across the build. Connected to my project folder, it became the place where everything happened — from generating components to debugging deploys.
+**Claude Cowork** is the AI workspace I used as the primary interface throughout the build. Think of it as a persistent creative director's assistant that can read and write files in your project, run commands, and maintain context across long sessions. It was the central nervous system of the whole operation.
 
-Claude Code handled the heavier lifting: reading files, editing code, running shell commands, managing git. It's not a magic button. It's a co-pilot that requires you to stay in the loop.
+**Claude Code** is the underlying engine that handles the heavier technical work — reading and editing files, running terminal commands, managing the codebase. It's what makes Cowork capable of more than just conversation.
 
-Terminal was open constantly. `git add`, `git commit`, `git push` — GitHub Desktop for the actual push to trigger Vercel deploys. Python scripts to batch-upload images to Cloudinary. `npm install` with a specific prefix I had to learn the hard way (more on that in a moment).
+**Next.js** is the framework the website is built on — a tool for building fast, modern websites using React. I didn't choose it. Claude recommended it as the right foundation for what I wanted to build, and I trusted that.
 
-Skills are installable add-ons that give Claude specialized capabilities. I installed a custom brand system skill — essentially a document codifying my entire visual identity, voice, color tokens, and typography rules — that Claude referenced for every output. I also used frontend design, Webflow code generation, and canvas design skills at different points.
+**Vercel** is the platform that hosts the website and deploys it automatically. Every time I pushed a code update, Vercel rebuilt and published the site within minutes. I didn't configure this — I followed steps and watched it work.
 
-## The skills gap nobody talks about
+**GitHub / GitHub Desktop** is how code gets saved and published. GitHub stores every version of your project. GitHub Desktop is a visual app that lets you push those updates without writing command-line instructions. I didn't know it existed until Claude told me to use it. It became the last step of almost every session: Claude finishes a task, I open GitHub Desktop, I push. Done.
 
-Here's what the Instagram posts skip: finding the right skill for the right moment is its own skill.
+**Cloudinary** is a cloud service that stores and delivers images. Rather than hosting hundreds of megabytes of portfolio images on the website itself — which would make it slow — images live on Cloudinary's servers and load via a fast global network. Setting it up required uploading images via an API. I didn't write the script that did that. Claude did. I ran it.
 
-Some were immediately useful. My brand system skill meant Claude never had to guess at my voice, my palette, or my typography — it had the full spec. Frontend design skills produced genuinely premium-quality components. That was impressive.
+**Terminal** is the command-line interface on a Mac — a text-based window where you type instructions directly to your computer. I used it to run those scripts, install packages, and do things the visual interface couldn't. Every time I opened it I felt slightly out of my depth. By the end of the project, slightly less so.
 
-Some didn't exist. When I needed to upload images to Cloudinary in bulk, there was no skill for that — I had to write a Python script from scratch with the Cloudinary API. When I needed to configure DNS records in Cloudflare, that was manual. When I needed to verify domain ownership in Google Search Console, that was me, in a browser, following steps.
+## The plan I didn't have to write
 
-And some I installed, tried, and set aside because they solved a different problem than I had. The gap between "this skill exists" and "this skill solves your specific problem right now" is real, and the content creators who don't mention it are doing you a disservice.
+Here's what surprised me most about working with Claude Cowork: I didn't have to figure out what to do next.
+
+At the start of the project, Claude generated a structured task list — every step needed to go from a blank Next.js project to a fully deployed website, in the right order, with the right dependencies. Dozens of tasks. I just had to follow them. When one was done, Claude marked it complete and we moved to the next.
+
+That sounds simple. It was transformative. One of the hardest parts of any solo project is knowing what to do next. That problem disappeared. I showed up, Claude had a plan, we executed.
+
+When I got stuck — which happened regularly — it didn't just answer the question. It explained what was happening and why, put the problem in context, and told me exactly what to do. When I had no idea what a terminal error meant, Claude translated it into plain English and fixed it. When I was completely lost, it got me back on track without making me feel like an idiot for not knowing.
 
 ## The bugs. Oh, the bugs.
 
 This is where the "three skills and you're done" narrative falls apart completely.
 
-**The NODE_ENV problem.** My work Mac has `NODE_ENV=production` set globally in the shell environment. This means every `npm install` command silently skips devDependencies — packages your build actually needs — without any error message. Just silent failure. I didn't know this existed. Claude caught it, and now every npm command in this project gets prefixed with `NODE_ENV=development`. A thing you'd never know to look for until it bites you.
+**Logos that vanished after every deploy.** Every time I pushed an update to GitHub, my logo files disappeared from the live site. The site looked fine in development, broken in production. The cause: a single line in a configuration file was telling git to ignore the entire images folder, so those files never made it to the server. The fix was precise and surgical. Finding it took real debugging.
 
-**Logos that wouldn't survive a deploy.** Every time I pushed to GitHub and Vercel rebuilt the site, my logo files disappeared. The site looked clean in development, broken in production. The root cause: `/public/images` was in `.gitignore` — the file that tells git what to ignore. GitHub deploys only see what git tracks, so the logos never made it to Vercel. The fix was surgical: exclude only the large case study image folder from git, commit every logo explicitly. Simple in retrospect. Hours of debugging to find.
+**Twenty broken portfolio images.** The case study images on my portfolio pages were all returning errors — images I'd referenced in the code that were never actually uploaded to Cloudinary. Fixing it meant hunting through local folders, discovering one image was genuinely missing, finding a substitute, and uploading everything through the API script Claude had written. Not glamorous. Necessary.
 
-**Twenty Cloudinary 404s.** The case study images on my portfolio pages were all broken — images I'd referenced in code that I'd never actually uploaded to the CDN. Rebuilding the Spaceship case study required hunting through local folders, finding that one image was genuinely missing, substituting another, then uploading everything via a Python script with the Cloudinary API. Not glamorous. Necessary.
+**A token problem I created myself.** Early in the project, I was using Claude Opus — the most powerful (and most expensive) model in the Claude lineup. I didn't know there were different models, or that the choice mattered. I burned through a significant amount of tokens doing things that didn't require that level of capability. When I finally switched to Claude Sonnet, the results were essentially the same. The lesson: understand your tools before you max them out.
 
-**A Vercel CLI token that had quietly expired.** Discovered mid-session when I tried to deploy from the command line and got an authentication error. The fix was to switch to GitHub Desktop for all deploys — but only after spending time diagnosing what was wrong.
+None of these problems were catastrophic. All of them required understanding what was happening, not just following instructions blindly.
 
-None of these are catastrophic. All of them required understanding what was happening, not just following instructions.
+## What AI tooling actually is
 
-## What AI actually is in this context
+Not an autopilot. A capable collaborator that still needs a human in the loop.
 
-Not an autopilot. A co-pilot with exceptional execution speed.
+It executed faster than I could have imagined — components, animations, security configuration, analytics setup, all in a fraction of the time a traditional development engagement would take. It remembered the brief, applied it consistently, and caught things I would have missed.
 
-Claude could write a production-quality React component faster than I could spec it. It could audit my codebase for security vulnerabilities, add security headers to my Next.js config, install Vercel Analytics, and wire up Speed Insights in the time it would take me to read the documentation. It remembered my brand system, my voice, my technical constraints — and applied them consistently across dozens of files.
+What it couldn't do: make decisions I hadn't thought through. Know which of my images were missing before I pointed it in that direction. Understand the broader strategic intent behind the project without me explaining it. The quality of the output was directly tied to the quality of my direction.
 
-What it couldn't do: make decisions I hadn't thought through. Choose between competing approaches without my input. Debug a problem it didn't know existed. Or know that my shell environment had a quirk that would silently break package installation.
-
-The metaphor that felt most accurate: I was the creative director and the strategist. Claude was the fastest, most capable studio team I've ever worked with. But the brief still had to come from me. The decisions still had to come from me. The judgment calls — what to build, what to cut, what was good enough and what needed another pass — those were mine.
+The metaphor that stuck: I was the creative director. Claude was the most capable, fastest studio team I'd ever worked with. But the brief still came from me. The decisions still came from me. The judgment calls — what belonged, what to cut, what needed another pass — those were mine.
 
 ## What it produced
 
-A Next.js 15 site with React 19. A full design system with CSS custom properties. A horizontal-scroll services experience. A draggable image gallery with Ken Burns animations. A blog with theme filtering. Case study detail pages. Security headers. Analytics. Speed Insights. A favicon. A deployment pipeline that auto-builds on every GitHub push.
+A Next.js site with a full design system, a horizontal-scroll services experience, a draggable image gallery with animations, a complete blog, case study pages, security configuration, analytics, and a deployment pipeline that auto-builds on every push to GitHub.
 
-In weeks, not months. At a fraction of the cost of a full development engagement.
+In weeks, not months. Without a developer on retainer.
 
-That's genuinely remarkable. I'm not hedging on that.
+That's real. I'm not hedging.
 
 ## The honest verdict
 
-If you're a non-developer who has never opened a terminal, this process will be harder than the Instagram posts suggest. You'll hit moments where understanding what's happening in your codebase is the only way forward. AI tooling accelerates enormously — it doesn't eliminate the need to think.
+If you're a non-developer with no terminal experience and no familiarity with how websites are actually built, this will be harder than you've been told. There's a learning curve. You'll hit moments where you need to understand what's happening — not just copy and paste instructions. The tools are remarkable. They are not magic.
 
-If you're a designer with some technical confidence and a clear vision of what you want to build, this is genuinely transformative. The gap between what you can conceive and what you can execute has never been smaller.
+If you're a designer with a clear vision and the willingness to stay in the loop, this is genuinely the most significant shift in what's possible for a solo creative. The gap between what you can imagine and what you can actually build has never been smaller.
 
-The ceiling isn't the tools. It's the clarity of your brief.
-
-Know what you're building. Know why every element belongs. The AI will handle the rest faster than you expect — and it will ask you the right questions when it doesn't know.
-
-That, not three skills and an afternoon, is what building with AI actually looks like.
+But close isn't zero. And nobody on Instagram is talking about that part.
