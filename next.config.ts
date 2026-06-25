@@ -44,7 +44,19 @@ const nextConfig: NextConfig = {
         destination: 'https://www.liegeoisdesigns.com/:path*',
         permanent: true,
       },
-      // ── Old Webflow portfolio category pages → /work ─────────────────────
+      // ── Old Webflow portfolio items → specific new case study pages ────────
+      { source: '/portfolio/projectbe-colorcode-workshop',       destination: '/work/projectbe-colorcode',                 permanent: true },
+      { source: '/portfolio/special-forces-project-starzplay',   destination: '/work/special-forces-project-starzplay',    permanent: true },
+      { source: '/portfolio/marriott-digital-marketing-strat',   destination: '/work/marriott-luxury-group',               permanent: true },
+      { source: '/portfolio/grey-slide-sample-1-8439d',          destination: '/work/grey-slide-sample-1-8439d',           permanent: true },
+      { source: '/portfolio/rapp-and-evolus',                    destination: '/work/rapp-and-evolus',                     permanent: true },
+      { source: '/portfolio/norigami-slide-1-7cc23',             destination: '/work/norigami-brand',                      permanent: true },
+      { source: '/portfolio/philips-healthcare-1',               destination: '/work/philips-healthcare',                  permanent: true },
+      { source: '/portfolio/ogilvy-for-cdw-1-98a9e',            destination: '/work/ogilvy-for-cdw-1-98a9e',              permanent: true },
+      { source: '/portfolio/toddstreet-intercept-1-c83f2',       destination: '/work/intercept-pharma',                    permanent: true },
+      { source: '/portfolio/adm-productions-emd-1-c6815',        destination: '/work/adm-prod-tgi-fridays-campaign',       permanent: true },
+      { source: '/portfolio/the-special-event-company-20-b7a3c', destination: '/work/the-special-event-company-20-b7a3c',  permanent: true },
+      // ── All remaining /portfolio/* → /work ───────────────────────────────
       { source: '/portfolio/:slug*', destination: '/work', permanent: true },
       // ── Old Webflow blog imported items → /blog ──────────────────────────
       { source: '/blog/imported-item-:id', destination: '/blog', permanent: true },
