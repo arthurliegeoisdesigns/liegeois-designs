@@ -14,18 +14,18 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://liegeoisdesigns.com'),
+  metadataBase: new URL('https://www.liegeoisdesigns.com'),
   title: {
     default: 'Liégeois Designs — Strategic Visual Storytelling',
     template: '%s | Liégeois Designs',
   },
   description:
     'Visual storytelling for brands that refuse to blend in. Presentation design, pitch decks, and narrative strategy.',
-  alternates: { canonical: 'https://liegeoisdesigns.com' },
+  alternates: { canonical: 'https://www.liegeoisdesigns.com' },
   openGraph: {
     title: 'Liégeois Designs',
     description: 'Strategic visual storytelling studio.',
-    url: 'https://liegeoisdesigns.com',
+    url: 'https://www.liegeoisdesigns.com',
     siteName: 'Liégeois Designs',
     locale: 'en_US',
     type: 'website',

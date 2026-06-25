@@ -2,15 +2,15 @@ import type { Metadata } from 'next'
 import AboutPage from './AboutPage'
 
 export const metadata: Metadata = {
-  title: 'About — Liégeois Designs',
+  title: 'About Arthur Liégeois',
   description:
     'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline: turning complex ideas into stories people actually feel.',
-  alternates: { canonical: 'https://liegeoisdesigns.com/about' },
+  alternates: { canonical: 'https://www.liegeoisdesigns.com/about' },
   openGraph: {
-    title: 'About — Liégeois Designs',
+    title: 'About Arthur Liégeois | Liégeois Designs',
     description:
       'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline.',
-    url: 'https://liegeoisdesigns.com/about',
+    url: 'https://www.liegeoisdesigns.com/about',
     siteName: 'Liégeois Designs',
     type: 'website',
   },

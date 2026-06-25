@@ -21,7 +21,7 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
-    alternates: { canonical: `https://liegeoisdesigns.com/blog/${slug}` },
+    alternates: { canonical: `https://www.liegeoisdesigns.com/blog/${slug}` },
     openGraph: {
       title: post.title,
       description: post.excerpt,
