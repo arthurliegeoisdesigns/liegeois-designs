@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next'
 import { publishedPosts } from '@/content/blog-posts'
 import { caseStudies } from '@/content/case-studies'
 
-const BASE = 'https://liegeoisdesigns.com'
+const BASE = 'https://www.liegeoisdesigns.com'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogRoutes = publishedPosts.map((post) => ({

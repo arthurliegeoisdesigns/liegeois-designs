@@ -35,6 +35,24 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      // ── Canonical: non-www → www ─────────────────────────────────────────
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'liegeoisdesigns.com' }],
+        destination: 'https://www.liegeoisdesigns.com/:path*',
+        permanent: true,
+      },
+      // ── Old Webflow portfolio category pages → /work ─────────────────────
+      { source: '/portfolio/:slug*', destination: '/work', permanent: true },
+      // ── Old Webflow blog imported items → /blog ──────────────────────────
+      { source: '/blog/imported-item-:id', destination: '/blog', permanent: true },
+      // ── Old Webflow misc pages ───────────────────────────────────────────
+      { source: '/contact-us', destination: '/contact', permanent: true },
+      { source: '/terms-and-condition', destination: '/terms-of-use', permanent: true },
+    ]
+  },
   async headers() {
     return [
       {
