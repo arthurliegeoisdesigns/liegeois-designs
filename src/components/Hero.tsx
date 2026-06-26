@@ -5,6 +5,7 @@ import { useRef, useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { TextScramble } from '@/components/ui/TextScramble'
+import MagneticWrapper from '@/components/ui/MagneticWrapper'
 
 const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs'
 
@@ -263,56 +264,60 @@ export default function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.25 }}
         >
-          <Link
-            href="/work"
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.875rem',
-              fontWeight: 400,
-              letterSpacing: '0.02em',
-              padding: '14px 28px',
-              background: '#ffffff',
-              color: '#0d0d0d',
-              borderRadius: '3px',
-              border: 'none',
-              textDecoration: 'none',
-              display: 'inline-block',
-              lineHeight: 1,
-              transition: 'opacity 150ms ease',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
-            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-          >
-            See the Work
-          </Link>
-          <Link
-            href="/contact"
-            style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.875rem',
-              fontWeight: 400,
-              letterSpacing: '0.02em',
-              padding: '13px 27px',
-              background: 'transparent',
-              color: '#ffffff',
-              borderRadius: '3px',
-              border: '1px solid rgba(255,255,255,0.32)',
-              textDecoration: 'none',
-              display: 'inline-block',
-              lineHeight: 1,
-              transition: 'border-color 150ms ease, background 150ms ease',
-            }}
-            onMouseEnter={e => {
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.65)'
-              e.currentTarget.style.background = 'rgba(255,255,255,0.07)'
-            }}
-            onMouseLeave={e => {
-              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.32)'
-              e.currentTarget.style.background = 'transparent'
-            }}
-          >
-            Let&apos;s Talk
-          </Link>
+          <MagneticWrapper strength={14}>
+            <Link
+              href="/work"
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.875rem',
+                fontWeight: 400,
+                letterSpacing: '0.02em',
+                padding: '14px 28px',
+                background: '#ffffff',
+                color: '#0d0d0d',
+                borderRadius: '3px',
+                border: 'none',
+                textDecoration: 'none',
+                display: 'inline-block',
+                lineHeight: 1,
+                transition: 'opacity 150ms ease',
+              }}
+              onMouseEnter={e => (e.currentTarget.style.opacity = '0.88')}
+              onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+            >
+              See the Work
+            </Link>
+          </MagneticWrapper>
+          <MagneticWrapper strength={14}>
+            <Link
+              href="/contact"
+              style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.875rem',
+                fontWeight: 400,
+                letterSpacing: '0.02em',
+                padding: '13px 27px',
+                background: 'transparent',
+                color: '#ffffff',
+                borderRadius: '3px',
+                border: '1px solid rgba(255,255,255,0.32)',
+                textDecoration: 'none',
+                display: 'inline-block',
+                lineHeight: 1,
+                transition: 'border-color 150ms ease, background 150ms ease',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.65)'
+                e.currentTarget.style.background = 'rgba(255,255,255,0.07)'
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.32)'
+                e.currentTarget.style.background = 'transparent'
+              }}
+            >
+              Let&apos;s Talk
+            </Link>
+          </MagneticWrapper>
         </motion.div>
 
         {/* Slide indicator dots */}

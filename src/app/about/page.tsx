@@ -1,5 +1,9 @@
 import type { Metadata } from 'next'
-import AboutPage from './AboutPage'
+import AboutClientWrapper from './AboutClientWrapper'
+
+// AboutClientWrapper is a 'use client' component that hosts the ssr:false
+// dynamic import — keeping it out of this server component avoids the
+// Next.js 16 / Turbopack dual-React null-hook crash.
 
 export const metadata: Metadata = {
   title: 'About Arthur Liégeois',
@@ -17,5 +21,5 @@ export const metadata: Metadata = {
 }
 
 export default function Page() {
-  return <AboutPage />
+  return <AboutClientWrapper />
 }

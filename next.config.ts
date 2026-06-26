@@ -35,6 +35,9 @@ const securityHeaders = [
 ]
 
 const nextConfig: NextConfig = {
+  experimental: {
+    optimizePackageImports: ['framer-motion'],
+  },
   async redirects() {
     return [
       // ── Canonical: non-www → www ─────────────────────────────────────────

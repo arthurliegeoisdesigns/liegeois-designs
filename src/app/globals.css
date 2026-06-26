@@ -143,6 +143,12 @@ html {
   font-optical-sizing: auto;
 }
 
+/* ── Custom cursor ── */
+html.custom-cursor-active,
+html.custom-cursor-active * {
+  cursor: none !important;
+}
+
 body {
   background: #ffffff;
   color: #0d0d0d;
@@ -476,6 +482,18 @@ body {
 @media (hover: hover) and (pointer: fine) {
   .blog-featured-card:hover { border-color: var(--color-border-mid); }
   .blog-featured-card:hover .blog-card-cover { transform: scale(1.04); }
+}
+
+/* ── Page transition ── */
+@keyframes page-fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.page-transition-wrapper {
+  animation: page-fade-up 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-transition-wrapper { animation: none; }
 }
 
 /* --- LOGOS MARQUEE --- */

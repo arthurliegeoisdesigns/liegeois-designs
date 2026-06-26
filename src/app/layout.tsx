@@ -5,6 +5,8 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
+import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
+import CustomCursor from '@/components/ui/CustomCursor'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -46,12 +48,15 @@ export default function RootLayout({
         <link rel="preconnect" href="https://cdn.prod.website-files.com" crossOrigin="anonymous" />
       </head>
       <body>
-        <a href="#main-content" className="skip-link">Skip to content</a>
-        <Nav />
-        <div id="main-content">
-          {children}
-        </div>
-        <Footer />
+        <SmoothScrollProvider>
+          <CustomCursor />
+          <a href="#main-content" className="skip-link">Skip to content</a>
+          <Nav />
+          <div id="main-content">
+            {children}
+          </div>
+          <Footer />
+        </SmoothScrollProvider>
         <Analytics />
         <SpeedInsights />
       </body>

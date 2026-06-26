@@ -1,10 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
-import { motion } from 'framer-motion'
 import { caseStudies } from '@/content/case-studies'
-import CaseStudyHero from './CaseStudyHero'
-import CaseStudyGallery from './CaseStudyGallery'
-import CaseStudyNav from './CaseStudyNav'
+import CaseStudyClient from './CaseStudyClient'
 
 export function generateStaticParams() {
   return caseStudies.map((cs) => ({ slug: cs.slug }))
@@ -34,9 +31,7 @@ function NarrativeBlock({ label, text }: { label: string; text: string }) {
   const isBulletList = lines.every((l) => l.trim().startsWith('•'))
 
   return (
-    <div
-      style={{ marginBottom: '48px' }}
-    >
+    <div style={{ marginBottom: '48px' }}>
       <p
         style={{
           fontFamily: 'var(--font-body)',
@@ -93,12 +88,9 @@ export default async function CaseStudyPage({
   return (
     <main style={{ background: 'var(--color-dark)', minHeight: '100vh' }}>
 
-      {/* ── Parallax hero + animated header ── */}
-      <CaseStudyHero cs={cs} index={currentIndex} total={caseStudies.length} />
-
-      {/* ── Narrative ── */}
+      {/* ── Narrative (server-rendered for SEO) ── */}
       {hasNarrative && (
-        <section style={{ padding: 'clamp(56px, 6vw, 80px) var(--section-pad-x)' }}>
+        <section style={{ padding: 'clamp(56px, 6vw, 80px) var(--section-pad-x)', paddingTop: 'clamp(100px, 10vw, 140px)' }}>
           <div
             style={{
               maxWidth: '960px',
@@ -122,31 +114,17 @@ export default async function CaseStudyPage({
         </section>
       )}
 
-      {/* ── Image gallery ── */}
-      {cs.images.length > 1 && (
-        <section
-          style={{
-            padding: hasNarrative
-              ? '0 var(--section-pad-x) clamp(64px, 8vw, 100px)'
-              : 'clamp(48px, 6vw, 72px) var(--section-pad-x) clamp(64px, 8vw, 100px)',
-          }}
-        >
-          <div style={{ maxWidth: '960px', margin: '0 auto' }}>
-            <CaseStudyGallery images={cs.images.slice(1)} client={cs.client} />
-          </div>
-        </section>
-      )}
-
       {/* ── Divider ── */}
-      <div
-        style={{
-          height: '0.5px',
-          background: 'var(--color-on-dark-border)',
-        }}
-      />
+      <div style={{ height: '0.5px', background: 'var(--color-on-dark-border)' }} />
 
-      {/* ── Next / Prev navigation ── */}
-      <CaseStudyNav prev={prev} next={next} />
+      {/* ── Animated sections (client-only, avoids Turbopack SSR bug) ── */}
+      <CaseStudyClient
+        cs={cs}
+        index={currentIndex}
+        total={caseStudies.length}
+        prev={prev}
+        next={next}
+      />
 
     </main>
   )
