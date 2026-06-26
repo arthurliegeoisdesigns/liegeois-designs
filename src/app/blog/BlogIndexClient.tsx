@@ -16,21 +16,20 @@ const cardVariants = {
   visible: { opacity: 1, y: 0 },
 }
 
-const filterBtnStyle = (active: boolean): React.CSSProperties => ({
-  fontFamily: 'var(--font-body)',
-  fontSize: '0.75rem',
-  fontWeight: 400,
-  letterSpacing: '0.05em',
-  padding: '10px 18px',
-  minHeight: '44px',
-  borderRadius: 'var(--radius-full)',
-  border: '1px solid',
-  borderColor: active ? 'var(--color-text-primary)' : 'var(--color-border-mid)',
-  background: active ? 'var(--color-text-primary)' : 'transparent',
-  color: active ? '#ffffff' : 'var(--color-text-secondary)',
+const filterBlockStyle = (active: boolean): React.CSSProperties => ({
+  position: 'relative',
+  padding: 'clamp(16px, 2vw, 22px) clamp(14px, 1.8vw, 20px)',
+  background: active ? '#0A0A0A' : '#ffffff',
+  border: 'none',
+  borderLeft: '0.5px solid var(--color-border-mid)',
   cursor: 'pointer',
-  transition: 'all 150ms ease',
-  whiteSpace: 'nowrap',
+  textAlign: 'left',
+  transition: 'background 250ms ease',
+  minHeight: 'clamp(72px, 9vw, 96px)',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-between',
+  gap: '10px',
 })
 
 export default function BlogIndexClient() {
@@ -79,25 +78,58 @@ export default function BlogIndexClient() {
             </p>
           </motion.div>
 
-          {/* Theme filter tabs */}
+          {/* Theme filter blocks */}
           <motion.div
-            style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '48px' }}
+            className="blog-filter-blocks"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '1px',
+              marginBottom: '48px',
+              border: '0.5px solid var(--color-border-mid)',
+            }}
             initial={reduced ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
           >
-            <button onClick={() => setActiveTheme(null)} style={filterBtnStyle(activeTheme === null)}>
-              All
-            </button>
-            {blogThemes.map((theme) => (
-              <button
-                key={theme.slug}
-                onClick={() => setActiveTheme(theme.slug === activeTheme ? null : theme.slug)}
-                style={filterBtnStyle(activeTheme === theme.slug)}
-              >
-                {theme.label}
-              </button>
-            ))}
+            {[{ slug: null, label: 'All' }, ...blogThemes].map((theme, i) => {
+              const isActive = activeTheme === theme.slug
+              const count = theme.slug === null
+                ? allPosts.length
+                : allPosts.filter((p) => p.theme === theme.slug).length
+              return (
+                <button
+                  key={theme.slug ?? 'all'}
+                  onClick={() => setActiveTheme(theme.slug === activeTheme ? null : theme.slug)}
+                  style={{
+                    ...filterBlockStyle(isActive),
+                    borderLeft: i === 0 ? 'none' : '0.5px solid var(--color-border-mid)',
+                  }}
+                >
+                  <span style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.5625rem',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: isActive ? 'rgba(255,255,255,0.4)' : 'var(--color-text-muted)',
+                    transition: 'color 250ms ease',
+                  }}>
+                    {count} {count === 1 ? 'post' : 'posts'}
+                  </span>
+                  <span style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(0.75rem, 1.2vw, 0.9375rem)',
+                    fontWeight: 400,
+                    color: isActive ? '#FAFAFA' : 'var(--color-text-primary)',
+                    lineHeight: 1.25,
+                    letterSpacing: '-0.01em',
+                    transition: 'color 250ms ease',
+                  }}>
+                    {theme.label}
+                  </span>
+                </button>
+              )
+            })}
           </motion.div>
 
           {/* Grid */}

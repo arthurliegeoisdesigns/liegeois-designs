@@ -7,39 +7,37 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { caseStudies } from '@/content/case-studies'
 
 const formats = [
-  'All',
-  'Pitch & Investor Deck',
-  'Executive Presentation',
-  'Sales & Agency Deck',
+  { label: 'All',                      value: 'All' },
+  { label: 'Pitch & Investor Decks',   value: 'Pitch & Investor Deck' },
+  { label: 'Executive Presentations',  value: 'Executive Presentation' },
+  { label: 'Sales & Agency Decks',     value: 'Sales & Agency Deck' },
 ] as const
 
+type FormatValue = typeof formats[number]['value']
+
 const cardVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
+  hidden:   { opacity: 0, y: 20 },
+  visible:  { opacity: 1, y: 0 },
 }
 
+const ease = [0.16, 1, 0.3, 1] as const
+
 export default function WorkPageClient() {
-  const [activeFormat, setActiveFormat] = useState<string>('All')
+  const [active, setActive] = useState<FormatValue>('All')
   const reduced = useReducedMotion()
 
-  const filtered =
-    activeFormat === 'All'
-      ? caseStudies
-      : caseStudies.filter((cs) => cs.format === activeFormat)
+  const filtered = active === 'All'
+    ? caseStudies
+    : caseStudies.filter((cs) => cs.format === active)
 
   return (
     <main style={{ background: '#ffffff', minHeight: '100vh' }}>
+
       {/* Back link */}
       <div style={{ paddingTop: 'calc(80px + 20px)', paddingLeft: 'var(--section-pad-x)', paddingRight: 'var(--section-pad-x)', paddingBottom: '16px', position: 'relative', zIndex: 10 }}>
         <Link
           href="/"
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.8125rem',
-            color: 'var(--color-text-secondary)',
-            textDecoration: 'none',
-            transition: 'color var(--duration-fast) ease',
-          }}
+          style={{ fontFamily: 'var(--font-body)', fontSize: '0.8125rem', color: 'var(--color-text-secondary)', textDecoration: 'none', transition: 'color var(--duration-fast) ease' }}
           onMouseEnter={(e) => (e.currentTarget.style.color = 'var(--color-text-primary)')}
           onMouseLeave={(e) => (e.currentTarget.style.color = 'var(--color-text-secondary)')}
         >
@@ -54,57 +52,86 @@ export default function WorkPageClient() {
             style={{ marginBottom: '48px', maxWidth: '700px' }}
             initial={reduced ? false : { opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.7, ease }}
           >
-            <h1
-              className="type-display"
-              style={{ color: 'var(--color-text-primary)', margin: '0 0 20px' }}
-            >
+            <h1 className="type-display" style={{ color: 'var(--color-text-primary)', margin: '0 0 20px' }}>
               Work that changed the room.
             </h1>
-            <p
-              className="type-body-lg"
-              style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '560px' }}
-            >
-              Every deck built to shift something — in the room, in the market,
-              in how an audience sees a brand.
+            <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '560px' }}>
+              Every deck built to shift something — in the room, in the market, in how an audience sees a brand.
             </p>
           </motion.div>
 
-          {/* Filters */}
+          {/* ── Filter blocks ── */}
           <motion.div
-            style={{ display: 'flex', flexWrap: 'wrap', gap: '8px', marginBottom: '48px' }}
+            className="work-filter-blocks"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              gap: '1px',
+              marginBottom: '56px',
+              border: '0.5px solid var(--color-border-mid)',
+            }}
             initial={reduced ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
+            transition={{ duration: 0.7, ease, delay: 0.15 }}
           >
-            {formats.map((format) => (
-              <button
-                key={format}
-                onClick={() => setActiveFormat(format)}
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.75rem',
-                  fontWeight: 400,
-                  letterSpacing: '0.06em',
-                  padding: '10px 18px',
-                  minHeight: '44px',
-                  borderRadius: 'var(--radius-full)',
-                  border: '1px solid',
-                  borderColor: activeFormat === format ? 'var(--color-text-primary)' : 'var(--color-border-mid)',
-                  background: activeFormat === format ? 'var(--color-text-primary)' : 'transparent',
-                  color: activeFormat === format ? '#ffffff' : 'var(--color-text-secondary)',
-                  cursor: 'pointer',
-                  transition: 'background 150ms ease, color 150ms ease, border-color 150ms ease',
-                }}
-              >
-                {format}
-              </button>
-            ))}
+            {formats.map((f, i) => {
+              const count = f.value === 'All'
+                ? caseStudies.length
+                : caseStudies.filter((cs) => cs.format === f.value).length
+              const isActive = active === f.value
+
+              return (
+                <button
+                  key={f.value}
+                  onClick={() => setActive(f.value)}
+                  style={{
+                    position: 'relative',
+                    padding: 'clamp(20px, 2.5vw, 28px) clamp(16px, 2vw, 24px)',
+                    background: isActive ? '#0A0A0A' : '#ffffff',
+                    border: 'none',
+                    borderLeft: i > 0 ? '0.5px solid var(--color-border-mid)' : 'none',
+                    cursor: 'pointer',
+                    textAlign: 'left',
+                    transition: 'background 250ms ease',
+                    minHeight: 'clamp(80px, 10vw, 110px)',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    gap: '12px',
+                  }}
+                >
+                  {/* Count */}
+                  <span style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.625rem',
+                    letterSpacing: '0.12em',
+                    textTransform: 'uppercase',
+                    color: isActive ? 'rgba(255,255,255,0.4)' : 'var(--color-text-muted)',
+                    transition: 'color 250ms ease',
+                  }}>
+                    {count} {count === 1 ? 'project' : 'projects'}
+                  </span>
+                  {/* Label */}
+                  <span style={{
+                    fontFamily: 'var(--font-display)',
+                    fontSize: 'clamp(0.8125rem, 1.4vw, 1.0625rem)',
+                    fontWeight: 400,
+                    color: isActive ? '#FAFAFA' : 'var(--color-text-primary)',
+                    lineHeight: 1.2,
+                    letterSpacing: '-0.01em',
+                    transition: 'color 250ms ease',
+                  }}>
+                    {f.label}
+                  </span>
+                </button>
+              )
+            })}
           </motion.div>
 
           {/* Grid */}
-          <div key={activeFormat} className="grid-3">
+          <div key={active} className="grid-3">
             {filtered.map((cs, idx) => (
               <motion.article
                 key={cs.slug}
@@ -113,7 +140,7 @@ export default function WorkPageClient() {
                 initial={reduced ? false : 'hidden'}
                 whileInView="visible"
                 viewport={{ once: true, margin: '-50px' }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: idx * 0.05 }}
+                transition={{ duration: 0.7, ease, delay: idx * 0.05 }}
               >
                 <Link href={`/work/${cs.slug}`} style={{ textDecoration: 'none', display: 'block' }}>
                   <div className="portfolio-card-image">

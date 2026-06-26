@@ -113,6 +113,9 @@ export default function FeaturedWork() {
             paddingLeft: 'var(--section-pad-x)',
             paddingRight: 'var(--section-pad-x)',
             userSelect: 'none',
+            // Allow vertical scroll to propagate to browser/Lenis;
+            // framer-motion handles horizontal drag exclusively.
+            touchAction: 'pan-y',
           }}
         >
           {caseStudies.map((cs, i) => (

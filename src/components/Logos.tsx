@@ -4,8 +4,15 @@ import { motion, useReducedMotion } from 'framer-motion'
 import { clients } from '@/content/clients'
 import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 
+// Curated tier-1 brands — recognisable names that signal calibre
+const FEATURED_IDS = [
+  'chevron', 'google', 'apple', 'ibm', 'bloomberg', 'philips',
+  'jandj', 'moderna', 'marriott', 'ogilvy', 'lilly', 'mastercard',
+]
+const featured = clients.filter((c) => FEATURED_IDS.includes(c.id))
+
 // Duplicate track for seamless infinite scroll
-const track = [...clients, ...clients]
+const track = [...featured, ...featured]
 
 export default function Logos() {
   const reduced = useReducedMotion()
