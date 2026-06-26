@@ -31,6 +31,12 @@ export type CaseStudy = {
    * First image is the hero/thumbnail shown in the grid.
    */
   images: string[]
+  /**
+   * Optional Cloudinary video URL (mp4).
+   * When present, replaces the static hero image with an autoplay muted loop.
+   * Format: https://res.cloudinary.com/[cloud]/video/upload/[public_id].mp4
+   */
+  video?: string
   /** Show on homepage portfolio grid */
   featured: boolean
   /** Order within the homepage grid (lower = earlier) */
