@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import type { CaseStudy } from '@/content/types'
@@ -16,31 +16,19 @@ export default function CaseStudyHero({
   index: number
   total: number
 }) {
-  const reduced  = useReducedMotion()
-  const heroRef  = useRef<HTMLDivElement>(null)
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
+  const reduced = useReducedMotion()
+  const heroRef = useRef<HTMLDivElement>(null)
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   })
 
-  // Parallax only on static image; video stays fixed (no GPU thrash)
   const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '28%'])
-
-  const toggleMute = () => {
-    if (!videoRef.current) return
-    const next = !muted
-    videoRef.current.muted = next
-    setMuted(next)
-  }
-
-  const hasVideo = !!cs.video
 
   return (
     <>
-      {/* ── Hero media (video OR parallax image) ── */}
+      {/* ── Hero — parallax image ── */}
       <div
         ref={heroRef}
         style={{
@@ -51,44 +39,22 @@ export default function CaseStudyHero({
           background: '#0A0A0A',
         }}
       >
-        {hasVideo ? (
-          /* ── Video hero ── */
-          <video
-            ref={videoRef}
-            src={cs.video}
-            poster={cs.images[0]}
-            autoPlay
-            muted
-            loop
-            playsInline
-            style={{
-              position: 'absolute',
-              inset: 0,
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
-              objectPosition: 'center',
-            }}
+        <motion.div
+          style={{
+            position: 'absolute',
+            inset: '-15% 0',
+            y: reduced ? 0 : imageY,
+          }}
+        >
+          <Image
+            src={cs.images[0]}
+            alt={`${cs.client} — ${cs.project}`}
+            fill
+            priority
+            style={{ objectFit: 'cover', objectPosition: 'center top' }}
+            sizes="100vw"
           />
-        ) : (
-          /* ── Static image with parallax ── */
-          <motion.div
-            style={{
-              position: 'absolute',
-              inset: '-15% 0',
-              y: reduced ? 0 : imageY,
-            }}
-          >
-            <Image
-              src={cs.images[0]}
-              alt={`${cs.client} — ${cs.project}`}
-              fill
-              priority
-              style={{ objectFit: 'cover', objectPosition: 'center top' }}
-              sizes="100vw"
-            />
-          </motion.div>
-        )}
+        </motion.div>
 
         {/* Bottom fade to dark */}
         <div
@@ -149,69 +115,6 @@ export default function CaseStudyHero({
             {index + 1} / {total}
           </motion.span>
         </div>
-
-        {/* Sound toggle — only shown when video is present */}
-        {hasVideo && (
-          <motion.button
-            onClick={toggleMute}
-            aria-label={muted ? 'Unmute video' : 'Mute video'}
-            initial={reduced ? false : { opacity: 0, y: 8 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            style={{
-              position: 'absolute',
-              bottom: '24px',
-              right: 'var(--section-pad-x)',
-              zIndex: 10,
-              display: 'flex',
-              alignItems: 'center',
-              gap: '8px',
-              padding: '8px 16px',
-              background: 'rgba(10,10,10,0.55)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              border: '0.5px solid rgba(255,255,255,0.15)',
-              color: 'rgba(255,255,255,0.8)',
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.75rem',
-              letterSpacing: '0.06em',
-              textTransform: 'uppercase',
-              cursor: 'pointer',
-              transition: 'background 200ms ease, color 200ms ease',
-            }}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.background = 'rgba(255,255,255,0.12)'
-              e.currentTarget.style.color = '#ffffff'
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.background = 'rgba(10,10,10,0.55)'
-              e.currentTarget.style.color = 'rgba(255,255,255,0.8)'
-            }}
-          >
-            {/* Speaker icon — inline SVG, no dependency */}
-            <svg
-              width="14" height="14" viewBox="0 0 24 24"
-              fill="none" stroke="currentColor" strokeWidth="1.5"
-              strokeLinecap="round" strokeLinejoin="round"
-              aria-hidden="true"
-            >
-              {muted ? (
-                <>
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                  <line x1="23" y1="9" x2="17" y2="15" />
-                  <line x1="17" y1="9" x2="23" y2="15" />
-                </>
-              ) : (
-                <>
-                  <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-                  <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-                  <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-                </>
-              )}
-            </svg>
-            {muted ? 'Sound off' : 'Sound on'}
-          </motion.button>
-        )}
       </div>
 
       {/* ── Project header ── */}
