@@ -149,6 +149,14 @@ html.custom-cursor-active * {
   cursor: none !important;
 }
 
+/* Safety net: restore native cursor on touch / coarse-pointer devices */
+@media (pointer: coarse) {
+  html.custom-cursor-active,
+  html.custom-cursor-active * {
+    cursor: auto !important;
+  }
+}
+
 body {
   background: #ffffff;
   color: #0d0d0d;
