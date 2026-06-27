@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import {
@@ -79,76 +79,18 @@ function NarrativeBlock({
   )
 }
 
-// ── Video player with play affordance ────────────────────────────────────────
+// ── Video player — autoplay muted loop ───────────────────────────────────────
 function VideoPlayer({ src, poster }: { src: string; poster: string }) {
-  const [playing, setPlaying] = useState(false)
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const togglePlay = () => {
-    const v = videoRef.current
-    if (!v) return
-    if (v.paused) { v.play().catch(() => {}) } else { v.pause() }
-  }
-
   return (
-    <div
-      style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0A0A0A', cursor: 'pointer' }}
-      onClick={togglePlay}
-    >
-      <video
-        ref={videoRef}
-        src={src}
-        poster={poster}
-        autoPlay
-        muted
-        loop
-        playsInline
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
-        style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-      />
-
-      {/* Play indicator — fades out once video is playing */}
-      <motion.div
-        initial={{ opacity: 1 }}
-        animate={{ opacity: playing ? 0 : 1 }}
-        transition={{ duration: 0.5, ease: 'easeOut' }}
-        style={{
-          position: 'absolute',
-          inset: 0,
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          pointerEvents: 'none',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '14px' }}>
-          <div style={{
-            width: '68px',
-            height: '68px',
-            borderRadius: '50%',
-            border: '1.5px solid rgba(255,255,255,0.85)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="white" aria-hidden="true">
-              <polygon points="5 3 19 12 5 21 5 3" />
-            </svg>
-          </div>
-          <p style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.5625rem',
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
-            color: 'rgba(255,255,255,0.65)',
-            margin: 0,
-          }}>
-            In Motion
-          </p>
-        </div>
-      </motion.div>
-    </div>
+    <video
+      src={src}
+      poster={poster}
+      autoPlay
+      muted
+      loop
+      playsInline
+      style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: 'var(--color-canvas)' }}
+    />
   )
 }
 
@@ -315,7 +257,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               Selected Slides
             </motion.p>
 
-            <CaseStudyGallery images={cs.images.slice(1, 5)} client={cs.client} />
+            <CaseStudyGallery images={cs.images.slice(1, 6)} client={cs.client} />
           </div>
         </>
       )}
