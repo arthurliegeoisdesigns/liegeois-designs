@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import {
@@ -79,22 +79,11 @@ function NarrativeBlock({
   )
 }
 
-// ── Video player with sound toggle ───────────────────────────────────────────
+// ── Video player (silent autoplay loop) ──────────────────────────────────────
 function VideoPlayer({ src, poster }: { src: string; poster: string }) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-  const [muted, setMuted] = useState(true)
-
-  const toggleMute = () => {
-    if (!videoRef.current) return
-    const next = !muted
-    videoRef.current.muted = next
-    setMuted(next)
-  }
-
   return (
     <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0A0A0A' }}>
       <video
-        ref={videoRef}
         src={src}
         poster={poster}
         autoPlay
@@ -103,50 +92,6 @@ function VideoPlayer({ src, poster }: { src: string; poster: string }) {
         playsInline
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
       />
-      {/* Sound toggle */}
-      <button
-        onClick={toggleMute}
-        aria-label={muted ? 'Unmute video' : 'Mute video'}
-        style={{
-          position: 'absolute',
-          bottom: '16px',
-          right: '16px',
-          display: 'flex',
-          alignItems: 'center',
-          gap: '7px',
-          padding: '7px 14px',
-          background: 'rgba(10,10,10,0.60)',
-          backdropFilter: 'blur(10px)',
-          WebkitBackdropFilter: 'blur(10px)',
-          border: '0.5px solid rgba(255,255,255,0.15)',
-          color: 'rgba(255,255,255,0.80)',
-          fontFamily: 'var(--font-body)',
-          fontSize: '0.6875rem',
-          letterSpacing: '0.07em',
-          textTransform: 'uppercase',
-          cursor: 'pointer',
-          transition: 'background 200ms ease',
-        }}
-        onMouseEnter={(e) => { e.currentTarget.style.background = 'rgba(255,255,255,0.12)' }}
-        onMouseLeave={(e) => { e.currentTarget.style.background = 'rgba(10,10,10,0.60)' }}
-      >
-        <svg width="13" height="13" viewBox="0 0 24 24" fill="none"
-          stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-          {muted ? (
-            <>
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-              <line x1="23" y1="9" x2="17" y2="15" /><line x1="17" y1="9" x2="23" y2="15" />
-            </>
-          ) : (
-            <>
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07" />
-              <path d="M19.07 4.93a10 10 0 0 1 0 14.14" />
-            </>
-          )}
-        </svg>
-        {muted ? 'Sound off' : 'Sound on'}
-      </button>
     </div>
   )
 }
