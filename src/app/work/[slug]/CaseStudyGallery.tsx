@@ -107,7 +107,7 @@ export default function CaseStudyGallery({
               transition={{ duration: 0.65, ease, delay: (i % 4) * 0.07 }}
               style={{
                 position: 'relative',
-                aspectRatio: '4/3',
+                aspectRatio: '16/9',
                 border: 'none',
                 padding: 0,
                 cursor: 'zoom-in',

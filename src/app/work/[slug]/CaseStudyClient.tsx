@@ -315,7 +315,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               Selected Slides
             </motion.p>
 
-            <CaseStudyGallery images={cs.images.slice(1)} client={cs.client} />
+            <CaseStudyGallery images={cs.images.slice(1, 5)} client={cs.client} />
           </div>
         </>
       )}
