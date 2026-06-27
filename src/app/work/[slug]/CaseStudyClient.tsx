@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
 import {
@@ -82,10 +82,18 @@ function NarrativeBlock({
 // ── Video player with play affordance ────────────────────────────────────────
 function VideoPlayer({ src, poster }: { src: string; poster: string }) {
   const [playing, setPlaying] = useState(false)
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  // Fallback: attempt play on mount in case autoPlay is blocked
+  const handleMount = (el: HTMLVideoElement | null) => {
+    (videoRef as React.MutableRefObject<HTMLVideoElement | null>).current = el
+    if (el) el.play().catch(() => {})
+  }
 
   return (
     <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0A0A0A' }}>
       <video
+        ref={handleMount}
         src={src}
         poster={poster}
         autoPlay
@@ -272,17 +280,19 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             viewport={{ once: true, margin: '-60px' }}
             transition={{ duration: 0.8, ease }}
           >
-            <p style={{
-              fontFamily: 'var(--font-body)',
-              fontSize: '0.5625rem',
-              letterSpacing: '0.16em',
-              textTransform: 'uppercase',
-              color: 'var(--color-on-dark-faint)',
-              margin: '0 0 clamp(20px, 3vw, 32px)',
-            }}>
-              In Motion
-            </p>
-            <VideoPlayer src={cs.video} poster={cs.images[0]} />
+            <div style={{ maxWidth: '960px', margin: '0 auto' }}>
+              <p style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.5625rem',
+                letterSpacing: '0.16em',
+                textTransform: 'uppercase',
+                color: 'var(--color-on-dark-faint)',
+                margin: '0 0 clamp(20px, 3vw, 32px)',
+              }}>
+                In Motion
+              </p>
+              <VideoPlayer src={cs.video} poster={cs.images[0]} />
+            </div>
           </motion.div>
         </>
       )}
