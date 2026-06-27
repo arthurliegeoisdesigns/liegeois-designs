@@ -79,8 +79,10 @@ function NarrativeBlock({
   )
 }
 
-// ── Video player (silent autoplay loop) ──────────────────────────────────────
+// ── Video player with play affordance ────────────────────────────────────────
 function VideoPlayer({ src, poster }: { src: string; poster: string }) {
+  const [playing, setPlaying] = useState(false)
+
   return (
     <div style={{ position: 'relative', width: '100%', aspectRatio: '16/9', background: '#0A0A0A' }}>
       <video
@@ -90,8 +92,60 @@ function VideoPlayer({ src, poster }: { src: string; poster: string }) {
         muted
         loop
         playsInline
+        onPlay={() => setPlaying(true)}
         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
       />
+
+      {/* Play indicator — fades out once video starts */}
+      <motion.div
+        initial={{ opacity: 1 }}
+        animate={{ opacity: playing ? 0 : 1 }}
+        transition={{ duration: 0.6, ease: 'easeOut' }}
+        style={{
+          position: 'absolute',
+          inset: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          pointerEvents: 'none',
+        }}
+      >
+        <div style={{
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '16px',
+        }}>
+          {/* Circle with play icon */}
+          <div style={{
+            width: '72px',
+            height: '72px',
+            borderRadius: '50%',
+            background: 'rgba(10,10,10,0.55)',
+            backdropFilter: 'blur(12px)',
+            WebkitBackdropFilter: 'blur(12px)',
+            border: '1px solid rgba(255,255,255,0.20)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--color-accent)" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+          </div>
+          {/* Label */}
+          <p style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.5625rem',
+            letterSpacing: '0.18em',
+            textTransform: 'uppercase',
+            color: 'rgba(255,255,255,0.55)',
+            margin: 0,
+          }}>
+            In Motion
+          </p>
+        </div>
+      </motion.div>
     </div>
   )
 }
