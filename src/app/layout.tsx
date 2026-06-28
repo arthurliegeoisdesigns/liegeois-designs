@@ -40,6 +40,39 @@ export const metadata: Metadata = {
   robots: { index: true, follow: true },
 }
 
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Liégeois Designs',
+  url: 'https://www.liegeoisdesigns.com',
+  logo: 'https://www.liegeoisdesigns.com/images/logos/liegeois-designs-logo.png',
+  description:
+    'Boutique visual storytelling studio specializing in presentation design, pitch decks, and brand identity for companies that refuse to blend in.',
+  founder: {
+    '@type': 'Person',
+    name: 'Arthur Liegeois',
+    jobTitle: 'Creative Director',
+  },
+  areaServed: 'Worldwide',
+  serviceType: [
+    'Presentation Design',
+    'Pitch Deck Design',
+    'Brand Identity',
+    'Creative Direction',
+    'Visual Storytelling',
+  ],
+  sameAs: [
+    'https://www.linkedin.com/in/aliegeois/',
+  ],
+  email: 'arthur@liegeoisdesigns.com',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    contactType: 'customer service',
+    email: 'arthur@liegeoisdesigns.com',
+    url: 'https://www.liegeoisdesigns.com/contact',
+  },
+}
+
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
@@ -49,6 +82,10 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
         <link rel="dns-prefetch" href="https://cdn.prod.website-files.com" />
         <link rel="preconnect" href="https://cdn.prod.website-files.com" crossOrigin="anonymous" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         {/* Google Tag Manager — noscript fallback */}
