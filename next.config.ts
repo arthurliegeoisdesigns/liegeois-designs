@@ -22,6 +22,8 @@ const securityHeaders = [
       "font-src 'self' https://fonts.gstatic.com",
       // Images from Cloudinary, Webflow CDN, and data URIs
       "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.prod.website-files.com https://liegeoisdesigns.com",
+      // Videos from Cloudinary
+      "media-src 'self' https://res.cloudinary.com",
       // API calls: Formspree contact form + Vercel Analytics
       "connect-src 'self' https://formspree.io https://vitals.vercel-insights.com https://o.ingest.sentry.io",
       // Calendly embed iframe
@@ -48,17 +50,28 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       // ── Old Webflow portfolio items → specific new case study pages ────────
-      { source: '/portfolio/projectbe-colorcode-workshop',       destination: '/work/projectbe-colorcode',                 permanent: true },
-      { source: '/portfolio/special-forces-project-starzplay',   destination: '/work/special-forces-project-starzplay',    permanent: true },
-      { source: '/portfolio/marriott-digital-marketing-strat',   destination: '/work/marriott-luxury-group',               permanent: true },
-      { source: '/portfolio/grey-slide-sample-1-8439d',          destination: '/work/grey-slide-sample-1-8439d',           permanent: true },
-      { source: '/portfolio/rapp-and-evolus',                    destination: '/work/rapp-and-evolus',                     permanent: true },
-      { source: '/portfolio/norigami-slide-1-7cc23',             destination: '/work/norigami-brand',                      permanent: true },
-      { source: '/portfolio/philips-healthcare-1',               destination: '/work/philips-healthcare',                  permanent: true },
-      { source: '/portfolio/ogilvy-for-cdw-1-98a9e',            destination: '/work/ogilvy-for-cdw-1-98a9e',              permanent: true },
-      { source: '/portfolio/toddstreet-intercept-1-c83f2',       destination: '/work/intercept-pharma',                    permanent: true },
-      { source: '/portfolio/adm-productions-emd-1-c6815',        destination: '/work/adm-prod-tgi-fridays-campaign',       permanent: true },
-      { source: '/portfolio/the-special-event-company-20-b7a3c', destination: '/work/the-special-event-company-20-b7a3c',  permanent: true },
+      { source: '/portfolio/projectbe-colorcode-workshop',             destination: '/work/projectbe-colorcode',                        permanent: true },
+      { source: '/portfolio/special-forces-project-starzplay',         destination: '/work/special-forces-project-starzplay',           permanent: true },
+      { source: '/portfolio/marriott-digital-marketing-strat',         destination: '/work/marriott-luxury-group',                      permanent: true },
+      { source: '/portfolio/grey-slide-sample-1-8439d',                destination: '/work/grey-slide-sample-1-8439d',                  permanent: true },
+      { source: '/portfolio/rapp-and-evolus',                          destination: '/work/rapp-and-evolus',                            permanent: true },
+      { source: '/portfolio/norigami-slide-1-7cc23',                   destination: '/work/norigami-brand',                             permanent: true },
+      { source: '/portfolio/philips-healthcare-1',                     destination: '/work/philips-healthcare',                         permanent: true },
+      { source: '/portfolio/ogilvy-for-cdw-1-98a9e',                  destination: '/work/ogilvy-for-cdw-1-98a9e',                     permanent: true },
+      { source: '/portfolio/toddstreet-intercept-1-c83f2',             destination: '/work/intercept-pharma',                           permanent: true },
+      { source: '/portfolio/adm-productions-emd-1-c6815',              destination: '/work/adm-prod-tgi-fridays-campaign',              permanent: true },
+      { source: '/portfolio/the-special-event-company-20-b7a3c',       destination: '/work/the-special-event-company-20-b7a3c',         permanent: true },
+      // ── Slug-matching portfolio → work (were falling through to catch-all) ─
+      { source: '/portfolio/fivestone-studios-chevron-new-energies',   destination: '/work/chevron-new-energies',                       permanent: true },
+      { source: '/portfolio/sunrise-cellars',                          destination: '/work/sunrise-cellars',                            permanent: true },
+      { source: '/portfolio/echo-society-pitch-deck-2',                destination: '/work/echo-society-pitch-deck-2',                  permanent: true },
+      { source: '/portfolio/mcs-healthcare-public-relations-2',        destination: '/work/mcs-healthcare-public-relations-2',          permanent: true },
+      { source: '/portfolio/mcs-healthcare-public-relations',          destination: '/work/mcs-healthcare-public-relations',            permanent: true },
+      { source: '/portfolio/bloomberg-media-internal-dei-strategy',    destination: '/work/bloomberg-media-internal-dei-strategy',      permanent: true },
+      { source: '/portfolio/ibm-quantum-summit-2022-cn3q3',            destination: '/work/ibm-quantum-summit-2022-cn3q3',              permanent: true },
+      { source: '/portfolio/the-be-curious-group-iot-workshop',        destination: '/work/the-be-curious-group-iot-workshop',          permanent: true },
+      { source: '/portfolio/project-be-project-wellness-keynote',      destination: '/work/project-be-project-wellness-keynote',        permanent: true },
+      { source: '/portfolio/international-advertising-association',    destination: '/work/international-advertising-association',      permanent: true },
       // ── All remaining /portfolio/* → /work ───────────────────────────────
       { source: '/portfolio/:slug*', destination: '/work', permanent: true },
       // ── Old Webflow blog imported items → /blog ──────────────────────────
