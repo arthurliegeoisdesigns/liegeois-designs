@@ -15,17 +15,17 @@ const securityHeaders = [
     value: [
       "default-src 'self'",
       // Next.js requires unsafe-inline for hydration scripts; unsafe-eval for dev HMR
-      "script-src 'self' 'unsafe-inline' https://assets.calendly.com",
+      "script-src 'self' 'unsafe-inline' https://assets.calendly.com https://www.googletagmanager.com https://www.google-analytics.com",
       // Inline styles used by framer-motion and Next.js
       "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
       // Google Fonts
       "font-src 'self' https://fonts.gstatic.com",
       // Images from Cloudinary, Webflow CDN, and data URIs
-      "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.prod.website-files.com https://liegeoisdesigns.com",
+      "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.prod.website-files.com https://liegeoisdesigns.com https://www.google-analytics.com",
       // Videos from Cloudinary
       "media-src 'self' https://res.cloudinary.com",
-      // API calls: Formspree contact form + Vercel Analytics
-      "connect-src 'self' https://formspree.io https://vitals.vercel-insights.com https://o.ingest.sentry.io",
+      // API calls: Formspree, Vercel Analytics, GTM, GA4
+      "connect-src 'self' https://formspree.io https://vitals.vercel-insights.com https://o.ingest.sentry.io https://www.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://region1.google-analytics.com",
       // Calendly embed iframe
       "frame-src https://calendly.com",
       // Prevent this site from being framed by anyone
