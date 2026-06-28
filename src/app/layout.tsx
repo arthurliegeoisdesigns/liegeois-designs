@@ -38,6 +38,9 @@ export const metadata: Metadata = {
   },
   twitter: { card: 'summary_large_image' },
   robots: { index: true, follow: true },
+  verification: {
+    google: '1dKWwt7TY_XuPzJAtS31wrgHsScOQKoxo37zgtPbfYw',
+  },
 }
 
 const jsonLd = {
