@@ -2,8 +2,6 @@
 
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
-
 const pillars = [
   {
     number: '01',
@@ -27,9 +25,9 @@ const ease = [0.16, 1, 0.3, 1] as const
 // Variants — dark fill rises from bottom; text inverts
 const pillarVariants   = { idle: {}, hovered: {} }
 const sweepVariants    = { idle: { scaleY: 0 }, hovered: { scaleY: 1 } }
-const numVariants      = { idle: { color: 'var(--color-text-muted)' },      hovered: { color: 'rgba(255,255,255,0.35)' } }
-const titleVariants    = { idle: { color: 'var(--color-text-primary)' },     hovered: { color: '#FAFAFA' } }
-const bodyVariants     = { idle: { color: 'var(--color-text-secondary)' },   hovered: { color: 'rgba(255,255,255,0.65)' } }
+const numVariants      = { idle: { color: 'var(--color-text-muted)' },      hovered: { color: 'var(--color-on-dark-hint)' } }
+const titleVariants    = { idle: { color: 'var(--color-text-primary)' },     hovered: { color: 'var(--color-paper)' } }
+const bodyVariants     = { idle: { color: 'var(--color-text-secondary)' },   hovered: { color: 'var(--color-on-dark-muted)' } }
 const sweepTransition  = { duration: 0.55, ease }
 const textTransition   = { duration: 0.3, ease }
 
@@ -52,7 +50,6 @@ export default function About() {
           transition={{ duration: 0.85, ease }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          <ScrambleEyebrow>The Approach</ScrambleEyebrow>
           <h2 className="type-h1" style={{ color: 'var(--color-text-primary)', margin: '0 0 24px' }}>
             I&apos;ve been on all three sides of the table.
           </h2>
@@ -93,8 +90,6 @@ export default function About() {
                 position: 'relative',
                 overflow: 'hidden',
                 padding: 'clamp(28px, 3.5vw, 44px) clamp(20px, 3vw, 40px)',
-                paddingLeft:  i === 0 ? 0 : undefined,
-                paddingRight: i === pillars.length - 1 ? 0 : undefined,
                 borderLeft: i > 0 ? '0.5px solid var(--color-border)' : 'none',
                 cursor: 'pointer',
               }}
@@ -108,7 +103,7 @@ export default function About() {
                   style={{
                     position: 'absolute',
                     inset: 0,
-                    background: '#0A0A0A',
+                    background: 'var(--color-canvas)',
                     transformOrigin: 'bottom center',
                     zIndex: 0,
                     pointerEvents: 'none',

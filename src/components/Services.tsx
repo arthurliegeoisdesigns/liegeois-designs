@@ -2,8 +2,6 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import Link from 'next/link'
-import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
-
 const services = [
   {
     number: '01',
@@ -37,7 +35,7 @@ const numVariants = {
 }
 const titleVariants = {
   idle:    { color: 'var(--color-text-primary)' },
-  hovered: { color: '#0A0A0A' },
+  hovered: { color: 'var(--color-ink)' },
 }
 const descVariants = {
   idle:    { color: 'var(--color-text-secondary)', opacity: 1 },
@@ -64,9 +62,6 @@ export default function Services() {
       }}
     >
       <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-
-        {/* ── Eyebrow ──────────────────────────────────────────── */}
-        <ScrambleEyebrow style={{ marginBottom: '40px' }}>Services</ScrambleEyebrow>
 
         {/* ── Cinematic headline ───────────────────────────────── */}
         <motion.h2
@@ -134,7 +129,7 @@ export default function Services() {
                 style={{
                   position: 'absolute',
                   inset: 0,
-                  background: '#FAFAFA',
+                  background: 'var(--color-paper)',
                   transformOrigin: 'left center',
                   zIndex: 0,
                   pointerEvents: 'none',
@@ -151,7 +146,7 @@ export default function Services() {
                 gridTemplateColumns: '72px 1fr auto',
                 alignItems: 'center',
                 gap: 'clamp(24px, 4vw, 64px)',
-                padding: 'clamp(28px, 3.5vw, 44px) 0',
+                padding: 'clamp(28px, 3.5vw, 44px) clamp(20px, 3vw, 40px)',
               }}
             >
               {/* Number */}
@@ -198,7 +193,7 @@ export default function Services() {
                     style={{
                       fontFamily: 'var(--font-body)',
                       fontSize: '1.25rem',
-                      color: '#0A0A0A',
+                      color: 'var(--color-ink)',
                       flexShrink: 0,
                       lineHeight: 1,
                     }}

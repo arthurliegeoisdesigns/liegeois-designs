@@ -3,7 +3,6 @@
 import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion'
 import { TestimonialsWidget } from '@/components/ui/TestimonialsWidget'
-import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 
 export default function Testimonials() {
   const reduced = useReducedMotion()
@@ -51,7 +50,6 @@ export default function Testimonials() {
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: '-80px' }}
         >
-          <ScrambleEyebrow>Client Love</ScrambleEyebrow>
           <h2 className="type-h1" style={{ color: 'var(--color-text-primary)', margin: 0 }}>
             The kind of words you can&apos;t write yourself.
           </h2>

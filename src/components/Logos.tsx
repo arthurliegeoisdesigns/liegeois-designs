@@ -2,7 +2,6 @@
 
 import { motion, useReducedMotion } from 'framer-motion'
 import { clients } from '@/content/clients'
-import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 
 // Curated tier-1 brands — recognisable names that signal calibre
 const FEATURED_IDS = [
@@ -22,11 +21,13 @@ export default function Logos() {
       className="section section-surface section-glow-top"
       style={{ borderBottom: '0.5px solid var(--color-border)', paddingTop: '72px', paddingBottom: '72px', position: 'relative' }}
     >
-      {/* Eyebrow — inside container */}
       <div className="container">
-        <ScrambleEyebrow style={{ color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: '40px' }}>
+        <p
+          className="eyebrow"
+          style={{ color: 'var(--color-text-secondary)', textAlign: 'center', marginBottom: '40px' }}
+        >
           THE COMPANY WE KEEP
-        </ScrambleEyebrow>
+        </p>
       </div>
 
       {/* Marquee — full-width, outside container for edge-to-edge fade masks */}

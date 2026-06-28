@@ -15,12 +15,13 @@ export async function generateMetadata({
   const { slug } = await params
   const cs = caseStudies.find((c) => c.slug === slug)
   if (!cs) return {}
+  const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client} — ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
   return {
-    title: `${cs.client} — Liégeois Designs`,
-    description: cs.tagline,
+    title: `${cs.client} — ${cs.project} | Liégeois Designs`,
+    description: metaDesc,
     openGraph: {
       title: `${cs.client} — ${cs.project}`,
-      description: cs.tagline,
+      description: metaDesc,
       images: [{ url: cs.images[0], width: 1200, height: 900 }],
     },
   }

@@ -117,8 +117,8 @@ export default function CTA() {
                 fontWeight: 400,
                 letterSpacing: '0.02em',
                 padding: '14px 32px',
-                background: '#ffffff',
-                color: '#0d0d0d',
+                background: 'var(--color-on-dark)',
+                color: 'var(--color-canvas)',
                 borderRadius: '3px',
                 border: 'none',
                 textDecoration: 'none',
@@ -140,9 +140,9 @@ export default function CTA() {
                 letterSpacing: '0.02em',
                 padding: '13px 31px',
                 background: 'transparent',
-                color: '#ffffff',
+                color: 'var(--color-on-dark)',
                 borderRadius: '3px',
-                border: '1px solid rgba(255,255,255,0.30)',
+                border: '1px solid var(--color-on-dark-hint)',
                 textDecoration: 'none',
                 display: 'inline-block',
                 lineHeight: 1,
@@ -153,7 +153,7 @@ export default function CTA() {
                 e.currentTarget.style.background = 'rgba(255,255,255,0.07)'
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.30)'
+                e.currentTarget.style.borderColor = ''
                 e.currentTarget.style.background = 'transparent'
               }}
             >

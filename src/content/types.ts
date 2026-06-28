@@ -26,6 +26,8 @@ export type CaseStudy = {
   year: number
   /** One-line description shown in portfolio cards */
   tagline: string
+  /** SEO meta description — keyword-rich, used in <meta description> and OG tags */
+  seoDescription?: string
   /**
    * 3–6 curated slide images.
    * First image is the hero/thumbnail shown in the grid.

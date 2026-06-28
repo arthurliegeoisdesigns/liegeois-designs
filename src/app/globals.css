@@ -83,6 +83,9 @@
   --duration-base: 350ms;
   --duration-slow: 700ms;
 
+  /* ── Focus ── */
+  --color-focus-ring: #0d0d0d;
+
   /* ── Glass tokens (reduced, no blur) ── */
   --glass-bg:         rgba(255, 255, 255, 0.025);
   --glass-bg-hover:   rgba(255, 255, 255, 0.045);
@@ -119,7 +122,7 @@
 
 /* ── Focus indicators ── */
 *:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }
 button:focus-visible,
@@ -127,7 +130,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid var(--color-accent);
+  outline: 2px solid var(--color-focus-ring);
   outline-offset: 2px;
 }
 .contact-input:focus-visible {
@@ -606,6 +609,7 @@ section[id] {
   --color-card-border:    rgba(255, 255, 255, 0.08);
   --color-accent:         #ffffff;
   --color-accent-hover:   #bab7b2;
+  --color-focus-ring:     #ffffff;
 }
 .section-surface { background: var(--color-dark-surface); }
 .section-cream   { background: #f6f6f5; }
@@ -1090,7 +1094,7 @@ footer {
   padding: 20px 24px;
   margin: 32px 0;
   color: var(--color-text-secondary);
-  border-left: 2px solid var(--color-border-mid);
+  border: 1px solid var(--color-card-border);
 }
 .prose code {
   font-size: 0.9em;

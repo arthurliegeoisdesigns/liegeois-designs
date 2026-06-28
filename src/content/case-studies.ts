@@ -18,6 +18,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'chevron-new-energies',
+    seoDescription: 'Strategic narrative and pitch deck design for Chevron New Energies — executive presentation design reframing a Fortune 500 energy company\'s clean energy transition story.',
     client: 'Chevron New Energies',
     project: 'New Energies Strategic Narrative',
     format: 'Executive Presentation',
@@ -50,6 +51,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'marriott-luxury-group',
+    seoDescription: 'Executive presentation design for Marriott Luxury Group — YouTube content strategy deck for a global luxury hospitality brand, crafted for senior leadership and digital marketing teams.',
     client: 'Marriott Luxury Group',
     project: 'YouTube Content Strategy 2025',
     format: 'Executive Presentation',
@@ -78,6 +80,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'echo-society',
+    seoDescription: 'Brand and culture storytelling pitch deck design for Echo Society — startup presentation combining editorial design with a compelling narrative for a creative community platform.',
     client: 'Echo Society',
     project: 'Brand & Culture Storytelling Deck',
     format: 'Pitch & Investor Deck',
@@ -111,6 +114,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'the-spaceship',
+    seoDescription: 'Investor pitch deck design for The Spaceship — ESG startup presentation crafted to secure funding, turning a complex sustainability business model into a compelling visual story.',
     client: 'The Spaceship',
     project: 'Investor Deck',
     format: 'Pitch & Investor Deck',
@@ -132,6 +136,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'mcs-healthcare-jandj',
+    seoDescription: 'Executive pitch deck design for MCS Healthcare and Johnson & Johnson — pharmaceutical presentation design built to command a boardroom and drive high-stakes decision-making.',
     client: 'MCS Healthcare × J&J',
     project: 'Executive Pitch Deck',
     format: 'Sales & Agency Deck',
@@ -154,6 +159,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'philips-healthcare',
+    seoDescription: 'Healthcare technology presentation design for Philips — medical innovation pitch deck crafted to make complex health tech accessible to executive and investor audiences.',
     client: 'Philips Healthcare',
     project: 'Healthcare Technology Presentation',
     format: 'Executive Presentation',
@@ -184,6 +190,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'intercept-pharma',
+    seoDescription: 'Pharmaceutical sales training presentation design for Intercept Pharma — POA field training deck that transformed dense medical content into engaging, rep-ready visual material.',
     client: 'Intercept Pharmaceuticals',
     project: 'POA Field Training — Strong Foundation',
     format: 'Training Presentation',
@@ -217,6 +224,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'rapp-opmg',
+    seoDescription: 'Connected data strategy deck design for OPMG and RAPP — agency presentation design turning complex marketing data into a clear, visually compelling narrative for enterprise clients.',
     client: 'OPMG × RAPP',
     project: 'Connected Data Deck',
     format: 'Sales & Agency Deck',
@@ -248,6 +256,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'underpin',
+    seoDescription: 'Startup investor pitch deck design for Underpin — geo-centric travel app presentation crafted to attract seed funding with sharp visual storytelling and a clear investment narrative.',
     client: 'Underpin',
     project: 'Startup Pitch Deck',
     format: 'Pitch & Investor Deck',
@@ -276,6 +285,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'university-startups',
+    seoDescription: 'Social entrepreneurship investor pitch deck design for University Startups — presentation crafted to secure funding for student-led ventures with a mission-driven visual narrative.',
     client: 'University Startups',
     project: 'Pitch Deck — A Better Future for Students',
     format: 'Pitch & Investor Deck',
@@ -330,6 +340,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'rapp-spectrum-enterprise',
+    seoDescription: 'Agency creative immersion presentation design for Spectrum Enterprise and RAPP — executive deck translating agency strategy and creative thinking into a high-impact client-facing format.',
     client: 'Spectrum Enterprise × RAPP',
     project: 'Creative Immersion Session',
     format: 'Sales & Agency Deck',
@@ -550,6 +561,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'norigami-brand',
+    seoDescription: 'Brand identity design for Norigami food startup — full visual brand system including logo, color palette, typography, and packaging for a grab-and-go sushi concept.',
     client: 'Norigami',
     project: 'Designing a Full Food Startup Brand that Looks just like an Established Company',
     format: 'Strategic Narrative',
@@ -609,6 +621,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'grey-slide-sample-1-8439d',
+    seoDescription: 'New business pitch deck design for Post Consumer Brands — FMCG presentation design crafted to win agency business from a major consumer packaged goods company.',
     client: 'Post Consumer Brands',
     project: 'Designing a New Business Pitch Deck for a huge FMCG Brand',
     format: 'Pitch & Investor Deck',
@@ -640,6 +653,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'ogilvy-for-cdw-1-98a9e',
+    seoDescription: 'New business pitch deck design for Ogilvy and CDW — agency credentials and strategy presentation designed to position Ogilvy as CDW\'s ideal creative partner.',
     client: 'CDW',
     project: 'Designing a New Business Pitch Deck to online tech store CDW',
     format: 'Pitch & Investor Deck',
@@ -701,6 +715,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'bloomberg-media-internal-dei-strategy',
+    seoDescription: 'Internal DEI strategy presentation design for Bloomberg Media Group — C-suite deck transforming diversity and inclusion initiatives into a compelling executive visual narrative.',
     client: 'Bloomberg Media Group',
     project: 'Designing a fully detailed Internal DE&I Strategy Deck for the C-Suite',
     format: 'Executive Presentation',
@@ -730,6 +745,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'norigami-slide-1-7cc23',
+    seoDescription: 'Investor pitch deck design for Norigami food startup — seed funding presentation for an allergen-free onigirazu brand, combining bold brand identity with a clear investment story.',
     client: 'Norigami',
     project: 'Designing an Engaging Investor Pitch Deck for a Food Startup that closed the deal.',
     format: 'Pitch & Investor Deck',
@@ -761,6 +777,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'project-be-project-wellness-keynote',
+    seoDescription: 'Digital wellness keynote presentation design for Project Be — fully animated conference deck exploring technology and burnout, designed to inspire and provoke dialogue at a wellness summit.',
     client: 'Project Be',
     project: 'Designing an Engaging, Fully Animated, Digital Wellness Keynote',
     format: 'Training Presentation',
@@ -792,6 +809,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'echo-society-pitch-deck-2',
+    seoDescription: 'Startup investor pitch deck design for Echo Society — multi-platform IP production funding presentation with vibrant editorial design built to close a creative media investment round.',
     client: 'Echo Society',
     project: 'Designing an Investor-Ready Startup Pitch Deck, Pt. 1',
     format: 'Pitch & Investor Deck',
@@ -886,6 +904,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'ibm-quantum-summit-2022-cn3q3',
+    seoDescription: 'IBM Quantum Summit 2022 keynote presentation design — enterprise visual storytelling for IBM\'s flagship quantum computing conference, translating dense technical content into a confident stage-ready deck.',
     client: 'IBM Quantum',
     project: 'IBM Quantum Summit 2022 Keynote',
     format: 'Training Presentation',

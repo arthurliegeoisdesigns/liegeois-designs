@@ -4,7 +4,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 import { motion, useReducedMotion } from 'framer-motion'
-import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 import { caseStudies } from '@/content/case-studies'
 
 const CARD_GAP = 8
@@ -34,7 +33,7 @@ export default function FeaturedWork() {
   return (
     <section
       style={{
-        background: '#ffffff',
+        background: 'var(--color-paper)',
         overflow: 'hidden',
         paddingBottom: 'var(--section-pad-y)',
       }}
@@ -55,7 +54,6 @@ export default function FeaturedWork() {
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true, margin: '-60px' }}
         >
-          <ScrambleEyebrow>Selected Work</ScrambleEyebrow>
           <div
             style={{
               display: 'flex',

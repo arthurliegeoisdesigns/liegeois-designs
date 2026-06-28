@@ -77,6 +77,7 @@ export default function Hero() {
   return (
     <section
       ref={sectionRef}
+      className="section-dark"
       style={{
         position: 'relative',
         width: '100%',
@@ -273,8 +274,8 @@ export default function Hero() {
                 fontWeight: 400,
                 letterSpacing: '0.02em',
                 padding: '14px 28px',
-                background: '#ffffff',
-                color: '#0d0d0d',
+                background: 'var(--color-on-dark)',
+                color: 'var(--color-canvas)',
                 borderRadius: '3px',
                 border: 'none',
                 textDecoration: 'none',
@@ -298,9 +299,9 @@ export default function Hero() {
                 letterSpacing: '0.02em',
                 padding: '13px 27px',
                 background: 'transparent',
-                color: '#ffffff',
+                color: 'var(--color-on-dark)',
                 borderRadius: '3px',
-                border: '1px solid rgba(255,255,255,0.32)',
+                border: '1px solid var(--color-on-dark-hint)',
                 textDecoration: 'none',
                 display: 'inline-block',
                 lineHeight: 1,
@@ -311,7 +312,7 @@ export default function Hero() {
                 e.currentTarget.style.background = 'rgba(255,255,255,0.07)'
               }}
               onMouseLeave={e => {
-                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.32)'
+                e.currentTarget.style.borderColor = ''
                 e.currentTarget.style.background = 'transparent'
               }}
             >
@@ -334,15 +335,29 @@ export default function Hero() {
                 aria-label={`View ${SLIDES[i].client}`}
                 onClick={() => { setPrevIdx(activeIdx); setActiveIdx(i) }}
                 style={{
-                  width: i === activeIdx ? '24px' : '6px',
-                  height: '2px',
-                  background: i === activeIdx ? 'var(--color-on-dark)' : 'var(--color-on-dark-ghost)',
+                  position: 'relative',
+                  width: '44px',
+                  height: '44px',
+                  background: 'transparent',
                   border: 'none',
                   padding: 0,
                   cursor: 'pointer',
-                  transition: 'width 400ms var(--ease-out-expo), background 300ms ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
-              />
+              >
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: 'block',
+                    width: i === activeIdx ? '24px' : '6px',
+                    height: '2px',
+                    background: i === activeIdx ? 'var(--color-on-dark)' : 'var(--color-on-dark-ghost)',
+                    transition: 'width 400ms var(--ease-out-expo), background 300ms ease',
+                  }}
+                />
+              </button>
             ))}
           </motion.div>
         )}
