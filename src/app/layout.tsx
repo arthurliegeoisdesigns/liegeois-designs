@@ -9,7 +9,7 @@ import { SpeedInsights } from '@vercel/speed-insights/next'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import CustomCursor from '@/components/ui/CustomCursor'
 
-const GTM_ID = 'GTM-P9SN4XCJ'
+const GTM_ID = 'GTM-N7XNZRDZ'
 
 const inter = Inter({
   subsets: ['latin'],
