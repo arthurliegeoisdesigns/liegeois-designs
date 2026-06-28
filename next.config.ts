@@ -21,7 +21,7 @@ const securityHeaders = [
       // Google Fonts
       "font-src 'self' https://fonts.gstatic.com",
       // Images from Cloudinary, Webflow CDN, and data URIs
-      "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.prod.website-files.com https://liegeoisdesigns.com https://www.google-analytics.com",
+      "img-src 'self' data: blob: https://res.cloudinary.com https://cdn.prod.website-files.com https://liegeoisdesigns.com https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
       // Videos from Cloudinary
       "media-src 'self' https://res.cloudinary.com",
       // API calls: Formspree, Vercel Analytics, GTM, GA4
