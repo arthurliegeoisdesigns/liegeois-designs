@@ -17,7 +17,7 @@ export async function generateMetadata({
   if (!cs) return {}
   const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client} — ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
   return {
-    title: `${cs.client} — ${cs.project} | Liégeois Designs`,
+    title: `${cs.client} — ${cs.project}`,
     description: metaDesc,
     openGraph: {
       title: `${cs.client} — ${cs.project}`,
