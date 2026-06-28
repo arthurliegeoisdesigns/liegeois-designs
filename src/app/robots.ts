@@ -6,6 +6,9 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: 'https://liegeoisdesigns.com/sitemap.xml',
+    sitemap: [
+      'https://www.liegeoisdesigns.com/sitemap.xml',
+      'https://www.liegeoisdesigns.com/video-sitemap.xml',
+    ],
   }
 }

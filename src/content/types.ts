@@ -39,6 +39,12 @@ export type CaseStudy = {
    * Format: https://res.cloudinary.com/[cloud]/video/upload/[public_id].mp4
    */
   video?: string
+  /**
+   * ISO 8601 date the video was uploaded/published.
+   * Required by Google for VideoObject schema indexing.
+   * Format: 'YYYY-MM-DD'
+   */
+  videoUploadDate?: string
   /** Show on homepage portfolio grid */
   featured: boolean
   /** Order within the homepage grid (lower = earlier) */

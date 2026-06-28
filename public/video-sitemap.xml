@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
+
+  <url>
+    <loc>https://www.liegeoisdesigns.com/work/chevron-new-energies</loc>
+    <video:video>
+      <video:thumbnail_loc>https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc74bd6bad20709672_683f46b683ae96a1c334fcb4_6830bafcc24aad0888102a9b_Fivestone%252520-%252520Chevron%2525201_1.jpeg</video:thumbnail_loc>
+      <video:title>Chevron New Energies — New Energies Strategic Narrative</video:title>
+      <video:description>Strategic narrative and pitch deck design for Chevron New Energies — executive presentation design reframing a Fortune 500 energy company's clean energy transition story.</video:description>
+      <video:content_loc>https://res.cloudinary.com/dryyhpqew/video/upload/v1782574187/chevron-reel_zoetsu.mp4</video:content_loc>
+      <video:publication_date>2025-06-01</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <url>
+    <loc>https://www.liegeoisdesigns.com/work/philips-healthcare</loc>
+    <video:video>
+      <video:thumbnail_loc>https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdd74bd6bad207096a4_6863ec0b1e6ee5b6901648f7_Philips%25201.jpeg</video:thumbnail_loc>
+      <video:title>Philips Healthcare — Healthcare Technology Presentation</video:title>
+      <video:description>Healthcare technology presentation design making complex medical innovation accessible to executive and investor audiences.</video:description>
+      <video:content_loc>https://res.cloudinary.com/dryyhpqew/video/upload/v1782574188/philips-reel_wcmxin.mp4</video:content_loc>
+      <video:publication_date>2025-06-01</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <url>
+    <loc>https://www.liegeoisdesigns.com/work/rapp-opmg</loc>
+    <video:video>
+      <video:thumbnail_loc>https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdd74bd6bad2070969d_6863ebd5268202b7d3710146_RAPP%25201.jpeg</video:thumbnail_loc>
+      <video:title>OPMG × RAPP — Connected Data Deck</video:title>
+      <video:description>Connected data strategy deck design for OPMG and RAPP — agency presentation design turning complex marketing data into a clear, visually compelling narrative for enterprise clients.</video:description>
+      <video:content_loc>https://res.cloudinary.com/dryyhpqew/video/upload/v1782574190/opmg-reel_s5a5na.mp4</video:content_loc>
+      <video:publication_date>2025-06-01</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+  <url>
+    <loc>https://www.liegeoisdesigns.com/work/project-be-project-wellness-keynote</loc>
+    <video:video>
+      <video:thumbnail_loc>https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bde74bd6bad207096c5_6863ec2e27ae8bde91f39a96_Project%2520Be%25201.jpeg</video:thumbnail_loc>
+      <video:title>Project Be — Designing an Engaging, Fully Animated, Digital Wellness Keynote</video:title>
+      <video:description>Fully animated digital wellness keynote presentation design — creative direction and motion design for a dynamic, high-energy keynote experience.</video:description>
+      <video:content_loc>https://res.cloudinary.com/dryyhpqew/video/upload/v1782574187/project-be-wellness_rxqjl6.mp4</video:content_loc>
+      <video:publication_date>2025-06-01</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
+</urlset>

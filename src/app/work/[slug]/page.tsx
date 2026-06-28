@@ -40,8 +40,37 @@ export default async function CaseStudyPage({
   const prev = caseStudies[currentIndex - 1] ?? null
   const next = caseStudies[currentIndex + 1] ?? null
 
+  const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client} — ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
+
+  const videoSchema = cs.video
+    ? {
+        '@context': 'https://schema.org',
+        '@type': 'VideoObject',
+        name: `${cs.client} — ${cs.project}`,
+        description: metaDesc,
+        thumbnailUrl: cs.images[0],
+        uploadDate: cs.videoUploadDate ?? `${cs.year}-01-01`,
+        contentUrl: cs.video,
+        embedUrl: `https://www.liegeoisdesigns.com/work/${cs.slug}`,
+        publisher: {
+          '@type': 'Organization',
+          name: 'Liégeois Designs',
+          logo: {
+            '@type': 'ImageObject',
+            url: 'https://www.liegeoisdesigns.com/images/logos/liegeois-designs-logo.png',
+          },
+        },
+      }
+    : null
+
   return (
     <main style={{ background: 'var(--color-dark)', minHeight: '100vh' }}>
+      {videoSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
+        />
+      )}
       {/* Hero → Narrative → Gallery → Nav all rendered client-side in correct DOM order */}
       <CaseStudyClient
         cs={cs}
