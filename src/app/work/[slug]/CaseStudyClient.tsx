@@ -90,6 +90,7 @@ function VideoPlayer({ src, poster }: { src: string; poster: string }) {
       muted
       loop
       playsInline
+      preload="metadata"
       style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: 'var(--color-canvas)' }}
     />
   )

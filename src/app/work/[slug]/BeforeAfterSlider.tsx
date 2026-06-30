@@ -15,6 +15,11 @@ interface Props {
 
 const ease = [0.16, 1, 0.3, 1] as const
 
+/** Append Cloudinary transformation params after /upload/ */
+function clOpt(url: string, transforms = 'f_auto,q_auto,w_960'): string {
+  return url.replace('/upload/', `/upload/${transforms}/`)
+}
+
 // ── Single drag slider ────────────────────────────────────────────────────────
 function Slider({ before, after, label, index }: Pair & { index: number }) {
   const [position, setPosition] = useState(50)
@@ -70,7 +75,7 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
       >
         {/* After — base layer */}
         <img
-          src={after}
+          src={clOpt(after)}
           alt={`${label ?? `Slide ${index + 1}`} — after`}
           draggable={false}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
@@ -86,7 +91,7 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
           }}
         >
           <img
-            src={before}
+            src={clOpt(before)}
             alt={`${label ?? `Slide ${index + 1}`} — before`}
             draggable={false}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
@@ -207,7 +212,7 @@ export default function BeforeAfterSlider({ pairs }: Props) {
               </h2>
               <p style={{
                 fontFamily: 'var(--font-body)', fontSize: '0.875rem',
-                color: 'rgba(255,255,255,0.40)', margin: '10px 0 0', lineHeight: 1.6,
+                color: 'rgba(255,255,255,0.55)', margin: '10px 0 0', lineHeight: 1.6,
               }}>
                 Drag to reveal the redesign.
               </p>

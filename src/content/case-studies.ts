@@ -18,6 +18,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'chevron-new-energies',
+    tool: 'Keynote',
     seoDescription: 'Strategic narrative and pitch deck design for Chevron New Energies — executive presentation design reframing a Fortune 500 energy company\'s clean energy transition story.',
     client: 'Chevron New Energies',
     project: 'New Energies Strategic Narrative',
@@ -52,6 +53,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'marriott-luxury-group',
+    tool: 'PowerPoint',
     seoDescription: 'Executive presentation design for Marriott Luxury Group — YouTube content strategy deck for a global luxury hospitality brand, crafted for senior leadership and digital marketing teams.',
     client: 'Marriott Luxury Group',
     project: 'YouTube Content Strategy 2025',
@@ -81,6 +83,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'echo-society',
+    tool: 'Keynote',
     seoDescription: 'Brand and culture storytelling pitch deck design for Echo Society — startup presentation combining editorial design with a compelling narrative for a creative community platform.',
     client: 'Echo Society',
     project: 'Brand & Culture Storytelling Deck',
@@ -117,6 +120,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'the-spaceship',
+    tool: 'Figma Slides',
     seoDescription: 'Investor pitch deck design for The Spaceship — ESG startup presentation crafted to secure funding, turning a complex sustainability business model into a compelling visual story.',
     client: 'The Spaceship',
     project: 'Investor Deck',
@@ -139,13 +143,18 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'mcs-healthcare-jandj',
-    seoDescription: 'Executive pitch deck design for MCS Healthcare and Johnson & Johnson — pharmaceutical presentation design built to command a boardroom and drive high-stakes decision-making.',
+    tool: 'PowerPoint',
+    seoDescription: 'Internal achievements presentation design for MCS Healthcare and Johnson & Johnson — transforming a dense corporate deck into immersive visual storytelling that commands the room.',
     client: 'MCS Healthcare × J&J',
-    project: 'Executive Pitch Deck',
+    project: 'Internal Achievements Presentation',
     format: 'Sales & Agency Deck',
     industry: 'Healthcare / Pharma',
     year: 2024,
-    tagline: 'Bold visual design for a pitch that had to command the room.',
+    tagline: 'Restraint as craft. A legacy corporate deck rebuilt into something immersive.',
+    theAsk: 'MCS Healthcare was already inside J&J. What they needed was an internal achievements presentation that reflected the quality of that relationship — polished enough to carry the brand, clear enough to actually move the room.',
+    challenge: 'The existing deck had the hallmarks of every legacy corporate presentation: dense slides, cluttered data, formatting that had accumulated over years of internal revisions. J&J\'s achievements were real. The way they were being presented wasn\'t doing them justice.',
+    solution: 'The work was restraint as much as craft. Every slide audited for what it actually needed to say, then rebuilt around that single idea. Dense data became visual. Text-heavy layouts became hierarchy. What started as a traditional corporate deck became something immersive — editorial in feel, precise in execution. Slides 5, 8, and 9 show the shift most clearly.',
+    outcome: 'The client came back satisfied. Cleaner, more confident, easier to deliver — the kind of deck that reflects well on the agency presenting it. What changed wasn\'t the information. It was how much it could be trusted to land on its own.',
     images: [
       `${CDN}/mcs-jj-01.jpg`,
       `${CDN}/mcs-jj-02.jpg`,
@@ -177,6 +186,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'philips-healthcare',
+    tool: 'PowerPoint',
     seoDescription: 'Healthcare technology presentation design for Philips — medical innovation pitch deck crafted to make complex health tech accessible to executive and investor audiences.',
     client: 'Philips Healthcare',
     project: 'Healthcare Technology Presentation',
@@ -209,6 +219,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'intercept-pharma',
+    tool: 'PowerPoint',
     seoDescription: 'Pharmaceutical sales training presentation design for Intercept Pharma — POA field training deck that transformed dense medical content into engaging, rep-ready visual material.',
     client: 'Intercept Pharmaceuticals',
     project: 'POA Field Training — Strong Foundation',
@@ -243,6 +254,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'rapp-opmg',
+    tool: 'Keynote',
     seoDescription: 'Connected data strategy deck design for OPMG and RAPP — agency presentation design turning complex marketing data into a clear, visually compelling narrative for enterprise clients.',
     client: 'OPMG × RAPP',
     project: 'Connected Data Deck',
@@ -276,6 +288,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'underpin',
+    tool: 'Figma Slides',
     seoDescription: 'Startup investor pitch deck design for Underpin — geo-centric travel app presentation crafted to attract seed funding with sharp visual storytelling and a clear investment narrative.',
     client: 'Underpin',
     project: 'Startup Pitch Deck',
@@ -305,6 +318,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'university-startups',
+    tool: 'PowerPoint',
     seoDescription: 'Social entrepreneurship investor pitch deck design for University Startups — presentation crafted to secure funding for student-led ventures with a mission-driven visual narrative.',
     client: 'University Startups',
     project: 'Pitch Deck — A Better Future for Students',
@@ -332,6 +346,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'mcs-healthcare-lupus',
+    tool: 'PowerPoint',
     client: 'Lupus Association × JPMorgan',
     project: 'Lupus Awareness Campaign Deck',
     format: 'Executive Presentation',
@@ -360,6 +375,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'rapp-spectrum-enterprise',
+    tool: 'Keynote',
     seoDescription: 'Agency creative immersion presentation design for Spectrum Enterprise and RAPP — executive deck translating agency strategy and creative thinking into a high-impact client-facing format.',
     client: 'Spectrum Enterprise × RAPP',
     project: 'Creative Immersion Session',
@@ -395,6 +411,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'projectbe-colorcode',
+    tool: 'PowerPoint',
     client: 'ProjectBe — ColorCode',
     project: 'Brand Pitch Deck',
     format: 'Pitch & Investor Deck',
@@ -427,6 +444,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'rapp-and-evolus',
+    tool: 'Keynote',
     client: 'Evolus',
     project: 'A Lifestyle-Driven Pharma Pitch Deck That Breaks the Mold',
     format: 'Pitch & Investor Deck',
@@ -457,6 +475,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'special-forces-project-starzplay',
+    tool: 'Google Slides',
     client: 'Starz',
     project: 'Special Forces Insights for StarzPlay UK',
     format: 'Executive Presentation',
@@ -484,6 +503,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'the-special-event-company-20-b7a3c',
+    tool: 'PowerPoint',
     client: 'The Special Event Company',
     project: 'The Special Event Company Capabilities Fully Animated Deck',
     format: 'Sales & Agency Deck',
@@ -517,6 +537,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'sunrise-cellars',
+    tool: 'Other',
     client: 'Sunrise Cellars',
     project: 'Rebranding Old Wine Stores to Become a Future-proof high-end, One-Stop Shop for Wine Lovers',
     format: 'Strategic Narrative',
@@ -547,6 +568,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'adm-prod-tgi-fridays-campaign',
+    tool: 'PowerPoint',
     client: 'TGI Fridays Franchisor, LLC',
     project: 'Designing Impactful Visuals for a Food Franchisor\'s Keynote Event',
     format: 'Training Presentation',
@@ -581,6 +603,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'norigami-brand',
+    tool: 'Other',
     seoDescription: 'Brand identity design for Norigami food startup — full visual brand system including logo, color palette, typography, and packaging for a grab-and-go sushi concept.',
     client: 'Norigami',
     project: 'Designing a Full Food Startup Brand that Looks just like an Established Company',
@@ -610,6 +633,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'foodspace-lunch-learn-robotics',
+    tool: 'Keynote',
     client: 'FoodSpace',
     project: 'Designing a Lunch & Learn Keynote for Architects: How Technology will change to ',
     format: 'Training Presentation',
@@ -641,6 +665,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'grey-slide-sample-1-8439d',
+    tool: 'Keynote',
     seoDescription: 'New business pitch deck design for Post Consumer Brands — FMCG presentation design crafted to win agency business from a major consumer packaged goods company.',
     client: 'Post Consumer Brands',
     project: 'Designing a New Business Pitch Deck for a huge FMCG Brand',
@@ -673,6 +698,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'ogilvy-for-cdw-1-98a9e',
+    tool: 'Keynote',
     seoDescription: 'New business pitch deck design for Ogilvy and CDW — agency credentials and strategy presentation designed to position Ogilvy as CDW\'s ideal creative partner.',
     client: 'CDW',
     project: 'Designing a New Business Pitch Deck to online tech store CDW',
@@ -711,6 +737,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'international-advertising-association',
+    tool: 'Other',
     client: 'IAA',
     project: 'Designing a new homepage for high-level marketing community event producers',
     format: 'Strategic Narrative',
@@ -735,6 +762,7 @@ export const caseStudies: CaseStudy[] = [
 
   {
     slug: 'bloomberg-media-internal-dei-strategy',
+    tool: 'PowerPoint',
     seoDescription: 'Internal DEI strategy presentation design for Bloomberg Media Group — C-suite deck transforming diversity and inclusion initiatives into a compelling executive visual narrative.',
     client: 'Bloomberg Media Group',
     project: 'Designing a fully detailed Internal DE&I Strategy Deck for the C-Suite',
@@ -765,6 +793,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'norigami-slide-1-7cc23',
+    tool: 'Keynote',
     seoDescription: 'Investor pitch deck design for Norigami food startup — seed funding presentation for an allergen-free onigirazu brand, combining bold brand identity with a clear investment story.',
     client: 'Norigami',
     project: 'Designing an Engaging Investor Pitch Deck for a Food Startup that closed the deal.',
@@ -797,6 +826,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'project-be-project-wellness-keynote',
+    tool: 'Keynote',
     seoDescription: 'Digital wellness keynote presentation design for Project Be — fully animated conference deck exploring technology and burnout, designed to inspire and provoke dialogue at a wellness summit.',
     client: 'Project Be',
     project: 'Designing an Engaging, Fully Animated, Digital Wellness Keynote',
@@ -830,6 +860,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'echo-society-pitch-deck-2',
+    tool: 'Keynote',
     seoDescription: 'Startup investor pitch deck design for Echo Society — multi-platform IP production funding presentation with vibrant editorial design built to close a creative media investment round.',
     client: 'Echo Society',
     project: 'Designing an Investor-Ready Startup Pitch Deck, Pt. 1',
@@ -865,6 +896,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'foodspace-sales-deck',
+    tool: 'Keynote',
     client: 'FoodSpace',
     project: 'Designing an engaging Sales Deck in Foodservice',
     format: 'Sales & Agency Deck',
@@ -895,6 +927,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'the-be-curious-group-iot-workshop',
+    tool: 'Keynote',
     client: 'The Be Curious Group',
     project: 'Designing and Delivering a Training Deck to Explain the IoT to Female Entrepreneurs',
     format: 'Training Presentation',
@@ -925,6 +958,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'ibm-quantum-summit-2022-cn3q3',
+    tool: 'PowerPoint',
     seoDescription: 'IBM Quantum Summit 2022 keynote presentation design — enterprise visual storytelling for IBM\'s flagship quantum computing conference, translating dense technical content into a confident stage-ready deck.',
     client: 'IBM Quantum',
     project: 'IBM Quantum Summit 2022 Keynote',
@@ -957,6 +991,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'special-forces-project-google',
+    tool: 'Google Slides',
     client: 'Google',
     project: 'Special Forces Insights Deck for Google',
     format: 'Executive Presentation',
@@ -986,6 +1021,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'toddstreet-intercept-regional-sales-training',
+    tool: 'PowerPoint',
     client: 'Intercept Pharmaceuticals',
     project: 'ToddStreet for Intercept',
     format: 'Training Presentation',
@@ -1016,6 +1052,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'mcs-healthcare-public-relations-2',
+    tool: 'PowerPoint',
     client: 'MCS Healthcare',
     project: 'Rebranding and Modernizing the Look and Feel of an Established, Healthcare-focused PR Agency ',
     format: 'Strategic Narrative',
@@ -1040,6 +1077,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'mcs-healthcare-public-relations',
+    tool: 'Figma Slides',
     client: 'MCS Healthcare PR',
     project: 'Redesigning the Website of an established PR Agency expert in Healthcare',
     format: 'Strategic Narrative',
@@ -1068,6 +1106,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'adm-productions-emd-1-c6815',
+    tool: 'PowerPoint',
     client: 'EMD Group Serono',
     project: 'EMD Serono Group 2024 MA&PS Summit',
     format: 'Training Presentation',
@@ -1098,6 +1137,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 
   {
     slug: 'ogilvy-for-mastercard-1',
+    tool: 'Keynote',
     client: 'Mastercard',
     project: '“Discover the Priceless in Us" High level, New Business Pitch Deck',
     format: 'Pitch & Investor Deck',

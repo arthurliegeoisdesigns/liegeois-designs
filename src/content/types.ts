@@ -67,6 +67,8 @@ export type CaseStudy = {
   solution?: string
   /** Results and impact */
   outcome?: string
+  /** Software used to build the presentation */
+  tool?: 'Keynote' | 'PowerPoint' | 'Figma Slides' | 'Google Slides' | 'Other'
 }
 
 export type BlogPost = {

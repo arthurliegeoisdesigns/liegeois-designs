@@ -76,6 +76,8 @@ export default function Footer() {
             src="/images/logo-liegeois-footer-white.svg"
             alt="Liégeois Designs"
             className="footer-logo"
+            width={120}
+            height={120}
             style={{
               height: '120px',
               width: 'auto',

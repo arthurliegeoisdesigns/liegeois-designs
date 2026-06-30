@@ -78,6 +78,17 @@ export default function ServicesPage() {
     track.scrollTo({ left: idx * track.clientWidth, behavior: 'smooth' })
   }, [])
 
+  const onKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowRight') {
+      e.preventDefault()
+      goTo(Math.min(activeIdx + 1, services.length - 1))
+    }
+    if (e.key === 'ArrowLeft') {
+      e.preventDefault()
+      goTo(Math.max(activeIdx - 1, 0))
+    }
+  }, [activeIdx, goTo])
+
   return (
     <main style={{ background: 'var(--color-void)', minHeight: '100vh' }}>
 
@@ -244,6 +255,9 @@ export default function ServicesPage() {
       <div
         ref={trackRef}
         className="services-scroll-track"
+        tabIndex={0}
+        aria-label="Service panels — use arrow keys to navigate"
+        onKeyDown={onKeyDown}
         style={{
           display: 'flex',
           overflowX: reduced ? 'auto' : 'scroll',
@@ -251,6 +265,7 @@ export default function ServicesPage() {
           height: '100dvh',
           scrollbarWidth: 'none',
           msOverflowStyle: 'none',
+          outline: 'none',
         } as React.CSSProperties}
       >
         {services.map((service, i) => (

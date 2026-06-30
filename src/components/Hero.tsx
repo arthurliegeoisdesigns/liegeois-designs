@@ -174,7 +174,7 @@ export default function Hero() {
           style={{ margin: '0 0 28px' }}
           initial={reduced ? false : { opacity: 0, x: -14 }}
           animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
+          transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
         >
           <TextScramble
             as="p"
@@ -223,15 +223,15 @@ export default function Hero() {
                     opacity: 1,
                     color: isArrow ? 'var(--color-on-dark-faint)' : 'var(--color-on-dark)',
                   }}
-                  initial={{ opacity: 0, y: 36, filter: 'blur(10px)' }}
+                  initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
                   animate={{
                     opacity: 1,
                     y: 0,
                     filter: 'blur(0px)',
                   }}
                   transition={{
-                    duration: 0.90,
-                    delay: 0.50 + i * 0.10,
+                    duration: 0.75,
+                    delay: 0.10 + i * 0.07,
                     ease: [0.16, 1, 0.3, 1],
                   }}
                 >
@@ -242,7 +242,8 @@ export default function Hero() {
           )}
         </h1>
 
-        {/* Subtext */}
+        {/* Subtext — intentionally starts visible (opacity:1) so the browser can fire LCP
+             immediately on first paint. Only the y-offset animates in. */}
         <motion.p
           className="type-body-lg"
           style={{
@@ -251,9 +252,9 @@ export default function Hero() {
             maxWidth: '460px',
             lineHeight: 1.6,
           }}
-          initial={reduced ? false : { opacity: 0, y: 18 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 1.10 }}
+          initial={reduced ? false : { y: 14 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
         >
           I build presentations for founders, executives, and brands with something important to say — and the ambition to make it land.
         </motion.p>
@@ -263,7 +264,7 @@ export default function Hero() {
           style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}
           initial={reduced ? false : { opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 1.25 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.15 }}
         >
           <MagneticWrapper strength={14}>
             <Link
@@ -327,7 +328,7 @@ export default function Hero() {
             style={{ display: 'flex', gap: '6px', marginTop: '36px' }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 1.6 }}
+            transition={{ duration: 1, delay: 0.4 }}
           >
             {SLIDES.map((_, i) => (
               <button

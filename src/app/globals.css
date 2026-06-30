@@ -29,7 +29,7 @@
   /* ── Text on dark ── */
   --color-on-dark:        #ffffff;
   --color-on-dark-muted:  #bab7b2;   /* smoke */
-  --color-on-dark-faint:  #888888;   /* ash */
+  --color-on-dark-faint:  #9E9E9E;   /* ash — raised for WCAG AA contrast */
   --color-on-dark-border: rgba(255, 255, 255, 0.10);
   --color-on-dark-hint:   rgba(255, 255, 255, 0.35);
   --color-on-dark-ghost:  rgba(255, 255, 255, 0.15);

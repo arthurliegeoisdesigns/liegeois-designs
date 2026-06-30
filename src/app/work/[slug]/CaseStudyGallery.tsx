@@ -178,6 +178,7 @@ export default function CaseStudyGallery({
             {/* Close */}
             <button
               onClick={close}
+              aria-label="Close lightbox"
               style={{
                 position: 'fixed',
                 top: '24px',

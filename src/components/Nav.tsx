@@ -52,7 +52,7 @@ export default function Nav() {
         <Link href="/" className="nav-logo" aria-label="Liégeois Designs — Home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={scrolled ? '/images/logo-liegeois-dark.webp' : '/images/logo-liegeois-white.webp'}
+            src={scrolled ? '/images/logo-liegeois-dark.svg' : '/images/logo-liegeois-white.svg'}
             alt="Liégeois Designs"
             width={124}
             height={40}

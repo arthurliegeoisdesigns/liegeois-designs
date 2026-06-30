@@ -64,6 +64,8 @@ export default function WorkPageClient() {
 
           {/* ── Filter blocks ── */}
           <motion.div
+            role="tablist"
+            aria-label="Filter work by format"
             className="work-filter-blocks"
             style={{
               display: 'grid',
@@ -85,6 +87,8 @@ export default function WorkPageClient() {
               return (
                 <button
                   key={f.value}
+                  role="tab"
+                  aria-pressed={isActive}
                   onClick={() => setActive(f.value)}
                   style={{
                     position: 'relative',

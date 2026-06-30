@@ -80,6 +80,8 @@ export default function BlogIndexClient() {
 
           {/* Theme filter blocks */}
           <motion.div
+            role="tablist"
+            aria-label="Filter posts by theme"
             className="blog-filter-blocks"
             style={{
               display: 'grid',
@@ -100,6 +102,8 @@ export default function BlogIndexClient() {
               return (
                 <button
                   key={theme.slug ?? 'all'}
+                  role="tab"
+                  aria-pressed={isActive}
                   onClick={() => setActiveTheme(theme.slug === activeTheme ? null : theme.slug)}
                   style={{
                     ...filterBlockStyle(isActive),
