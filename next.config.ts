@@ -70,8 +70,11 @@ const nextConfig: NextConfig = {
       { source: '/portfolio/bloomberg-media-internal-dei-strategy',    destination: '/work/bloomberg-media-internal-dei-strategy',      permanent: true },
       { source: '/portfolio/ibm-quantum-summit-2022-cn3q3',            destination: '/work/ibm-quantum-summit-2022-cn3q3',              permanent: true },
       { source: '/portfolio/the-be-curious-group-iot-workshop',        destination: '/work/the-be-curious-group-iot-workshop',          permanent: true },
+      { source: '/portfolio/the-be-curious-group-apple-workshop',      destination: '/work',                                            permanent: true },
       { source: '/portfolio/project-be-project-wellness-keynote',      destination: '/work/project-be-project-wellness-keynote',        permanent: true },
       { source: '/portfolio/international-advertising-association',    destination: '/work/international-advertising-association',      permanent: true },
+      // ── Webflow paginated portfolio URLs (query-param variants) ──────────
+      { source: '/portfolio', has: [{ type: 'query', key: '23a11da0_page' }], destination: '/work', permanent: true },
       // ── All remaining /portfolio/* → /work ───────────────────────────────
       { source: '/portfolio/:slug*', destination: '/work', permanent: true },
       // ── Old Webflow blog imported items → /blog ──────────────────────────
