@@ -198,7 +198,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             gap: '8px 24px',
             marginBottom: 'clamp(28px, 4vw, 44px)',
           }}>
-            {[cs.format, cs.industry, String(cs.year)].map((tag, i) => (
+            {[cs.format, cs.industry, String(cs.year), ...(cs.tool ? [cs.tool] : [])].map((tag, i) => (
               <span key={i} style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.625rem',

@@ -179,7 +179,8 @@ export default async function CaseStudyPage({
                 { label: 'Format',   value: cs.format },
                 { label: 'Industry', value: cs.industry },
                 { label: 'Year',     value: String(cs.year) },
-                ...(cs.agency ? [{ label: 'Agency', value: cs.agency }] : []),
+                ...(cs.tool   ? [{ label: 'Built in', value: cs.tool }] : []),
+                ...(cs.agency ? [{ label: 'Agency',   value: cs.agency }] : []),
               ].map(({ label, value }) => (
                 <div key={label} style={{ display: 'flex', gap: '16px' }}>
                   <span style={{
