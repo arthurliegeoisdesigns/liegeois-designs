@@ -45,6 +45,12 @@ export type CaseStudy = {
    * Format: 'YYYY-MM-DD'
    */
   videoUploadDate?: string
+  /**
+   * Optional before/after slide pairs for the transformation section.
+   * Renders a drag-to-reveal slider for each pair.
+   * Only used on case studies where before/after comparison adds value.
+   */
+  beforeAfter?: { before: string; after: string; label?: string }[]
   /** Show on homepage portfolio grid */
   featured: boolean
   /** Order within the homepage grid (lower = earlier) */

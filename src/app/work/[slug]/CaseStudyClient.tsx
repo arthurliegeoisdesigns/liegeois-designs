@@ -14,9 +14,10 @@ import type { CaseStudy } from '@/content/types'
 
 // ssr:false breaks the Turbopack dual-React null-hook crash that occurs
 // when framer-motion client components are statically prerendered in Next.js 16.
-const CaseStudyHero    = dynamic(() => import('./CaseStudyHero'),    { ssr: false })
-const CaseStudyGallery = dynamic(() => import('./CaseStudyGallery'), { ssr: false })
-const CaseStudyNav     = dynamic(() => import('./CaseStudyNav'),     { ssr: false })
+const CaseStudyHero       = dynamic(() => import('./CaseStudyHero'),       { ssr: false })
+const CaseStudyGallery    = dynamic(() => import('./CaseStudyGallery'),    { ssr: false })
+const CaseStudyNav        = dynamic(() => import('./CaseStudyNav'),        { ssr: false })
+const BeforeAfterSlider   = dynamic(() => import('./BeforeAfterSlider'),   { ssr: false })
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -231,6 +232,11 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             </div>
           </motion.div>
         </>
+      )}
+
+      {/* ── Before / After transformation ── */}
+      {cs.beforeAfter && cs.beforeAfter.length > 0 && (
+        <BeforeAfterSlider pairs={cs.beforeAfter} />
       )}
 
       {/* ── Gallery ── */}

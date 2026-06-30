@@ -156,6 +156,23 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: true,
     order: 6,
+    beforeAfter: [
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-5-before_jbqp40.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-5-after_ky2oip.jpg',
+        label: 'Slide 5',
+      },
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-8-before_upi9id.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-8-after_zy2ri3.jpg',
+        label: 'Slide 8',
+      },
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-9-before_buqd9f.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-9-after_k5ft6j.jpg',
+        label: 'Slide 9',
+      },
+    ],
   },
 
   // ── PORTFOLIO (full /work page) ───────────────────────────────────────────
