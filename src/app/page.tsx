@@ -3,6 +3,7 @@ import Logos from '@/components/Logos'
 import FeaturedWork from '@/components/FeaturedWork'
 import Services from '@/components/Services'
 import About from '@/components/About'
+import WhyArthur from '@/components/WhyArthur'
 import Testimonials from '@/components/Testimonials'
 import Blog from '@/components/Blog'
 import CTA from '@/components/CTA'
@@ -108,6 +109,7 @@ export default function Home() {
         <FeaturedWork />
         <Services />
         <About />
+        <WhyArthur />
         <Blog />
         <Testimonials />
         <CTA />

@@ -302,6 +302,183 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* ── HOW I WORK ────────────────────────────────────────────── */}
+      <section
+        className="section section-dark section-surface"
+        style={{ borderTop: '0.5px solid var(--color-dark-border)' }}
+      >
+        <div className="container">
+          <motion.p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.625rem',
+              fontWeight: 500,
+              letterSpacing: '0.16em',
+              textTransform: 'uppercase',
+              color: 'var(--color-on-dark-faint)',
+              margin: '0 0 clamp(40px, 5vw, 56px)',
+            }}
+            initial={reduced ? false : { opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            How I work
+          </motion.p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))',
+            gap: 'clamp(40px, 6vw, 80px)',
+            borderTop: '0.5px solid var(--color-dark-border)',
+            paddingTop: 'clamp(36px, 4.5vw, 56px)',
+          }}>
+            {[
+              {
+                label: 'Process',
+                headline: 'I start from blank slides.',
+                body: "Every project is built from scratch. Before I open a single deck, I dig into your business, challenge your narrative, and sharpen the message. Sometimes I question the model itself. If the story has a gap, I'll find it — because a beautiful deck on a fragile argument is still a loss in the room.",
+              },
+              {
+                label: 'Craft',
+                headline: 'What I deliver is presentation-day ready.',
+                body: 'No typos. No animation misfire. No placeholder that slipped through. I am thorough by nature — every build is tested, every timing is intentional, every transition earns its place. When the deck leaves my hands, it can stand in front of anyone, on any day, without a last-minute panic.',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.label}
+                initial={reduced ? false : { opacity: 0, y: 24 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: i * 0.1 }}
+              >
+                <p style={{
+                  fontFamily: 'var(--font-body)',
+                  fontSize: '0.5625rem',
+                  fontWeight: 500,
+                  letterSpacing: '0.14em',
+                  textTransform: 'uppercase',
+                  color: 'var(--color-accent)',
+                  margin: '0 0 16px',
+                }}>
+                  {item.label}
+                </p>
+                <h3 className="type-h2" style={{ color: 'var(--color-text-primary)', margin: '0 0 16px' }}>
+                  {item.headline}
+                </h3>
+                <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: 0, lineHeight: 1.7 }}>
+                  {item.body}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── TOOLS ─────────────────────────────────────────────────── */}
+      <section
+        className="section section-dark"
+        style={{ borderTop: '0.5px solid var(--color-dark-border)' }}
+      >
+        <div className="container">
+          <motion.p
+            style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: '0.625rem',
+              fontWeight: 500,
+              letterSpacing: '0.16em',
+              textTransform: 'uppercase',
+              color: 'var(--color-on-dark-faint)',
+              margin: '0 0 clamp(40px, 5vw, 56px)',
+            }}
+            initial={reduced ? false : { opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, margin: '-60px' }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          >
+            Built in
+          </motion.p>
+
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
+            borderTop: '0.5px solid var(--color-dark-border)',
+          }}>
+            {[
+              {
+                tool: 'Keynote',
+                level: 'Primary',
+                note: 'Where I do my most demanding work. Apple brought me to Cupertino to design for their top executive audiences — the precision of animation, timing, and visual language that Keynote enables is unmatched for high-stakes storytelling.',
+              },
+              {
+                tool: 'PowerPoint',
+                level: 'Expert',
+                note: 'A decade of enterprise-grade work — fully interactive decks, complex animation builds, touch-wall formats, and editable templates that live in clients\' hands long after delivery. The industry standard, and I know every corner of it.',
+              },
+              {
+                tool: 'Figma Slides',
+                level: 'Fluent',
+                note: 'Ideal for visually rich static decks where the design system already lives in Figma. Excellent for pitch decks and collaboration. Not built for complex animation — I reach for it when the visual craft matters more than motion.',
+              },
+              {
+                tool: 'Google Slides',
+                level: 'Functional',
+                note: 'Used when large enterprise clients require it. Capable of clean, on-brand work — but too constrained for the immersive animated experiences I typically design. I make it work; I just don\'t prefer it.',
+              },
+            ].map((item, i) => (
+              <motion.div
+                key={item.tool}
+                style={{
+                  padding: 'clamp(28px, 3.5vw, 44px) clamp(0px, 0vw, 0px)',
+                  paddingRight: 'clamp(20px, 3vw, 36px)',
+                  paddingLeft: i > 0 ? 'clamp(20px, 3vw, 36px)' : '0',
+                  borderLeft: i > 0 ? '0.5px solid var(--color-dark-border)' : 'none',
+                }}
+                initial={reduced ? false : { opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: i * 0.07 }}
+              >
+                <div style={{
+                  display: 'flex',
+                  alignItems: 'baseline',
+                  justifyContent: 'space-between',
+                  gap: '12px',
+                  marginBottom: '16px',
+                  flexWrap: 'wrap',
+                }}>
+                  <p
+                    className="type-h3"
+                    style={{ color: 'var(--color-on-dark)', margin: 0 }}
+                  >
+                    {item.tool}
+                  </p>
+                  <span style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.5625rem',
+                    fontWeight: 500,
+                    letterSpacing: '0.13em',
+                    textTransform: 'uppercase',
+                    color: item.level === 'Primary' ? 'var(--color-accent)'
+                         : item.level === 'Expert'   ? 'rgba(255,255,255,0.50)'
+                         : 'rgba(255,255,255,0.30)',
+                    flexShrink: 0,
+                  }}>
+                    {item.level}
+                  </span>
+                </div>
+                <p
+                  className="type-body"
+                  style={{ color: 'rgba(255,255,255,0.45)', margin: 0, fontSize: '0.875rem', lineHeight: 1.65 }}
+                >
+                  {item.note}
+                </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── PORTRAIT + CTA ────────────────────────────────────────── */}
       <section
         className="section section-dark section-surface"
