@@ -78,7 +78,15 @@ const nextConfig: NextConfig = {
       // ── All remaining /portfolio/* → /work ───────────────────────────────
       { source: '/portfolio/:slug*', destination: '/work', permanent: true },
       // ── Old Webflow blog imported items → /blog ──────────────────────────
-      { source: '/blog/imported-item-:id', destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-24',   destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-30',   destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-:id',  destination: '/blog', permanent: true },
+      // ── Old Webflow portfolio category filter pages → /work ───────────────
+      { source: '/portfolio/healthcare',    destination: '/work', permanent: true },
+      { source: '/portfolio/foodservice',   destination: '/work', permanent: true },
+      { source: '/portfolio/vcs-startups',  destination: '/work', permanent: true },
+      { source: '/portfolio/media',         destination: '/work', permanent: true },
+      { source: '/portfolio/education',     destination: '/work', permanent: true },
       // ── Old Webflow misc pages ───────────────────────────────────────────
       { source: '/contact-us', destination: '/contact', permanent: true },
       { source: '/terms-and-condition', destination: '/terms-of-use', permanent: true },
