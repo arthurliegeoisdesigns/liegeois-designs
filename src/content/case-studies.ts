@@ -149,10 +149,8 @@ export const caseStudies: CaseStudy[] = [
     images: [
       `${CDN}/mcs-jj-01.jpg`,
       `${CDN}/mcs-jj-02.jpg`,
-      `${CDN}/mcs-jj-01.jpg`, // placeholder — needs mcs-jj-03
-      `${CDN}/mcs-jj-02.jpg`, // placeholder — needs mcs-jj-04
-      `${CDN}/mcs-jj-01.jpg`, // placeholder — needs mcs-jj-05
-      `${CDN}/mcs-jj-02.jpg`, // placeholder — needs mcs-jj-06
+      'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822656/MCS-J-J-4_orca62.jpg',
+      'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822713/MCS-J-J-6_xdvt1k.jpg',
     ],
     featured: true,
     order: 6,
