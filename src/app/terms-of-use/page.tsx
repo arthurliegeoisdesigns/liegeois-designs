@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Footer from '@/components/Footer'
+import ObfuscatedEmail from '@/components/ui/ObfuscatedEmail'
 
 export const metadata: Metadata = {
   title: 'Terms of Use',
@@ -149,11 +150,9 @@ export default function TermsOfUsePage() {
           <p className="type-body" style={bodyStyle}>
             Arthur Liégeois
             <br />
-            22 Montclair Ave, Montclair, NJ 07042
+            Montclair, NJ
             <br />
-            <a href="mailto:arthur@liegeoisdesigns.com" style={linkStyle}>
-              arthur@liegeoisdesigns.com
-            </a>
+            <ObfuscatedEmail style={linkStyle} />
           </p>
         </article>
       </main>
