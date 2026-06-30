@@ -1,5 +1,4 @@
 import type { Metadata } from 'next'
-import Footer from '@/components/Footer'
 import ObfuscatedEmail from '@/components/ui/ObfuscatedEmail'
 
 export const metadata: Metadata = {
@@ -156,7 +155,6 @@ export default function TermsOfUsePage() {
           </p>
         </article>
       </main>
-      <Footer />
     </>
   )
 }
