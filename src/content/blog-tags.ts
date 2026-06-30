@@ -4,7 +4,6 @@
 
 export const blogTags: string[] = [
   'AI & Design',
-  'Branding',
   'Business Strategy',
   'Career',
   'Case Study',
