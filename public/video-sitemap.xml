@@ -50,4 +50,17 @@
     </video:video>
   </url>
 
+
+  <url>
+    <loc>https://www.liegeoisdesigns.com/work/echo-society</loc>
+    <video:video>
+      <video:thumbnail_loc>https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdca84275b62afc2282_6851c05f787e5e92c62ed1eb_221114_Echo_Society_Show_009.001.jpeg</video:thumbnail_loc>
+      <video:title>Echo Society — Brand &amp; Culture Storytelling Deck</video:title>
+      <video:description>Brand and culture storytelling pitch deck design for Echo Society — startup presentation combining editorial design with a compelling narrative for a creative community platform.</video:description>
+      <video:content_loc>https://res.cloudinary.com/dryyhpqew/video/upload/v1782821485/echo-society-reel_buvtoc.mp4</video:content_loc>
+      <video:publication_date>2025-06-26</video:publication_date>
+      <video:family_friendly>yes</video:family_friendly>
+    </video:video>
+  </url>
+
 </urlset>

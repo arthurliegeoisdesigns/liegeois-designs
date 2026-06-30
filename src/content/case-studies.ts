@@ -96,6 +96,8 @@ export const caseStudies: CaseStudy[] = [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdca84275b62afc22ac_686403f2617d981a057f6af0_230427_Echo-Society-Deck%25202.0%2520-%2520Slide-7.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdca84275b62afc22a3_686403fb3cfcb811748e73b3_230427_Echo-Society-Deck%25202.0%2520-%2520Slide-8.jpeg',
     ],
+    video: 'https://res.cloudinary.com/dryyhpqew/video/upload/v1782821485/echo-society-reel_buvtoc.mp4',
+    videoUploadDate: '2025-06-26',
     featured: true,
     order: 3,
     summary: 'Echo Society needed to pitch a new model for content ownership and accelerated go-to-market storytelling. We designed their first investor deck around a disruptive thesis: control your IP, collapse timelines, and scale distribution. The design blends cinematic imagery with sharp strategic logic—setting the tone for a visionary fundraise.',
