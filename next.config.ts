@@ -95,7 +95,7 @@ const nextConfig: NextConfig = {
       { source: '/clients', destination: '/work', permanent: true },
       { source: '/pricing', destination: '/services', permanent: true },
       // ── Old Webflow service detail subpages → /services ──────────────────
-      { source: '/services/:slug*', destination: '/services', permanent: true },
+      { source: '/services/:slug+', destination: '/services', permanent: true },
     ]
   },
   async headers() {
