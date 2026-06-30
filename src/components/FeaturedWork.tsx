@@ -180,7 +180,7 @@ export default function FeaturedWork() {
                       fontSize: '0.5625rem',
                       letterSpacing: '0.18em',
                       textTransform: 'uppercase',
-                      color: 'rgba(255,255,255,0.50)',
+                      color: 'var(--color-on-dark-hint)',
                       margin: '0 0 6px',
                     }}
                   >
@@ -191,7 +191,7 @@ export default function FeaturedWork() {
                       fontFamily: 'var(--font-display)',
                       fontSize: 'clamp(1.125rem, 2.2vw, 1.75rem)',
                       fontWeight: 300,
-                      color: '#ffffff',
+                      color: 'var(--color-on-dark)',
                       margin: 0,
                       letterSpacing: '-0.02em',
                       lineHeight: 1.05,

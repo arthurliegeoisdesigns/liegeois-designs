@@ -36,7 +36,7 @@ export default function CaseStudyHero({
           width: '100%',
           height: 'clamp(380px, 72vh, 800px)',
           overflow: 'hidden',
-          background: '#0A0A0A',
+          background: 'var(--color-canvas)',
         }}
       >
         <motion.div
@@ -94,7 +94,7 @@ export default function CaseStudyHero({
             initial={reduced ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = '#ffffff' }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--color-on-dark)' }}
             onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
           >
             ← All Work

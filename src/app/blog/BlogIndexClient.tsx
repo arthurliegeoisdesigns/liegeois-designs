@@ -19,7 +19,7 @@ const cardVariants = {
 const filterBlockStyle = (active: boolean): React.CSSProperties => ({
   position: 'relative',
   padding: 'clamp(16px, 2vw, 22px) clamp(14px, 1.8vw, 20px)',
-  background: active ? '#0A0A0A' : '#ffffff',
+  background: active ? 'var(--color-canvas)' : 'var(--color-paper)',
   border: 'none',
   borderLeft: '0.5px solid var(--color-border-mid)',
   cursor: 'pointer',
@@ -41,7 +41,7 @@ export default function BlogIndexClient() {
     : allPosts
 
   return (
-    <main style={{ background: '#ffffff', minHeight: '100vh' }}>
+    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
       {/* Back link */}
       <div style={{ paddingTop: 'calc(80px + 20px)', paddingLeft: 'var(--section-pad-x)', paddingRight: 'var(--section-pad-x)', paddingBottom: '16px' }}>
         <Link
@@ -115,7 +115,7 @@ export default function BlogIndexClient() {
                     fontSize: '0.5625rem',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
-                    color: isActive ? 'rgba(255,255,255,0.4)' : 'var(--color-text-muted)',
+                    color: isActive ? 'var(--color-on-dark-hint)' : 'var(--color-text-muted)',
                     transition: 'color 250ms ease',
                   }}>
                     {count} {count === 1 ? 'post' : 'posts'}
@@ -124,7 +124,7 @@ export default function BlogIndexClient() {
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(0.75rem, 1.2vw, 0.9375rem)',
                     fontWeight: 400,
-                    color: isActive ? '#FAFAFA' : 'var(--color-text-primary)',
+                    color: isActive ? 'var(--color-on-dark)' : 'var(--color-text-primary)',
                     lineHeight: 1.25,
                     letterSpacing: '-0.01em',
                     transition: 'color 250ms ease',

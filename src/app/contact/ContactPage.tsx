@@ -60,7 +60,7 @@ export default function ContactPage() {
   const [state, formAction, isPending] = useActionState(sendContactForm, initialState)
 
   return (
-    <main style={{ background: '#ffffff', minHeight: '100vh' }}>
+    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section

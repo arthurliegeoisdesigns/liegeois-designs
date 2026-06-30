@@ -9,7 +9,7 @@ import { useEffect, useRef, useState } from 'react'
  * Visible on any surface — light, dark, images, gradients.
  *
  * Default:  dark fill (#0A0A0A) · white 2.5px ring · dark 1px outer ring
- * Hover:    gold fill · gold glow ring · ring expands to 56px
+ * Hover:    fill inverts to white · dark inner ring · brighter white glow · ring expands to 56px
  *
  * Ring: 42px spring-lag follower
  * Hidden entirely on touch/coarse-pointer devices
@@ -91,7 +91,7 @@ export default function CustomCursor() {
       {/* ── Dot ──
           Dark fill + white box-shadow inner ring + dark outer ring.
           This triple layer guarantees visibility on any background.
-          On hover: turns gold with a soft gold glow.
+          On hover: inverts to white fill with a dark inner ring — achromatic throughout.
       */}
       <div
         ref={dotRef}
@@ -103,10 +103,10 @@ export default function CustomCursor() {
           width:    hovering ? '20px' : '16px',
           height:   hovering ? '20px' : '16px',
           borderRadius: '50%',
-          background: hovering ? '#C8A96E' : '#0A0A0A',
-          // white ring (2.5px) + outer dark/gold halo for universal legibility
+          background: hovering ? '#ffffff' : '#0A0A0A',
+          // inner ring + outer halo, inverted on hover for universal legibility
           boxShadow: hovering
-            ? '0 0 0 2.5px #ffffff, 0 0 0 4.5px rgba(200,169,110,0.5)'
+            ? '0 0 0 2.5px #0A0A0A, 0 0 0 4.5px rgba(255,255,255,0.5)'
             : '0 0 0 2.5px #ffffff, 0 0 0 4.5px rgba(0,0,0,0.25)',
           pointerEvents: 'none',
           zIndex: 99999,
@@ -133,8 +133,8 @@ export default function CustomCursor() {
           width:  hovering ? '56px' : '42px',
           height: hovering ? '56px' : '42px',
           borderRadius: '50%',
-          border: `1.5px solid ${hovering ? 'rgba(200,169,110,0.85)' : 'rgba(255,255,255,0.5)'}`,
-          background: hovering ? 'rgba(200,169,110,0.07)' : 'transparent',
+          border: `1.5px solid ${hovering ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)'}`,
+          background: hovering ? 'rgba(255,255,255,0.10)' : 'transparent',
           pointerEvents: 'none',
           zIndex: 99998,
           opacity: visible ? 1 : 0,

@@ -124,7 +124,7 @@ export function TestimonialsWidget() {
                         !isActive && "hover:scale-105",
                       )}
                       style={{
-                        outline: isActive ? '2px solid rgba(8,8,8,0.3)' : 'none',
+                        outline: isActive ? '2px solid rgba(16,16,17,0.3)' : 'none',
                         outlineOffset: '1px',
                       }}
                     />
@@ -148,7 +148,7 @@ export function TestimonialsWidget() {
                   <div className="overflow-hidden">
                     <span
                       className="text-sm font-medium whitespace-nowrap block transition-colors duration-300"
-                      style={{ color: isActive ? '#0d0d0d' : 'var(--color-text-primary)' }}
+                      style={{ color: isActive ? 'var(--color-canvas)' : 'var(--color-text-primary)' }}
                     >
                       {t.author}
                     </span>

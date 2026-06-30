@@ -74,7 +74,7 @@ export default function Services() {
         >
           Strategy, story, design.
           <br />
-          <em style={{ fontStyle: 'italic', color: 'var(--color-text-muted)' }}>In that order.</em>
+          <span style={{ color: 'var(--color-text-muted)', fontWeight: 300 }}>In that order.</span>
         </motion.h2>
 
         {/* ── Lede ─────────────────────────────────────────────── */}
@@ -219,8 +219,7 @@ export default function Services() {
             style={{
               color: 'var(--color-text-muted)',
               margin: 0,
-              fontStyle: 'italic',
-              fontFamily: 'var(--font-display)',
+              fontFamily: 'var(--font-body)',
               fontSize: 'clamp(0.875rem, 1.2vw, 1.0625rem)',
             }}
           >

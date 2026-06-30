@@ -92,6 +92,8 @@ export default function ServicesPage() {
   return (
     <main style={{ background: 'var(--color-void)', minHeight: '100vh' }}>
 
+      <h1 className="sr-only">Services — Liégeois Designs</h1>
+
       {/* ── Fixed top bar ─────────────────────────────────────── */}
       <div
         style={{
@@ -123,22 +125,36 @@ export default function ServicesPage() {
         </Link>
 
         {/* Panel indicators */}
-        <div style={{ display: 'flex', gap: '8px', pointerEvents: 'auto' }}>
+        <div style={{ display: 'flex', pointerEvents: 'auto' }}>
           {services.map((_, i) => (
             <button
               key={i}
               aria-label={`Go to ${services[i].title}`}
               onClick={() => goTo(i)}
               style={{
-                width: i === activeIdx ? '28px' : '8px',
-                height: '2px',
-                background: i === activeIdx ? 'var(--color-on-dark)' : 'var(--color-on-dark-ghost)',
+                position: 'relative',
+                width: '44px',
+                height: '44px',
+                background: 'transparent',
                 border: 'none',
                 padding: 0,
                 cursor: 'pointer',
-                transition: 'width 400ms cubic-bezier(0.16,1,0.3,1), background 250ms ease',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
               }}
-            />
+            >
+              <span
+                aria-hidden="true"
+                style={{
+                  display: 'block',
+                  width: i === activeIdx ? '28px' : '8px',
+                  height: '2px',
+                  background: i === activeIdx ? 'var(--color-on-dark)' : 'var(--color-on-dark-ghost)',
+                  transition: 'width 400ms cubic-bezier(0.16,1,0.3,1), background 250ms ease',
+                }}
+              />
+            </button>
           ))}
         </div>
       </div>
@@ -172,7 +188,7 @@ export default function ServicesPage() {
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
             e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'
-            e.currentTarget.style.color = '#ffffff'
+            e.currentTarget.style.color = 'var(--color-on-dark)'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
@@ -211,7 +227,7 @@ export default function ServicesPage() {
           onMouseEnter={(e) => {
             e.currentTarget.style.background = 'rgba(255,255,255,0.15)'
             e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'
-            e.currentTarget.style.color = '#ffffff'
+            e.currentTarget.style.color = 'var(--color-on-dark)'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'rgba(255,255,255,0.08)'
@@ -392,7 +408,7 @@ export default function ServicesPage() {
               >
                 <motion.p
                   className="type-body-lg"
-                  style={{ color: 'rgba(255,255,255,0.72)', margin: 0, maxWidth: '480px', lineHeight: 1.7 }}
+                  style={{ color: 'rgba(255,255,255,0.90)', margin: 0, maxWidth: '520px', lineHeight: 1.8 }}
                   animate={i === activeIdx ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                   transition={{ duration: 0.65, ease: [0.16, 1, 0.3, 1], delay: 0.08 }}
                 >
@@ -409,13 +425,13 @@ export default function ServicesPage() {
                   </p>
                   <ul style={{ margin: '0 0 16px', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '9px' }}>
                     {service.deliverables.map((d) => (
-                      <li key={d} style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'rgba(255,255,255,0.70)', display: 'flex', alignItems: 'center', gap: '10px' }}>
+                      <li key={d} style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', color: 'rgba(255,255,255,0.85)', display: 'flex', alignItems: 'center', gap: '10px' }}>
                         <span style={{ width: '12px', height: '0.5px', background: 'rgba(255,255,255,0.35)', display: 'inline-block', flexShrink: 0 }} />
                         {d}
                       </li>
                     ))}
                   </ul>
-                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'rgba(255,255,255,0.45)', margin: 0, letterSpacing: '0.04em' }}>
+                  <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.75rem', color: 'rgba(255,255,255,0.62)', margin: 0, letterSpacing: '0.04em' }}>
                     Timeline: {service.timeline}
                   </p>
                 </motion.div>
@@ -451,7 +467,7 @@ export default function ServicesPage() {
                     onMouseEnter={(e) => {
                       e.currentTarget.style.background = 'rgba(255,255,255,0.13)'
                       e.currentTarget.style.borderColor = 'rgba(255,255,255,0.40)'
-                      e.currentTarget.style.color = '#ffffff'
+                      e.currentTarget.style.color = 'var(--color-on-dark)'
                     }}
                     onMouseLeave={(e) => {
                       e.currentTarget.style.background = 'rgba(255,255,255,0.07)'
@@ -467,7 +483,7 @@ export default function ServicesPage() {
                     target={links.calendly ? '_blank' : undefined}
                     rel="noopener noreferrer"
                     style={{
-                      background: '#ffffff',
+                      background: 'var(--color-on-dark)',
                       border: '1px solid rgba(255,255,255,0.20)',
                       borderRadius: '2px',
                       cursor: 'pointer',
@@ -475,7 +491,7 @@ export default function ServicesPage() {
                       alignItems: 'center',
                       gap: '10px',
                       padding: '13px 24px',
-                      color: '#0d0d0d',
+                      color: 'var(--color-canvas)',
                       fontFamily: 'var(--font-body)',
                       fontSize: '0.75rem',
                       letterSpacing: '0.10em',
@@ -504,13 +520,13 @@ export default function ServicesPage() {
           textAlign: 'center',
         }}
       >
-        <ScrambleEyebrow style={{ marginBottom: '24px', display: 'block' }}>Ready to start?</ScrambleEyebrow>
+        <ScrambleEyebrow style={{ marginBottom: '24px', display: 'block' }}>READY TO START?</ScrambleEyebrow>
         <h2 className="type-h1" style={{ color: 'var(--color-on-dark)', margin: '0 auto 32px', maxWidth: '600px' }}>
           Let&apos;s talk about what you&apos;re trying to change.
         </h2>
         <div style={{ display: 'flex', gap: '12px', justifyContent: 'center', flexWrap: 'wrap' }}>
-          <a href={links.calendly} className="btn-primary" style={{ background: '#ffffff', color: '#0d0d0d' }}>Book a Free Call</a>
-          <Link href="/work" className="btn-ghost" style={{ color: '#ffffff', borderColor: 'rgba(255,255,255,0.25)' }}>See the Work</Link>
+          <a href={links.calendly} className="btn-primary" style={{ background: 'var(--color-on-dark)', color: 'var(--color-canvas)' }}>Book a Free Call</a>
+          <Link href="/work" className="btn-ghost" style={{ color: 'var(--color-on-dark)', borderColor: 'rgba(255,255,255,0.25)' }}>See the Work</Link>
         </div>
       </section>
 

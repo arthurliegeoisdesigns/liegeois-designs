@@ -43,7 +43,7 @@
   /* ── Semantic surface tokens — light default, flipped in .section-dark ── */
   --color-text-primary:   #0d0d0d;
   --color-text-secondary: #555555;
-  --color-text-muted:     #999999;
+  --color-text-muted:     #6b6b6b;   /* #999999 was 2.85:1 on white — raised for WCAG AA */
   --color-border:         rgba(0, 0, 0, 0.08);
   --color-border-mid:     rgba(0, 0, 0, 0.14);
   --color-card-bg:        #f6f6f5;

@@ -31,7 +31,7 @@ export default function WorkPageClient() {
     : caseStudies.filter((cs) => cs.format === active)
 
   return (
-    <main style={{ background: '#ffffff', minHeight: '100vh' }}>
+    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
 
       {/* Back link */}
       <div style={{ paddingTop: 'calc(80px + 20px)', paddingLeft: 'var(--section-pad-x)', paddingRight: 'var(--section-pad-x)', paddingBottom: '16px', position: 'relative', zIndex: 10 }}>
@@ -93,7 +93,7 @@ export default function WorkPageClient() {
                   style={{
                     position: 'relative',
                     padding: 'clamp(20px, 2.5vw, 28px) clamp(16px, 2vw, 24px)',
-                    background: isActive ? '#0A0A0A' : '#ffffff',
+                    background: isActive ? 'var(--color-canvas)' : 'var(--color-paper)',
                     border: 'none',
                     borderLeft: i > 0 ? '0.5px solid var(--color-border-mid)' : 'none',
                     cursor: 'pointer',
@@ -112,7 +112,7 @@ export default function WorkPageClient() {
                     fontSize: '0.625rem',
                     letterSpacing: '0.12em',
                     textTransform: 'uppercase',
-                    color: isActive ? 'rgba(255,255,255,0.4)' : 'var(--color-text-muted)',
+                    color: isActive ? 'var(--color-on-dark-hint)' : 'var(--color-text-muted)',
                     transition: 'color 250ms ease',
                   }}>
                     {count} {count === 1 ? 'project' : 'projects'}
@@ -122,7 +122,7 @@ export default function WorkPageClient() {
                     fontFamily: 'var(--font-display)',
                     fontSize: 'clamp(0.8125rem, 1.4vw, 1.0625rem)',
                     fontWeight: 400,
-                    color: isActive ? '#FAFAFA' : 'var(--color-text-primary)',
+                    color: isActive ? 'var(--color-on-dark)' : 'var(--color-text-primary)',
                     lineHeight: 1.2,
                     letterSpacing: '-0.01em',
                     transition: 'color 250ms ease',

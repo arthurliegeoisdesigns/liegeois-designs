@@ -48,11 +48,11 @@ export default async function BlogPostPage({
   const source = hasMdx ? fs.readFileSync(mdxPath, 'utf-8') : null
 
   return (
-    <main style={{ minHeight: '100vh', background: '#ffffff' }}>
+    <main style={{ minHeight: '100vh', background: 'var(--color-paper)' }}>
       {/* Header */}
       <header
         style={{
-          background: '#ffffff',
+          background: 'var(--color-paper)',
           borderBottom: '0.5px solid var(--color-border)',
           padding: 'var(--section-pad-y) var(--section-pad-x)',
           paddingTop: '100px',
@@ -105,7 +105,7 @@ export default async function BlogPostPage({
       {/* Body */}
       <section
         style={{
-          background: '#ffffff',
+          background: 'var(--color-paper)',
           padding: 'var(--section-pad-y) var(--section-pad-x)',
         }}
       >
@@ -116,9 +116,6 @@ export default async function BlogPostPage({
             </div>
           ) : (
             <div style={{ textAlign: 'center', padding: '80px 0' }}>
-              <p className="eyebrow" style={{ color: 'var(--color-text-muted)', marginBottom: '20px' }}>
-                COMING SOON
-              </p>
               <h2 className="type-h2" style={{ color: 'var(--color-text-primary)', margin: '0 0 16px' }}>
                 {post.title}
               </h2>

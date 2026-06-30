@@ -72,7 +72,7 @@ export default function Nav() {
               href={link.href}
               className="nav-link"
               style={{
-                color: pathname === link.href ? (scrolled ? '#0d0d0d' : '#ffffff') : undefined,
+                color: pathname === link.href ? (scrolled ? 'var(--color-ink)' : 'var(--color-on-dark)') : undefined,
               }}
             >
               {link.label}

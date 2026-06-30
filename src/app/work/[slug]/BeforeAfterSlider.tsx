@@ -70,7 +70,7 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
           cursor: dragging ? 'grabbing' : 'col-resize',
           userSelect: 'none',
           WebkitUserSelect: 'none',
-          background: '#0a0a0a',
+          background: 'var(--color-canvas)',
         }}
       >
         {/* After — base layer */}
@@ -110,15 +110,15 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
         <div style={{
           position: 'absolute', top: '50%', left: `${position}%`,
           transform: 'translate(-50%, -50%)',
-          width: '40px', height: '40px', borderRadius: '50%',
-          background: '#fff',
+          width: '44px', height: '44px', borderRadius: '50%',
+          background: 'var(--color-on-dark)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           boxShadow: '0 2px 16px rgba(0,0,0,0.5)',
           pointerEvents: 'none',
           transition: dragging ? 'none' : 'left 0.04s linear',
         }}>
           <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
-            <path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#0A0A0A" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="var(--color-canvas)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
 
@@ -226,7 +226,7 @@ export default function BeforeAfterSlider({ pairs }: Props) {
                   onClick={fn}
                   aria-label={label === '←' ? 'Previous slide' : 'Next slide'}
                   style={{
-                    width: '40px', height: '40px',
+                    width: '44px', height: '44px',
                     border: '0.5px solid rgba(255,255,255,0.20)',
                     background: 'transparent', color: 'rgba(255,255,255,0.7)',
                     fontFamily: 'var(--font-body)', fontSize: '1rem',
@@ -235,7 +235,7 @@ export default function BeforeAfterSlider({ pairs }: Props) {
                   }}
                   onMouseEnter={e => {
                     (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.55)'
-                    ;(e.currentTarget as HTMLButtonElement).style.color = '#fff'
+                    ;(e.currentTarget as HTMLButtonElement).style.color = 'var(--color-on-dark)'
                   }}
                   onMouseLeave={e => {
                     (e.currentTarget as HTMLButtonElement).style.borderColor = 'rgba(255,255,255,0.20)'
@@ -272,23 +272,37 @@ export default function BeforeAfterSlider({ pairs }: Props) {
           </motion.div>
 
           {/* Dot indicators */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: '10px', marginTop: '28px' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginTop: '28px' }}>
             {pairs.map((_, i) => (
               <button
                 key={i}
                 onClick={() => go(i)}
                 aria-label={`Go to slide ${i + 1}`}
                 style={{
-                  width: i === active ? '24px' : '6px',
-                  height: '6px',
-                  borderRadius: '3px',
-                  background: i === active ? 'var(--color-accent)' : 'rgba(255,255,255,0.20)',
+                  position: 'relative',
+                  width: '44px',
+                  height: '44px',
+                  background: 'transparent',
                   border: 'none',
                   padding: 0,
                   cursor: 'pointer',
-                  transition: 'width 300ms ease, background 300ms ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
                 }}
-              />
+              >
+                <span
+                  aria-hidden="true"
+                  style={{
+                    display: 'block',
+                    width: i === active ? '24px' : '6px',
+                    height: '6px',
+                    borderRadius: '3px',
+                    background: i === active ? 'var(--color-accent)' : 'rgba(255,255,255,0.20)',
+                    transition: 'width 300ms ease, background 300ms ease',
+                  }}
+                />
+              </button>
             ))}
           </div>
 
