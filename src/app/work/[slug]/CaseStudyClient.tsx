@@ -183,29 +183,88 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
       {/* ── Hero — full-width image/video ── */}
       <CaseStudyHero cs={cs} index={index} total={total} />
 
-      {/* ── Narrative — renders BELOW the hero ── */}
-      {hasNarrative && (
-        <section style={{ padding: 'clamp(56px, 6vw, 80px) var(--section-pad-x)' }}>
+      {/* ── Project metadata + narrative — always server-rendered for SEO ── */}
+      <section style={{ padding: 'clamp(56px, 6vw, 80px) var(--section-pad-x)' }}>
+        <div style={{
+          maxWidth: '960px',
+          margin: '0 auto',
+          borderTop: '0.5px solid var(--color-dark-border)',
+          paddingTop: 'clamp(48px, 5vw, 64px)',
+        }}>
+          {/* Metadata strip — always visible, indexable by Google (plain HTML, no motion to avoid SSR crash) */}
           <div style={{
-            maxWidth: '960px',
-            margin: '0 auto',
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))',
-            gap: 'clamp(40px, 5vw, 72px)',
-            borderTop: '0.5px solid var(--color-dark-border)',
-            paddingTop: 'clamp(48px, 5vw, 64px)',
+            display: 'flex',
+            flexWrap: 'wrap',
+            gap: '8px 24px',
+            marginBottom: 'clamp(28px, 4vw, 44px)',
           }}>
-            <div>
-              {cs.theAsk    && <NarrativeBlock label="The Ask"       text={cs.theAsk}    delay={0} />}
-              {cs.challenge && <NarrativeBlock label="The Challenge" text={cs.challenge} delay={0.08} />}
-            </div>
-            <div>
-              {cs.solution  && <NarrativeBlock label="The Solution"  text={cs.solution}  delay={0.12} />}
-              {cs.outcome   && <NarrativeBlock label="The Outcome"   text={cs.outcome}   delay={0.18} />}
-            </div>
+            {[cs.format, cs.industry, String(cs.year)].map((tag, i) => (
+              <span key={i} style={{
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.625rem',
+                fontWeight: 500,
+                letterSpacing: '0.14em',
+                textTransform: 'uppercase',
+                color: 'var(--color-on-dark-faint)',
+              }}>
+                {tag}
+              </span>
+            ))}
           </div>
-        </section>
-      )}
+
+          <div style={{ marginBottom: hasNarrative ? 'clamp(40px, 5vw, 64px)' : 0 }}>
+            <h1 style={{
+              fontFamily: 'var(--font-display)',
+              fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
+              fontWeight: 700,
+              lineHeight: 1.1,
+              letterSpacing: '-0.02em',
+              color: 'var(--color-on-dark)',
+              margin: '0 0 12px',
+            }}>
+              {cs.client}
+            </h1>
+            <h2 style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(0.875rem, 1.5vw, 1rem)',
+              fontWeight: 400,
+              color: 'rgba(255,255,255,0.50)',
+              margin: '0 0 20px',
+              letterSpacing: '0.01em',
+            }}>
+              {cs.project}
+            </h2>
+            <p style={{
+              fontFamily: 'var(--font-body)',
+              fontSize: 'clamp(0.9375rem, 1.5vw, 1.0625rem)',
+              lineHeight: 1.65,
+              color: 'rgba(255,255,255,0.62)',
+              margin: 0,
+              maxWidth: '600px',
+            }}>
+              {cs.tagline}
+            </p>
+          </div>
+
+          {/* Narrative columns — only when copy exists */}
+          {hasNarrative && (
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 380px), 1fr))',
+              gap: 'clamp(40px, 5vw, 72px)',
+            }}>
+              <div>
+                {cs.theAsk    && <NarrativeBlock label="The Ask"       text={cs.theAsk}    delay={0} />}
+                {cs.challenge && <NarrativeBlock label="The Challenge" text={cs.challenge} delay={0.08} />}
+              </div>
+              <div>
+                {cs.solution  && <NarrativeBlock label="The Solution"  text={cs.solution}  delay={0.12} />}
+                {cs.outcome   && <NarrativeBlock label="The Outcome"   text={cs.outcome}   delay={0.18} />}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
       {/* ── Video reel ── */}
       {cs.video && (

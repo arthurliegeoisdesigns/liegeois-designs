@@ -90,6 +90,12 @@ const nextConfig: NextConfig = {
       // ── Old Webflow misc pages ───────────────────────────────────────────
       { source: '/contact-us', destination: '/contact', permanent: true },
       { source: '/terms-and-condition', destination: '/terms-of-use', permanent: true },
+      // ── Old Webflow pages with no equivalent on the new site ─────────────
+      { source: '/portfolio', destination: '/work', permanent: true },
+      { source: '/clients', destination: '/work', permanent: true },
+      { source: '/pricing', destination: '/services', permanent: true },
+      // ── Old Webflow service detail subpages → /services ──────────────────
+      { source: '/services/:slug*', destination: '/services', permanent: true },
     ]
   },
   async headers() {

@@ -4,10 +4,8 @@ import Script from 'next/script'
 import './globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
-import { Analytics } from '@vercel/analytics/react'
-import { SpeedInsights } from '@vercel/speed-insights/next'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
-import CustomCursor from '@/components/ui/CustomCursor'
+import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
 
@@ -102,7 +100,7 @@ export default function RootLayout({
           />
         </noscript>
         <SmoothScrollProvider>
-          <CustomCursor />
+          <ClientOnlyLayer />
           <a href="#main-content" className="skip-link">Skip to content</a>
           <Nav />
           <div id="main-content">
@@ -110,8 +108,6 @@ export default function RootLayout({
           </div>
           <Footer />
         </SmoothScrollProvider>
-        <Analytics />
-        <SpeedInsights />
         {/* Google Tag Manager */}
         <Script
           id="gtm"
