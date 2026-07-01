@@ -172,8 +172,8 @@ export default function Hero() {
         {/* Eyebrow */}
         <motion.div
           style={{ margin: '0 0 28px' }}
-          initial={reduced ? false : { opacity: 0, x: -14 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={reduced ? false : { x: -14 }}
+          animate={{ x: 0 }}
           transition={{ duration: 0.75, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
         >
           <TextScramble
@@ -223,11 +223,9 @@ export default function Hero() {
                     opacity: 1,
                     color: isArrow ? 'var(--color-on-dark-faint)' : 'var(--color-on-dark)',
                   }}
-                  initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
+                  initial={{ y: 24 }}
                   animate={{
-                    opacity: 1,
                     y: 0,
-                    filter: 'blur(0px)',
                   }}
                   transition={{
                     duration: 0.75,
