@@ -119,6 +119,7 @@ export default function Hero() {
                     alt={slide.alt}
                     fill
                     priority={idx === 0}
+                    fetchPriority={idx === 0 ? 'high' : undefined}
                     sizes="100vw"
                     style={{ objectFit: 'cover', objectPosition: 'center' }}
                   />
