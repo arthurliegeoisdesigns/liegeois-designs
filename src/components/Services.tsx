@@ -18,6 +18,11 @@ const services = [
     title: 'Sales & Agency Decks',
     description: "Proposals that don't wait for a follow-up email.",
   },
+  {
+    number: '04',
+    title: 'Strategic Narrative',
+    description: "When the problem isn't the design — it's the story.",
+  },
 ]
 
 // Framer-motion variants — propagate from row → children
