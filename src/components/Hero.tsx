@@ -17,9 +17,9 @@ const SLIDES = [
     client: 'Chevron',
   },
   {
-    src: `${CDN}/spaceship-11.jpg`,
-    alt: 'The Spaceship investor deck',
-    client: 'The Spaceship',
+    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be0a41a17d562e29541_6851a95741c391912b4d0496_Portfolio_Slides_ProjectBe-Digital-Wellness-Conference_0002.jpeg',
+    alt: 'Project Be wellness keynote',
+    client: 'Project Be',
   },
   {
     src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68cae362b6f7edca9f846307_Marriott_The_Luxury_Group_Slide_1.avif',
@@ -32,9 +32,9 @@ const SLIDES = [
     client: 'Echo Society',
   },
   {
-    src: `${CDN}/spaceship-22.jpg`,
-    alt: 'The Spaceship investor deck',
-    client: 'The Spaceship',
+    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be1a41a17d562e29560_6862fb26fe3dc646bb7b6f2d_Portfolio_Slides_ProjectBe-Digital-Wellness-Conference_0023.jpeg',
+    alt: 'Project Be wellness keynote',
+    client: 'Project Be',
   },
   {
     src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f83e8_683f46b95f3aad03b0cb2e3a_681ba9dcdcb982e09a6e1696_Portfolio_Slides_Philips-Experience-Intro_0001.jpeg',
