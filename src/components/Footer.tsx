@@ -37,12 +37,13 @@ const cols: Array<{
 ]
 
 const linkStyle: React.CSSProperties = {
-  display: 'block',
+  display: 'flex',
+  alignItems: 'center',
+  minHeight: '44px',
   color: 'var(--color-on-dark-muted)',
   textDecoration: 'none',
   fontSize: '0.8125rem',
   fontFamily: 'var(--font-body)',
-  lineHeight: 1.8,
   transition: 'color 200ms',
 }
 
@@ -156,6 +157,9 @@ export default function Footer() {
               fontSize: '0.75rem',
               color: 'var(--color-on-dark-faint)',
               textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              minHeight: '44px',
             }}
           >
             Privacy Policy
@@ -167,6 +171,9 @@ export default function Footer() {
               fontSize: '0.75rem',
               color: 'var(--color-on-dark-faint)',
               textDecoration: 'none',
+              display: 'flex',
+              alignItems: 'center',
+              minHeight: '44px',
             }}
           >
             Terms of Use
