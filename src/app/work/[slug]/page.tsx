@@ -19,9 +19,11 @@ export async function generateMetadata({
   return {
     title: `${cs.client} — ${cs.project}`,
     description: metaDesc,
+    alternates: { canonical: `https://www.liegeoisdesigns.com/work/${slug}` },
     openGraph: {
       title: `${cs.client} — ${cs.project}`,
       description: metaDesc,
+      url: `https://www.liegeoisdesigns.com/work/${slug}`,
       images: [{ url: cs.images[0], width: 1200, height: 900 }],
     },
   }
@@ -64,6 +66,16 @@ export default async function CaseStudyPage({
     ...(cs.agency ? { contributor: { '@type': 'Organization', name: cs.agency } } : {}),
   }
 
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.liegeoisdesigns.com' },
+      { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://www.liegeoisdesigns.com/work' },
+      { '@type': 'ListItem', position: 3, name: `${cs.client} — ${cs.project}`, item: `https://www.liegeoisdesigns.com/work/${cs.slug}` },
+    ],
+  }
+
   const videoSchema = cs.video
     ? {
         '@context': 'https://schema.org',
@@ -90,6 +102,10 @@ export default async function CaseStudyPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
       {videoSchema && (
         <script

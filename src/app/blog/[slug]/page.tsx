@@ -47,8 +47,50 @@ export default async function BlogPostPage({
   const hasMdx = fs.existsSync(mdxPath)
   const source = hasMdx ? fs.readFileSync(mdxPath, 'utf-8') : null
 
+  const BASE = 'https://www.liegeoisdesigns.com'
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: post.title,
+    description: post.excerpt,
+    ...(post.coverImage ? { image: post.coverImage } : {}),
+    author: {
+      '@type': 'Person',
+      name: 'Arthur Liégeois',
+      url: `${BASE}/about`,
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Liégeois Designs',
+      url: BASE,
+      logo: {
+        '@type': 'ImageObject',
+        url: `${BASE}/images/logo-liegeois-footer-white.svg`,
+      },
+    },
+    datePublished: post.publishedAt,
+    dateModified: post.publishedAt,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${BASE}/blog/${slug}`,
+    },
+  }
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: BASE },
+      { '@type': 'ListItem', position: 2, name: 'Blog', item: `${BASE}/blog` },
+      { '@type': 'ListItem', position: 3, name: post.title, item: `${BASE}/blog/${slug}` },
+    ],
+  }
+
   return (
     <main style={{ minHeight: '100vh', background: 'var(--color-paper)' }}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Header */}
       <header
         style={{

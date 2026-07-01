@@ -14,7 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const workRoutes = caseStudies.map((cs) => ({
     url: `${BASE}/work/${cs.slug}`,
-    lastModified: new Date(),
+    // Use June 1 of the year the work was completed — stable, honest date
+    lastModified: new Date(cs.year, 5, 1),
     changeFrequency: 'monthly' as const,
     priority: 0.75,
   }))
