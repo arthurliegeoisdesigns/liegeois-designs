@@ -146,17 +146,52 @@ export default function ServicesPage() {
   const [showScrollHint, setShowScrollHint] = useState(true)
   const [activeTabs, setActiveTabs] = useState<Record<number, 'deliverables' | 'process'>>({})
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+  const [animatedPanels, setAnimatedPanels] = useState<Set<number>>(new Set([0]))
+  const panelRefs = useRef<(HTMLDivElement | null)[]>([])
 
+  // Dismiss scroll hint on first scroll
   useEffect(() => {
     const track = trackRef.current
     if (!track) return
     const onScroll = () => {
-      const idx = Math.round(track.scrollLeft / track.clientWidth)
-      setActiveIdx(idx)
       if (track.scrollLeft > 40) setShowScrollHint(false)
     }
     track.addEventListener('scroll', onScroll, { passive: true })
     return () => track.removeEventListener('scroll', onScroll)
+  }, [])
+
+  // IntersectionObserver per panel:
+  // - at 0.2 → add to animatedPanels (content fades in before fully visible)
+  // - at 0.5 → update activeIdx (pill indicator + arrows; only one panel can be >50% at once)
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+    const observers: IntersectionObserver[] = []
+    panelRefs.current.forEach((panel, idx) => {
+      if (!panel) return
+      const obs = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return
+            if (entry.intersectionRatio >= 0.2) {
+              setAnimatedPanels((prev) => {
+                if (prev.has(idx)) return prev
+                const next = new Set(prev)
+                next.add(idx)
+                return next
+              })
+            }
+            if (entry.intersectionRatio >= 0.5) {
+              setActiveIdx(idx)
+            }
+          })
+        },
+        { root: track, threshold: [0.2, 0.5] },
+      )
+      obs.observe(panel)
+      observers.push(obs)
+    })
+    return () => observers.forEach((obs) => obs.disconnect())
   }, [])
 
   const goTo = useCallback((idx: number) => {
@@ -374,6 +409,7 @@ export default function ServicesPage() {
         {services.map((service, i) => (
           <div
             key={service.number}
+            ref={(el) => { panelRefs.current[i] = el }}
             style={{
               width: '100vw',
               height: '100dvh',
@@ -452,7 +488,7 @@ export default function ServicesPage() {
             <motion.h2
               className="type-display"
               style={{ color: 'var(--color-on-dark)', margin: '0 0 clamp(28px, 4vh, 44px)', maxWidth: '600px', position: 'relative', zIndex: 1 }}
-              animate={i === activeIdx ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              animate={animatedPanels.has(i) ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.7, ease }}
             >
               {service.title}
@@ -475,7 +511,7 @@ export default function ServicesPage() {
                 <motion.p
                   className="type-body-lg"
                   style={{ color: 'rgba(255,255,255,0.90)', margin: 0, maxWidth: '520px', lineHeight: 1.8 }}
-                  animate={i === activeIdx ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                  animate={animatedPanels.has(i) ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                   transition={{ duration: 0.65, ease, delay: 0.08 }}
                 >
                   {service.description}
@@ -483,7 +519,7 @@ export default function ServicesPage() {
 
                 <motion.div
                   style={{ minWidth: '220px', maxWidth: '300px' }}
-                  animate={i === activeIdx ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
+                  animate={animatedPanels.has(i) ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                   transition={{ duration: 0.65, ease, delay: 0.14 }}
                 >
                   {/* Tab switcher */}
@@ -586,7 +622,7 @@ export default function ServicesPage() {
               {/* Navigation row */}
               <motion.div
                 style={{ display: 'flex', alignItems: 'center', gap: '12px' }}
-                animate={i === activeIdx ? { opacity: 1 } : { opacity: 0 }}
+                animate={animatedPanels.has(i) ? { opacity: 1 } : { opacity: 0 }}
                 transition={{ duration: 0.5, ease: 'easeOut', delay: 0.2 }}
               >
                 {i < services.length - 1 ? (
