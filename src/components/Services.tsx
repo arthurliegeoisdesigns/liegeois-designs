@@ -247,7 +247,7 @@ export default function Services() {
               marginLeft: '40px',
             }}
           >
-            All services →
+            How it works →
           </Link>
         </motion.div>
 
