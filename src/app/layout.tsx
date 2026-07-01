@@ -11,7 +11,7 @@ const GTM_ID = 'GTM-N7XNZRDZ'
 
 const inter = Inter({
   subsets: ['latin'],
-  weight: ['300', '400'],
+  weight: ['300', '400', '500', '600'],
   variable: '--font-body',
   display: 'swap',
 })

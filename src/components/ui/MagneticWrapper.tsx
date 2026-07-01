@@ -14,10 +14,9 @@ interface MagneticWrapperProps {
  * Wraps any element and pulls it toward the cursor on hover.
  * Snaps back on mouse leave with a spring-like CSS transition.
  *
- * Usage:
- *   <MagneticWrapper>
- *     <Link href="/work">See the Work</Link>
- *   </MagneticWrapper>
+ * willChange is set only on mouseenter and cleared on mouseleave —
+ * setting it permanently on every instance creates unnecessary GPU layers,
+ * hurting mobile compositing even though there's no mouse on touch devices.
  */
 export default function MagneticWrapper({
   children,
@@ -26,6 +25,12 @@ export default function MagneticWrapper({
   style,
 }: MagneticWrapperProps) {
   const ref = useRef<HTMLDivElement>(null)
+
+  const onMouseEnter = useCallback(() => {
+    const el = ref.current
+    if (!el) return
+    el.style.willChange = 'transform'
+  }, [])
 
   const onMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
@@ -47,13 +52,15 @@ export default function MagneticWrapper({
     if (!el) return
     el.style.transform  = 'translate(0, 0)'
     el.style.transition = 'transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1)'
+    el.style.willChange = 'auto'
   }, [])
 
   return (
     <div
       ref={ref}
       className={className}
-      style={{ display: 'inline-block', willChange: 'transform', ...style }}
+      style={{ display: 'inline-block', ...style }}
+      onMouseEnter={onMouseEnter}
       onMouseMove={onMouseMove}
       onMouseLeave={onMouseLeave}
     >

@@ -54,9 +54,17 @@ export default function Hero() {
   const [activeIdx, setActiveIdx] = useState(0)
   const [prevIdx, setPrevIdx] = useState<number | null>(null)
 
-  /* Auto-advance slides */
+  // Detect touch/mobile after mount — skip heavy animations that have no value on mobile
+  const [isMobile, setIsMobile] = useState(false)
   useEffect(() => {
-    if (reduced) return
+    setIsMobile(window.matchMedia('(pointer: coarse)').matches)
+  }, [])
+
+  const shouldAnimate = !reduced && !isMobile
+
+  /* Auto-advance slides — desktop only */
+  useEffect(() => {
+    if (!shouldAnimate) return
     const id = setInterval(() => {
       setActiveIdx(i => {
         setPrevIdx(i)
@@ -64,13 +72,14 @@ export default function Hero() {
       })
     }, INTERVAL)
     return () => clearInterval(id)
-  }, [reduced])
+  }, [shouldAnimate])
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start start', 'end start'],
   })
 
+  // Parallax only on desktop — skip useTransform work on mobile
   const contentY  = useTransform(scrollYProgress, [0, 1], ['0%', '14%'])
   const contentOp = useTransform(scrollYProgress, [0, 0.6], [1, 0])
 
@@ -92,41 +101,49 @@ export default function Hero() {
         aria-hidden="true"
         style={{ position: 'absolute', inset: 0, zIndex: 1 }}
       >
-        <AnimatePresence>
-          {SLIDES.map((slide, idx) =>
-            idx === activeIdx ? (
-              <motion.div
-                key={slide.src}
-                style={{
-                  position: 'absolute',
-                  inset: 0,
-                  willChange: 'opacity',
-                }}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 1.4, ease: 'easeInOut' }}
-              >
-                {/* Ken Burns zoom */}
+        {isMobile ? (
+          /* Mobile: single static image, no slideshow, no Ken Burns */
+          <Image
+            src={SLIDES[0].src}
+            alt={SLIDES[0].alt}
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center' }}
+          />
+        ) : (
+          <AnimatePresence>
+            {SLIDES.map((slide, idx) =>
+              idx === activeIdx ? (
                 <motion.div
-                  style={{ position: 'absolute', inset: 0 }}
-                  initial={{ scale: 1.08 }}
-                  animate={{ scale: 1.0 }}
-                  transition={{ duration: INTERVAL / 1000 + 1.4, ease: 'linear' }}
+                  key={slide.src}
+                  style={{ position: 'absolute', inset: 0, willChange: 'opacity' }}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 1.4, ease: 'easeInOut' }}
                 >
-                  <Image
-                    src={slide.src}
-                    alt={slide.alt}
-                    fill
-                    priority={idx === 0}
-                    sizes="100vw"
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
-                  />
+                  {/* Ken Burns zoom */}
+                  <motion.div
+                    style={{ position: 'absolute', inset: 0 }}
+                    initial={{ scale: 1.08 }}
+                    animate={{ scale: 1.0 }}
+                    transition={{ duration: INTERVAL / 1000 + 1.4, ease: 'linear' }}
+                  >
+                    <Image
+                      src={slide.src}
+                      alt={slide.alt}
+                      fill
+                      priority={idx === 0}
+                      sizes="100vw"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    />
+                  </motion.div>
                 </motion.div>
-              </motion.div>
-            ) : null
-          )}
-        </AnimatePresence>
+              ) : null
+            )}
+          </AnimatePresence>
+        )}
       </div>
 
       {/* ── Gradient overlays ────────────────────────────────── */}
@@ -164,8 +181,8 @@ export default function Hero() {
           alignItems: 'flex-start',
           padding: 'clamp(40px, 6vw, 80px)',
           paddingBottom: 'clamp(80px, 9vw, 120px)',
-          y: reduced ? 0 : contentY,
-          opacity: reduced ? 1 : contentOp,
+          y: shouldAnimate ? contentY : 0,
+          opacity: shouldAnimate ? contentOp : 1,
         }}
       >
 
@@ -187,7 +204,7 @@ export default function Hero() {
             }}
             duration={1.2}
             speed={0.03}
-            trigger={!reduced}
+            trigger={shouldAnimate}
           >
             Presentation Design · Visual Storytelling
           </TextScramble>
@@ -322,8 +339,8 @@ export default function Hero() {
           </MagneticWrapper>
         </motion.div>
 
-        {/* Slide indicator dots */}
-        {!reduced && (
+        {/* Slide indicator dots — desktop only */}
+        {shouldAnimate && (
           <motion.div
             style={{ display: 'flex', gap: '6px', marginTop: '36px' }}
             initial={{ opacity: 0 }}

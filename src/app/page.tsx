@@ -1,12 +1,15 @@
+import dynamic from 'next/dynamic'
 import Hero from '@/components/Hero'
 import Logos from '@/components/Logos'
-import FeaturedWork from '@/components/FeaturedWork'
-import Services from '@/components/Services'
-import About from '@/components/About'
-import WhyArthur from '@/components/WhyArthur'
-import Testimonials from '@/components/Testimonials'
-import Blog from '@/components/Blog'
-import CTA from '@/components/CTA'
+
+// Below-fold sections: code-split so their JS doesn't block initial parse on mobile
+const FeaturedWork  = dynamic(() => import('@/components/FeaturedWork'))
+const Services      = dynamic(() => import('@/components/Services'))
+const About         = dynamic(() => import('@/components/About'))
+const WhyArthur     = dynamic(() => import('@/components/WhyArthur'))
+const Blog          = dynamic(() => import('@/components/Blog'))
+const Testimonials  = dynamic(() => import('@/components/Testimonials'))
+const CTA           = dynamic(() => import('@/components/CTA'))
 
 const personSchema = {
   '@context': 'https://schema.org',
