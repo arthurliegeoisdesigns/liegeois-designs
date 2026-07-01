@@ -366,7 +366,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
           Your deck should change the room.
         </h2>
         <p className="type-body" style={{ color: 'rgba(255,255,255,0.55)', margin: 0, maxWidth: '440px' }}>
-          Let&apos;s build something that moves an audience — not just informs them.
+          Let&apos;s build something that moves an audience. Not just informs them.
         </p>
         <Link
           href="/contact"

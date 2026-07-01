@@ -193,7 +193,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Executive Presentation',
     industry: 'Healthcare Technology',
     year: 2024,
-    tagline: 'Technical complexity — made human.',
+    tagline: 'Technical complexity, made human.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f83e8_683f46b95f3aad03b0cb2e3a_681ba9dcdcb982e09a6e1696_Portfolio_Slides_Philips-Experience-Intro_0001.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f8404_686300aa2b752bf2ed83efbe_Portfolio_Slides_Philips-Experience-Intro_0003.jpeg',
@@ -295,7 +295,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Pitch & Investor Deck',
     industry: 'Travel Technology',
     year: 2023,
-    tagline: 'A geo-centric travel app — pitched with the same sense of adventure.',
+    tagline: 'A geo-centric travel app, pitched with the same sense of adventure.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be4b734c64f94bc3ac6_683f46bc9635b01c861b4d51_6819139b0d9ea810a65f631f_6747775ff4ff89bc7b93730f_Screenshot-Underpin.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be4b734c64f94bc3adc_6862e9200885c3f73f62633a_Screenshot%25202024-10-04%2520at%252016.56.48.jpeg',
@@ -325,7 +325,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Pitch & Investor Deck',
     industry: 'Education / EdTech',
     year: 2022,
-    tagline: 'Social entrepreneurship — framed to inspire and fund.',
+    tagline: 'Social entrepreneurship, framed to inspire and fund.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be585c9b2f4b9712acd_6851c4054f42396e1e83c052_Portfolio_Slides_University-Startups-Pitch-Deck_0001.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be585c9b2f4b9712aeb_6851c4241a2570d958e832a5_Portfolio_Slides_University-Startups-Pitch-Deck_0002.jpeg',
@@ -352,7 +352,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Executive Presentation',
     industry: 'Healthcare / Finance',
     year: 2024,
-    tagline: 'A sensitive subject — handled with authority and care.',
+    tagline: 'A sensitive subject, handled with authority and care.',
     images: [
       `${CDN}/MCS-Healthcare-Lupus-JPM-01.jpg`,
       `${CDN}/MCS-Healthcare-Lupus-JPM-02.jpg`,
@@ -382,7 +382,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Sales & Agency Deck',
     industry: 'Telecommunications',
     year: 2023,
-    tagline: 'Agency thinking — made tangible for an enterprise client.',
+    tagline: 'Agency thinking, made tangible for an enterprise client.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be1473ae2fd117e5f13_683f46bad2c7f4eec55f8758_6830b0d200991d0e8d6cdabc_Portfolio_Slides_RAPP-Spectrum_0001.webp',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be1473ae2fd117e5f28_6862f9d066975ab1d2ffe76f_Portfolio_Slides_RAPP-Spectrum-Workshop_0001.jpeg',
@@ -417,7 +417,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Pitch & Investor Deck',
     industry: 'Consumer Technology',
     year: 2023,
-    tagline: 'A brand concept — pitched with the confidence to match.',
+    tagline: 'A brand concept, pitched with the confidence to match.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be166157f9f5c872c1f_683f46baca9d98ac51fa6b09_68191399b5f7d0203015acf2_6747787266a1e6bb456d3ae4_Portfolio_Slides_ProjectBe-ColorCode-Workshop_0003.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be166157f9f5c872c1c_6862f9481af818d9b1e54699_Portfolio_Slides_ProjectBe-ColorCode-Workshop_0001.jpeg',
@@ -574,7 +574,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Training Presentation',
     industry: 'Lifestyle / Consumer',
     year: 2023,
-    tagline: 'Bringing sizzle to the stage: A bold, brand-forward visual campaign designed to unite global franchisees under one electrifying rallying cry — Ignite the Future.',
+    tagline: 'Bringing sizzle to the stage: A bold, brand-forward visual campaign designed to unite global franchisees under one electrifying rallying cry. Ignite the Future.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdcb9f8ccfbb9fdf2e1_683f46b52e4ac4e436ea4e5d_6813b5af24a988ed532fb035_ADM-Prod-TGIF-IMG-1.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bddb9f8ccfbb9fdf2ee_6857ffa759d5e8647cff4794_ADM-Productions-TGIF-1.webp',
@@ -610,7 +610,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Strategic Narrative',
     industry: 'Startup / Venture',
     year: 2016,
-    tagline: 'The lovechild of sushi and a sandwich, NORIGAMI’s bold brand identity slices through the noise with playful icons, witty copy, and color-coded clarity — proving healthy grab-and-go can be fresh, fun, and undeniably irresistible.',
+    tagline: 'The lovechild of sushi and a sandwich, NORIGAMI’s bold brand identity slices through the noise with playful icons, witty copy, and color-coded clarity, proving healthy grab-and-go can be fresh, fun, and undeniably irresistible.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be000503ee3a477741e_686415fc502facd5e188b6bd_Norigami16361BLACKJPEG.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be000503ee3a47773ed_68641e3ed42bb5a09b007633_Norigami%2520Branding%2520-%25201.webp',
@@ -743,7 +743,7 @@ export const caseStudies: CaseStudy[] = [
     format: 'Strategic Narrative',
     industry: 'Creative Agencies',
     year: 2024,
-    tagline: 'A global reboot of the IAA’s web presence—clean, international, and built for a content-first future.',
+    tagline: 'A global reboot of the IAA’s web presence: clean, international, and built for a content-first future.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdf6a8af1081bc603a1_6863e8dc152147a164033a70_IAA-Website-Figma-Slide1.webp',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdf6a8af1081bc603a5_6863e8dc152147a164033a70_IAA-Website-Figma-Slide1.webp',
@@ -902,7 +902,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     format: 'Sales & Agency Deck',
     industry: 'Consulting / Foodservice',
     year: 2022,
-    tagline: 'A sales tool that speaks startup energy with enterprise-level clarity—built to grow with the business.',
+    tagline: 'A sales tool that speaks startup energy with enterprise-level clarity, built to grow with the business.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bddb35144efa977f1a6_6851bd83de2aba37c6e89aea_210604_FoodSpace_Deck.001.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bddb35144efa977f1b7_6851bda3019066c4132acb66_210604_FoodSpace_Deck.002.jpeg',
@@ -933,7 +933,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     format: 'Training Presentation',
     industry: 'Education / EdTech',
     year: 2020,
-    tagline: 'A visually rich, animated keynote that demystifies the Internet of Things (IoT) for non-tech audiences — turning abstract tech into relatable, real-world use cases.',
+    tagline: 'A visually rich, animated keynote that demystifies the Internet of Things (IoT) for non-tech audiences, turning abstract tech into relatable, real-world use cases.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be482c328140e178db2_68630012b4d779c5cc746d91_TBCG-IoT-Slide-0.webp',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be582c328140e178dc6_68630025537370a643c95ef8_TBCG-IoT-Slide-1.webp',
@@ -965,7 +965,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     format: 'Training Presentation',
     industry: 'Technology',
     year: 2022,
-    tagline: 'Presentation design for IBM’s flagship Quantum Summit keynote — turning dense, technical material into a clean, confident, and brand-consistent visual experience.',
+    tagline: 'Presentation design for IBM’s flagship Quantum Summit keynote, turning dense, technical material into a clean, confident, and brand-consistent visual experience.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdd18815e14f89b7a65_6851ae03b922d85fc40351d1_Portfolio_Slides_IBM-Quantum-Summit_0001.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bde18815e14f89b7a72_6862e1998530314532fd50d6_Portfolio_Slides_IBM-Quantum-Summit_0017.jpeg',
@@ -1112,7 +1112,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     format: 'Training Presentation',
     industry: 'Pharmaceutical',
     year: 2023,
-    tagline: 'A global keynote deck for EMD Serono’s leadership—unifying regional teams under a clear, empowering message.',
+    tagline: 'A global keynote deck for EMD Serono’s leadership, unifying regional teams under a clear, empowering message.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc0d989266b83f5906_683f46b5b9cf4e400caf5723_681a4f19caabb50c6676879f_Portfolio_Slides_ADM-Productions-EMD_0010.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc0d989266b83f592a_686d1ba210002415ab8c47e8_Portfolio_Slides_ADM-Productions-EMD_0001.jpeg',
@@ -1143,7 +1143,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     format: 'Pitch & Investor Deck',
     industry: 'Financial Services',
     year: 2022,
-    tagline: 'An internal global campaign pitch crafted to emotionally connect Mastercard employees through music — transforming staff spirit into song.',
+    tagline: 'An internal global campaign pitch crafted to emotionally connect Mastercard employees through music, transforming staff spirit into song.',
     images: [
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be01501677bed35943c_6851aa7a7b735b55760a0c5f_Ogilvy-Mastercard%2520Pitch%2520Deck.001.jpeg',
       'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be01501677bed35944f_6851aa94b63f1e1afc8ba824_Ogilvy-Mastercard%2520Pitch%2520Deck.003.jpeg',

@@ -256,7 +256,7 @@ export default function Hero() {
           animate={{ y: 0 }}
           transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.05 }}
         >
-          I build presentations for founders, executives, and brands with something important to say — and the ambition to make it land.
+          I build presentations for founders, executives, and brands with something important to say, and the ambition to make it land.
         </motion.p>
 
         {/* CTAs */}

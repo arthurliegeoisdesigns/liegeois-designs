@@ -18,12 +18,12 @@ const pillars = [
   {
     label: 'Voice',
     title: 'Every brand has something to say. I make sure it lands.',
-    body: 'From naming a company to rewriting slide 37 — I obsess over tone, language, and consistency. How you say it is the brand.',
+    body: 'From naming a company to rewriting slide 37, I obsess over tone, language, and consistency. How you say it is the brand.',
   },
   {
     label: 'Energy',
     title: 'Clients call it momentum. I call it normal.',
-    body: 'Fast, strategic, all-in from the first call. I take feedback seriously — and push back when I see a smarter move.',
+    body: 'Fast, strategic, all-in from the first call. I take feedback seriously, and push back when I see a smarter move.',
   },
 ]
 
@@ -50,7 +50,7 @@ const skills = [
   },
   {
     title: 'Challenger Mindset',
-    body: 'Questioning defaults to unlock better outcomes — with tact, rigor, and zero ego.',
+    body: 'Questioning defaults to unlock better outcomes, with tact, rigor, and zero ego.',
   },
 ]
 
@@ -94,7 +94,7 @@ export default function AboutPage() {
           >
             <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: 0 }}>
               Founder. Strategist. Designer. I've worked in five countries, built brands at Apple
-              and Oracle, and launched a startup from scratch — all to answer one question: how
+              and Oracle, and launched a startup from scratch, all to answer one question: how
               do you turn a complex idea into something people actually feel?
             </p>
             <div className="about-hero-ctas">
@@ -219,17 +219,17 @@ export default function AboutPage() {
                 Five countries. One discipline.
               </h2>
               <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: '0 0 24px' }}>
-                I didn&apos;t fall into visual storytelling. I earned it — working across Europe and
+                I didn&apos;t fall into visual storytelling. I earned it, working across Europe and
                 North America, building brands at Apple, Oracle, and Smartbox, then launching
                 Norigami in London from scratch: no blueprint, no funding, just guts, vision,
                 and design firepower.
               </p>
               <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 24px' }}>
-                Along the way, I partnered with IBM, Marriott, Ogilvy, J&amp;J, and Philips —
+                Along the way, I partnered with IBM, Marriott, Ogilvy, J&amp;J, and Philips,
                 pulling global best practices into creative work that actually moves the needle.
               </p>
               <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 36px' }}>
-                Here&apos;s how I work: I listen. Really listen — to what you say and what you
+                Here&apos;s how I work: I listen. Really listen: to what you say and what you
                 don&apos;t. I take feedback seriously, and I&apos;ll push back when I know there&apos;s a
                 smarter move. The goal isn&apos;t to please you in the moment. It&apos;s to make the
                 work impossible to ignore once it&apos;s out in the world.
@@ -242,7 +242,7 @@ export default function AboutPage() {
                 }}
               >
                 I use AI as fuel, not a crutch. I prompt, refine, and push until it bends to my
-                vision. Not faster or cheaper — just a higher bar.
+                vision. Not faster or cheaper. <em style={{ fontStyle: 'italic' }}>Just a higher bar.</em>
               </p>
             </motion.div>
 
@@ -337,12 +337,12 @@ export default function AboutPage() {
               {
                 label: 'Process',
                 headline: 'I start from blank slides.',
-                body: "Every project is built from scratch. Before I open a single deck, I dig into your business, challenge your narrative, and sharpen the message. Sometimes I question the model itself. If the story has a gap, I'll find it — because a beautiful deck on a fragile argument is still a loss in the room.",
+                body: "Every project is built from scratch. Before I open a single deck, I dig into your business, challenge your narrative, and sharpen the message. Sometimes I question the model itself. If the story has a gap, I'll find it. Because a beautiful deck on a fragile argument is still a loss in the room.",
               },
               {
                 label: 'Craft',
                 headline: 'What I deliver is presentation-day ready.',
-                body: 'No typos. No animation misfire. No placeholder that slipped through. I am thorough by nature — every build is tested, every timing is intentional, every transition earns its place. When the deck leaves my hands, it can stand in front of anyone, on any day, without a last-minute panic.',
+                body: 'No typos. No animation misfire. No placeholder that slipped through. I am thorough by nature: every build is tested, every timing is intentional, every transition earns its place. When the deck leaves my hands, it can stand in front of anyone, on any day, without a last-minute panic.',
               },
             ].map((item, i) => (
               <motion.div
@@ -408,22 +408,22 @@ export default function AboutPage() {
               {
                 tool: 'Keynote',
                 level: 'Primary',
-                note: 'Where I do my most demanding work. Apple brought me to Cupertino to design for their top executive audiences — the precision of animation, timing, and visual language that Keynote enables is unmatched for high-stakes storytelling.',
+                note: 'Where I do my most demanding work. Apple brought me to Cupertino to design for their top executive audiences; the precision of animation, timing, and visual language that Keynote enables is unmatched for high-stakes storytelling.',
               },
               {
                 tool: 'PowerPoint',
                 level: 'Expert',
-                note: 'A decade of enterprise-grade work — fully interactive decks, complex animation builds, touch-wall formats, and editable templates that live in clients\' hands long after delivery. The industry standard, and I know every corner of it.',
+                note: 'A decade of enterprise-grade work: fully interactive decks, complex animation builds, touch-wall formats, and editable templates that live in clients\' hands long after delivery. The industry standard, and I know every corner of it.',
               },
               {
                 tool: 'Figma Slides',
                 level: 'Fluent',
-                note: 'Ideal for visually rich static decks where the design system already lives in Figma. Excellent for pitch decks and collaboration. Not built for complex animation — I reach for it when the visual craft matters more than motion.',
+                note: 'Ideal for visually rich static decks where the design system already lives in Figma. Excellent for pitch decks and collaboration. Not built for complex animation; I reach for it when the visual craft matters more than motion.',
               },
               {
                 tool: 'Google Slides',
                 level: 'Functional',
-                note: 'Used when large enterprise clients require it. Capable of clean, on-brand work — but too constrained for the immersive animated experiences I typically design. I make it work; I just don\'t prefer it.',
+                note: 'Used when large enterprise clients require it. Capable of clean, on-brand work, but too constrained for the immersive animated experiences I typically design. I make it work; I just don\'t prefer it.',
               },
             ].map((item, i) => (
               <motion.div
@@ -499,7 +499,7 @@ export default function AboutPage() {
               </ScrambleEyebrow>
               <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 48px' }}>
                 Kitesurfing. Jazz-funk on a keyboard. Cooking things that have no business
-                taking that long. Shaping wood into something useful — or not. Getting
+                taking that long. Shaping wood into something useful. Or not. Getting
                 lost in cities I&apos;ve never been to.
               </p>
 

@@ -58,7 +58,7 @@ export default function WorkPageClient() {
               Work that changed the room.
             </h1>
             <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '560px' }}>
-              Every deck built to shift something — in the room, in the market, in how an audience sees a brand.
+              Every deck built to shift something: in the room, in the market, in how an audience sees a brand.
             </p>
           </motion.div>
 

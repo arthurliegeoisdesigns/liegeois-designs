@@ -21,7 +21,7 @@ const services = [
   {
     number: '04',
     title: 'Strategic Narrative',
-    description: "When the problem isn't the design — it's the story.",
+    description: "When the problem isn't the design. It's the story.",
   },
 ]
 
@@ -79,7 +79,7 @@ export default function Services() {
         >
           Strategy, story, design.
           <br />
-          <span style={{ color: 'var(--color-text-muted)', fontWeight: 300 }}>In that order.</span>
+          <em style={{ fontStyle: 'italic', color: 'var(--color-text-muted)', fontWeight: 300 }}>In that order.</em>
         </motion.h2>
 
         {/* ── Lede ─────────────────────────────────────────────── */}
@@ -228,7 +228,7 @@ export default function Services() {
               fontSize: 'clamp(0.875rem, 1.2vw, 1.0625rem)',
             }}
           >
-            Every engagement is custom — no off-the-shelf packages.
+            Every engagement is custom. No off-the-shelf packages.
           </p>
           <Link
             href="/services"

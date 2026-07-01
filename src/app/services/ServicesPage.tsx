@@ -13,14 +13,14 @@ const services = [
     title: 'Pitch & Investor Decks',
     tagline: 'For founders raising capital.',
     description:
-      'The deck you bring into the most important room of your year. Built around your story, your audience, and the specific ask that needs to land. Structure first, design second — always.',
+      'The deck you bring into the most important room of your year. Built around your story, your audience, and the specific ask that needs to land. Structure first, design second. Always.',
     deliverables: ['Narrative architecture', 'Slide design (10–30 slides)', 'Speaker notes', 'PDF + editable file'],
     process: [
-      'Intake call — raise context, investor profile, and the specific ask',
-      'Narrative map — argument structure, objections addressed, slide outline',
-      'Design — visual concepts, data visualization, brand expression',
-      'Two revision rounds — one structural, one polish',
-      'Handoff — final files and coaching notes for presenting',
+      { title: 'Intake call', detail: 'Context, investor profile, and the specific ask' },
+      { title: 'Narrative map', detail: 'Argument structure, objections addressed, slide outline' },
+      { title: 'Design', detail: 'Visual concepts, data visualization, brand expression' },
+      { title: 'Two revision rounds', detail: 'One structural, one polish' },
+      { title: 'Handoff', detail: 'Final files and coaching notes for presenting' },
     ],
     timeline: '1–2 weeks',
     image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be15b2139addb3912b6_683f46ba0845e65a13ecb3a3_6830b476a23481588a2f808f_Portfolio_Slides_RAPP-Evolus-Pitch-Deck_0007.jpeg',
@@ -31,14 +31,14 @@ const services = [
     title: 'Executive Presentations',
     tagline: 'High stakes by definition.',
     description:
-      'Board decks, C-suite briefings, and strategic reviews that show — not just tell — the decision that needs to be made. Designed to be trusted on sight.',
+      'Board decks, C-suite briefings, and strategic reviews that show, not just tell, the decision that needs to be made. Designed to be trusted on sight.',
     deliverables: ['Story structure review', 'Data visualization', 'Executive-grade design', 'Multiple format exports'],
     process: [
-      'Brief — stakeholder map, decision context, and room dynamics',
-      'Content architecture — what stays, what moves, what order',
-      'Design — visual hierarchy built for executive attention spans',
-      'Revision and sign-off',
-      'Delivery — all required formats and presenter notes',
+      { title: 'Brief', detail: 'Stakeholder map, decision context, and room dynamics' },
+      { title: 'Content architecture', detail: 'What stays, what moves, what order' },
+      { title: 'Design', detail: 'Visual hierarchy built for executive attention spans' },
+      { title: 'Revision and sign-off', detail: 'Collaborative, focused, efficient' },
+      { title: 'Delivery', detail: 'All required formats and presenter notes' },
     ],
     timeline: '1–2 weeks',
     image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc74bd6bad20709672_683f46b683ae96a1c334fcb4_6830bafcc24aad0888102a9b_Fivestone%252520-%252520Chevron%2525201_1.jpeg',
@@ -52,11 +52,11 @@ const services = [
       "Proposals, capabilities decks, and RFP responses that make prospects say yes before the meeting ends. Tailored to your sales motion and your buyer's psychology.",
     deliverables: ['Positioning review', 'Modular slide system', 'Brand integration', 'Editable master template'],
     process: [
-      'Sales motion review — understand the buyer and the objection sequence',
-      'Positioning pass — sharpen the value proposition until it cuts',
-      'Modular design — slides that work in sequence and standalone',
-      'Template build — fully editable, reusable, on-brand',
-      'Handoff and team walkthrough',
+      { title: 'Sales motion review', detail: 'Understand the buyer and the objection sequence' },
+      { title: 'Positioning pass', detail: 'Sharpen the value proposition until it cuts' },
+      { title: 'Modular design', detail: 'Slides that work in sequence and standalone' },
+      { title: 'Template build', detail: 'Fully editable, reusable, on-brand' },
+      { title: 'Handoff', detail: 'Team walkthrough included' },
     ],
     timeline: '1–3 weeks',
     image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be1473ae2fd117e5f13_683f46bad2c7f4eec55f8758_6830b0d200991d0e8d6cdabc_Portfolio_Slides_RAPP-Spectrum_0001.webp',
@@ -67,14 +67,14 @@ const services = [
     title: 'Strategic Narrative',
     tagline: 'When the story needs fixing first.',
     description:
-      "When the problem isn't the design — it's the story. A deep-dive engagement that starts upstream: audience, insight, message architecture, then visual expression. For teams who need the whole thing fixed.",
+      "When the problem isn't the design. It's the story. A deep-dive engagement that starts upstream: audience, insight, message architecture, then visual expression. For teams who need the whole thing fixed.",
     deliverables: ['Audience & insight workshop', 'Message hierarchy', 'Full deck design', 'Presenter coaching notes'],
     process: [
-      'Diagnostic — why the current story isn\'t working, and for whom',
-      'Audience & insight workshop (2–3 hrs) — beliefs, blockers, what needs to change',
-      'Message architecture — the argument, the narrative spine, the one sentence that matters',
-      'Full deck design — visual expression of the new story',
-      'Presenter coaching — how to deliver it, not just read it',
+      { title: 'Diagnostic', detail: "Why the current story isn't working, and for whom" },
+      { title: 'Audience workshop', detail: '2–3 hours covering beliefs, blockers, what needs to change' },
+      { title: 'Message architecture', detail: 'The argument, the narrative spine, the one sentence that matters' },
+      { title: 'Full deck design', detail: 'Visual expression of the new story' },
+      { title: 'Presenter coaching', detail: 'How to deliver it, not just read it' },
     ],
     timeline: '2–4 weeks',
     image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68cae362b6f7edca9f846307_Marriott_The_Luxury_Group_Slide_1.avif',
@@ -96,7 +96,7 @@ const PROCESS_PHASES = [
   {
     number: '03',
     name: 'Design',
-    description: 'Visual concepts built around the story — never the other way around. Slide system, data visualization, brand expression.',
+    description: 'Visual concepts built around the story. Never the other way around. Slide system, data visualization, brand expression.',
   },
   {
     number: '04',
@@ -113,11 +113,11 @@ const PROCESS_PHASES = [
 const FAQS = [
   {
     q: 'How long does a typical project take?',
-    a: 'Pitch decks and executive presentations run 1–2 weeks. Sales decks and modular systems run 1–3 weeks. Strategic Narrative engagements run 2–4 weeks. Rush projects are possible with a surcharge — mention it in your brief.',
+    a: 'Pitch decks and executive presentations run 1–2 weeks. Sales decks and modular systems run 1–3 weeks. Strategic Narrative engagements run 2–4 weeks. Rush projects are possible with a surcharge; mention it in your brief.',
   },
   {
     q: 'What tools do you design in?',
-    a: "PowerPoint, Keynote, and Figma Slides — depending on what your team needs to own and edit after delivery. If you're unsure, we'll sort it out on the intake call.",
+    a: "PowerPoint, Keynote, and Figma Slides, depending on what your team needs to own and edit after delivery. If you're unsure, we'll sort it out on the intake call.",
   },
   {
     q: 'How many revision rounds are included?',
@@ -133,7 +133,7 @@ const FAQS = [
   },
   {
     q: 'Do you work with international clients?',
-    a: 'Fully remote, always. Clients across North America, Europe, and the Middle East — time zones are manageable, great work is non-negotiable.',
+    a: 'Fully remote, always. Clients across North America, Europe, and the Middle East. Time zones are manageable, great work is non-negotiable.',
   },
 ]
 
@@ -482,7 +482,7 @@ export default function ServicesPage() {
                 </motion.p>
 
                 <motion.div
-                  style={{ minWidth: '200px', maxWidth: '260px' }}
+                  style={{ minWidth: '220px', maxWidth: '300px' }}
                   animate={i === activeIdx ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                   transition={{ duration: 0.65, ease, delay: 0.14 }}
                 >
@@ -520,14 +520,60 @@ export default function ServicesPage() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -6 }}
                       transition={{ duration: 0.22, ease: 'easeOut' }}
-                      style={{ margin: '0 0 14px', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '9px' }}
+                      style={{ margin: '0 0 14px', padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: '0' }}
                     >
-                      {(getTab(i) === 'deliverables' ? service.deliverables : service.process).map((item) => (
-                        <li key={item} style={{ fontFamily: 'var(--font-body)', fontSize: '0.875rem', color: 'rgba(255,255,255,0.85)', display: 'flex', alignItems: 'flex-start', gap: '10px', lineHeight: 1.5 }}>
-                          <span style={{ width: '12px', height: '0.5px', background: 'rgba(255,255,255,0.35)', display: 'inline-block', flexShrink: 0, marginTop: '10px' }} />
-                          {item}
-                        </li>
-                      ))}
+                      {getTab(i) === 'deliverables' ? (
+                        service.deliverables.map((item) => (
+                          <li
+                            key={item}
+                            style={{
+                              fontFamily: 'var(--font-body)',
+                              fontSize: '0.875rem',
+                              color: 'rgba(255,255,255,0.80)',
+                              padding: '9px 0',
+                              borderTop: '0.5px solid rgba(255,255,255,0.08)',
+                              lineHeight: 1.5,
+                            }}
+                          >
+                            {item}
+                          </li>
+                        ))
+                      ) : (
+                        service.process.map((step, si) => (
+                          <li key={step.title} style={{ padding: '0 0 11px' }}>
+                            <div style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                              <span style={{
+                                fontFamily: 'var(--font-display)',
+                                fontSize: '0.6875rem',
+                                color: 'rgba(255,255,255,0.22)',
+                                flexShrink: 0,
+                                lineHeight: 1.6,
+                                letterSpacing: '0.02em',
+                                minWidth: '20px',
+                              }}>
+                                {String(si + 1).padStart(2, '0')}
+                              </span>
+                              <div>
+                                <p style={{
+                                  fontFamily: 'var(--font-body)',
+                                  fontSize: '0.875rem',
+                                  fontWeight: 500,
+                                  color: 'rgba(255,255,255,0.90)',
+                                  margin: '0 0 2px',
+                                  lineHeight: 1.4,
+                                }}>{step.title}</p>
+                                <p style={{
+                                  fontFamily: 'var(--font-body)',
+                                  fontSize: '0.8125rem',
+                                  color: 'rgba(255,255,255,0.48)',
+                                  margin: 0,
+                                  lineHeight: 1.5,
+                                }}>{step.detail}</p>
+                              </div>
+                            </div>
+                          </li>
+                        ))
+                      )}
                     </motion.ul>
                   </AnimatePresence>
 
@@ -669,7 +715,7 @@ export default function ServicesPage() {
                     fontSize: 'clamp(2.5rem, 4vw, 3.5rem)',
                     fontWeight: 300,
                     lineHeight: 1,
-                    color: 'rgba(255,255,255,0.10)',
+                    color: 'rgba(255,255,255,0.28)',
                     letterSpacing: '-0.03em',
                     marginBottom: '20px',
                   }}
@@ -735,7 +781,7 @@ export default function ServicesPage() {
               It&apos;s the invisible structure that makes a presentation feel inevitable rather than assembled.
               Before any design begins, we define who&apos;s in the room, what they believe right now, what stands between
               them and a yes, and what the single most important thing they need to leave with is.
-              Every slide that follows serves that map — or it doesn&apos;t make the cut.
+              Every slide that follows serves that map. Or it doesn&apos;t make the cut.
             </p>
           </motion.div>
         </div>
@@ -896,7 +942,7 @@ export default function ServicesPage() {
                 lineHeight: 1.8,
               }}
             >
-              I take on a limited number of projects each quarter — which means I can afford to be selective.
+              I take on a limited number of projects each quarter, which means I can afford to be selective.
               I&apos;m not the right choice if you need a deck in 48 hours, want unlimited revision rounds,
               or are looking for a template someone else designed.
             </p>
@@ -909,8 +955,8 @@ export default function ServicesPage() {
                 lineHeight: 1.8,
               }}
             >
-              But if you&apos;re walking into a room where it matters — and you want someone who takes
-              your story as seriously as you do — let&apos;s talk.
+              But if you&apos;re walking into a room where it matters, and you want someone who takes
+              your story as seriously as you do, let&apos;s talk.
             </p>
             <a
               href={links.calendly || '/contact'}

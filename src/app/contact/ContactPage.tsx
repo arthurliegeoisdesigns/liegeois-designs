@@ -43,7 +43,7 @@ const steps = [
   {
     num: '02',
     title: 'You hear back within 48 hours.',
-    body: 'A real response — not a bot, not a VA. Just me.',
+    body: 'A real response. Not a bot, not a VA. Just me.',
   },
   {
     num: '03',
@@ -446,7 +446,7 @@ export default function ContactPage() {
               }}
             >
               &ldquo;I don&apos;t take every project. I take the ones where I know I can make
-              a difference — and where the client is ready to let me.&rdquo;
+              a difference, and where the client is ready to let me.&rdquo;
             </p>
             <span
               style={{
