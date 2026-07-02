@@ -9,25 +9,19 @@ licensed per person, so they must come from your account).
 - https://pangrampangram.com/products/migra → "Try for Free"
 - https://pangrampangram.com/products/editorial-new → "Try for Free"
 
-## 2. Drop the woff2 files into `public/fonts/pp/` with these names
+## 2. Drop the trial files into `public/fonts/pp/`
 
-| File | Used as |
-|---|---|
-| `PPMigra-Regular.woff2` | Migra display, weight 400 (default) |
-| `PPMigra-Medium.woff2` | Migra display, weight 500 (optional) |
-| `PPMigra-Italic.woff2` | Migra italic accents |
-| `PPEditorialNew-Regular.woff2` | Editorial New, weight 400 |
-| `PPEditorialNew-Medium.woff2` | Editorial New, weight 500 (optional) |
-| `PPEditorialNew-Ultrabold.woff2` | Editorial New big statements, weight 800 |
-| `PPEditorialNew-Italic.woff2` | Editorial New italic accents |
+**Migra** (already in place ✓): trial ships woff2 as
+`Migra-Extralight.woff2`, `Migra-Extrabold.woff2`,
+`MigraItalic-ExtralightItalic.woff2`, `MigraItalic-ExtraboldItalic.woff2` —
+the CSS expects exactly those names. Headlines run Extralight, the elegant cut.
 
-Trial packs include a subset of styles — rename whichever weights you received
-to the closest name above (the `@font-face` blocks live near the top of
-`src/app/globals.css` if you need to adjust a weight number). Any missing file
-falls back to Georgia; nothing breaks.
-
-If the trials download as `.otf` only: they work too — just update the file
-extensions in the `@font-face` blocks (`format('opentype')`).
+**Editorial New**: trial ships `.otf` — that's fine, keep them as-is. The CSS
+accepts both `PPEditorialNew-*.otf` and `EditorialNew-*.otf` naming for:
+`Regular`, `Medium`, `Ultrabold`, `Italic`. Drop whichever weights your trial
+includes; any missing file falls back to Georgia, nothing breaks.
+(.otf is heavier than woff2 — fine for previewing; the licensed purchase
+ships woff2 anyway.)
 
 ## 3. Compare them live
 

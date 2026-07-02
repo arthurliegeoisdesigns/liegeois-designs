@@ -103,61 +103,89 @@
    Missing files fall back to Georgia gracefully.
    ============================================================ */
 
-/* PP Migra — default display face */
+/* PP Migra — default display face.
+   Trial pack ships Extralight + Extrabold only; weight ranges below map
+   them so light headline weights resolve to Extralight (the version
+   Arthur likes) and never fake-bold. */
 @font-face {
   font-family: 'PP Migra';
-  src: url('/fonts/pp/PPMigra-Regular.woff2') format('woff2');
-  font-weight: 400;
+  src: url('/fonts/pp/Migra-Extralight.woff2') format('woff2');
+  font-weight: 100 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'PP Migra';
-  src: url('/fonts/pp/PPMigra-Medium.woff2') format('woff2');
+  src: url('/fonts/pp/Migra-Extrabold.woff2') format('woff2');
+  font-weight: 500 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Migra';
+  src: url('/fonts/pp/MigraItalic-ExtralightItalic.woff2') format('woff2');
+  font-weight: 100 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Migra';
+  src: url('/fonts/pp/MigraItalic-ExtraboldItalic.woff2') format('woff2');
+  font-weight: 500 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* PP Editorial New — challenger (press "F" or ?font=editorial).
+   Trial downloads are .otf — each src lists both name patterns and
+   formats; the browser skips any that 404. */
+@font-face {
+  font-family: 'PP Editorial New';
+  src:
+    url('/fonts/pp/PPEditorialNew-Regular.otf') format('opentype'),
+    url('/fonts/pp/EditorialNew-Regular.otf') format('opentype'),
+    url('/fonts/pp/PPEditorialNew-Regular.woff2') format('woff2');
+  font-weight: 300 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Editorial New';
+  src:
+    url('/fonts/pp/PPEditorialNew-Medium.otf') format('opentype'),
+    url('/fonts/pp/EditorialNew-Medium.otf') format('opentype'),
+    url('/fonts/pp/PPEditorialNew-Medium.woff2') format('woff2');
   font-weight: 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
-  font-family: 'PP Migra';
-  src: url('/fonts/pp/PPMigra-Italic.woff2') format('woff2');
-  font-weight: 400;
+  font-family: 'PP Editorial New';
+  src:
+    url('/fonts/pp/PPEditorialNew-Ultrabold.otf') format('opentype'),
+    url('/fonts/pp/EditorialNew-Ultrabold.otf') format('opentype'),
+    url('/fonts/pp/PPEditorialNew-Ultrabold.woff2') format('woff2');
+  font-weight: 600 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Editorial New';
+  src:
+    url('/fonts/pp/PPEditorialNew-Italic.otf') format('opentype'),
+    url('/fonts/pp/EditorialNew-Italic.otf') format('opentype'),
+    url('/fonts/pp/PPEditorialNew-Italic.woff2') format('woff2');
+  font-weight: 300 400;
   font-style: italic;
   font-display: swap;
 }
 
-/* PP Editorial New — challenger (press "F" or ?font=editorial) */
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Regular.woff2') format('woff2');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Medium.woff2') format('woff2');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Ultrabold.woff2') format('woff2');
-  font-weight: 800;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Italic.woff2') format('woff2');
-  font-weight: 400;
-  font-style: italic;
-  font-display: swap;
-}
-
+/* Per-face display weight: Migra headlines run Extralight (200) —
+   the elegant cut; Editorial New runs Regular/Medium.              */
+:root { --font-display-weight: 200; }
 html[data-font='editorial'] {
   --font-display: 'PP Editorial New', Georgia, 'Times New Roman', serif;
+  --font-display-weight: 400;
 }
 
 /* ── Text selection — the accent at work ── */
@@ -274,7 +302,7 @@ body {
 .type-display {
   font-family: var(--font-display);
   font-size: clamp(3.25rem, 9.5vw, 7.5rem);
-  font-weight: 400;
+  font-weight: var(--font-display-weight, 400);
   line-height: 0.98;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -287,7 +315,7 @@ body {
 .type-h1 {
   font-family: var(--font-display);
   font-size: clamp(2.5rem, 6vw, 4.25rem);
-  font-weight: 400;
+  font-weight: var(--font-display-weight, 400);
   line-height: 1.02;
   letter-spacing: -0.015em;
   text-wrap: balance;
@@ -296,7 +324,7 @@ body {
 .type-h2 {
   font-family: var(--font-display);
   font-size: clamp(1.75rem, 3.75vw, 3rem);
-  font-weight: 400;
+  font-weight: var(--font-display-weight, 400);
   line-height: 1.08;
   letter-spacing: -0.01em;
   text-wrap: balance;
