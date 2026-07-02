@@ -1,36 +1,14 @@
-# Display fonts — trial setup (Phase 1)
+# Fonts
 
-The redesign ships with **Switzer** (body, loaded from Fontshare — nothing to do)
-and slots for two PP trial display faces you download yourself (trials are
-licensed per person, so they must come from your account).
+**Display: PP Migra Extralight** (+ Extralight Italic) — licensed from
+Pangram Pangram, July 2026 (web license, per-weight, perpetual for
+individuals/freelancers). Files: `public/fonts/pp/PPMigra-Extralight.woff2`,
+`public/fonts/pp/PPMigra-ExtralightItalic.woff2`. Used for headlines and
+display only, never body copy, never bolded (the `@font-face` weight range
+in `globals.css` prevents faux-bold).
 
-## 1. Download the trials
+**Body: Switzer** — served from Fontshare (free for commercial use), loaded
+via `<link>` in `src/app/layout.tsx`. Weights 400/500/600.
 
-- https://pangrampangram.com/products/migra → "Try for Free"
-- https://pangrampangram.com/products/editorial-new → "Try for Free"
-
-## 2. Drop the trial files into `public/fonts/pp/`
-
-**Migra** (already in place ✓): trial ships woff2 as
-`Migra-Extralight.woff2`, `Migra-Extrabold.woff2`,
-`MigraItalic-ExtralightItalic.woff2`, `MigraItalic-ExtraboldItalic.woff2` —
-the CSS expects exactly those names. Headlines run Extralight, the elegant cut.
-
-**Editorial New**: trial ships `.otf` — that's fine, keep them as-is. The CSS
-accepts both `PPEditorialNew-*.otf` and `EditorialNew-*.otf` naming for:
-`Regular`, `Medium`, `Ultrabold`, `Italic`. Drop whichever weights your trial
-includes; any missing file falls back to Georgia, nothing breaks.
-(.otf is heavier than woff2 — fine for previewing; the licensed purchase
-ships woff2 anyway.)
-
-## 3. Compare them live
-
-- Default: **PP Migra**
-- Press **F** anywhere on the site (or add `?font=editorial` / `?font=migra` to the URL) to flip
-- Choice persists per browser via localStorage
-
-## 4. When you've picked a winner
-
-1. Buy the web license for the two styles you actually use (entry pageview tier)
-2. Replace the trial files with the licensed woff2s
-3. Tell Claude — I'll strip the loser's `@font-face` blocks and the FontToggle component
+If traffic ever exceeds the licensed monthly pageview tier, contact
+Pangram Pangram to upgrade (prior payment is credited).

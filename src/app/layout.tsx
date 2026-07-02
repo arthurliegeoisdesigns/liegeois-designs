@@ -8,7 +8,6 @@ import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
 import Grain from '@/components/ui/Grain'
 import ScrollCanvas from '@/components/providers/ScrollCanvas'
 import ScrollReveals from '@/components/providers/ScrollReveals'
-import FontToggle from '@/components/providers/FontToggle'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
 
@@ -104,7 +103,6 @@ export default function RootLayout({
         </noscript>
         <SmoothScrollProvider>
           <ClientOnlyLayer />
-          <FontToggle />
           <ScrollCanvas />
           <ScrollReveals />
           <Grain />

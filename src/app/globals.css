@@ -6,9 +6,9 @@
    ============================================================ */
 
 :root {
-  /* ── Typography — Phase 1 redesign ──
-     Display: PP Migra (default) / PP Editorial New (toggle "F" or ?font=editorial)
-     Body:    Switzer (Fontshare, free for commercial use)                       */
+  /* ── Typography ──
+     Display: PP Migra Extralight (licensed — see FONTS-README.md)
+     Body:    Switzer (Fontshare, free for commercial use)         */
   --font-display: 'PP Migra', 'Migra', Georgia, 'Times New Roman', serif;
   --font-body:    'Switzer', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
@@ -98,97 +98,27 @@
 }
 
 /* ============================================================
-   DISPLAY FONTS — PP trial files (see FONTS-README.md)
-   Drop trial woff2 files into /public/fonts/pp/ with these names.
-   Missing files fall back to Georgia gracefully.
+   DISPLAY FONT — PP Migra Extralight (licensed, July 2026)
+   Two licensed styles; the full weight range maps to them so
+   Migra always renders Extralight — never faux-bold.
    ============================================================ */
-
-/* PP Migra — default display face.
-   Trial pack ships Extralight + Extrabold only; weight ranges below map
-   them so light headline weights resolve to Extralight (the version
-   Arthur likes) and never fake-bold. */
 @font-face {
   font-family: 'PP Migra';
-  src: url('/fonts/pp/Migra-Extralight.woff2') format('woff2');
-  font-weight: 100 400;
+  src: url('/fonts/pp/PPMigra-Extralight.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'PP Migra';
-  src: url('/fonts/pp/Migra-Extrabold.woff2') format('woff2');
-  font-weight: 500 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Migra';
-  src: url('/fonts/pp/MigraItalic-ExtralightItalic.woff2') format('woff2');
-  font-weight: 100 400;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Migra';
-  src: url('/fonts/pp/MigraItalic-ExtraboldItalic.woff2') format('woff2');
-  font-weight: 500 900;
+  src: url('/fonts/pp/PPMigra-ExtralightItalic.woff2') format('woff2');
+  font-weight: 100 900;
   font-style: italic;
   font-display: swap;
 }
 
-/* PP Editorial New — challenger (press "F" or ?font=editorial).
-   Trial pack (in /public/fonts/pp/): Ultralight, Regular, Ultrabold
-   + italics, as .otf. Weight ranges match the actual files. */
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Ultralight.otf') format('opentype');
-  font-weight: 100 200;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Regular.otf') format('opentype');
-  font-weight: 300 500;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Ultrabold.otf') format('opentype');
-  font-weight: 600 900;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-UltralightItalic.otf') format('opentype');
-  font-weight: 100 200;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-Italic.otf') format('opentype');
-  font-weight: 300 500;
-  font-style: italic;
-  font-display: swap;
-}
-@font-face {
-  font-family: 'PP Editorial New';
-  src: url('/fonts/pp/PPEditorialNew-UltraboldItalic.otf') format('opentype');
-  font-weight: 600 900;
-  font-style: italic;
-  font-display: swap;
-}
-
-/* Per-face display weight: Migra headlines run Extralight (200) —
-   the elegant cut; Editorial New runs Regular/Medium.              */
+/* Display weight — Migra's Extralight cut */
 :root { --font-display-weight: 200; }
-html[data-font='editorial'] {
-  --font-display: 'PP Editorial New', Georgia, 'Times New Roman', serif;
-  --font-display-weight: 400;
-}
 
 /* ── Text selection — the accent at work ── */
 ::selection {
@@ -297,7 +227,7 @@ body {
 
 /* ============================================================
    TYPE SCALE
-   PP Migra / PP Editorial New — display / headings (H1, H2)
+   PP Migra Extralight — display / headings (H1, H2)
    Switzer — H3, body / labels / captions
    ============================================================ */
 
