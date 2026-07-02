@@ -137,45 +137,47 @@
 }
 
 /* PP Editorial New — challenger (press "F" or ?font=editorial).
-   Trial downloads are .otf — each src lists both name patterns and
-   formats; the browser skips any that 404. */
+   Trial pack (in /public/fonts/pp/): Ultralight, Regular, Ultrabold
+   + italics, as .otf. Weight ranges match the actual files. */
 @font-face {
   font-family: 'PP Editorial New';
-  src:
-    url('/fonts/pp/PPEditorialNew-Regular.otf') format('opentype'),
-    url('/fonts/pp/EditorialNew-Regular.otf') format('opentype'),
-    url('/fonts/pp/PPEditorialNew-Regular.woff2') format('woff2');
-  font-weight: 300 400;
+  src: url('/fonts/pp/PPEditorialNew-Ultralight.otf') format('opentype');
+  font-weight: 100 200;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'PP Editorial New';
-  src:
-    url('/fonts/pp/PPEditorialNew-Medium.otf') format('opentype'),
-    url('/fonts/pp/EditorialNew-Medium.otf') format('opentype'),
-    url('/fonts/pp/PPEditorialNew-Medium.woff2') format('woff2');
-  font-weight: 500;
+  src: url('/fonts/pp/PPEditorialNew-Regular.otf') format('opentype');
+  font-weight: 300 500;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'PP Editorial New';
-  src:
-    url('/fonts/pp/PPEditorialNew-Ultrabold.otf') format('opentype'),
-    url('/fonts/pp/EditorialNew-Ultrabold.otf') format('opentype'),
-    url('/fonts/pp/PPEditorialNew-Ultrabold.woff2') format('woff2');
+  src: url('/fonts/pp/PPEditorialNew-Ultrabold.otf') format('opentype');
   font-weight: 600 900;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'PP Editorial New';
-  src:
-    url('/fonts/pp/PPEditorialNew-Italic.otf') format('opentype'),
-    url('/fonts/pp/EditorialNew-Italic.otf') format('opentype'),
-    url('/fonts/pp/PPEditorialNew-Italic.woff2') format('woff2');
-  font-weight: 300 400;
+  src: url('/fonts/pp/PPEditorialNew-UltralightItalic.otf') format('opentype');
+  font-weight: 100 200;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('/fonts/pp/PPEditorialNew-Italic.otf') format('opentype');
+  font-weight: 300 500;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Editorial New';
+  src: url('/fonts/pp/PPEditorialNew-UltraboldItalic.otf') format('opentype');
+  font-weight: 600 900;
   font-style: italic;
   font-display: swap;
 }
