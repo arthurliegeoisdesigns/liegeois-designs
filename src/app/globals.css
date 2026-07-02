@@ -639,6 +639,170 @@ body {
   .page-transition-wrapper { animation: none; }
 }
 
+/* --- HERO v2 — kinetic type + shader field + floating slide --- */
+.hero-shader {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  -webkit-mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, black 72%, transparent 100%);
+}
+.hero-kinetic-headline {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(3.4rem, 11.5vw, 10.5rem);
+  line-height: 0.94;
+  letter-spacing: -0.015em;
+  color: var(--color-on-dark);
+}
+.hero-kinetic-linewrap {
+  display: block;
+  overflow: hidden;
+  padding-block: 0.04em; /* room for Migra's spikes */
+}
+.hero-kinetic-line { display: inline-block; will-change: transform; }
+.hero-kinetic-italic { font-style: italic; padding-right: 0.06em; }
+.hero-kinetic-arrow {
+  color: var(--color-accent);
+  font-size: 0.52em;
+  vertical-align: 0.22em;
+  margin-left: 0.18em;
+  letter-spacing: 0;
+}
+.hero-kinetic-lower {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: clamp(32px, 5vw, 72px);
+  flex-wrap: wrap;
+}
+.hero-slide-card-wrap {
+  perspective: 1200px;
+  width: min(44vw, 620px);
+  margin-left: auto;
+}
+.hero-slide-card {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 0.5px solid rgba(255, 253, 248, 0.16);
+  box-shadow: 0 40px 90px -30px rgba(0, 0, 0, 0.75);
+  transform-style: preserve-3d;
+  animation: slide-float 7s ease-in-out infinite alternate;
+}
+@keyframes slide-float {
+  from { translate: 0 -6px; }
+  to   { translate: 0 8px; }
+}
+.hero-slide-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 14px;
+  background: linear-gradient(to top, rgba(7, 6, 5, 0.85), transparent);
+  color: var(--color-on-dark);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.hero-slide-progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 3;
+  width: 100%;
+  height: 2px;
+  background: var(--color-accent);
+  transform-origin: left center;
+}
+@media (max-width: 900px) {
+  .hero-slide-card-wrap { width: 100%; margin-left: 0; }
+  .hero-slide-card { animation: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-card { animation: none; }
+}
+
+.btn-hero-solid,
+.btn-hero-ghost {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  padding: 14px 28px;
+  border-radius: 3px;
+  text-decoration: none;
+  display: inline-block;
+  line-height: 1;
+  transition: opacity 150ms ease, border-color 150ms ease, background 150ms ease;
+}
+.btn-hero-solid { background: var(--color-on-dark); color: var(--color-canvas); border: none; }
+.btn-hero-solid:hover { opacity: 0.88; }
+.btn-hero-ghost {
+  background: transparent;
+  color: var(--color-on-dark);
+  border: 1px solid var(--color-on-dark-hint);
+  padding: 13px 27px;
+}
+.btn-hero-ghost:hover { border-color: rgba(255, 255, 255, 0.65); background: rgba(255, 255, 255, 0.07); }
+
+/* --- PRELOADER --- */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: var(--color-void);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 750ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+.preloader-exit { transform: translateY(-100%); }
+.preloader-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 22px;
+  transition: opacity 300ms ease;
+}
+.preloader-exit .preloader-inner { opacity: 0; }
+.preloader-mark {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(2.2rem, 5.5vw, 4rem);
+  color: var(--color-on-dark);
+  letter-spacing: -0.01em;
+}
+.preloader-mark em { font-style: italic; color: var(--color-on-dark-muted); }
+.preloader-rule {
+  display: block;
+  width: min(280px, 50vw);
+  height: 1px;
+  background: rgba(255, 253, 248, 0.12);
+  overflow: hidden;
+}
+.preloader-rule-fill {
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: var(--color-accent);
+  transform-origin: left center;
+}
+.preloader-count {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.22em;
+  color: var(--color-on-dark-faint);
+  font-variant-numeric: tabular-nums;
+}
+
 /* --- CLIENT INDEX (replaces logo marquee) --- */
 .client-index {
   display: flex;
