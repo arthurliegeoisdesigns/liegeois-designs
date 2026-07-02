@@ -52,10 +52,11 @@ const SLIDES = [
 ]
 
 const INTERVAL = 5200
+/* H1 carries the SEO keyword; "move" gets the Migra italic accent. */
 const LINES: Array<Array<{ t: string; kind: 'word' | 'arrow' | 'italic' }>> = [
-  [{ t: 'Story', kind: 'word' }, { t: '>', kind: 'arrow' }],
-  [{ t: 'You', kind: 'italic' }, { t: '>', kind: 'arrow' }],
-  [{ t: 'Audience.', kind: 'word' }],
+  [{ t: 'Presentations', kind: 'word' }],
+  [{ t: 'that ', kind: 'word' }, { t: 'move', kind: 'italic' }],
+  [{ t: 'the room.', kind: 'word' }],
 ]
 
 export default function Hero() {
@@ -189,8 +190,8 @@ export default function Hero() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: introDelay + 0.4 }}
             >
-              I build presentations for founders, executives, and brands with something important
-              to say, and the ambition to make it land.
+              Pitch decks, keynotes, and executive presentations — for founders and brands with
+              something worth saying, and the ambition to make it land.
             </motion.p>
             <motion.div
               style={{ display: 'flex', gap: '14px', flexWrap: 'wrap', alignItems: 'center' }}
