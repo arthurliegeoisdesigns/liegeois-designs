@@ -15,6 +15,7 @@ import Image from 'next/image'
 import { TextScramble } from '@/components/ui/TextScramble'
 import MagneticWrapper from '@/components/ui/MagneticWrapper'
 import ShaderField from '@/components/ui/ShaderField'
+import SlideWarp from '@/components/ui/SlideWarp'
 
 /**
  * Hero v2 — kinetic type over a live shader field (Phase 2, steps 9–11).
@@ -63,6 +64,9 @@ export default function Hero() {
   const reduced = useReducedMotion() ?? false
   const sectionRef = useRef<HTMLElement>(null)
   const [activeIdx, setActiveIdx] = useState(0)
+  // true once the WebGL displacement layer has textures + context ready;
+  // until then (or forever, if WebGL is unavailable) the clip-wipe runs
+  const [warpReady, setWarpReady] = useState(false)
 
   // Intro timing — wait for the preloader on first load of the session
   const [introDelay] = useState(() => {
@@ -223,26 +227,49 @@ export default function Hero() {
               className="hero-slide-card"
               style={reduced ? undefined : { rotateX: srx, rotateY: sry }}
             >
-              <AnimatePresence initial={false}>
-                <motion.div
-                  key={SLIDES[activeIdx].src}
-                  style={{ position: 'absolute', inset: 0 }}
-                  initial={reduced ? false : { clipPath: 'inset(0 0 0 100%)' }}
-                  animate={{ clipPath: 'inset(0 0 0 0%)' }}
-                  exit={{ opacity: 0, transition: { duration: 0.5, delay: 0.45 } }}
-                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  <Image
-                    src={SLIDES[activeIdx].src}
-                    alt={SLIDES[activeIdx].alt}
-                    fill
-                    priority={activeIdx === 0}
-                    fetchPriority={activeIdx === 0 ? 'high' : undefined}
-                    sizes="(max-width: 900px) 92vw, 44vw"
-                    style={{ objectFit: 'cover', objectPosition: 'center' }}
-                  />
-                </motion.div>
-              </AnimatePresence>
+              {/* LCP poster — always in the DOM, first slide, priority */}
+              <Image
+                src={SLIDES[0].src}
+                alt={SLIDES[0].alt}
+                fill
+                priority
+                fetchPriority="high"
+                sizes="(max-width: 900px) 92vw, 44vw"
+                style={{ objectFit: 'cover', objectPosition: 'center' }}
+              />
+
+              {/* Legacy clip-wipe — runs until WebGL takes over (or forever
+                  when WebGL is unavailable) */}
+              {!warpReady && (
+                <AnimatePresence initial={false}>
+                  <motion.div
+                    key={SLIDES[activeIdx].src}
+                    style={{ position: 'absolute', inset: 0 }}
+                    initial={reduced ? false : { clipPath: 'inset(0 0 0 100%)' }}
+                    animate={{ clipPath: 'inset(0 0 0 0%)' }}
+                    exit={{ opacity: 0, transition: { duration: 0.5, delay: 0.45 } }}
+                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    <Image
+                      src={SLIDES[activeIdx].src}
+                      alt={SLIDES[activeIdx].alt}
+                      fill
+                      sizes="(max-width: 900px) 92vw, 44vw"
+                      style={{ objectFit: 'cover', objectPosition: 'center' }}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+              )}
+
+              {/* WebGL displacement layer — melts slides into each other,
+                  ripples around the cursor (Cloudinary CORS makes this legal) */}
+              {!reduced && (
+                <SlideWarp
+                  images={SLIDES.map((s) => s.src)}
+                  active={activeIdx}
+                  onReady={() => setWarpReady(true)}
+                />
+              )}
 
               {/* caption bar */}
               <div className="hero-slide-caption">
