@@ -85,8 +85,6 @@ export default function RootLayout({
           href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap"
           rel="stylesheet"
         />
-        <link rel="dns-prefetch" href="https://cdn.prod.website-files.com" />
-        <link rel="preconnect" href="https://cdn.prod.website-files.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
         <script

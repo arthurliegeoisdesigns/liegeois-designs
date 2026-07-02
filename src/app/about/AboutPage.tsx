@@ -7,7 +7,7 @@ import { links } from '@/lib/config'
 import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 
 const PORTRAIT =
-  'https://cdn.prod.website-files.com/688a333e09988d05d76572e1/68c18140a18dd2b4aafe2f2c_Portrait%20Arthur%20Liegeois%202-3.avif'
+  'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-arthur-liegeois-2-3-7854f9'
 
 const pillars = [
   {

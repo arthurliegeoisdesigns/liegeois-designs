@@ -25,27 +25,27 @@ import ShaderField from '@/components/ui/ShaderField'
  */
 const SLIDES = [
   {
-    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc74bd6bad20709672_683f46b683ae96a1c334fcb4_6830bafcc24aad0888102a9b_Fivestone%252520-%252520Chevron%2525201_1.jpeg',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/fivestone-20-20chevron-201-1-922e8d',
     alt: 'Chevron presentation',
     client: 'Chevron',
   },
   {
-    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be0a41a17d562e29541_6851a95741c391912b4d0496_Portfolio_Slides_ProjectBe-Digital-Wellness-Conference_0002.jpeg',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-projectbe-digital-wellness-conference-0002-2291f7',
     alt: 'Project Be wellness keynote',
     client: 'Project Be',
   },
   {
-    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68cae362b6f7edca9f846307_Marriott_The_Luxury_Group_Slide_1.avif',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/marriott-the-luxury-group-slide-1-c397f7',
     alt: 'Marriott Luxury Group presentation',
     client: 'Marriott',
   },
   {
-    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdca84275b62afc2282_6851c05f787e5e92c62ed1eb_221114_Echo_Society_Show_009.001.jpeg',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/221114-echo-society-show-009-001-12c35c',
     alt: 'Echo Society event design',
     client: 'Echo Society',
   },
   {
-    src: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f83e8_683f46b95f3aad03b0cb2e3a_681ba9dcdcb982e09a6e1696_Portfolio_Slides_Philips-Experience-Intro_0001.jpeg',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-philips-experience-intro-0001-052b0f',
     alt: 'Philips experience presentation',
     client: 'Philips',
   },

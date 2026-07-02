@@ -28,7 +28,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'breaking-free-from-the-script',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44959bacfe7ca5ef081_68b493080db36cef525fa120_Generated%2520Image%2520August%252029%252C%25202025%2520-%252010_29AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-29am-81f5fb',
   },
   {
     slug: 'breaking-projects-into-scenes-not-steps',
@@ -39,7 +39,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity', 'Storytelling'],
     theme: 'becoming-a-visual-storyteller',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f4495c7f189819ed2eda_68b494de5ad61fca569a40db_Generated%2520Image%2520August%252029%252C%25202025%2520-%252010_32AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-32am-4538a1',
   },
   {
     slug: 'chaos-as-raw-material',
@@ -50,7 +50,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity', 'Storytelling'],
     theme: 'adhd-as-a-creative-asset',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f449416fee5a350f4b88_68b491fcab9922a82c840785_Generated%2520Image%2520August%252029%252C%25202025%2520-%252010_27AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-27am-039ed3',
   },
   {
     slug: 'designing-for-others-vs-designing-from-gut',
@@ -61,7 +61,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'becoming-a-visual-storyteller',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44a5f911aa565e91126_68b48f092cf82cee90103025_Generated%2520Image%2520August%252029%252C%25202025%2520-%25209_42AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-42am-c93e6a',
   },
   {
     slug: 'embracing-storytelling-as-leadership',
@@ -72,7 +72,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Storytelling'],
     theme: 'becoming-a-visual-storyteller',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44a5f911aa565e9113e_68b49f5fb1bdb32f605a6992_Generated%2520Image%2520August%252029%252C%25202025%2520-%252010_56AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-56am-c70268',
   },
   {
     slug: 'how-ai-makes-creative-direction-more-valuable',
@@ -83,7 +83,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['AI & Design', 'Storytelling'],
     theme: 'ai-in-design',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68e0510d3396c632a3ded422_designer-vs-AI.webp',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/designer-vs-ai-3bc13b',
   },
   {
     slug: 'neurodivergent-better-visual-storyteller',
@@ -94,7 +94,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Personal', 'Creativity', 'Storytelling'],
     theme: 'adhd-as-a-creative-asset',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44d2c4c6ae0ad51b301_68b493c6aa968a2d6f4a9af8_Generated%2520Image%2520August%252029%252C%25202025%2520-%252010_31AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-31am-a751bb',
   },
   {
     slug: 'learning-to-speak-in-images',
@@ -105,7 +105,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Pitch Decks', 'Storytelling'],
     theme: 'becoming-a-visual-storyteller',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68e0513403f914e4780e876d_baby%20aura%20photos%202.webp',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/baby-aura-photos-2-0de408',
   },
   {
     slug: 'permission-slips-for-reinvention',
@@ -116,7 +116,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'breaking-free-from-the-script',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44b2992a66bbd6d8a15_68b48c37ab9922a82c82fbdd_Generated%2520Image%2520August%252029%252C%25202025%2520-%25209_29AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-29am-defa8d',
   },
   {
     slug: 'reinvention-after-breakdown',
@@ -127,7 +127,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'breaking-free-from-the-script',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44be30d79cf18308fc6_68b49c1f5bee6d4f3b1abd27_Generated%2520Image%2520August%252029%252C%25202025%2520-%252010_53AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-53am-4a9d6d',
   },
   {
     slug: 'the-art-of-presentation-as-persuasion',
@@ -138,7 +138,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Pitch Decks', 'Storytelling', 'Presentation Design'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44cefb1f22de4cca10d_68b49ab58c5e2e5839f6872e_Generated%2520Image%2520August%252031%252C%25202025%2520-%25202_54PM%2520(1).jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-31-2025-2-54pm-1-eed3e6',
   },
   {
     slug: 'the-day-i-fired-my-inner-impostor-boss',
@@ -149,7 +149,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'adhd-as-a-creative-asset',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44c16816901b9d57102_68b48a7ad0efab7da8f38ef9_Generated%2520Image%2520August%252029%252C%25202025%2520-%25209_23AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-23am-66a544',
   },
   {
     slug: 'the-discipline-of-care',
@@ -160,7 +160,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'lessons-for-fellow-travelers',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44c7392a3ec14661bac_68b49ff1a4de250886f8b5d2_Generated%2520Image%2520August%252029%252C%25202025%2520-%252011_00AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-11-00am-ac8839',
   },
   {
     slug: 'the-first-time-i-saw-my-life-as-a-design-brief',
@@ -171,7 +171,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'breaking-free-from-the-script',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68e04d789185b4349dc08ba7_pain%20au%20chocolat.webp',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/pain-au-chocolat-64554a',
   },
   {
     slug: 'the-limits-of-perfection',
@@ -182,7 +182,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'lessons-for-fellow-travelers',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44c2ea9ed9962336440_68b49b851fdc9477e245d918_Generated%2520Image%2520August%252031%252C%25202025%2520-%25202_58PM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-31-2025-2-58pm-67a513',
   },
   {
     slug: 'the-real-roi-of-presentation-design-for-startups',
@@ -193,7 +193,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Pitch Decks', 'Presentation Design'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68e04d435c9326e68b4b6049_roi%20pitch%20deck%20startups.webp',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/roi-pitch-deck-startups-dc0e16',
   },
   {
     slug: 'what-success-looks-like',
@@ -204,7 +204,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Personal', 'Creativity'],
     theme: 'breaking-free-from-the-script',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44db27b9377ec01aab7_68b48ccc1a0f0ede92bdfafb_Generated%2520Image%2520August%252029%252C%25202025%2520-%25209_32AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-32am-f9dcb3',
   },
 
   // ── Presentation Design Series (2026) ──────────────────────────────────────
@@ -217,7 +217,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc74bd6bad20709672_683f46b683ae96a1c334fcb4_6830bafcc24aad0888102a9b_Fivestone%252520-%252520Chevron%2525201_1.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/fivestone-20-20chevron-201-1-922e8d',
   },
   {
     slug: 'lead-with-the-outcome',
@@ -228,7 +228,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68cae362b6f7edca9f846307_Marriott_The_Luxury_Group_Slide_1.avif',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/marriott-the-luxury-group-slide-1-c397f7',
   },
   {
     slug: 'business-tension-in-presentations',
@@ -239,7 +239,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be15b2139addb3912b6_683f46ba0845e65a13ecb3a3_6830b476a23481588a2f808f_Portfolio_Slides_RAPP-Evolus-Pitch-Deck_0007.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-rapp-evolus-pitch-deck-0007-19640a',
   },
   {
     slug: 'features-advantages-benefits',
@@ -250,7 +250,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Pitch Decks'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f83e8_683f46b95f3aad03b0cb2e3a_681ba9dcdcb982e09a6e1696_Portfolio_Slides_Philips-Experience-Intro_0001.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-philips-experience-intro-0001-052b0f',
   },
   {
     slug: 'rule-of-three-in-presentations',
@@ -261,7 +261,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be1473ae2fd117e5f13_683f46bad2c7f4eec55f8758_6830b0d200991d0e8d6cdabc_Portfolio_Slides_RAPP-Spectrum_0001.webp',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-rapp-spectrum-0001-4046a6',
   },
   {
     slug: 'express-impact-in-kpis',
@@ -272,7 +272,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Pitch Decks'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be0c69ca84c854a3a45_6851c8571c2df147e82e6a99_250418_Connected%2520Data%2520Deck%2520Update%2520_USE%2520THIS%2520VERSION%2520-%2520Edits%2520Arthur-fixed.007.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/250418-connected-data-deck-update-use-this-version-edits-art-ae01b0',
   },
   {
     slug: 'know-your-audience-before-designing',
@@ -283,7 +283,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be076a5b0a46c2f8404_686300aa2b752bf2ed83efbe_Portfolio_Slides_Philips-Experience-Intro_0003.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-philips-experience-intro-0003-a17bad',
   },
   {
     slug: 'presentation-altitude',
@@ -294,7 +294,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be0c69ca84c854a3a6a_6851c8601bc72a9a3fd13b36_250418_Connected%2520Data%2520Deck%2520Update%2520_USE%2520THIS%2520VERSION%2520-%2520Edits%2520Arthur-fixed.001.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/250418-connected-data-deck-update-use-this-version-edits-art-0645fa',
   },
   {
     slug: 'connect-to-strategic-direction',
@@ -305,7 +305,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdd74bd6bad20709694_6863ebc657fb2a1ec0375b14_Fivestone%2520-%2520Chevron%25205.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/fivestone-chevron-5-a16654',
   },
   {
     slug: 'slides-as-speaker-support',
@@ -316,7 +316,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdca84275b62afc228e_686403b73d5596ba5b3fbf23_230427_Echo-Society-Deck%25202.0%2520-%2520Slide-1.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/230427-echo-society-deck-2-0-slide-1-a2020d',
   },
   {
     slug: 'think-like-a-filmmaker',
@@ -338,7 +338,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Presentation Design', 'Storytelling'],
     theme: 'presentation-design-tips',
     draft: false,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be585c9b2f4b9712acd_6851c4054f42396e1e83c052_Portfolio_Slides_University-Startups-Pitch-Deck_0001.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-university-startups-pitch-deck-0001-8eedd5',
   },
 
   // ── Drafts ─────────────────────────────────────────────────────────────────
@@ -351,7 +351,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Creativity'],
     theme: 'breaking-free-from-the-script',
     draft: true,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44bc15ecf66f8a0166b_68b48b5b12f088e1b119f571_Generated%2520Image%2520August%252029%252C%25202025%2520-%25209_26AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-26am-d4710e',
   },
   {
     slug: 'the-moment-i-made-things-undeniable',
@@ -362,7 +362,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Personal', 'Creativity'],
     theme: 'presentation-design-tips',
     draft: true,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44cf41e97e0d2784c6d_68b4904a26d1a3874922d32a_Generated%2520Image%2520August%252029%252C%25202025%2520-%252010_26AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-26am-b23680',
   },
   {
     slug: 'the-myth-playing-safe',
@@ -373,7 +373,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Strategy'],
     theme: 'lessons-for-fellow-travelers',
     draft: true,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44d8adf7bc8a9029c1a_68b48fbcdfdba8698c495ac3_Generated%2520Image%2520August%252029%252C%25202025%2520-%25209_50AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-50am-c55e56',
   },
   {
     slug: 'living-someone-else-story',
@@ -384,7 +384,7 @@ export const blogPosts: BlogPost[] = [
     tags: ['Personal', 'Creativity'],
     theme: 'breaking-free-from-the-script',
     draft: true,
-    coverImage: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b7f44d3f0b9adbf3df0030_68b4893f53fb5920dfecea10_Generated%2520Image%2520August%252029%252C%25202025%2520-%25209_19AM.jpeg',
+    coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-19am-777f6d',
   },
 ]
 
