@@ -6,7 +6,7 @@ import Footer from '@/components/Footer'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
 import Grain from '@/components/ui/Grain'
-import ScrollCanvas from '@/components/providers/ScrollCanvas'
+import StackFlow from '@/components/providers/StackFlow'
 import ScrollReveals from '@/components/providers/ScrollReveals'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
@@ -103,7 +103,7 @@ export default function RootLayout({
         </noscript>
         <SmoothScrollProvider>
           <ClientOnlyLayer />
-          <ScrollCanvas />
+          <StackFlow />
           <ScrollReveals />
           <Grain />
           <a href="#main-content" className="skip-link">Skip to content</a>
