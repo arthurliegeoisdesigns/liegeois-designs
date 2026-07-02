@@ -1,5 +1,7 @@
 import Link from 'next/link'
 import { links } from '@/lib/config'
+import FooterClock from '@/components/ui/FooterClock'
+import ObfuscatedEmail from '@/components/ui/ObfuscatedEmail'
 
 const cols: Array<{
   heading: string | null
@@ -69,6 +71,18 @@ export default function Footer() {
           background: 'var(--color-dark-border)',
         }}
       />
+
+      {/* ── Destination header — availability, giant email, studio time ── */}
+      <div className="container footer-destination">
+        <div className="footer-status">
+          <span className="footer-status-dot" aria-hidden="true" />
+          <span>Currently booking new projects</span>
+          <FooterClock />
+        </div>
+        <span className="footer-email">
+          <ObfuscatedEmail />
+        </span>
+      </div>
       <div className="container footer-grid">
         {/* Wordmark column */}
         <div>

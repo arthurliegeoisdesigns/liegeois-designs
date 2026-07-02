@@ -60,6 +60,10 @@ export default function ParallaxFlow() {
           if (!hadDark) s.classList.remove('section-dark')
         })
 
+        // Pinned sections (work rail, cinematic testimonials) manage their
+        // own transforms — drifting them would fight ScrollTrigger's pin
+        if (s.dataset.noDrift !== undefined) return
+
         // Vertical drift — each section floats at a clearly different
         // speed, scrubbed across its whole journey through the viewport
         const amp = 90 + (i % 3) * 55

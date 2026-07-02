@@ -1,51 +1,113 @@
 'use client'
 
-import { motion, useReducedMotion } from 'framer-motion'
-import { TestimonialsWidget } from '@/components/ui/TestimonialsWidget'
+import { useEffect, useRef } from 'react'
+import { testimonials } from '@/content/testimonials'
+
+/**
+ * Testimonials v2 — cinematic pull quotes (Phase 3, audit rec 23).
+ * The section pins and three quotes take the full viewport one at a
+ * time: words rise in as you scroll, author appears last, quote hands
+ * off to the next. Glass card deleted. data-no-drift (pinned).
+ *
+ * Reduced motion / no JS: quotes render stacked, fully visible.
+ */
+const FEATURED = testimonials.slice(0, 3)
 
 export default function Testimonials() {
-  const reduced = useReducedMotion()
+  const sectionRef = useRef<HTMLElement>(null)
+
+  useEffect(() => {
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+
+    let cancelled = false
+    let cleanup: (() => void) | undefined
+
+    ;(async () => {
+      const gsap = (await import('gsap')).default
+      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (cancelled || !sectionRef.current) return
+      gsap.registerPlugin(ScrollTrigger)
+
+      const section = sectionRef.current
+      const quotes = Array.from(section.querySelectorAll<HTMLElement>('.testi-cine-quote'))
+
+      // Prepare: words hidden, quotes stacked
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: section,
+          start: 'top top',
+          end: `+=${quotes.length * 90}%`,
+          pin: true,
+          scrub: 0.4,
+          anticipatePin: 1,
+        },
+      })
+
+      quotes.forEach((q, i) => {
+        const words = q.querySelectorAll('.testi-cine-word')
+        const author = q.querySelector('.testi-cine-author')
+        gsap.set(q, { autoAlpha: i === 0 ? 1 : 0 })
+
+        if (i > 0) tl.to(q, { autoAlpha: 1, duration: 0.12 }, `q${i}`)
+        tl.fromTo(
+          words,
+          { yPercent: 55, opacity: 0 },
+          { yPercent: 0, opacity: 1, stagger: 0.018, duration: 0.30, ease: 'power2.out' },
+          i === 0 ? 0.02 : `q${i}+=0.06`,
+        )
+        tl.fromTo(
+          author,
+          { opacity: 0, y: 12 },
+          { opacity: 1, y: 0, duration: 0.12 },
+          '>-0.05',
+        )
+        tl.to({}, { duration: 0.22 }) // hold
+        if (i < quotes.length - 1) {
+          tl.to(q, { autoAlpha: 0, y: -30, duration: 0.14 }, `q${i + 1}-=0.10`)
+        }
+      })
+
+      cleanup = () => {
+        tl.scrollTrigger?.kill()
+        tl.kill()
+      }
+    })()
+
+    return () => {
+      cancelled = true
+      cleanup?.()
+    }
+  }, [])
 
   return (
     <section
-      className="section section-dark section-surface section-glow-top"
-      style={{ overflow: 'hidden', position: 'relative' }}
+      ref={sectionRef}
+      data-no-drift
+      className="section-dark testi-cine"
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
-      <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-        {/* Section header — scrubbed line reveal (ScrollReveals) */}
-        <div style={{ marginBottom: 'clamp(40px, 5vw, 72px)', maxWidth: '560px' }}>
-          <h2
-            data-reveal
-            className="type-h1"
-            style={{ color: 'var(--color-text-primary)', margin: 0 }}
-          >
-            The kind of words you can&apos;t write yourself.
-          </h2>
-        </div>
+      <p className="eyebrow testi-cine-eyebrow">THE KIND OF WORDS YOU CAN&apos;T WRITE YOURSELF</p>
 
-        {/* Pill-avatar testimonials widget */}
-        <motion.div
-          initial={reduced ? false : { opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
-          viewport={{ once: true, margin: '-80px' }}
-          className="glass-card"
-          style={{ position: 'relative', overflow: 'hidden' }}
-        >
-          {/* Top rule */}
-          <div
-            aria-hidden="true"
-            style={{
-              position: 'absolute',
-              top: 0,
-              left: '5%',
-              right: '5%',
-              height: '0.5px',
-              background: 'rgba(255,255,255,0.08)',
-            }}
-          />
-          <TestimonialsWidget />
-        </motion.div>
+      <div className="testi-cine-stage">
+        {FEATURED.map((t) => (
+          <blockquote key={t.id} className="testi-cine-quote">
+            <p className="testi-cine-text">
+              {t.quote.split(' ').map((w, wi) => (
+                <span key={wi}>
+                  <span className="testi-cine-wordwrap">
+                    <span className="testi-cine-word">{w}</span>
+                  </span>{' '}
+                </span>
+              ))}
+            </p>
+            <footer className="testi-cine-author">
+              <cite>{t.author}</cite>
+              <span>
+                {t.title}, {t.company}
+              </span>
+            </footer>
+          </blockquote>
+        ))}
       </div>
     </section>
   )
