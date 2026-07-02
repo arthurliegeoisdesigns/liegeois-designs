@@ -60,9 +60,9 @@ export default function ParallaxFlow() {
           if (!hadDark) s.classList.remove('section-dark')
         })
 
-        // Vertical drift — each section floats at a slightly different
+        // Vertical drift — each section floats at a clearly different
         // speed, scrubbed across its whole journey through the viewport
-        const amp = 48 + (i % 3) * 26
+        const amp = 90 + (i % 3) * 55
         const tween = gsap.fromTo(
           s,
           { y: amp },

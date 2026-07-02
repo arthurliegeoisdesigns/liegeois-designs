@@ -126,33 +126,92 @@
   color: #FFF8F3;
 }
 
-/* ── World canvas — the one continuous background (see WorldCanvas.tsx) ── */
+/* ── World canvas v2 — a lit atmosphere (see WorldCanvas.tsx) ──
+   silk folds → ember glow → dust → cursor spotlight → vignette   */
 .world-canvas {
   position: fixed;
   inset: 0;
   z-index: -1;
   overflow: hidden;
-  background:
-    radial-gradient(1200px 800px at 82% -12%, rgba(247, 240, 228, 0.045), transparent 60%),
-    radial-gradient(1000px 760px at 8% 112%, rgba(232, 68, 32, 0.05), transparent 65%),
-    var(--color-canvas);
+  background: #0B0A08;
 }
-.world-canvas::before {
-  content: '';
+
+/* Broad diagonal light folds — the visible sheen */
+.world-silk {
   position: absolute;
-  inset: -30%;
+  inset: -35%;
   background:
-    radial-gradient(closest-side at 30% 38%, rgba(255, 244, 230, 0.035), transparent 70%),
-    radial-gradient(closest-side at 74% 72%, rgba(232, 68, 32, 0.028), transparent 70%);
-  animation: world-drift 80s ease-in-out infinite alternate;
+    linear-gradient(118deg,
+      transparent 12%, rgba(247, 240, 228, 0.075) 26%, transparent 38%,
+      rgba(247, 240, 228, 0.04) 52%, transparent 64%,
+      rgba(247, 240, 228, 0.09) 81%, transparent 94%),
+    linear-gradient(24deg,
+      transparent 20%, rgba(236, 226, 210, 0.05) 41%, transparent 56%,
+      rgba(247, 240, 228, 0.065) 76%, transparent 90%);
+  animation: silk-sweep 46s ease-in-out infinite alternate;
   will-change: transform;
 }
-@keyframes world-drift {
-  from { transform: translate3d(-4%, -3%, 0) scale(1); }
-  to   { transform: translate3d(4%, 3%, 0) scale(1.1); }
+@keyframes silk-sweep {
+  from { transform: translate3d(-5%, -4%, 0) rotate(-2.5deg) scale(1); }
+  to   { transform: translate3d(5%, 4%, 0) rotate(2.5deg) scale(1.12); }
 }
+
+/* Warm ember breathing low in the frame */
+.world-ember {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(1100px 780px at 14% 96%, rgba(232, 68, 32, 0.16), transparent 62%),
+    radial-gradient(1400px 900px at 88% -6%, rgba(247, 236, 216, 0.10), transparent 60%);
+  animation: ember-breathe 18s ease-in-out infinite alternate;
+}
+@keyframes ember-breathe {
+  from { opacity: 0.72; transform: scale(1); }
+  to   { opacity: 1;    transform: scale(1.06); }
+}
+
+/* Sparse dust — depth specks drifting up, two layers */
+.world-dust {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(1.3px 1.3px at 22% 34%, rgba(247, 240, 228, 0.5), transparent 100%),
+    radial-gradient(1px 1px at 68% 12%, rgba(247, 240, 228, 0.36), transparent 100%),
+    radial-gradient(1.6px 1.6px at 84% 61%, rgba(247, 240, 228, 0.30), transparent 100%),
+    radial-gradient(1px 1px at 41% 79%, rgba(247, 240, 228, 0.4), transparent 100%),
+    radial-gradient(1.2px 1.2px at 9% 58%, rgba(232, 68, 32, 0.35), transparent 100%),
+    radial-gradient(1px 1px at 55% 47%, rgba(247, 240, 228, 0.28), transparent 100%);
+  background-size: 640px 640px;
+  background-repeat: repeat;
+  animation: dust-drift 60s linear infinite;
+  opacity: 0.65;
+}
+@keyframes dust-drift {
+  from { background-position: 0 0; }
+  to   { background-position: -140px -640px; }
+}
+
+/* Cursor spotlight — 800px soft warm light, positioned via JS transform */
+.world-spot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(closest-side, rgba(247, 240, 228, 0.07), transparent 70%);
+  will-change: transform;
+}
+
+/* Edge falloff */
+.world-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 100% at 50% 42%, transparent 58%, rgba(5, 4, 3, 0.5) 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .world-canvas::before { animation: none; }
+  .world-silk, .world-ember, .world-dust { animation: none; }
+  .world-spot { display: none; }
 }
 
 /* ── Film grain overlay (see Grain.tsx) ── */
