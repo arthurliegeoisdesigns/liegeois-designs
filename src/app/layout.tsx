@@ -1,20 +1,16 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
+import Grain from '@/components/ui/Grain'
+import ScrollCanvas from '@/components/providers/ScrollCanvas'
+import ScrollReveals from '@/components/providers/ScrollReveals'
+import FontToggle from '@/components/providers/FontToggle'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-body',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.liegeoisdesigns.com'),
@@ -78,9 +74,16 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+        {/* Switzer (body) — served from Fontshare, free for commercial use */}
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap"
+          rel="stylesheet"
+        />
         <link rel="dns-prefetch" href="https://cdn.prod.website-files.com" />
         <link rel="preconnect" href="https://cdn.prod.website-files.com" crossOrigin="anonymous" />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
@@ -101,6 +104,10 @@ export default function RootLayout({
         </noscript>
         <SmoothScrollProvider>
           <ClientOnlyLayer />
+          <FontToggle />
+          <ScrollCanvas />
+          <ScrollReveals />
+          <Grain />
           <a href="#main-content" className="skip-link">Skip to content</a>
           <Nav />
           <div id="main-content">

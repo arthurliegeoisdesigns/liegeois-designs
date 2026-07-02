@@ -15,8 +15,8 @@ export default function LenisInit() {
     if (window.matchMedia('(pointer: coarse)').matches) return
 
     const lenis = new Lenis({
-      duration: 1.1,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      // Phase 1: lerp-based smoothing — heavier, more cinematic glide
+      lerp: 0.08,
       orientation: 'vertical',
       smoothWheel: true,
       wheelMultiplier: 1.0,

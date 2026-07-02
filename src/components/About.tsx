@@ -38,25 +38,30 @@ export default function About() {
     >
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
 
-        {/* Bio block */}
-        <motion.div
-          style={{ maxWidth: '640px', marginBottom: 'clamp(56px, 7vw, 96px)' }}
-          initial={reduced ? false : { opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.85, ease }}
-          viewport={{ once: true, margin: '-80px' }}
-        >
-          <h2 className="type-h1" style={{ color: 'var(--color-text-primary)', margin: '0 0 24px' }}>
+        {/* Bio block — headline scrub-revealed line-by-line (ScrollReveals) */}
+        <div style={{ maxWidth: '640px', marginBottom: 'clamp(56px, 7vw, 96px)' }}>
+          <h2
+            data-reveal
+            className="type-h1"
+            style={{ color: 'var(--color-text-primary)', margin: '0 0 24px' }}
+          >
             I&apos;ve been on all three sides of the table.
           </h2>
-          <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 28px' }}>
+          <motion.p
+            className="type-body"
+            style={{ color: 'var(--color-text-secondary)', margin: '0 0 28px' }}
+            initial={reduced ? false : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.85, ease }}
+            viewport={{ once: true, margin: '-80px' }}
+          >
             Founder. Strategist. Designer. I&apos;ve sat where you&apos;re sitting — and I know
             what&apos;s on the line. The work earns its place because it starts with the right questions.
-          </p>
+          </motion.p>
           <Link href="/about" className="btn-text">
             About Me ↗
           </Link>
-        </motion.div>
+        </div>
 
         {/* Top rule */}
         <motion.div
