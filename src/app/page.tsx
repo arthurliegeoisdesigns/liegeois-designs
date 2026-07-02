@@ -1,5 +1,5 @@
 import Hero from '@/components/Hero'
-import Logos from '@/components/Logos'
+import ClientIndex from '@/components/ClientIndex'
 import FeaturedWork from '@/components/FeaturedWork'
 import Services from '@/components/Services'
 import About from '@/components/About'
@@ -105,7 +105,7 @@ export default function Home() {
       />
       <main>
         <Hero />
-        <Logos />
+        <ClientIndex />
         <FeaturedWork />
         <Services />
         <About />

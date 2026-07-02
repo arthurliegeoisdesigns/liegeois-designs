@@ -126,6 +126,35 @@
   color: #FFF8F3;
 }
 
+/* ── World canvas — the one continuous background (see WorldCanvas.tsx) ── */
+.world-canvas {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background:
+    radial-gradient(1200px 800px at 82% -12%, rgba(247, 240, 228, 0.045), transparent 60%),
+    radial-gradient(1000px 760px at 8% 112%, rgba(232, 68, 32, 0.05), transparent 65%),
+    var(--color-canvas);
+}
+.world-canvas::before {
+  content: '';
+  position: absolute;
+  inset: -30%;
+  background:
+    radial-gradient(closest-side at 30% 38%, rgba(255, 244, 230, 0.035), transparent 70%),
+    radial-gradient(closest-side at 74% 72%, rgba(232, 68, 32, 0.028), transparent 70%);
+  animation: world-drift 80s ease-in-out infinite alternate;
+  will-change: transform;
+}
+@keyframes world-drift {
+  from { transform: translate3d(-4%, -3%, 0) scale(1); }
+  to   { transform: translate3d(4%, 3%, 0) scale(1.1); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .world-canvas::before { animation: none; }
+}
+
 /* ── Film grain overlay (see Grain.tsx) ── */
 .grain-overlay {
   position: fixed;
@@ -551,10 +580,47 @@ body {
   .page-transition-wrapper { animation: none; }
 }
 
-/* --- LOGOS MARQUEE --- */
-@keyframes logos-scroll {
-  0%   { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
+/* --- CLIENT INDEX (replaces logo marquee) --- */
+.client-index {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  row-gap: 0.35em;
+  max-width: 1040px;
+}
+.client-index-item {
+  display: inline-flex;
+  align-items: baseline;
+  text-decoration: none;
+  cursor: default;
+}
+.client-index-item.is-linked { cursor: pointer; }
+.client-index-name {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+  color: var(--color-on-dark-muted);
+  transition: color 300ms var(--ease-out-expo);
+  white-space: nowrap;
+}
+.client-index-item:hover .client-index-name { color: var(--color-on-dark); }
+.client-index-item.is-linked .client-index-name::after {
+  content: ' ↗';
+  font-family: var(--font-body);
+  font-size: 0.32em;
+  vertical-align: super;
+  color: var(--color-accent);
+  letter-spacing: 0;
+}
+.client-index-sep {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.4rem, 3vw, 2.4rem);
+  color: var(--color-accent);
+  margin: 0 0.4em;
+  opacity: 0.9;
 }
 
 /* ── HORIZONTAL SCROLL TRACK — hide scrollbar ───────────── */

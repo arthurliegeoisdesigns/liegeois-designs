@@ -6,7 +6,8 @@ import Footer from '@/components/Footer'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
 import Grain from '@/components/ui/Grain'
-import StackFlow from '@/components/providers/StackFlow'
+import WorldCanvas from '@/components/ui/WorldCanvas'
+import ParallaxFlow from '@/components/providers/ParallaxFlow'
 import ScrollReveals from '@/components/providers/ScrollReveals'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
@@ -101,9 +102,10 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        <WorldCanvas />
         <SmoothScrollProvider>
           <ClientOnlyLayer />
-          <StackFlow />
+          <ParallaxFlow />
           <ScrollReveals />
           <Grain />
           <a href="#main-content" className="skip-link">Skip to content</a>
