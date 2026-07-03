@@ -807,6 +807,162 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* --- PAGE WIPE — route transition plate --- */
+.page-wipe {
+  position: fixed;
+  inset: 0;
+  z-index: 300;
+  background: var(--color-void);
+  pointer-events: none;
+  transform: translateY(0%);
+  animation: page-wipe-up 0.72s cubic-bezier(0.76, 0, 0.24, 1) 0.05s both;
+}
+@keyframes page-wipe-up {
+  from { transform: translateY(0%); }
+  to   { transform: translateY(-101%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .page-wipe { display: none; }
+}
+
+/* --- PRESENTATION MODE (press P) --- */
+.pmode {
+  position: fixed;
+  inset: 0;
+  z-index: 10500;
+  background: var(--color-void);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.pmode-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: clamp(32px, 6vw, 96px);
+}
+.pmode-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: clamp(20px, 4vh, 40px);
+  text-align: center;
+}
+.pmode-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-faint);
+  margin: 0;
+}
+.pmode-display {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(3rem, 9vw, 8.5rem);
+  line-height: 0.98;
+  letter-spacing: -0.015em;
+  color: var(--color-on-dark);
+  margin: 0;
+}
+.pmode-display em { font-style: italic; }
+.pmode-quote {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(1.75rem, 4vw, 3.5rem);
+  line-height: 1.18;
+  color: var(--color-on-dark);
+  margin: 0;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+.pmode-email a,
+.pmode-email span {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--color-on-dark-muted);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(255, 253, 248, 0.25);
+}
+.pmode-email a:hover { color: var(--color-accent); border-color: var(--color-accent); }
+.pmode-work {
+  position: relative;
+  width: min(86vw, calc(78vh * 1.6));
+}
+.pmode-work img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border: 0.5px solid rgba(255, 253, 248, 0.16);
+}
+.pmode-work-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 14px;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-muted);
+}
+.pmode-chrome {
+  position: absolute;
+  left: clamp(20px, 3vw, 40px);
+  right: clamp(20px, 3vw, 40px);
+  bottom: clamp(16px, 2.5vh, 28px);
+  display: flex;
+  gap: 24px;
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  letter-spacing: 0.18em;
+  color: var(--color-on-dark-hint);
+  pointer-events: none;
+}
+.pmode-counter { margin-left: auto; color: var(--color-on-dark-muted); }
+.pmode-progress {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background: rgba(255, 253, 248, 0.08);
+}
+.pmode-progress > div {
+  height: 100%;
+  background: var(--color-accent);
+  transform-origin: left center;
+  transition: transform 400ms var(--ease-out-expo);
+}
+
+/* --- INK-FILL BUTTON HOVERS --- */
+.btn-hero-solid,
+.btn-hero-ghost {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+.btn-hero-solid::after,
+.btn-hero-ghost::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: var(--color-accent);
+  transform: scaleY(0);
+  transform-origin: bottom center;
+  transition: transform 340ms cubic-bezier(0.76, 0, 0.24, 1);
+}
+.btn-hero-solid:hover::after,
+.btn-hero-ghost:hover::after { transform: scaleY(1); }
+.btn-hero-solid:hover { opacity: 1; color: #FFF8F3; }
+.btn-hero-ghost:hover { background: transparent; color: #FFF8F3; border-color: var(--color-accent); }
+
 /* --- WORK RAIL — pinned horizontal gallery --- */
 .work-rail {
   min-height: 100vh;
@@ -1115,6 +1271,15 @@ body {
   50% { opacity: 0.45; transform: scale(0.8); }
 }
 .footer-clock { margin-left: auto; color: var(--color-on-dark-faint); }
+.footer-pmode-hint {
+  color: var(--color-on-dark-hint);
+  border: 0.5px solid var(--color-on-dark-ghost);
+  padding: 4px 10px;
+  border-radius: 9999px;
+}
+@media (pointer: coarse) {
+  .footer-pmode-hint { display: none; }
+}
 .footer-email a,
 .footer-email span {
   font-family: var(--font-display);

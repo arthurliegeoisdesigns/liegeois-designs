@@ -93,7 +93,7 @@ export default function FeaturedWork() {
       {/* The rail */}
       <div ref={trackRef} className="work-rail-track">
         {featured.map((cs, i) => (
-          <Link key={cs.slug} href={`/work/${cs.slug}`} className="work-rail-card">
+          <Link key={cs.slug} href={`/work/${cs.slug}`} className="work-rail-card" data-cursor="View">
             <span className="work-rail-index" aria-hidden="true">
               {String(i + 1).padStart(2, '0')}
             </span>

@@ -23,14 +23,19 @@ export default function CustomCursor() {
   const [isFine,   setIsFine]   = useState(false)
   const [visible,  setVisible]  = useState(false)
   const [hovering, setHovering] = useState(false)
+  // Contextual label ("View", "Drag", "Play") from [data-cursor] ancestors
+  const [label,    setLabel]    = useState<string | null>(null)
 
   // Detect pointer type once + listen for changes (iPad with keyboard, etc.)
   useEffect(() => {
     const mq = window.matchMedia('(pointer: fine)')
-    setIsFine(mq.matches)
+    const raf = requestAnimationFrame(() => setIsFine(mq.matches))
     const onChange = (e: MediaQueryListEvent) => setIsFine(e.matches)
     mq.addEventListener('change', onChange)
-    return () => mq.removeEventListener('change', onChange)
+    return () => {
+      cancelAnimationFrame(raf)
+      mq.removeEventListener('change', onChange)
+    }
   }, [])
 
   // Main cursor logic — stable, runs once per isFine change
@@ -43,10 +48,13 @@ export default function CustomCursor() {
     const onLeave = () => setVisible(false)
     const onEnter = () => setVisible(true)
     const onOver  = (e: MouseEvent) => {
-      const el = (e.target as HTMLElement).closest(
+      const target = e.target as HTMLElement
+      const el = target.closest(
         'a, button, [role="button"], input, textarea, select, label, [data-cursor-hover]'
       )
       setHovering(!!el)
+      const labelled = target.closest('[data-cursor]') as HTMLElement | null
+      setLabel(labelled?.dataset.cursor || null)
     }
 
     document.addEventListener('mousemove',  onMove,  { passive: true })
@@ -122,7 +130,8 @@ export default function CustomCursor() {
         }}
       />
 
-      {/* ── Ring ── spring-lag follower */}
+      {/* ── Ring ── spring-lag follower; grows into a labeled chip over
+             [data-cursor] elements ("View", "Drag", "Play") */}
       <div
         ref={ringRef}
         aria-hidden="true"
@@ -130,14 +139,21 @@ export default function CustomCursor() {
           position: 'fixed',
           top: 0,
           left: 0,
-          width:  hovering ? '56px' : '42px',
-          height: hovering ? '56px' : '42px',
+          width:  label ? '76px' : hovering ? '56px' : '42px',
+          height: label ? '76px' : hovering ? '56px' : '42px',
           borderRadius: '50%',
-          border: `1.5px solid ${hovering ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)'}`,
-          background: hovering ? 'rgba(255,255,255,0.10)' : 'transparent',
+          border: `1.5px solid ${hovering || label ? 'rgba(255,255,255,0.9)' : 'rgba(255,255,255,0.5)'}`,
+          background: label
+            ? 'rgba(10, 9, 8, 0.85)'
+            : hovering
+              ? 'rgba(255,255,255,0.10)'
+              : 'transparent',
           pointerEvents: 'none',
           zIndex: 99998,
           opacity: visible ? 1 : 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
           transition: [
             'opacity 200ms ease',
             'width 350ms cubic-bezier(0.34,1.56,0.64,1)',
@@ -147,7 +163,23 @@ export default function CustomCursor() {
           ].join(', '),
           willChange: 'transform',
         }}
-      />
+      >
+        <span
+          style={{
+            fontFamily: 'var(--font-body)',
+            fontSize: '0.625rem',
+            fontWeight: 500,
+            letterSpacing: '0.14em',
+            textTransform: 'uppercase',
+            color: '#F7F4EF',
+            opacity: label ? 1 : 0,
+            transition: 'opacity 200ms ease',
+            whiteSpace: 'nowrap',
+          }}
+        >
+          {label}
+        </span>
+      </div>
     </>
   )
 }

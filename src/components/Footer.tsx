@@ -77,6 +77,7 @@ export default function Footer() {
         <div className="footer-status">
           <span className="footer-status-dot" aria-hidden="true" />
           <span>Currently booking new projects</span>
+          <span className="footer-pmode-hint">Press P to present</span>
           <FooterClock />
         </div>
         <span className="footer-email">

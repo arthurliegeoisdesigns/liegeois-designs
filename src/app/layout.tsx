@@ -8,6 +8,7 @@ import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
 import Grain from '@/components/ui/Grain'
 import WorldCanvas from '@/components/ui/WorldCanvas'
 import Preloader from '@/components/ui/Preloader'
+import PresentationMode from '@/components/ui/PresentationMode'
 import ParallaxFlow from '@/components/providers/ParallaxFlow'
 import ScrollReveals from '@/components/providers/ScrollReveals'
 
@@ -103,6 +104,7 @@ export default function RootLayout({
         </noscript>
         <WorldCanvas />
         <Preloader />
+        <PresentationMode />
         <SmoothScrollProvider>
           <ClientOnlyLayer />
           <ParallaxFlow />
