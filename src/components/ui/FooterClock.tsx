@@ -4,10 +4,9 @@ import { useEffect, useState } from 'react'
 
 /**
  * FooterClock — live studio time for the destination footer.
- * [PLACEHOLDER city/timezone — confirm with Arthur; currently New York]
  */
 const TZ = 'America/New_York'
-const CITY = 'New York'
+const CITY = 'Montclair, NJ'
 
 export default function FooterClock() {
   const [time, setTime] = useState<string | null>(null)

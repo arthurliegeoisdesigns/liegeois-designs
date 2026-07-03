@@ -970,6 +970,9 @@ body {
   flex-direction: column;
   justify-content: center;
   padding-block: clamp(48px, 6vh, 96px);
+  /* fallback surface for no-JS / reduced motion — ParallaxFlow makes it
+     transparent over the world canvas at runtime */
+  background: var(--color-canvas);
 }
 .work-rail-header {
   padding-inline: var(--section-pad-x);
@@ -1556,113 +1559,142 @@ section[id] {
 }
 
 /* ============================================================
-   MOBILE NAV & HAMBURGER
+   OVERLAY MENU — the nav on every viewport (Phase 5)
    ============================================================ */
 
-/* Hide hamburger on desktop */
-.nav-hamburger { display: none; }
+.nav-hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 110;
+  -webkit-tap-highlight-color: transparent;
+}
 
-/* Hide desktop links on mobile */
+.nav-hamburger-line {
+  display: block;
+  width: 22px;
+  height: 1.5px;
+  background: #ffffff;
+  border-radius: 1px;
+  transition: transform 300ms var(--ease-out-expo),
+              opacity 200ms ease,
+              background 300ms ease;
+  transform-origin: center;
+}
+/* dark lines when the nav has scrolled onto its light bar */
+.nav.scrolled .nav-hamburger-line { background: var(--color-ink); }
+.nav.nav-menu-open .nav-hamburger-line { background: #ffffff; }
+.nav-hamburger-line.open:first-child {
+  transform: translateY(3.75px) rotate(45deg);
+}
+.nav-hamburger-line.open:last-child {
+  transform: translateY(-3.75px) rotate(-45deg);
+}
+
+.nav { z-index: 110; }
+.nav.nav-menu-open {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+
+/* Full-screen overlay */
+.nav-mobile-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 105;
+  background: var(--color-void);
+  display: flex;
+  align-items: center;
+  padding: 96px var(--section-pad-x) 48px;
+}
+
+.nav-mobile-content {
+  width: 100%;
+  max-width: 1080px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(32px, 6vh, 64px);
+}
+
+.nav-mobile-links {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.nav-mobile-link {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(16px, 2.5vw, 32px);
+  padding: clamp(8px, 1.6vh, 16px) 0;
+  text-decoration: none;
+  border-bottom: 0.5px solid rgba(255, 253, 248, 0.08);
+  -webkit-tap-highlight-color: transparent;
+}
+.nav-menu-num {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  color: var(--color-on-dark-faint);
+  transition: color 250ms ease;
+}
+.nav-menu-label {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(2.5rem, 6.5vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.015em;
+  color: var(--color-on-dark);
+  transition: color 250ms ease, font-style 0s, transform 350ms var(--ease-out-expo);
+  display: inline-block;
+}
+.nav-menu-arrow {
+  margin-left: auto;
+  font-family: var(--font-body);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  color: var(--color-accent);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: opacity 250ms ease, transform 350ms var(--ease-out-expo);
+}
+.nav-mobile-link:hover .nav-menu-label,
+.nav-mobile-link.is-active .nav-menu-label {
+  color: var(--color-accent);
+  font-style: italic;
+  transform: translateX(8px);
+}
+.nav-mobile-link:hover .nav-menu-num { color: var(--color-accent); }
+.nav-mobile-link:hover .nav-menu-arrow { opacity: 1; transform: translateX(0); }
+
+.nav-menu-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-faint);
+}
+.nav-menu-meta-hint { color: var(--color-on-dark-hint); }
+@media (pointer: coarse) {
+  .nav-menu-meta-hint { display: none; }
+}
+
+/* Desktop right side keeps only the CTA */
 @media (max-width: 768px) {
   .nav-desktop { display: none !important; }
-
-  .nav-hamburger {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 6px;
-    width: 44px;
-    height: 44px;
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 0;
-    z-index: 110;
-    -webkit-tap-highlight-color: transparent;
-  }
-
-  .nav-hamburger-line {
-    display: block;
-    width: 22px;
-    height: 1.5px;
-    background: #ffffff;
-    border-radius: 1px;
-    transition: transform 300ms var(--ease-out-expo),
-                opacity 200ms ease;
-    transform-origin: center;
-  }
-  .nav-hamburger-line.open:first-child {
-    transform: translateY(3.75px) rotate(45deg);
-  }
-  .nav-hamburger-line.open:last-child {
-    transform: translateY(-3.75px) rotate(-45deg);
-  }
-
-  /* Keep nav above overlay */
-  .nav { z-index: 110; }
-  .nav.nav-menu-open {
-    background: rgba(8, 8, 8, 0.95);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-  }
-
-  /* Fullscreen overlay */
-  .nav-mobile-overlay {
-    position: fixed;
-    inset: 0;
-    z-index: 105;
-    background: var(--color-dark);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 80px var(--section-pad-x) env(safe-area-inset-bottom, 40px);
-  }
-
-  .nav-mobile-content {
-    width: 100%;
-    max-width: 400px;
-  }
-
-  .nav-mobile-links {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .nav-mobile-link {
-    font-family: var(--font-display);
-    font-size: clamp(2rem, 8vw, 3rem);
-    font-weight: 300;
-    letter-spacing: -0.01em;
-    color: var(--color-on-dark);
-    text-decoration: none;
-    display: block;
-    padding: 16px 0;
-    line-height: 1.1;
-    transition: color 200ms ease;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .nav-mobile-link:active {
-    color: var(--color-on-dark-muted);
-  }
-
-  .nav-mobile-cta {
-    font-family: var(--font-body);
-    font-size: 0.875rem;
-    font-weight: 400;
-    letter-spacing: 0.04em;
-    color: var(--color-on-dark-muted);
-    text-decoration: none;
-    display: inline-block;
-    margin-top: 32px;
-    padding: 14px 0;
-    transition: color 200ms ease;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .nav-mobile-cta:active {
-    color: var(--color-on-dark);
-  }
 }
 
 /* ============================================================
