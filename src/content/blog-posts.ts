@@ -11,9 +11,9 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'i-built-this-website-with-ai-heres-what-actually-happened',
     title: 'I Built This Website With AI. Here\'s What Actually Happened.',
-    excerpt: 'The honest version — bugs, broken deploys, missing skills, and what AI tooling can and can\'t do for a designer who\'s willing to stay in the loop.',
-    readTime: '9 min read',
-    publishedAt: '2026-06-21',
+    excerpt: 'Two builds, three AI models — Sonnet, Opus, and Fable — and the full-disclosure version of what each could and couldn\'t do for a designer who stays in the loop.',
+    readTime: '10 min read',
+    publishedAt: '2026-07-02',
     tags: ['AI & Design', 'Design Process', 'Personal'],
     theme: 'ai-in-design',
     draft: false,

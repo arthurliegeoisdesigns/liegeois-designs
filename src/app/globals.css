@@ -807,6 +807,199 @@ body {
   font-variant-numeric: tabular-nums;
 }
 
+/* --- WORK INDEX + FILTER CHIPS (Phase 6) --- */
+.work-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+  margin-top: clamp(32px, 4vw, 56px);
+}
+.work-filters { display: flex; gap: 8px; flex-wrap: wrap; }
+.work-view-toggle { display: flex; gap: 8px; }
+.work-filter {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.06em;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  border: 0.5px solid rgba(255, 253, 248, 0.18);
+  background: transparent;
+  color: var(--color-on-dark-muted);
+  cursor: pointer;
+  transition: color 250ms ease, border-color 250ms ease, background 250ms ease;
+}
+.work-filter sup {
+  font-size: 0.5625rem;
+  color: var(--color-accent);
+  margin-left: 3px;
+}
+.work-filter:hover { color: var(--color-on-dark); border-color: rgba(255, 253, 248, 0.4); }
+.work-filter.is-active {
+  color: var(--color-canvas);
+  background: var(--color-on-dark);
+  border-color: var(--color-on-dark);
+}
+.work-filter.is-active sup { color: var(--color-accent-hover); }
+
+.work-index { display: flex; flex-direction: column; }
+.work-index-row {
+  display: grid;
+  grid-template-columns: auto 1fr auto auto;
+  align-items: baseline;
+  gap: clamp(16px, 3vw, 40px);
+  padding: clamp(14px, 2vh, 22px) 0;
+  border-bottom: 0.5px solid rgba(255, 253, 248, 0.09);
+  text-decoration: none;
+}
+.work-index-num {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  color: var(--color-on-dark-faint);
+  transition: color 250ms ease;
+}
+.work-index-client {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(1.5rem, 3.4vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--color-on-dark);
+  transition: color 250ms ease, transform 350ms var(--ease-out-expo);
+  display: inline-block;
+}
+.work-index-meta {
+  display: flex;
+  gap: clamp(16px, 2vw, 32px);
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-faint);
+  white-space: nowrap;
+}
+.work-index-year { color: var(--color-on-dark-hint); }
+.work-index-row .work-index-row-arrow,
+.blog-ed-row-arrow {
+  font-family: var(--font-body);
+  color: var(--color-accent);
+  opacity: 0;
+  transform: translateX(-8px);
+  transition: opacity 250ms ease, transform 350ms var(--ease-out-expo);
+}
+.work-index-row:hover .work-index-num { color: var(--color-accent); }
+.work-index-row:hover .work-index-client {
+  color: var(--color-accent);
+  font-style: italic;
+  transform: translateX(10px);
+}
+@media (max-width: 720px) {
+  .work-index-row { grid-template-columns: auto 1fr; }
+  .work-index-meta { display: none; }
+}
+
+/* --- BLOG EDITORIAL FRONT (Phase 6) --- */
+.blog-ed-featured {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(24px, 4vw, 56px);
+  align-items: center;
+  text-decoration: none;
+  margin-bottom: clamp(56px, 8vw, 112px);
+}
+.blog-ed-featured-media {
+  position: relative;
+  display: block;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  border: 0.5px solid rgba(255, 253, 248, 0.14);
+}
+.blog-ed-featured-media img { transition: transform 900ms var(--ease-out-expo); }
+.blog-ed-featured:hover .blog-ed-featured-media img { transform: scale(1.04); }
+.blog-ed-featured-body { display: flex; flex-direction: column; gap: 18px; align-items: flex-start; }
+.blog-ed-featured-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(1.75rem, 3.6vw, 3.25rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: var(--color-on-dark);
+  transition: color 250ms ease;
+}
+.blog-ed-featured:hover .blog-ed-featured-title { color: var(--color-accent); }
+@media (max-width: 900px) {
+  .blog-ed-featured { grid-template-columns: 1fr; }
+}
+
+.blog-ed-strand { margin-bottom: clamp(48px, 7vw, 96px); }
+.blog-ed-strand > .eyebrow { margin: 0 0 8px; }
+.blog-ed-list { display: flex; flex-direction: column; margin-top: 16px; }
+.blog-ed-row {
+  display: grid;
+  grid-template-columns: 80px 1fr auto auto;
+  align-items: baseline;
+  gap: clamp(16px, 3vw, 40px);
+  padding: clamp(16px, 2.2vh, 24px) 0;
+  border-bottom: 0.5px solid rgba(255, 253, 248, 0.09);
+  text-decoration: none;
+}
+.blog-ed-row-date {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-faint);
+}
+.blog-ed-row-main { display: flex; flex-direction: column; gap: 6px; }
+.blog-ed-row-title {
+  font-family: var(--font-display);
+  font-weight: var(--font-display-weight, 200);
+  font-size: clamp(1.25rem, 2.4vw, 1.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.005em;
+  color: var(--color-on-dark);
+  transition: color 250ms ease;
+}
+.blog-ed-row:hover .blog-ed-row-title { color: var(--color-accent); }
+.blog-ed-row-excerpt {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: var(--color-on-dark-muted);
+  max-width: 640px;
+}
+.blog-ed-row-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  align-items: flex-end;
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-faint);
+  white-space: nowrap;
+}
+.blog-ed-row:hover .blog-ed-row-arrow { opacity: 1; transform: translateX(0); }
+.blog-ed-draft {
+  margin-left: 10px;
+  padding: 2px 8px;
+  border: 0.5px solid rgba(255, 253, 248, 0.25);
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-on-dark-muted);
+  vertical-align: middle;
+}
+@media (max-width: 720px) {
+  .blog-ed-row { grid-template-columns: 1fr; gap: 8px; }
+  .blog-ed-row-date, .blog-ed-row-meta { display: none; }
+}
+
 /* --- PAGE WIPE — route transition plate --- */
 .page-wipe {
   position: fixed;

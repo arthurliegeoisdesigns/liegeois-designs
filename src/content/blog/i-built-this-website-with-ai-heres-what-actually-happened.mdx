@@ -2,76 +2,52 @@ Instagram will tell you it takes three skills and an afternoon.
 
 It doesn't.
 
-I built this website — the one you're reading this on — using a stack of AI tools I'd never touched before, a Terminal window I kept open for weeks, and a steep learning curve I wasn't warned about. It took multiple sessions spread over several weeks. It involved real bugs, real confusion, and more than a few moments where I had absolutely no idea what I was doing.
+I built this website — the one you're reading this on — with AI. Then I rebuilt it, with a newer model, into the version you're looking at now. Two builds, three different AI models, a Terminal window I kept open for weeks, and a learning curve nobody warned me about.
 
-It also produced something I'm genuinely proud of. That's the honest version.
+This is the full-disclosure version, including which models did what, where they differ, and where every one of them needed a human in the room.
 
 ## Starting from zero
 
-Let me be clear about where I started: I am a designer, not a developer. I had never used most of the tools involved in this build. I didn't know what a CDN was in practice. I'd never pushed a commit from the command line. I didn't know GitHub Desktop was even a thing. The terminal was something I'd opened maybe twice in my life and immediately closed.
+I am a designer, not a developer. When the first build started, I had never pushed a commit, never opened GitHub Desktop, and treated the Terminal like a room in my house I didn't have keys to. I didn't know AI models had names, let alone that the choice between them mattered.
 
-The learning curve was steep. Not brutal — but steep. And the content creators who skip that part are doing you a real disservice.
+I know now. That knowledge cost me real money. More on that below.
 
-## What I actually used — and what each thing does
+## Build one: Opus, then Sonnet
 
-**Claude Cowork** is the AI workspace I used as the primary interface throughout the build. Think of it as a persistent creative director's assistant that can read and write files in your project, run commands, and maintain context across long sessions. It was the central nervous system of the whole operation.
+The first version of this site was built with Claude Opus and Claude Sonnet 4.6, working through Claude Cowork — an AI workspace that reads and writes the actual files in your project, runs commands, and keeps context across sessions.
 
-**Claude Code** is the underlying engine that handles the heavier technical work — reading and editing files, running terminal commands, managing the codebase. It's what makes Cowork capable of more than just conversation.
+Here's the embarrassing, useful truth about that build: I ran Opus — the most powerful, most expensive model in the lineup — for weeks, on tasks that didn't need it. Renaming files. Writing alt text. Routine fixes. When I finally tried Sonnet for that class of work, the results were essentially identical and the cost wasn't. Nobody tells you this either: model selection is a budget decision, and the default is rarely the right one.
 
-**Next.js** is the framework the website is built on — a tool for building fast, modern websites using React. I didn't choose it. Claude recommended it as the right foundation for what I wanted to build, and I trusted that.
+What both models did well: execute. Components, animations, deployment pipelines, a working blog — built in weeks, not months, without a developer on retainer. What both did less well: push back. They built what I asked for, quickly and competently, even when what I asked for wasn't the best idea available. The judgment stayed my job.
 
-**Vercel** is the platform that hosts the website and deploys it automatically. Every time I pushed a code update, Vercel rebuilt and published the site within minutes. I didn't configure this — I followed steps and watched it work.
+The bugs were real, too — vanishing logos traced to one line in a config file, twenty broken portfolio images, hours of debugging that no highlight reel will ever show you.
 
-**GitHub / GitHub Desktop** is how code gets saved and published. GitHub stores every version of your project. GitHub Desktop is a visual app that lets you push those updates without writing command-line instructions. I didn't know it existed until Claude told me to use it. It became the last step of almost every session: Claude finishes a task, I open GitHub Desktop, I push. Done.
+## Build two: Fable
 
-**Cloudinary** is a cloud service that stores and delivers images. Rather than hosting hundreds of megabytes of portfolio images on the website itself — which would make it slow — images live on Cloudinary's servers and load via a fast global network. Setting it up required uploading images via an API. I didn't write the script that did that. Claude did. I ran it.
+Months later I ran a full redesign with Claude Fable, and the difference wasn't speed. It was thoroughness.
 
-**Terminal** is the command-line interface on a Mac — a text-based window where you type instructions directly to your computer. I used it to run those scripts, install packages, and do things the visual interface couldn't. Every time I opened it I felt slightly out of my depth. By the end of the project, slightly less so.
+The redesign started with Fable auditing my existing site — every component, every file — and delivering thirty-six specific criticisms, several of them brutal. My accent color, it turned out, was literally set to black in the code. An accent the color of the background. It found that.
 
-## The plan I didn't have to write
+The working pattern changed, too. Where the earlier models executed my instructions, Fable ran a process: decision gates before build phases, trial fonts wired behind a keyboard toggle so I could compare two typefaces at full scale on my real homepage before buying either, three complete iterations on how sections flow into each other — because the first two worked technically and still felt wrong, and it rebuilt rather than defended them.
 
-Here's what surprised me most about working with Claude Cowork: I didn't have to figure out what to do next.
+Twice, a deep bug had the same invisible root cause — a single CSS property on a wrapper element quietly breaking everything pinned to the screen. Fable found it, fixed it, then wrote a warning into the code so no future session could reintroduce it. It migrated 229 images off a CDN I didn't control with a script I could rerun safely. When I said I wasn't a developer and needed instructions like a recipe, every terminal command after that came numbered, with what success should look like.
 
-At the start of the project, Claude generated a structured task list — every step needed to go from a blank Next.js project to a fully deployed website, in the right order, with the right dependencies. Dozens of tasks. I just had to follow them. When one was done, Claude marked it complete and we moved to the next.
+And when I asked whether to buy a four-font bundle, it read the foundry's licensing terms and told me the bundle was wrong for my use — two individual styles were enough. It argued me out of spending money. That was new.
 
-That sounds simple. It was transformative. One of the hardest parts of any solo project is knowing what to do next. That problem disappeared. I showed up, Claude had a plan, we executed.
+The honest caveat: thoroughness costs attention. Fable asks you to make real decisions, and there were moments I just wanted the thing built. If the earlier models were a fast studio team, this was a senior creative partner — and senior partners make you show up to the meeting.
 
-When I got stuck — which happened regularly — it didn't just answer the question. It explained what was happening and why, put the problem in context, and told me exactly what to do. When I had no idea what a terminal error meant, Claude translated it into plain English and fixed it. When I was completely lost, it got me back on track without making me feel like an idiot for not knowing.
+## What three models taught me about the work
 
-## The bugs. Oh, the bugs.
+The models differ. The job doesn't.
 
-This is where the "three skills and you're done" narrative falls apart completely.
+Every build, on every model, needed the same things from me: a clear brief, taste, and the willingness to say "technically correct, but wrong." The deck-stacking scroll effect Fable built me was executed flawlessly — and I killed it, because it didn't feel like my studio. The model's response was to ask better questions and build the next version. That loop — direction, execution, judgment, again — is the actual craft. The AI compresses everything except the judgment.
 
-**Logos that vanished after every deploy.** Every time I pushed an update to GitHub, my logo files disappeared from the live site. The site looked fine in development, broken in production. The cause: a single line in a configuration file was telling git to ignore the entire images folder, so those files never made it to the server. The fix was precise and surgical. Finding it took real debugging.
-
-**Twenty broken portfolio images.** The case study images on my portfolio pages were all returning errors — images I'd referenced in the code that were never actually uploaded to Cloudinary. Fixing it meant hunting through local folders, discovering one image was genuinely missing, finding a substitute, and uploading everything through the API script Claude had written. Not glamorous. Necessary.
-
-**A token problem I created myself.** Early in the project, I was using Claude Opus — the most powerful (and most expensive) model in the Claude lineup. I didn't know there were different models, or that the choice mattered. I burned through a significant amount of tokens doing things that didn't require that level of capability. When I finally switched to Claude Sonnet, the results were essentially the same. The lesson: understand your tools before you max them out.
-
-None of these problems were catastrophic. All of them required understanding what was happening, not just following instructions blindly.
-
-## What AI tooling actually is
-
-Not an autopilot. A capable collaborator that still needs a human in the loop.
-
-It executed faster than I could have imagined — components, animations, security configuration, analytics setup, all in a fraction of the time a traditional development engagement would take. It remembered the brief, applied it consistently, and caught things I would have missed.
-
-What it couldn't do: make decisions I hadn't thought through. Know which of my images were missing before I pointed it in that direction. Understand the broader strategic intent behind the project without me explaining it. The quality of the output was directly tied to the quality of my direction.
-
-The metaphor that stuck: I was the creative director. Claude was the most capable, fastest studio team I'd ever worked with. But the brief still came from me. The decisions still came from me. The judgment calls — what belonged, what to cut, what needed another pass — those were mine.
-
-## What it produced
-
-A Next.js site with a full design system, a horizontal-scroll services experience, a draggable image gallery with animations, a complete blog, case study pages, security configuration, analytics, and a deployment pipeline that auto-builds on every push to GitHub.
-
-In weeks, not months. Without a developer on retainer.
-
-That's real. I'm not hedging.
+So no, I don't think this replaces designers. I think it removes every excuse a designer ever had for not shipping.
 
 ## The honest verdict
 
-If you're a non-developer with no terminal experience and no familiarity with how websites are actually built, this will be harder than you've been told. There's a learning curve. You'll hit moments where you need to understand what's happening — not just copy and paste instructions. The tools are remarkable. They are not magic.
+If you're a non-developer, this will be harder than you've been told. There is a curve. You will sit with error messages. Budget for the learning, not just the subscription.
 
-If you're a designer with a clear vision and the willingness to stay in the loop, this is genuinely the most significant shift in what's possible for a solo creative. The gap between what you can imagine and what you can actually build has never been smaller.
+If you're a designer with a clear vision: the gap between what you can imagine and what you can ship has never been smaller. Pick the strongest model you can afford for the thinking, a cheaper one for the routine, and keep every decision that matters for yourself.
 
-But close isn't zero. And nobody on Instagram is talking about that part.
+Full disclosure, all the way down: Fable drafted this post from the logs of our own build sessions. I edited it, cut what didn't sound like me, and signed off on every claim. That division of labor is the entire story.

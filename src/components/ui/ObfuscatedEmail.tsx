@@ -14,7 +14,7 @@ export default function ObfuscatedEmail({ style }: { style?: React.CSSProperties
   useEffect(() => {
     // Split across variables so the full address never appears as a
     // literal string anywhere in the source or compiled output.
-    const user = 'arthur'
+    const user = 'hello' // routable alias — rotate in the email provider if spam ramps
     const domain = 'liegeoisdesigns'
     const tld = 'com'
     const email = `${user}@${domain}.${tld}`

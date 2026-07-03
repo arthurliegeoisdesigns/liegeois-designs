@@ -377,7 +377,7 @@ export default function ContactPage() {
                     LinkedIn ↗
                   </a>
                   <a
-                    href={`mailto:arthur@liegeoisdesigns.com`}
+                    href={`mailto:hello@liegeoisdesigns.com`}
                     className="btn-ghost"
                     style={{ fontSize: '0.8125rem' }}
                   >

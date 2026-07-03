@@ -63,11 +63,11 @@ const jsonLd = {
   sameAs: [
     'https://www.linkedin.com/in/aliegeois/',
   ],
-  email: 'arthur@liegeoisdesigns.com',
+  email: 'hello@liegeoisdesigns.com',
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
-    email: 'arthur@liegeoisdesigns.com',
+    email: 'hello@liegeoisdesigns.com',
     url: 'https://www.liegeoisdesigns.com/contact',
   },
 }

@@ -32,7 +32,7 @@ const faqSchema = {
       name: 'How much does a pitch deck designer cost?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Pitch deck design pricing varies based on scope, complexity, and the designer\'s experience. Boutique studios like Liégeois Designs typically work on a project basis. Contact us directly at arthur@liegeoisdesigns.com to discuss your project and get a tailored proposal.',
+        text: 'Pitch deck design pricing varies based on scope, complexity, and the designer\'s experience. Boutique studios like Liégeois Designs typically work on a project basis. Contact us directly at hello@liegeoisdesigns.com to discuss your project and get a tailored proposal.',
       },
     },
     {
