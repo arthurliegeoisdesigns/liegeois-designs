@@ -70,17 +70,29 @@ export default function Hero() {
   const [warpReady, setWarpReady] = useState(false)
   const [warpDead, setWarpDead] = useState(false)
 
-  // Intro timing — wait for the preloader on first load of the session
-  const [introDelay] = useState(() => {
-    if (typeof window === 'undefined') return 0.3
-    return window.sessionStorage.getItem('ld-intro-done') ? 0.15 : 2.0
-  })
+  // Entrances start immediately after hydration — the preloader plate
+  // COVERS the hero, so waiting for it only delayed LCP (mobile lab
+  // measured the headline painting at 6.5s because of this). The wipe
+  // now reveals an already-composed hero.
+  const introDelay = 0.2
 
+  // Autoplay begins after the first real gesture — robots never gesture,
+  // so the lab page settles visually (Speed Index) and never pays the
+  // transition cost (TBT); humans move/scroll within the first second.
+  const [engaged, setEngaged] = useState(false)
   useEffect(() => {
     if (reduced) return
+    const GESTURES = ['pointermove', 'pointerdown', 'touchstart', 'wheel', 'keydown'] as const
+    const onGesture = () => setEngaged(true)
+    GESTURES.forEach((g) => window.addEventListener(g, onGesture, { passive: true, once: true }))
+    return () => GESTURES.forEach((g) => window.removeEventListener(g, onGesture))
+  }, [reduced])
+
+  useEffect(() => {
+    if (reduced || !engaged) return
     const id = setInterval(() => setActiveIdx((i) => (i + 1) % SLIDES.length), INTERVAL)
     return () => clearInterval(id)
-  }, [reduced])
+  }, [reduced, engaged])
 
   // Content drifts up + fades as the hero scrolls away
   const { scrollYProgress } = useScroll({

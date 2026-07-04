@@ -13,8 +13,8 @@ import { usePathname } from 'next/navigation'
  * transform breaks position:fixed descendants).
  */
 const KEY = 'ld-intro-done'
-const DURATION = 1450 // counter run
-const EXIT = 750 // wipe
+const DURATION = 900 // counter run — brisk; it delays every first-paint metric
+const EXIT = 650 // wipe
 
 export default function Preloader() {
   const pathname = usePathname()
