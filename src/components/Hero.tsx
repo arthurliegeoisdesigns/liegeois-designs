@@ -187,11 +187,14 @@ export default function Hero() {
         <div className="hero-kinetic-lower">
           {/* Left: sub + CTAs */}
           <div style={{ maxWidth: '440px' }}>
+            {/* LCP element — starts VISIBLE (opacity 1) so the browser can
+                fire LCP on first paint; only the y-offset animates.
+                (Learned this twice now — do not add opacity here.) */}
             <motion.p
               className="type-body-lg"
               style={{ color: 'var(--color-on-dark-muted)', margin: '0 0 36px', lineHeight: 1.6 }}
-              initial={reduced ? false : { y: 14, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              initial={reduced ? false : { y: 14 }}
+              animate={{ y: 0 }}
               transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: introDelay + 0.4 }}
             >
               Pitch decks, keynotes, and executive presentations — for founders and brands with

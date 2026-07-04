@@ -56,7 +56,7 @@ export default function Blog() {
                   fill
                   priority
                   style={{ objectFit: 'cover', transition: 'transform 450ms var(--ease-out-expo)' }}
-                  sizes="(max-width: 720px) 100vw, 50vw"
+                  sizes="(max-width: 720px) 92vw, 31vw"
                   className="blog-card-cover"
                 />
               </div>
@@ -122,7 +122,7 @@ export default function Blog() {
                     alt={post.title}
                     fill
                     style={{ objectFit: 'cover', transition: 'transform 450ms var(--ease-out-expo)' }}
-                    sizes="(max-width: 720px) 100vw, 50vw"
+                    sizes="(max-width: 720px) 92vw, 31vw"
                     className="blog-card-cover"
                   />
                 </div>
