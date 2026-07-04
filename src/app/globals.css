@@ -173,7 +173,10 @@
 /* Sparse dust — depth specks drifting up, two layers */
 .world-dust {
   position: absolute;
-  inset: 0;
+  /* oversized so the transform drift never exposes an edge —
+     background-position animation was non-composited (main-thread
+     paints every frame, flagged by Lighthouse); transform is free */
+  inset: 0 -160px -660px 0;
   background-image:
     radial-gradient(1.3px 1.3px at 22% 34%, rgba(247, 240, 228, 0.5), transparent 100%),
     radial-gradient(1px 1px at 68% 12%, rgba(247, 240, 228, 0.36), transparent 100%),
@@ -187,8 +190,8 @@
   opacity: 0.65;
 }
 @keyframes dust-drift {
-  from { background-position: 0 0; }
-  to   { background-position: -140px -640px; }
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-140px, -640px, 0); }
 }
 
 /* Cursor spotlight — 800px soft warm light, positioned via JS transform */
