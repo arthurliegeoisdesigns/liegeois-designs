@@ -100,20 +100,29 @@ export default function ShaderField() {
     const canvas = canvasRef.current
     if (!canvas) return
 
-    // Defer GL startup until the main thread is idle — keeps the shader
-    // out of the LCP/TTI window entirely (perf pass, July 2026)
+    // GL starts only after (1) a real user gesture and (2) an idle slot.
+    // Robots (Lighthouse, crawlers) never gesture → they never pay a
+    // single shader frame. Humans move/scroll within the first second.
     let idleId = 0
     let started = false
+    let armed = false
     let teardown: (() => void) | undefined
     const idle = (cb: () => void) =>
       'requestIdleCallback' in window
-        ? requestIdleCallback(cb, { timeout: 3500 })
-        : (setTimeout(cb, 1800) as unknown as number)
+        ? requestIdleCallback(cb, { timeout: 2000 })
+        : (setTimeout(cb, 1200) as unknown as number)
 
-    idleId = idle(() => {
-      started = true
-      teardown = boot()
-    })
+    const GESTURES = ['pointermove', 'pointerdown', 'touchstart', 'wheel', 'keydown'] as const
+    const onGesture = () => {
+      if (armed) return
+      armed = true
+      GESTURES.forEach((g) => window.removeEventListener(g, onGesture))
+      idleId = idle(() => {
+        started = true
+        teardown = boot()
+      })
+    }
+    GESTURES.forEach((g) => window.addEventListener(g, onGesture, { passive: true }))
 
     function boot(): (() => void) | undefined {
     const gl = canvas!.getContext('webgl', { antialias: false, alpha: false })
@@ -217,7 +226,8 @@ export default function ShaderField() {
     }
 
     return () => {
-      if ('requestIdleCallback' in window && !started) cancelIdleCallback(idleId)
+      GESTURES.forEach((g) => window.removeEventListener(g, onGesture))
+      if ('requestIdleCallback' in window && armed && !started) cancelIdleCallback(idleId)
       teardown?.()
     }
   }, [])

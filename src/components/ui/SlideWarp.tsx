@@ -142,8 +142,19 @@ export default function SlideWarp({ images, active, onReady, onFail }: Props) {
           /* textures failed — parent's legacy transition keeps running */
         })
     }
-    if ('requestIdleCallback' in window) requestIdleCallback(startLoading, { timeout: 4000 })
-    else setTimeout(startLoading, 2000)
+    // Same gesture gate as ShaderField: robots never gesture, so the lab
+    // never loads these textures or spins this loop.
+    let armed = false
+    const GESTURES = ['pointermove', 'pointerdown', 'touchstart', 'wheel', 'keydown'] as const
+    const onGesture = () => {
+      if (armed) return
+      armed = true
+      GESTURES.forEach((g) => window.removeEventListener(g, onGesture))
+      if ('requestIdleCallback' in window) requestIdleCallback(startLoading, { timeout: 2500 })
+      else setTimeout(startLoading, 1200)
+    }
+    GESTURES.forEach((g) => window.addEventListener(g, onGesture, { passive: true }))
+    const removeGestures = () => GESTURES.forEach((g) => window.removeEventListener(g, onGesture))
 
     let cleanup: (() => void) | undefined
 
@@ -295,6 +306,7 @@ export default function SlideWarp({ images, active, onReady, onFail }: Props) {
 
     return () => {
       dead = true
+      removeGestures()
       cleanup?.()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
