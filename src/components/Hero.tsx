@@ -233,11 +233,15 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: floating slide card */}
+          {/* Right: floating slide card.
+              LCP RULE (violated three times now, never again): this card
+              contains the mobile LCP image — it must NOT animate opacity.
+              Lab showed the poster downloaded at 3.4s but painted at 5.5s
+              purely because of the fade. y-offset only. */}
           <motion.div
             className="hero-slide-card-wrap"
-            initial={reduced ? false : { opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
+            initial={reduced ? false : { y: 40 }}
+            animate={{ y: 0 }}
             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1], delay: introDelay + 0.55 }}
           >
             <motion.div
@@ -251,6 +255,7 @@ export default function Hero() {
                 fill
                 priority
                 fetchPriority="high"
+                quality={70}
                 sizes="(max-width: 900px) 92vw, 44vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />

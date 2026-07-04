@@ -95,11 +95,12 @@ export default function FeaturedWork() {
               {String(i + 1).padStart(2, '0')}
             </span>
             <span className="work-rail-media">
+              {/* No priority: the rail is far below the fold — preloading
+                  these stole slow-4G bandwidth from the hero LCP image */}
               <Image
                 src={cs.image}
                 alt={`${cs.client} — ${cs.project}`}
                 fill
-                priority={i < 2}
                 sizes="(max-width: 768px) 88vw, 58vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
                 draggable="false"

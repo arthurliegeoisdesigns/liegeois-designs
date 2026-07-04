@@ -50,11 +50,12 @@ export default function Blog() {
             {/* Image — fills left half */}
             {featured.coverImage && (
               <div className="blog-featured-image" style={{ overflow: 'hidden' }}>
+                {/* No priority — this section is thousands of pixels below
+                    the fold; preloading it competed with the hero LCP image */}
                 <Image
                   src={featured.coverImage}
                   alt={featured.title}
                   fill
-                  priority
                   style={{ objectFit: 'cover', transition: 'transform 450ms var(--ease-out-expo)' }}
                   sizes="(max-width: 720px) 92vw, 31vw"
                   className="blog-card-cover"
