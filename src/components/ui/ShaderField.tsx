@@ -79,6 +79,14 @@ attribute vec2 a_pos;
 void main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }
 `
 
+/** True when WebGL runs in software (Lighthouse/SwiftShader, VMs, weak
+ *  machines) — rendering shaders there burns CPU for nothing. */
+function isSoftwareGL(gl: WebGLRenderingContext): boolean {
+  const dbg = gl.getExtension('WEBGL_debug_renderer_info')
+  const renderer = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : ''
+  return /swiftshader|llvmpipe|software|basic render/i.test(renderer)
+}
+
 export default function ShaderField() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -86,8 +94,26 @@ export default function ShaderField() {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
     const canvas = canvasRef.current
     if (!canvas) return
-    const gl = canvas.getContext('webgl', { antialias: false, alpha: false })
+
+    // Defer GL startup until the main thread is idle — keeps the shader
+    // out of the LCP/TTI window entirely (perf pass, July 2026)
+    let idleId = 0
+    let started = false
+    let teardown: (() => void) | undefined
+    const idle = (cb: () => void) =>
+      'requestIdleCallback' in window
+        ? requestIdleCallback(cb, { timeout: 3500 })
+        : (setTimeout(cb, 1800) as unknown as number)
+
+    idleId = idle(() => {
+      started = true
+      teardown = boot()
+    })
+
+    function boot(): (() => void) | undefined {
+    const gl = canvas!.getContext('webgl', { antialias: false, alpha: false })
     if (!gl) return
+    if (isSoftwareGL(gl)) return // CSS atmosphere carries it instead
 
     function compile(type: number, src: string) {
       const s = gl!.createShader(type)!
@@ -141,13 +167,16 @@ export default function ShaderField() {
 
     let visible = true
     const io = new IntersectionObserver(([e]) => { visible = e.isIntersecting })
-    io.observe(canvas)
+    io.observe(canvas!)
 
     let raf = 0
+    let last = 0
     const t0 = performance.now()
     function frame(now: number) {
       raf = requestAnimationFrame(frame)
       if (!visible || document.hidden) return
+      if (now - last < 32) return // 30fps is plenty for ambient silk
+      last = now
       mx += (tx - mx) * 0.05
       my += (ty - my) * 0.05
       gl!.uniform2f(uRes, w, h)
@@ -162,7 +191,13 @@ export default function ShaderField() {
       io.disconnect()
       window.removeEventListener('resize', resize)
       window.removeEventListener('pointermove', onMove)
-      gl.getExtension('WEBGL_lose_context')?.loseContext()
+      gl!.getExtension('WEBGL_lose_context')?.loseContext()
+    }
+    }
+
+    return () => {
+      if ('requestIdleCallback' in window && !started) cancelIdleCallback(idleId)
+      teardown?.()
     }
   }, [])
 

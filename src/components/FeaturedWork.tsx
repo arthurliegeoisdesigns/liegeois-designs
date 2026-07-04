@@ -3,7 +3,7 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import { useRef, useEffect } from 'react'
-import { caseStudies } from '@/content/case-studies'
+import { featuredWork, TOTAL_PROJECTS } from '@/content/home-work'
 
 /**
  * FeaturedWork v2 — pinned horizontal gallery (Phase 3, audit rec 18).
@@ -14,10 +14,7 @@ import { caseStudies } from '@/content/case-studies'
  *
  * Reduced motion / no JS: normal vertical flow, cards stacked.
  */
-const featured = caseStudies
-  .filter((cs) => cs.featured)
-  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
-  .slice(0, 6)
+const featured = featuredWork
 
 export default function FeaturedWork() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -85,7 +82,7 @@ export default function FeaturedWork() {
             Work that changed the room.
           </h2>
           <Link href="/work" className="btn-text" style={{ fontSize: '0.9375rem', flexShrink: 0 }}>
-            All {caseStudies.length} projects →
+            All {TOTAL_PROJECTS} projects →
           </Link>
         </div>
       </div>
@@ -99,7 +96,7 @@ export default function FeaturedWork() {
             </span>
             <span className="work-rail-media">
               <Image
-                src={cs.images[0]}
+                src={cs.image}
                 alt={`${cs.client} — ${cs.project}`}
                 fill
                 priority={i < 2}
@@ -119,7 +116,7 @@ export default function FeaturedWork() {
         {/* End card → /work */}
         <Link href="/work" className="work-rail-card work-rail-endcard">
           <span className="work-rail-endcard-inner">
-            <em>All</em> {caseStudies.length} projects <span aria-hidden="true">→</span>
+            <em>All</em> {TOTAL_PROJECTS} projects <span aria-hidden="true">→</span>
           </span>
         </Link>
       </div>

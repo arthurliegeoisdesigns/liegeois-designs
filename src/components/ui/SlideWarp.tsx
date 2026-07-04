@@ -104,29 +104,39 @@ export default function SlideWarp({ images, active, onReady }: Props) {
     if (!canvas) return
     const gl = canvas.getContext('webgl', { antialias: false, alpha: false })
     if (!gl) return
+    // Software GL (Lighthouse, VMs, weak machines) → stay on the clip-wipe
+    {
+      const dbg = gl.getExtension('WEBGL_debug_renderer_info')
+      const renderer = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : ''
+      if (/swiftshader|llvmpipe|software|basic render/i.test(renderer)) return
+    }
 
     let dead = false
 
-    // ── load all textures first ──────────────────────────────
-    Promise.all(
-      images.map(
-        (src) =>
-          new Promise<HTMLImageElement>((resolve, reject) => {
-            const img = new window.Image()
-            img.crossOrigin = 'anonymous'
-            img.onload = () => resolve(img)
-            img.onerror = reject
-            img.src = src
-          }),
-      ),
-    )
-      .then((imgs) => {
-        if (dead) return
-        boot(imgs)
-      })
-      .catch(() => {
-        /* textures failed — parent's legacy transition keeps running */
-      })
+    // ── defer texture loading + GL startup until the thread is idle ──
+    const startLoading = () => {
+      Promise.all(
+        images.map(
+          (src) =>
+            new Promise<HTMLImageElement>((resolve, reject) => {
+              const img = new window.Image()
+              img.crossOrigin = 'anonymous'
+              img.onload = () => resolve(img)
+              img.onerror = reject
+              img.src = src
+            }),
+        ),
+      )
+        .then((imgs) => {
+          if (dead) return
+          boot(imgs)
+        })
+        .catch(() => {
+          /* textures failed — parent's legacy transition keeps running */
+        })
+    }
+    if ('requestIdleCallback' in window) requestIdleCallback(startLoading, { timeout: 4000 })
+    else setTimeout(startLoading, 2000)
 
     let cleanup: (() => void) | undefined
 
@@ -220,10 +230,14 @@ export default function SlideWarp({ images, active, onReady }: Props) {
       io.observe(canvas!)
 
       let raf = 0
+      let last = 0
       const t0 = performance.now()
       function frame(now: number) {
         raf = requestAnimationFrame(frame)
         if (!visible || document.hidden) return
+        // full 60fps only mid-transition; 30fps for the idle ripple
+        if (progress >= 1 && now - last < 32) return
+        last = now
         if (progress < 1) {
           const p = Math.min((now - animStart) / DUR, 1)
           progress = 1 - Math.pow(1 - p, 3) // ease-out-cubic

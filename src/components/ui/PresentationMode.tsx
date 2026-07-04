@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
-import { caseStudies } from '@/content/case-studies'
+import { featuredWork } from '@/content/home-work'
 import { testimonials } from '@/content/testimonials'
 import ObfuscatedEmail from '@/components/ui/ObfuscatedEmail'
 
@@ -14,10 +14,7 @@ import ObfuscatedEmail from '@/components/ui/ObfuscatedEmail'
  *
  * Lives in layout.tsx OUTSIDE .page-transition-wrapper (position:fixed).
  */
-const work = caseStudies
-  .filter((cs) => cs.featured)
-  .sort((a, b) => (a.order ?? 99) - (b.order ?? 99))
-  .slice(0, 3)
+const work = featuredWork.slice(0, 3)
 
 const quote = testimonials[0]
 
@@ -33,7 +30,7 @@ const SLIDES: Slide[] = [
   { kind: 'statement', eyebrow: 'THE BELIEF', line1: 'Story first.', line2: 'Pixels second.' },
   ...work.map((cs) => ({
     kind: 'work' as const,
-    image: cs.images[0],
+    image: cs.image,
     client: cs.client,
     project: cs.project,
   })),

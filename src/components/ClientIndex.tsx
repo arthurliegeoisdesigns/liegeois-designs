@@ -10,7 +10,7 @@ import {
   useReducedMotion,
 } from 'framer-motion'
 import { clients } from '@/content/clients'
-import { caseStudies } from '@/content/case-studies'
+import { workLiteBySlug } from '@/content/home-work'
 
 /**
  * ClientIndex — replaces the logo marquee (audit rec 22).
@@ -44,12 +44,12 @@ type Entry = {
 const entries: Entry[] = FEATURED_IDS.map((id) => {
   const client = clients.find((c) => c.id === id)
   const slug = STUDY_BY_CLIENT[id]
-  const study = slug ? caseStudies.find((cs) => cs.slug === slug) : undefined
+  const study = slug ? workLiteBySlug[slug] : undefined
   return {
     id,
     name: client?.name ?? id,
     slug: study?.slug,
-    image: study?.images?.[0],
+    image: study?.image,
     project: study?.project,
   }
 })

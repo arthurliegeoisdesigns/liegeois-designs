@@ -107,6 +107,10 @@ const nextConfig: NextConfig = {
     ]
   },
   images: {
+    // Cloudinary does all resizing via the custom loader — Vercel performs
+    // zero (metered) image transformations. See src/lib/cloudinary-loader.ts
+    loader: 'custom',
+    loaderFile: './src/lib/cloudinary-loader.ts',
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [390, 640, 750, 828, 1080, 1200, 1920],
     remotePatterns: [
