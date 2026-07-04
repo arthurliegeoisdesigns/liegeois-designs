@@ -12,7 +12,7 @@ export const testimonials: Testimonial[] = [
     author: 'Anya Pechko',
     title: 'Founder',
     company: 'Project Be',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe064aa511681fecd2352_Portrait_Anya.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-anya-38cdc9',
   },
   {
     id: 'testimonial-denise',
@@ -21,7 +21,7 @@ export const testimonials: Testimonial[] = [
     author: 'Denise Moses',
     title: 'Executive VP & Cofounder',
     company: 'Toddstreet',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe0d3545f5c48f252e970_Portrait_Denise.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-denise-21c7b8',
   },
   {
     id: 'testimonial-harley',
@@ -30,7 +30,7 @@ export const testimonials: Testimonial[] = [
     author: 'Harley Saftler',
     title: 'Global Director of Excellence',
     company: 'Ogilvy',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe0c5872f5ebc69080f33_Portrait-Harley.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-harley-21beaa',
   },
   {
     id: 'testimonial-ilana',
@@ -39,7 +39,7 @@ export const testimonials: Testimonial[] = [
     author: 'Ilana Bryant',
     title: 'Chief Intelligence Officer',
     company: 'Special Forces',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe0df94bc9837cd8c8272_Portrait-Ilana.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-ilana-f1fe93',
   },
   {
     id: 'testimonial-jessica',
@@ -48,7 +48,7 @@ export const testimonials: Testimonial[] = [
     author: 'Jessica D. Jones',
     title: 'Founder & CEO',
     company: 'Echo Society',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe0b9309025da5ab0a409_Portrait-Jessica-D-Jones.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-jessica-d-jones-019169',
   },
   {
     id: 'testimonial-jillian',
@@ -57,7 +57,7 @@ export const testimonials: Testimonial[] = [
     author: 'Jillian Breslin',
     title: 'Producer',
     company: 'RAPP',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe09ee882188801716a79_Portrait-Jillian.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-jillian-c4111b',
   },
   {
     id: 'testimonial-kristen',
@@ -66,7 +66,7 @@ export const testimonials: Testimonial[] = [
     author: 'Kristen Hartley',
     title: 'Director Global Content Marketing',
     company: 'Marriott International',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe10eeca1d8d229b108ec_Kristen%20Hartley.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/kristen-hartley-da058e',
   },
   {
     id: 'testimonial-liad',
@@ -75,7 +75,7 @@ export const testimonials: Testimonial[] = [
     author: 'Liad Amir',
     title: 'President',
     company: 'Sunrise Cellars',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68e03e0471197220e041e9f7_Portrait-Liad.jpg',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-liad-09d599',
   },
   {
     id: 'testimonial-peter',
@@ -84,7 +84,7 @@ export const testimonials: Testimonial[] = [
     author: 'Peter Desloge',
     title: 'Founder',
     company: 'Underpin',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe08baa5d491f1f3f617e_Portrait-Peter.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-peter-1d27f0',
   },
   {
     id: 'testimonial-tracy',
@@ -93,6 +93,6 @@ export const testimonials: Testimonial[] = [
     author: 'Tracy Redfern',
     title: 'Global Culture & People Ops',
     company: 'Bloomberg Media Group',
-    avatar: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68dfe0716d5cf4422daca83c_Portrait_Tracy.webp',
+    avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-tracy-77a7b4',
   },
 ]

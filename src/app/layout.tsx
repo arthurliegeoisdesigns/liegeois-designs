@@ -1,20 +1,18 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import './globals.css'
 import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
+import Grain from '@/components/ui/Grain'
+import WorldCanvas from '@/components/ui/WorldCanvas'
+import Preloader from '@/components/ui/Preloader'
+import PresentationMode from '@/components/ui/PresentationMode'
+import ParallaxFlow from '@/components/providers/ParallaxFlow'
+import ScrollReveals from '@/components/providers/ScrollReveals'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['300', '400', '500', '600'],
-  variable: '--font-body',
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.liegeoisdesigns.com'),
@@ -65,11 +63,11 @@ const jsonLd = {
   sameAs: [
     'https://www.linkedin.com/in/aliegeois/',
   ],
-  email: 'arthur@liegeoisdesigns.com',
+  email: 'hello@liegeoisdesigns.com',
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
-    email: 'arthur@liegeoisdesigns.com',
+    email: 'hello@liegeoisdesigns.com',
     url: 'https://www.liegeoisdesigns.com/contact',
   },
 }
@@ -78,13 +76,33 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={inter.variable}>
+    <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        <link rel="dns-prefetch" href="https://cdn.prod.website-files.com" />
-        <link rel="preconnect" href="https://cdn.prod.website-files.com" crossOrigin="anonymous" />
+        {/* Switzer (body) — served from Fontshare, free for commercial use */}
+        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+        <link
+          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap"
+          rel="stylesheet"
+        />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />
+        {/* Display face — preloaded so the Migra headline paints with first CSS */}
+        <link
+          rel="preload"
+          href="/fonts/pp/PPMigra-Extralight.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/pp/PPMigra-ExtralightItalic.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -99,8 +117,14 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        <WorldCanvas />
+        <Preloader />
+        <PresentationMode />
         <SmoothScrollProvider>
           <ClientOnlyLayer />
+          <ParallaxFlow />
+          <ScrollReveals />
+          <Grain />
           <a href="#main-content" className="skip-link">Skip to content</a>
           <Nav />
           <div id="main-content">

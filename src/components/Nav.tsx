@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useScroll, useMotionValueEvent, motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { useState, useEffect, useCallback } from 'react'
-import { links } from '@/lib/config'
 import { usePathname } from 'next/navigation'
 
 const navLinks = [
@@ -30,7 +29,9 @@ export default function Nav() {
   })
 
   useEffect(() => {
-    setMenuOpen(false)
+    // rAF defers the close out of the effect body (lint: no sync setState)
+    const raf = requestAnimationFrame(() => setMenuOpen(false))
+    return () => cancelAnimationFrame(raf)
   }, [pathname])
 
   useEffect(() => {
@@ -64,29 +65,13 @@ export default function Nav() {
           />
         </Link>
 
-        {/* Desktop links */}
+        {/* Right side: CTA + menu toggle (the overlay IS the nav — Phase 5) */}
         <div className="nav-items nav-desktop">
-          {navLinks.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className="nav-link"
-              style={{
-                color: pathname === link.href ? (scrolled ? 'var(--color-ink)' : 'var(--color-on-dark)') : undefined,
-              }}
-            >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            href="/contact"
-            className="nav-cta"
-          >
+          <Link href="/contact" className="nav-cta">
             Let&apos;s Talk
           </Link>
         </div>
 
-        {/* Mobile hamburger */}
         <button
           className="nav-hamburger"
           onClick={toggleMenu}
@@ -98,57 +83,57 @@ export default function Nav() {
         </button>
       </nav>
 
-      {/* Mobile menu overlay */}
+      {/* Full-screen overlay menu — giant type, indexed */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             className="nav-mobile-overlay"
             initial={reduced ? { opacity: 1 } : { opacity: 0 }}
             animate={{ opacity: 1 }}
-            exit={reduced ? { opacity: 0 } : { opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="nav-mobile-content">
               <motion.div
                 className="nav-mobile-links"
                 variants={reduced ? undefined : {
                   hidden: {},
-                  visible: { transition: { staggerChildren: 0.06, delayChildren: 0.1 } },
+                  visible: { transition: { staggerChildren: 0.07, delayChildren: 0.12 } },
                 }}
                 initial={reduced ? false : 'hidden'}
                 animate="visible"
               >
-                {navLinks.map((link) => (
+                {[...navLinks, { href: '/contact', label: 'Contact' }].map((link, i) => (
                   <motion.div
                     key={link.href}
                     variants={reduced ? undefined : {
-                      hidden: { opacity: 0, y: 20 },
-                      visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
+                      hidden: { opacity: 0, y: 34 },
+                      visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] } },
                     }}
                   >
                     <Link
                       href={link.href}
-                      className="nav-mobile-link"
+                      className={`nav-mobile-link${pathname === link.href ? ' is-active' : ''}`}
                       onClick={() => setMenuOpen(false)}
                     >
-                      {link.label}
+                      <span className="nav-menu-num" aria-hidden="true">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      <span className="nav-menu-label">{link.label}</span>
+                      <span className="nav-menu-arrow" aria-hidden="true">→</span>
                     </Link>
                   </motion.div>
                 ))}
-                <motion.div
-                  variants={reduced ? undefined : {
-                    hidden: { opacity: 0, y: 20 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } },
-                  }}
-                >
-                  <Link
-                    href="/contact"
-                    className="nav-mobile-cta"
-                    onClick={() => setMenuOpen(false)}
-                  >
-                    Let&apos;s Talk
-                  </Link>
-                </motion.div>
+              </motion.div>
+
+              <motion.div
+                className="nav-menu-meta"
+                initial={reduced ? false : { opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.5 }}
+              >
+                <span>Montclair, NJ — worldwide</span>
+                <span className="nav-menu-meta-hint">Press P to present</span>
               </motion.div>
             </div>
           </motion.div>

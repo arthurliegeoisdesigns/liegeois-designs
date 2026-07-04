@@ -23,7 +23,7 @@ const services = [
       { title: 'Handoff', detail: 'Final files and coaching notes for presenting' },
     ],
     timeline: '1–2 weeks',
-    image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be15b2139addb3912b6_683f46ba0845e65a13ecb3a3_6830b476a23481588a2f808f_Portfolio_Slides_RAPP-Evolus-Pitch-Deck_0007.jpeg',
+    image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-rapp-evolus-pitch-deck-0007-19640a',
     imageAlt: 'Evolus pitch deck — Liégeois Designs',
   },
   {
@@ -41,7 +41,7 @@ const services = [
       { title: 'Delivery', detail: 'All required formats and presenter notes' },
     ],
     timeline: '1–2 weeks',
-    image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55bdc74bd6bad20709672_683f46b683ae96a1c334fcb4_6830bafcc24aad0888102a9b_Fivestone%252520-%252520Chevron%2525201_1.jpeg',
+    image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/fivestone-20-20chevron-201-1-922e8d',
     imageAlt: 'Chevron executive presentation — Liégeois Designs',
   },
   {
@@ -59,7 +59,7 @@ const services = [
       { title: 'Handoff', detail: 'Team walkthrough included' },
     ],
     timeline: '1–3 weeks',
-    image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68b55be1473ae2fd117e5f13_683f46bad2c7f4eec55f8758_6830b0d200991d0e8d6cdabc_Portfolio_Slides_RAPP-Spectrum_0001.webp',
+    image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-rapp-spectrum-0001-4046a6',
     imageAlt: 'Spectrum × RAPP sales deck — Liégeois Designs',
   },
   {
@@ -77,7 +77,7 @@ const services = [
       { title: 'Presenter coaching', detail: 'How to deliver it, not just read it' },
     ],
     timeline: '2–4 weeks',
-    image: 'https://cdn.prod.website-files.com/68b0ab1a8e3edfd3ce5e46b9/68cae362b6f7edca9f846307_Marriott_The_Luxury_Group_Slide_1.avif',
+    image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/marriott-the-luxury-group-slide-1-c397f7',
     imageAlt: 'Marriott Luxury Group strategic narrative — Liégeois Designs',
   },
 ]
