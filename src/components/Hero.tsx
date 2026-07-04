@@ -65,8 +65,10 @@ export default function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
   const [activeIdx, setActiveIdx] = useState(0)
   // true once the WebGL displacement layer has textures + context ready;
-  // until then (or forever, if WebGL is unavailable) the clip-wipe runs
+  // until then (or forever, if WebGL is unavailable) the clip-wipe runs.
+  // warpDead: the frame-rate watchdog tripped — never remount the canvas.
   const [warpReady, setWarpReady] = useState(false)
+  const [warpDead, setWarpDead] = useState(false)
 
   // Intro timing — wait for the preloader on first load of the session
   const [introDelay] = useState(() => {
@@ -266,11 +268,15 @@ export default function Hero() {
 
               {/* WebGL displacement layer — melts slides into each other,
                   ripples around the cursor (Cloudinary CORS makes this legal) */}
-              {!reduced && (
+              {!reduced && !warpDead && (
                 <SlideWarp
                   images={SLIDES.map((s) => s.src)}
                   active={activeIdx}
                   onReady={() => setWarpReady(true)}
+                  onFail={() => {
+                    setWarpReady(false)
+                    setWarpDead(true)
+                  }}
                 />
               )}
 

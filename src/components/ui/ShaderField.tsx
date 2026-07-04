@@ -80,11 +80,16 @@ void main(){ gl_Position = vec4(a_pos, 0.0, 1.0); }
 `
 
 /** True when WebGL runs in software (Lighthouse/SwiftShader, VMs, weak
- *  machines) — rendering shaders there burns CPU for nothing. */
-function isSoftwareGL(gl: WebGLRenderingContext): boolean {
+ *  machines) — rendering shaders there burns CPU for nothing.
+ *  Newer Chrome exposes the real renderer on gl.RENDERER directly and may
+ *  omit the debug extension entirely — check both (learned the hard way:
+ *  the extension-only check silently passed on Lighthouse desktop). */
+export function isSoftwareGL(gl: WebGLRenderingContext): boolean {
   const dbg = gl.getExtension('WEBGL_debug_renderer_info')
-  const renderer = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : ''
-  return /swiftshader|llvmpipe|software|basic render/i.test(renderer)
+  const renderer = String(
+    (dbg && gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) || gl.getParameter(gl.RENDERER) || '',
+  )
+  return /swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer)
 }
 
 export default function ShaderField() {
@@ -171,12 +176,28 @@ export default function ShaderField() {
 
     let raf = 0
     let last = 0
+    // Watchdog: if real frame cadence can't hold ~11fps over the first
+    // 30 rendered frames, the GPU claim was a lie (or the device is
+    // struggling) — kill the shader, the CSS atmosphere takes over.
+    let wdFrames = 0
+    let wdSlow = 0
+    let wdPrev = 0
     const t0 = performance.now()
     function frame(now: number) {
       raf = requestAnimationFrame(frame)
       if (!visible || document.hidden) return
       if (now - last < 32) return // 30fps is plenty for ambient silk
       last = now
+      if (wdFrames < 30) {
+        if (wdPrev && now - wdPrev > 90) wdSlow++
+        wdPrev = now
+        wdFrames++
+        if (wdFrames === 30 && wdSlow > 10) {
+          canvas!.style.display = 'none'
+          cancelAnimationFrame(raf)
+          return
+        }
+      }
       mx += (tx - mx) * 0.05
       my += (ty - my) * 0.05
       gl!.uniform2f(uRes, w, h)

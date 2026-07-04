@@ -83,9 +83,12 @@ type Props = {
   images: string[]
   active: number
   onReady?: () => void
+  /** fired if the frame-rate watchdog trips — parent should restore its
+   *  non-WebGL transition */
+  onFail?: () => void
 }
 
-export default function SlideWarp({ images, active, onReady }: Props) {
+export default function SlideWarp({ images, active, onReady, onFail }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const activeRef = useRef(active)
   const apiRef = useRef<{ goTo: (i: number) => void } | null>(null)
@@ -104,11 +107,15 @@ export default function SlideWarp({ images, active, onReady }: Props) {
     if (!canvas) return
     const gl = canvas.getContext('webgl', { antialias: false, alpha: false })
     if (!gl) return
-    // Software GL (Lighthouse, VMs, weak machines) → stay on the clip-wipe
+    // Software GL (Lighthouse, VMs, weak machines) → stay on the clip-wipe.
+    // Checks debug extension AND plain gl.RENDERER (newer Chrome omits
+    // the extension — the old check silently passed on Lighthouse desktop).
     {
       const dbg = gl.getExtension('WEBGL_debug_renderer_info')
-      const renderer = dbg ? String(gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) : ''
-      if (/swiftshader|llvmpipe|software|basic render/i.test(renderer)) return
+      const renderer = String(
+        (dbg && gl.getParameter(dbg.UNMASKED_RENDERER_WEBGL)) || gl.getParameter(gl.RENDERER) || '',
+      )
+      if (/swiftshader|llvmpipe|softpipe|software|basic render/i.test(renderer)) return
     }
 
     let dead = false
@@ -231,6 +238,10 @@ export default function SlideWarp({ images, active, onReady }: Props) {
 
       let raf = 0
       let last = 0
+      // Frame-cadence watchdog — see ShaderField for rationale
+      let wdFrames = 0
+      let wdSlow = 0
+      let wdPrev = 0
       const t0 = performance.now()
       function frame(now: number) {
         raf = requestAnimationFrame(frame)
@@ -238,6 +249,17 @@ export default function SlideWarp({ images, active, onReady }: Props) {
         // full 60fps only mid-transition; 30fps for the idle ripple
         if (progress >= 1 && now - last < 32) return
         last = now
+        if (wdFrames < 30) {
+          if (wdPrev && now - wdPrev > 90) wdSlow++
+          wdPrev = now
+          wdFrames++
+          if (wdFrames === 30 && wdSlow > 10) {
+            canvas!.style.display = 'none'
+            cancelAnimationFrame(raf)
+            onFail?.()
+            return
+          }
+        }
         if (progress < 1) {
           const p = Math.min((now - animStart) / DUR, 1)
           progress = 1 - Math.pow(1 - p, 3) // ease-out-cubic
