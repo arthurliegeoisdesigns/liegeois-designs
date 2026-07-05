@@ -23,6 +23,9 @@ export default function FeaturedWork() {
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
+    // Mobile: no pin/horizontal scrub — vertical stack via CSS (Arthur's
+    // mobile review, July 2026: cards need generous vertical spacing)
+    if (window.matchMedia('(max-width: 768px)').matches) return
 
     let cancelled = false
     let cleanup: (() => void) | undefined

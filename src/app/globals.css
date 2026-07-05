@@ -1283,6 +1283,41 @@ body {
   .work-rail-card { width: 100%; }
 }
 
+/* ── Mobile pass (Arthur's review, July 2026) ── */
+@media (max-width: 768px) {
+  /* Work rail: vertical stack, generous breathing room */
+  .work-rail { min-height: 0; }
+  .work-rail-track {
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    row-gap: 56px;
+  }
+  .work-rail-card { width: 100%; }
+  .work-rail-index { font-size: 3rem; top: -0.55em; }
+  .work-rail-endcard { width: 100%; aspect-ratio: 16 / 7; }
+  .work-rail-progress { display: none; }
+
+  /* Legibility: secondary text was too dim on the dark canvas at
+     mobile sizes (About pillars & co.) */
+  .section-dark {
+    --color-text-secondary: #D8D3CB;
+    --color-text-muted: #C6C0B6;
+    --color-on-dark-muted: #D0CAC1;
+    --color-on-dark-faint: #B3ACA2;
+  }
+
+  /* Services page panels: title stays in view, content scrolls,
+     background image becomes ambient instead of cluttering */
+  .svc-panel {
+    justify-content: flex-start !important;
+    padding-top: 104px !important;
+    overflow-y: auto !important;
+  }
+  .svc-panel .type-display { font-size: clamp(2.4rem, 10vw, 3.4rem); }
+  .svc-panel-img { width: 100% !important; opacity: 0.22; }
+}
+
 /* --- CINEMATIC TESTIMONIALS --- */
 .testi-cine {
   min-height: 100vh;

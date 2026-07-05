@@ -410,6 +410,7 @@ export default function ServicesPage() {
           <div
             key={service.number}
             ref={(el) => { panelRefs.current[i] = el }}
+            className="svc-panel"
             style={{
               width: '100vw',
               height: '100dvh',
@@ -430,6 +431,7 @@ export default function ServicesPage() {
             {/* Work sample image — right side */}
             <div
               aria-hidden="true"
+              className="svc-panel-img"
               style={{ position: 'absolute', top: 0, right: 0, width: '52%', height: '100%', pointerEvents: 'none' }}
             >
               <Image
@@ -657,7 +659,7 @@ export default function ServicesPage() {
                       e.currentTarget.style.color = 'rgba(255,255,255,0.80)'
                     }}
                   >
-                    {services[i + 1].title} →
+                    <span style={{ opacity: 0.55 }}>Next service:</span> {services[i + 1].title} →
                   </button>
                 ) : (
                   <a
