@@ -18,7 +18,7 @@ export default function Blog() {
   const reduced = useReducedMotion()
 
   return (
-    <section className="section section-glow-top">
+    <section className="section section-glow-top light-passage light-passage-end">
       <div className="container">
 
         {/* Section header */}

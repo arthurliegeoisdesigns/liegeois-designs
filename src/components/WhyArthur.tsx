@@ -22,8 +22,7 @@ export default function WhyArthur() {
 
   return (
     <section
-      className="section section-dark"
-      style={{ borderTop: '0.5px solid var(--color-dark-border)' }}
+      className="section light-passage"
     >
       <div className="container">
 
@@ -35,7 +34,7 @@ export default function WhyArthur() {
             fontWeight: 500,
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
-            color: 'var(--color-on-dark-faint)',
+            color: 'var(--color-text-muted)',
             margin: '0 0 clamp(40px, 5vw, 64px)',
           }}
           initial={reduced ? false : { opacity: 0 }}
@@ -51,7 +50,7 @@ export default function WhyArthur() {
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 420px), 1fr))',
           gap: '0',
-          borderTop: '0.5px solid var(--color-dark-border)',
+          borderTop: '0.5px solid var(--color-border-mid)',
         }}>
           {blocks.map((block, i) => (
             <motion.div
@@ -60,7 +59,7 @@ export default function WhyArthur() {
                 padding: 'clamp(36px, 4.5vw, 60px) clamp(0px, 0vw, 0px)',
                 paddingRight: i === 0 ? 'clamp(32px, 5vw, 72px)' : '0',
                 paddingLeft: i === 1 ? 'clamp(32px, 5vw, 72px)' : '0',
-                borderLeft: i === 1 ? '0.5px solid var(--color-dark-border)' : 'none',
+                borderLeft: i === 1 ? '0.5px solid var(--color-border)' : 'none',
               }}
               initial={reduced ? false : { opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -82,7 +81,7 @@ export default function WhyArthur() {
               <h2
                 className="type-h2"
                 style={{
-                  color: 'var(--color-on-dark)',
+                  color: 'var(--color-text-primary)',
                   margin: '0 0 20px',
                   maxWidth: '420px',
                 }}
@@ -93,7 +92,7 @@ export default function WhyArthur() {
               <p
                 className="type-body"
                 style={{
-                  color: 'rgba(255,255,255,0.55)',
+                  color: 'var(--color-text-secondary)',
                   margin: 0,
                   maxWidth: '440px',
                   lineHeight: 1.7,

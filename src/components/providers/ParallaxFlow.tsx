@@ -46,6 +46,10 @@ export default function ParallaxFlow() {
 
       sections.forEach((s, i) => {
         if (i === 0) return // hero keeps its own world (image slideshow)
+        // Light passages (About → Blog) keep their bone surface and light
+        // tokens, and don't drift — drifting opaque sections would open
+        // dark seams between adjacent bone surfaces. See globals.css.
+        if (s.classList.contains('light-passage')) return
 
         const prevBg = s.style.background
         const hadDark = s.classList.contains('section-dark')
