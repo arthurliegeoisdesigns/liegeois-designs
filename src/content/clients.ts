@@ -60,14 +60,9 @@ export const clients: Client[] = [
     logo: '/images/logos/logo-jandj.svg',
   },
   {
-    id: 'moderna',
-    name: 'Moderna',
-    logo: '/images/logos/logo-moderna.svg',
-  },
-  {
-    id: 'lilly',
-    name: 'Lilly',
-    logo: '/images/logos/logo-lilly.svg',
+    id: 'iaa',
+    name: 'International Advertising Association',
+    logo: '/images/logos/logo-iaa.svg',
   },
   {
     id: 'intercept',
