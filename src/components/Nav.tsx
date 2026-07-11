@@ -55,8 +55,8 @@ export default function Nav() {
           <img
             src={scrolled ? '/images/logo-liegeois-dark.svg' : '/images/logo-liegeois-white.svg'}
             alt="Liégeois Designs"
-            width={124}
-            height={40}
+            width={156}
+            height={50}
             style={{
               objectFit: 'contain',
               display: 'block',

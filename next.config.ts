@@ -109,17 +109,13 @@ const nextConfig: NextConfig = {
   images: {
     // Cloudinary does all resizing via the custom loader — Vercel performs
     // zero (metered) image transformations. See src/lib/cloudinary-loader.ts
+    // remotePatterns intentionally ABSENT: declaring it keeps Vercel's edge
+    // optimizer armed for old cached /_next/image URLs, which kept billing
+    // transformations after launch (Arthur's second overage alert, July 2026).
     loader: 'custom',
     loaderFile: './src/lib/cloudinary-loader.ts',
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [390, 640, 750, 828, 1080, 1200, 1920],
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'res.cloudinary.com',
-        pathname: '/dryyhpqew/**',
-      },
-    ],
   },
 };
 

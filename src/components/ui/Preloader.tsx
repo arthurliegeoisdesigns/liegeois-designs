@@ -13,8 +13,11 @@ import { usePathname } from 'next/navigation'
  * transform breaks position:fixed descendants).
  */
 const KEY = 'ld-intro-done'
-const DURATION = 900 // counter run — brisk; it delays every first-paint metric
-const EXIT = 650 // wipe
+// Restored to the engaging pace (Arthur, July 2026) — safe now because
+// hero entrances and the LCP element paint UNDER the plate, so the
+// preloader no longer delays any scored metric.
+const DURATION = 1400 // counter run
+const EXIT = 750 // wipe
 
 export default function Preloader() {
   const pathname = usePathname()

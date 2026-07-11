@@ -520,30 +520,21 @@ export default function ServicesPage() {
                 </motion.p>
 
                 <motion.div
+                  className="svc-tabs-col"
                   style={{ minWidth: '220px', maxWidth: '300px' }}
                   animate={animatedPanels.has(i) ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                   transition={{ duration: 0.65, ease, delay: 0.14 }}
                 >
-                  {/* Tab switcher */}
-                  <div style={{ display: 'flex', gap: '16px', marginBottom: '12px' }}>
+                  {/* Tab switcher — the most important info on the page,
+                      sized like it (Arthur's UX review, July 2026) */}
+                  <div className="svc-tabs" role="tablist" aria-label="Service details">
                     {(['deliverables', 'process'] as const).map((tab) => (
                       <button
                         key={tab}
+                        role="tab"
+                        aria-selected={getTab(i) === tab}
+                        className={`svc-tab${getTab(i) === tab ? ' is-active' : ''}`}
                         onClick={() => setActiveTabs(prev => ({ ...prev, [i]: tab }))}
-                        style={{
-                          background: 'transparent',
-                          border: 'none',
-                          padding: '0 0 6px',
-                          cursor: 'pointer',
-                          fontFamily: 'var(--font-body)',
-                          fontSize: '0.5625rem',
-                          fontWeight: 400,
-                          letterSpacing: '0.16em',
-                          textTransform: 'uppercase',
-                          color: getTab(i) === tab ? 'var(--color-on-dark)' : 'var(--color-on-dark-faint)',
-                          borderBottom: getTab(i) === tab ? '1px solid var(--color-on-dark)' : '1px solid transparent',
-                          transition: 'color 200ms ease, border-color 200ms ease',
-                        }}
                       >
                         {tab === 'deliverables' ? 'Deliverables' : 'Process'}
                       </button>
