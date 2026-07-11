@@ -77,6 +77,9 @@ const nextConfig: NextConfig = {
       { source: '/portfolio', has: [{ type: 'query', key: '23a11da0_page' }], destination: '/work', permanent: true },
       // ── All remaining /portfolio/* → /work ───────────────────────────────
       { source: '/portfolio/:slug*', destination: '/work', permanent: true },
+      // ── Retired blog posts (Arthur's curation, July 2026) → /blog ────────
+      { source: '/blog/how-ai-makes-creative-direction-more-valuable', destination: '/blog', permanent: true },
+      { source: '/blog/the-limits-of-perfection', destination: '/blog', permanent: true },
       // ── Old Webflow blog imported items → /blog ──────────────────────────
       { source: '/blog/imported-item-24',   destination: '/blog', permanent: true },
       { source: '/blog/imported-item-30',   destination: '/blog', permanent: true },
