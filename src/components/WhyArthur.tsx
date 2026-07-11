@@ -22,7 +22,7 @@ export default function WhyArthur() {
 
   return (
     <section
-      className="section light-passage"
+      className="section"
     >
       <div className="container">
 

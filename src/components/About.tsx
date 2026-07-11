@@ -33,8 +33,8 @@ export default function About() {
   return (
     <section
       id="about"
-      className="section light-passage light-passage-start"
-      style={{ overflow: 'hidden' }}
+      className="section"
+      style={{ position: 'relative', overflow: 'hidden' }}
     >
       <div className="container" style={{ position: 'relative', zIndex: 1 }}>
 

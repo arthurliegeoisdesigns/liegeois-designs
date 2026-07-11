@@ -23,6 +23,23 @@ export const testimonials: Testimonial[] = [
     company: 'Toddstreet',
     avatar: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portrait-denise-21c7b8',
   },
+  // ── Apple engagement, July 2026 — presenters chose to stay anonymous ──
+  {
+    id: 'testimonial-apple-1',
+    quote:
+      "I can't believe it's possible to make this topic visually exciting!",
+    author: 'Anonymous',
+    title: 'Presenter',
+    company: 'Apple',
+  },
+  {
+    id: 'testimonial-apple-2',
+    quote:
+      "I've been getting so many compliments — not just for my presentation, but for the entire deck. People keep asking, 'Who did those? They're so well done, so well aligned together.' What they did was really amazing.",
+    author: 'Anonymous',
+    title: 'Presenter',
+    company: 'Apple',
+  },
   {
     id: 'testimonial-harley',
     quote:

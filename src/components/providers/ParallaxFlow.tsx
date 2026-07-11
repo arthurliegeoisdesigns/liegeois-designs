@@ -46,10 +46,6 @@ export default function ParallaxFlow() {
 
       sections.forEach((s, i) => {
         if (i === 0) return // hero keeps its own world (image slideshow)
-        // Light passages (About → Blog) keep their bone surface and light
-        // tokens, and don't drift — drifting opaque sections would open
-        // dark seams between adjacent bone surfaces. See globals.css.
-        if (s.classList.contains('light-passage')) return
 
         const prevBg = s.style.background
         const hadDark = s.classList.contains('section-dark')
@@ -87,6 +83,28 @@ export default function ParallaxFlow() {
         )
         if (tween.scrollTrigger) triggers.push(tween.scrollTrigger)
       })
+
+      // The light sheet (bone paper carrying About → Blog) drifts gently
+      // as ONE element — no seams possible. It contains no fixed or
+      // pinned descendants, so the transform is safe.
+      const sheet = document.querySelector<HTMLElement>('.light-sheet')
+      if (sheet) {
+        const tween = gsap.fromTo(
+          sheet,
+          { y: 60 },
+          {
+            y: -60,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: sheet,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.4,
+            },
+          },
+        )
+        if (tween.scrollTrigger) triggers.push(tween.scrollTrigger)
+      }
 
       cleanup = () => {
         triggers.forEach((t) => t.kill())

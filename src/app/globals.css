@@ -2345,48 +2345,37 @@ footer {
 }
 
 /* ============================================================
-   LIGHT PASSAGES — the middle chapters (About → WhyArthur → Blog)
-   surface on bone while the world around them stays dark.
-   (Arthur, July 2026: all-black felt overwhelming — this restores
-   the light/dark rhythm without losing the one-world atmosphere.)
+   LIGHT SHEET — the middle chapters (About → WhyArthur → Blog)
+   ride on one continuous bone "paper sheet" floating over the
+   dark world. Crisp edges, large radius, dark canvas breathing
+   around it — no gradient dissolves (Arthur, July 2026: fades
+   read amateurish; Awwwards pattern is the confident cut —
+   see Montfort, Dropbox Brand, The Line Studio).
 
-   ParallaxFlow SKIPS these sections entirely: they keep this
-   surface, never receive .section-dark, and never drift — drifting
-   opaque sections would open dark seams between adjacent bone
-   surfaces. Default :root tokens are already the light set.
+   The wrapper takes these sections out of ParallaxFlow's
+   `main > section` query, so they keep the default light tokens
+   and their bone surface. The sheet drifts as ONE element in
+   ParallaxFlow (no seams possible).
    ============================================================ */
-.light-passage {
-  background: var(--color-paper);
+.light-sheet {
   position: relative;
   z-index: 1; /* above drifting transparent dark sections */
+  background: var(--color-paper);
+  border-radius: clamp(20px, 3vw, 44px);
+  margin-inline: clamp(10px, 1.4vw, 24px);
+  /* chapter breaks — pure dark world before and after the sheet */
+  margin-block: clamp(64px, 10vh, 140px);
+  overflow: clip;
 }
-/* Soft ramp INTO the light — dark canvas dissolves into bone */
-.light-passage-start {
-  background: linear-gradient(
-    to bottom,
-    rgba(244, 241, 236, 0) 0,
-    var(--color-paper) clamp(140px, 16vh, 220px)
-  );
-  padding-top: calc(var(--section-pad-y) + clamp(56px, 7vh, 96px));
-}
-/* Soft ramp OUT — bone dissolves back into the dark world */
-.light-passage-end {
-  background: linear-gradient(
-    to bottom,
-    var(--color-paper) calc(100% - clamp(140px, 16vh, 220px)),
-    rgba(244, 241, 236, 0) 100%
-  );
-  padding-bottom: calc(var(--section-pad-y) + clamp(56px, 7vh, 96px));
-}
-/* Faint warm wash so the passage feels lit, not flat */
-.light-passage::after {
+/* Faint warm wash so the sheet feels lit, not flat */
+.light-sheet::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(90% 60% at 70% 20%, rgba(232, 68, 32, 0.035), transparent 70%);
+  background: radial-gradient(90% 60% at 70% 12%, rgba(232, 68, 32, 0.035), transparent 70%);
   pointer-events: none;
 }
-.light-passage > * { position: relative; z-index: 1; }
+.light-sheet > * { position: relative; z-index: 1; }
 
 /* ── Section separator ── */
 .section-glow-top {

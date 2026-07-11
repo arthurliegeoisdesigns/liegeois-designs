@@ -108,9 +108,15 @@ export default function Home() {
         <ClientIndex />
         <FeaturedWork />
         <Services />
-        <About />
-        <WhyArthur />
-        <Blog />
+        {/* Light passage — one bone "paper sheet" floating over the dark
+            world (crisp edges, no gradient — Awwwards pattern, July 2026).
+            Wrapping in a div removes these from ParallaxFlow's
+            `main > section` query, so they keep the light theme. */}
+        <div className="light-sheet">
+          <About />
+          <WhyArthur />
+          <Blog />
+        </div>
         <Testimonials />
         <CTA />
       </main>
