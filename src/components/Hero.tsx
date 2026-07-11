@@ -31,24 +31,24 @@ const SLIDES = [
     client: 'Chevron',
   },
   {
-    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-projectbe-digital-wellness-conference-0002-2291f7',
-    alt: 'Project Be wellness keynote',
-    client: 'Project Be',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/chevron-01',
+    alt: 'Chevron New Energies — Today is Foundational campaign slide',
+    client: 'Chevron',
   },
   {
-    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/marriott-the-luxury-group-slide-1-c397f7',
-    alt: 'Marriott Luxury Group presentation',
-    client: 'Marriott',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/norigami-deck-slide-1-426866',
+    alt: 'Norigami investor deck opening slide',
+    client: 'Norigami',
   },
   {
-    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/221114-echo-society-show-009-001-12c35c',
-    alt: 'Echo Society event design',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-echo-society-pitch-deck-0001-51d816',
+    alt: 'Echo Society pitch deck title slide',
     client: 'Echo Society',
   },
   {
-    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-philips-experience-intro-0001-052b0f',
-    alt: 'Philips experience presentation',
-    client: 'Philips',
+    src: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-ibm-quantum-summit-0001-1ddb8b',
+    alt: 'IBM Quantum Summit keynote title slide',
+    client: 'IBM',
   },
 ]
 
