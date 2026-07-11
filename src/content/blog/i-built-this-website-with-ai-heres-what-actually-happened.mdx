@@ -2,52 +2,48 @@ Instagram will tell you it takes three skills and an afternoon.
 
 It doesn't.
 
-I built this website — the one you're reading this on — with AI. Then I rebuilt it, with a newer model, into the version you're looking at now. Two builds, three different AI models, a Terminal window I kept open for weeks, and a learning curve nobody warned me about.
+I built this website with AI — twice, actually — and I want to tell you what that was really like for someone who is a designer, not a developer. Not the highlight reel. The part where I sat in the dark, stabbing at things, waiting for something to work.
 
-This is the full-disclosure version, including which models did what, where they differ, and where every one of them needed a human in the room.
+## Where I started
 
-## Starting from zero
+Let me be precise about my starting point. I had opened the Terminal maybe twice in my life, and closed it quickly both times. I didn't know GitHub Desktop existed. I didn't know what a deploy was. I did not know AI models had names, let alone that choosing between them was a decision with a price tag.
 
-I am a designer, not a developer. When the first build started, I had never pushed a commit, never opened GitHub Desktop, and treated the Terminal like a room in my house I didn't have keys to. I didn't know AI models had names, let alone that the choice between them mattered.
+What I had: twenty years of visual storytelling, a clear picture of the site I wanted, and the naive confidence of someone who'd watched too many "I built this in a weekend" videos.
 
-I know now. That knowledge cost me real money. More on that below.
+## Stabbing in the dark
 
-## Build one: Opus, then Sonnet
+Nobody tells you how much of this is trial and error. My repository still contains the fossils of everything I tried: skill packs with names like UI/UX Pro Max, Taste, Impeccable — five different "design taste" plugins from strangers on GitHub, installed in the hope that aesthetic judgment was something you could download. Folders named `.impeccable` and `.agents` sit in my project to this day, like tools left behind by a previous civilization.
 
-The first version of this site was built with Claude Opus and Claude Sonnet 4.6, working through Claude Cowork — an AI workspace that reads and writes the actual files in your project, runs commands, and keeps context across sessions.
+Some of it helped. Most of it was me in a dark room, patting the walls for a light switch. Connectors that needed keys. Keys that needed rotating because I'd pasted them somewhere I shouldn't. Extensions, agents, hooks — each one a small vocabulary lesson I didn't know I'd signed up for.
 
-Here's the embarrassing, useful truth about that build: I ran Opus — the most powerful, most expensive model in the lineup — for weeks, on tasks that didn't need it. Renaming files. Writing alt text. Routine fixes. When I finally tried Sonnet for that class of work, the results were essentially identical and the cost wasn't. Nobody tells you this either: model selection is a budget decision, and the default is rarely the right one.
+## The vocabulary tax
 
-What both models did well: execute. Components, animations, deployment pipelines, a working blog — built in weeks, not months, without a developer on retainer. What both did less well: push back. They built what I asked for, quickly and competently, even when what I asked for wasn't the best idea available. The judgment stayed my job.
+The real learning curve wasn't design or even code. It was the invisible plumbing between me and a live website: Vercel, Next.js, Turbopack — words that meant nothing to me and stood between me and everything.
 
-The bugs were real, too — vanishing logos traced to one line in a config file, twenty broken portfolio images, hours of debugging that no highlight reel will ever show you.
+Concrete examples, because vague complaints help no one. My logos vanished from the live site after every update — the cause was one line in a configuration file telling the system to ignore my images folder. A performance test once scored a login page instead of my website, because my testing link was pointing at a locked door. Another night I spent an hour convinced my fixes were making everything *worse* — the truth was that my bookmarked link was a frozen snapshot of an old version, because it turns out there are three different kinds of URL for the same website, and nobody tells you that either. My development server simply died one afternoon after a few hundred edits, and I diagnosed it the way I diagnose everything now: by asking.
 
-## Build two: Fable
+None of these were disasters. All of them cost an evening. That's the tax.
 
-Months later I ran a full redesign with Claude Fable, and the difference wasn't speed. It was thoroughness.
+## The model maze
 
-The redesign started with Fable auditing my existing site — every component, every file — and delivering thirty-six specific criticisms, several of them brutal. My accent color, it turned out, was literally set to black in the code. An accent the color of the background. It found that.
+Here's the expensive lesson. When I started, I ran everything on Claude Opus — the most powerful, most costly model — for weeks, on tasks like renaming files. I didn't know there was a menu. When I finally tried Sonnet, the results were the same and the bill wasn't.
 
-The working pattern changed, too. Where the earlier models executed my instructions, Fable ran a process: decision gates before build phases, trial fonts wired behind a keyboard toggle so I could compare two typefaces at full scale on my real homepage before buying either, three complete iterations on how sections flow into each other — because the first two worked technically and still felt wrong, and it rebuilt rather than defended them.
+Then came Fable, and the difference wasn't speed — it was being questioned. Audited. Argued out of buying a font bundle I didn't need. But learning *which* intelligence fits *which* task took me months and real money, and that trial-and-error is the part no tutorial covers: the most important setting in the whole stack is the one nobody explains.
 
-Twice, a deep bug had the same invisible root cause — a single CSS property on a wrapper element quietly breaking everything pinned to the screen. Fable found it, fixed it, then wrote a warning into the code so no future session could reintroduce it. It migrated 229 images off a CDN I didn't control with a script I could rerun safely. When I said I wasn't a developer and needed instructions like a recipe, every terminal command after that came numbered, with what success should look like.
+## What the wasted time bought
 
-And when I asked whether to buy a four-font bundle, it read the foundry's licensing terms and told me the bundle was wrong for my use — two individual styles were enough. It argued me out of spending money. That was new.
+Here's the turn I didn't expect. All that fumbling taught me the only skill that actually matters in this new way of working: knowing what to reject.
 
-The honest caveat: thoroughness costs attention. Fable asks you to make real decisions, and there were moments I just wanted the thing built. If the earlier models were a fast studio team, this was a senior creative partner — and senior partners make you show up to the meeting.
+The AI built me a scroll effect where sections stacked like cards. Technically flawless. I killed it — it didn't feel like my studio. It built a cinematic wipe. Killed that too. The third version — one continuous atmosphere the whole site floats on — is the one you're scrolling right now. The machine executed all three; the taste I'd tried to download from GitHub turned out to be the one thing that was mine all along.
 
-## What three models taught me about the work
-
-The models differ. The job doesn't.
-
-Every build, on every model, needed the same things from me: a clear brief, taste, and the willingness to say "technically correct, but wrong." The deck-stacking scroll effect Fable built me was executed flawlessly — and I killed it, because it didn't feel like my studio. The model's response was to ask better questions and build the next version. That loop — direction, execution, judgment, again — is the actual craft. The AI compresses everything except the judgment.
-
-So no, I don't think this replaces designers. I think it removes every excuse a designer ever had for not shipping.
+That's what the dark room teaches you. Not the tools — those change monthly. It teaches you what your own judgment sounds like when everything else is automated.
 
 ## The honest verdict
 
-If you're a non-developer, this will be harder than you've been told. There is a curve. You will sit with error messages. Budget for the learning, not just the subscription.
+If you're a non-developer: this will be harder and slower than anyone admits. Budget for frustration the way you budget for the subscription. You will waste evenings on plumbing. You will pay the vocabulary tax, and the model tax, in full.
 
-If you're a designer with a clear vision: the gap between what you can imagine and what you can ship has never been smaller. Pick the strongest model you can afford for the thinking, a cheaper one for the routine, and keep every decision that matters for yourself.
+And then — genuinely — the gap between what you can imagine and what you can ship gets smaller than it has ever been in the history of our craft. I have a website with hand-written WebGL and a hidden presentation mode, built without a developer on retainer, by a person who was afraid of the Terminal in April.
 
-Full disclosure, all the way down: Fable drafted this post from the logs of our own build sessions. I edited it, cut what didn't sound like me, and signed off on every claim. That division of labor is the entire story.
+Close isn't zero. But I've stopped stabbing in the dark. Now I just work there, and the light comes on when I say so.
+
+*Disclosure, kept honest: an AI drafted this from the logs of our sessions, and I rewrote it until it sounded like the person who lived it.*
