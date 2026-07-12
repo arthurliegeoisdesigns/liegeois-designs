@@ -22,7 +22,7 @@ import { workLiteBySlug } from '@/content/home-work'
 
 const FEATURED_IDS = [
   'chevron', 'google', 'apple', 'ibm', 'bloomberg', 'philips',
-  'jandj', 'iaa', 'marriott', 'ogilvy', 'mastercard',
+  'jandj', 'iaa', 'marriott', 'ogilvy', 'rapp', 'mastercard',
 ]
 
 /** client id → case study slug (only where a study exists) */
@@ -32,6 +32,7 @@ const STUDY_BY_CLIENT: Record<string, string> = {
   philips: 'philips-healthcare',
   jandj: 'mcs-healthcare-jandj',
   iaa: 'international-advertising-association',
+  rapp: 'rapp-opmg',
 }
 
 type Entry = {

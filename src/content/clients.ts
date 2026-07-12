@@ -56,7 +56,7 @@ export const clients: Client[] = [
   },
   {
     id: 'jandj',
-    name: 'Johnson & Johnson',
+    name: 'J&J',
     logo: '/images/logos/logo-jandj.svg',
   },
   {
