@@ -45,7 +45,9 @@ export default function ParallaxFlow() {
       const triggers: ScrollTrigger[] = []
 
       sections.forEach((s, i) => {
-        if (i === 0) return // hero keeps its own world (image slideshow)
+        // NOTE: the journey hero's sections live inside .jn-journey (a div),
+        // so they never appear in this list — every matched section here is
+        // a post-journey chapter and gets the full canvas treatment.
 
         const prevBg = s.style.background
         const hadDark = s.classList.contains('section-dark')

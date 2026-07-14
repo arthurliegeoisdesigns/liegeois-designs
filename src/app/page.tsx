@@ -1,4 +1,4 @@
-import Hero from '@/components/Hero'
+import JourneyHero from '@/components/JourneyHero'
 import ClientIndex from '@/components/ClientIndex'
 import FeaturedWork from '@/components/FeaturedWork'
 import Services from '@/components/Services'
@@ -104,7 +104,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }}
       />
       <main>
-        <Hero />
+        {/* The journey IS the hero (v3, July 2026). Its sections live in a
+            div, so ParallaxFlow's `main > section` query ignores them. */}
+        <JourneyHero />
         <ClientIndex />
         <FeaturedWork />
         <Services />

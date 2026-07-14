@@ -2477,3 +2477,256 @@ footer {
   .hero-scanline::after { animation: none; display: none; }
   .glass-card { backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
+
+/* ============================================================
+   JOURNEY HERO — "Scroll to present." (Hero v3, July 2026)
+   Scenes 0–4 + wormhole canvas. Sections live inside .jn-journey
+   (a div), so ParallaxFlow's `main > section` query ignores them.
+   LCP RULE: .jn-s0 h1 never animates opacity at load.
+   ============================================================ */
+.jn-journey { position: relative; }
+.jn-vortex {
+  position: fixed; inset: 0; width: 100%; height: 100%;
+  z-index: 0; pointer-events: none;
+}
+.jn-deck-frame {
+  position: fixed; z-index: 40; pointer-events: none;
+  inset: clamp(14px, 2.2vw, 30px);
+  border: 0.5px solid rgba(247, 240, 228, 0.16);
+}
+.jn-slide-no {
+  position: absolute; right: 18px; bottom: 12px;
+  font-size: 0.625rem; letter-spacing: 0.18em;
+  color: rgba(247, 240, 228, 0.38); text-transform: uppercase;
+}
+.jn-eyebrow {
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em;
+  text-transform: uppercase; color: rgba(247, 240, 228, 0.38);
+  line-height: 1.4;
+}
+.jn-scene { position: relative; height: 100vh; height: 100dvh; overflow: hidden; }
+.jn-pinner { height: 100vh; height: 100dvh; width: 100%; position: relative; overflow: hidden; }
+.jn-journey section { position: relative; z-index: 1; }
+
+/* ── SCENE 0 ── */
+.jn-s0-center {
+  height: 100%; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 26px; text-align: center;
+  position: relative; z-index: 1;
+}
+.jn-s0 h1 {
+  font-family: var(--font-display); font-weight: var(--font-display-weight, 200);
+  font-size: clamp(3rem, 9vw, 8.2rem); line-height: 0.98;
+  letter-spacing: -0.015em; color: var(--color-on-dark); margin: 0;
+}
+.jn-s0 h1 em { font-style: italic; }
+.jn-mark { display: block; margin-bottom: 6px; opacity: 0.92; }
+.jn-cue {
+  position: absolute; bottom: 7vh; left: 50%; transform: translateX(-50%);
+  display: flex; flex-direction: column; align-items: center; gap: 10px; z-index: 1;
+}
+.jn-cue-line {
+  width: 0.5px; height: 44px; background: rgba(247, 240, 228, 0.38);
+  overflow: hidden; position: relative; display: block;
+}
+.jn-cue-line::after {
+  content: ''; position: absolute; left: 0; top: -100%; width: 100%; height: 100%;
+  background: var(--color-accent); animation: jn-drop 1.8s var(--ease-out-expo) infinite;
+}
+@keyframes jn-drop { 0% { top: -100% } 60%, 100% { top: 100% } }
+.jn-skip {
+  position: absolute; right: clamp(24px, 3.5vw, 48px); bottom: 5vh; z-index: 2;
+  background: none; border: none; cursor: pointer;
+  font-family: var(--font-body); font-size: 0.6875rem; letter-spacing: 0.18em;
+  text-transform: uppercase; color: rgba(247, 240, 228, 0.38);
+  transition: color 250ms ease; padding: 8px;
+}
+.jn-skip:hover { color: var(--color-on-dark); }
+
+/* ── SCENE 1 — THE SEQUENCE ── */
+.jn-tunnel { position: absolute; inset: 0; z-index: 1; }
+.jn-seq-slide {
+  position: absolute; left: 50%; top: 50%;
+  width: min(58vw, 900px); aspect-ratio: 16/9;
+  transform: translate(-50%, -50%);
+  border: 0.5px solid rgba(247, 240, 228, 0.22); overflow: hidden;
+  box-shadow: 0 40px 120px rgba(0, 0, 0, 0.55);
+  will-change: transform, opacity; background: #14110D;
+  opacity: 0;
+}
+.jn-seq-slide img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.jn-tag {
+  position: absolute; left: 14px; top: 12px;
+  font-size: 0.5625rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(247, 240, 228, 0.85); background: rgba(10, 9, 8, 0.55);
+  padding: 5px 9px; backdrop-filter: blur(4px);
+}
+.jn-seq-caption {
+  position: absolute; left: 50%; transform: translateX(-50%);
+  bottom: 7vh; text-align: center; z-index: 5; width: min(90vw, 760px);
+  min-height: 5.5rem;
+}
+.jn-cap {
+  position: absolute; left: 0; right: 0; top: 1.9rem; opacity: 0;
+  font-family: var(--font-display); font-weight: var(--font-display-weight, 200);
+  font-style: italic; font-size: clamp(1.4rem, 3vw, 2.5rem); line-height: 1.15;
+  color: var(--color-on-dark); margin: 0;
+}
+
+/* ── SCENE 2 — DOORS + STREAMLINE ── */
+.jn-s2 { background: var(--color-canvas); }
+.jn-behind { position: absolute; inset: 0; }
+.jn-scatter-label {
+  position: absolute; left: 50%; top: 8vh; transform: translateX(-50%); z-index: 2;
+  white-space: nowrap;
+}
+.jn-frag {
+  position: absolute; will-change: transform, opacity;
+  border: 0.5px solid rgba(247, 240, 228, 0.18); overflow: hidden;
+  background: #14110D; aspect-ratio: 16/9; opacity: 0;
+  left: 50%; top: 50%;
+}
+.jn-frag img { width: 100%; height: 100%; object-fit: cover; display: block; opacity: 0.92; }
+.jn-frag-txt {
+  display: grid; place-items: center; padding: 12px;
+  font-size: 0.6563rem; letter-spacing: 0.13em; text-transform: uppercase;
+  color: rgba(247, 240, 228, 0.62); text-align: center; background: #191511;
+  line-height: 1.7;
+}
+.jn-frag-chart { padding: 10px; background: #12100C; }
+.jn-frag-chart svg { width: 100%; height: 100%; }
+.jn-s2-reveal {
+  position: absolute; inset: 0; display: grid; place-items: center;
+  text-align: center; z-index: 3; padding: 0 24px; will-change: transform; opacity: 0;
+}
+.jn-s2-wrap {
+  max-width: 860px;
+  background: radial-gradient(60% 90% at 50% 50%, rgba(10, 9, 8, 0.82), transparent 100%);
+  padding: 40px;
+}
+.jn-s2-wrap .jn-eyebrow { margin: 0 0 16px; }
+.jn-s2 h2 {
+  font-family: var(--font-display); font-weight: var(--font-display-weight, 200);
+  font-size: clamp(2.2rem, 6vw, 5.4rem); line-height: 1.02;
+  color: var(--color-on-dark); margin: 0;
+}
+.jn-s2 h2 em { font-style: italic; color: var(--color-accent); }
+.jn-s2-body {
+  margin: 22px auto 0; color: rgba(247, 240, 228, 0.62);
+  font-size: 1rem; line-height: 1.75; max-width: 56ch;
+}
+.jn-composed-label {
+  position: absolute; left: 50%; bottom: 7vh; transform: translateX(-50%);
+  text-align: center; opacity: 0; will-change: opacity; z-index: 5;
+}
+.jn-composed-label .jn-eyebrow { margin: 0 0 8px; }
+.jn-composed-big {
+  font-family: var(--font-display); font-weight: var(--font-display-weight, 200);
+  font-style: italic; font-size: clamp(1.5rem, 3vw, 2.4rem);
+  color: var(--color-on-dark); margin: 0;
+}
+.jn-door {
+  position: absolute; top: 0; bottom: 0; width: 51%;
+  z-index: 6; will-change: transform; overflow: hidden;
+}
+.jn-door-left { left: 0; border-right: 0.5px solid rgba(247, 240, 228, 0.18); }
+.jn-door-right { right: 0; border-left: 0.5px solid rgba(247, 240, 228, 0.18); }
+.jn-door-skin { position: absolute; inset: 0; }
+.jn-door-skin img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.jn-door-shade {
+  position: absolute; inset: 0;
+  background: linear-gradient(to bottom, rgba(10, 9, 8, 0.42), rgba(10, 9, 8, 0.16) 45%, rgba(10, 9, 8, 0.5));
+}
+.jn-knock {
+  position: absolute; top: 50%; font-size: 0.8125rem; font-weight: 500;
+  letter-spacing: 0.24em; text-transform: uppercase;
+  color: var(--color-on-dark); white-space: nowrap; z-index: 2;
+  background: rgba(10, 9, 8, 0.62); padding: 10px 18px;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 0 0.5px rgba(247, 240, 228, 0.25);
+}
+.jn-door-left .jn-knock { right: 20px; transform: translateY(-50%) rotate(90deg); }
+.jn-door-right .jn-knock { left: 20px; transform: translateY(-50%) rotate(-90deg); }
+
+/* ── SCENE 3 — TOOL STORM ── */
+.jn-s3 { background: var(--color-canvas); }
+.jn-storm { position: absolute; inset: 0; }
+.jn-ghost {
+  position: absolute; font-weight: 300; white-space: nowrap;
+  color: transparent; -webkit-text-stroke: 1px rgba(247, 240, 228, 0.16);
+  font-family: var(--font-body); letter-spacing: 0.02em;
+  will-change: transform, opacity; user-select: none; opacity: 0;
+}
+.jn-ghost-dead { -webkit-text-stroke: 1px rgba(247, 240, 228, 0.09); text-decoration: line-through; }
+.jn-blackout { position: absolute; inset: 0; background: var(--color-canvas); opacity: 0; z-index: 3; will-change: opacity; }
+.jn-truth { position: absolute; inset: 0; display: grid; place-items: center; text-align: center; z-index: 4; }
+.jn-truth-wrap { max-width: 900px; padding: 0 24px; opacity: 0; will-change: transform, opacity; }
+.jn-truth-wrap .jn-eyebrow { margin: 0 0 16px; }
+.jn-s3 h2 {
+  font-family: var(--font-display); font-weight: var(--font-display-weight, 200);
+  font-size: clamp(2.4rem, 6.4vw, 5.8rem); line-height: 1.02;
+  color: var(--color-on-dark); margin: 0;
+}
+.jn-s3 h2 em { font-style: italic; }
+.jn-strike { position: relative; white-space: nowrap; }
+.jn-strike i {
+  position: absolute; left: -2%; right: 102%; top: 54%; height: 2px;
+  background: var(--color-accent); will-change: right;
+}
+.jn-truth-sub { margin: 20px 0 0; color: rgba(247, 240, 228, 0.62); font-size: 1rem; }
+.jn-tool-count {
+  position: absolute; right: 6%; top: 10%; z-index: 2; text-align: right;
+  font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
+  color: rgba(247, 240, 228, 0.38);
+}
+.jn-tool-count b {
+  display: block; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 300;
+  color: rgba(247, 240, 228, 0.62); font-variant-numeric: tabular-nums;
+}
+
+/* ── SCENE 4 — PAYOFF ── */
+.jn-s4 {
+  min-height: 100vh; display: grid; place-items: center; text-align: center;
+  background:
+    radial-gradient(60% 50% at 50% 60%, rgba(232, 68, 32, 0.10), transparent 70%),
+    var(--color-canvas);
+}
+.jn-s4-wrap { max-width: 900px; padding: 14vh 24px 10vh; }
+.jn-q {
+  font-family: var(--font-display); font-weight: var(--font-display-weight, 200);
+  font-style: italic; font-size: clamp(2.6rem, 8vw, 7.4rem); line-height: 1.02;
+  color: var(--color-on-dark); margin: 0;
+}
+.jn-attr {
+  margin: 26px 0 0; color: rgba(247, 240, 228, 0.38);
+  font-size: 0.75rem; letter-spacing: 0.18em; text-transform: uppercase;
+}
+.jn-pitch {
+  margin: 7vh auto 0; color: rgba(247, 240, 228, 0.62);
+  font-size: 1.0625rem; line-height: 1.75; max-width: 54ch;
+}
+.jn-cta {
+  display: inline-block; margin-top: 40px; padding: 16px 34px;
+  border: 0.5px solid rgba(247, 240, 228, 0.35); color: var(--color-on-dark);
+  text-decoration: none; font-size: 0.8125rem; letter-spacing: 0.1em; text-transform: uppercase;
+  transition: background 300ms ease, border-color 300ms ease, color 300ms ease;
+}
+.jn-cta:hover { background: var(--color-accent); border-color: var(--color-accent); color: #FFF8F3; }
+
+/* ── mobile ── */
+@media (max-width: 768px) {
+  .jn-seq-slide { width: 92vw; }
+  .jn-knock { font-size: 0.6875rem; padding: 8px 12px; letter-spacing: 0.18em; }
+  .jn-frag { min-width: 28vw; }
+  .jn-skip { bottom: 3.5vh; }
+  .jn-deck-frame { inset: 10px; }
+}
+
+/* ── reduced motion: static, everything readable, no pins ── */
+@media (prefers-reduced-motion: reduce) {
+  .jn-vortex, .jn-door, .jn-frag, .jn-blackout, .jn-tool-count, .jn-cue { display: none; }
+  .jn-cap[data-jn-cap="0"], .jn-s2-reveal, .jn-truth-wrap { opacity: 1 !important; }
+  .jn-seq-slide { opacity: 1; position: relative; left: auto; top: auto; transform: none; margin: 24px auto; }
+  .jn-s1 .jn-pinner, .jn-s2 .jn-pinner, .jn-s3 .jn-pinner { height: auto; padding: 15vh 0; }
+  .jn-scene { height: auto; min-height: 60vh; padding: 15vh 0; }
+}
