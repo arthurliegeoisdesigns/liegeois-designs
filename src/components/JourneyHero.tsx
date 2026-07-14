@@ -27,21 +27,23 @@ import Link from 'next/link'
  * - Reduced motion: no pins, no canvas — CSS shows a static fallback.
  */
 
-const IMG_BASE = encodeURI(
-  '/images/Case Studies-slides/Fivestone-Chevron-New-Energies/Chevron Optimized 1920-1080',
-)
+/* Journey assets live in /public/images/journey — web-safe names,
+   re-encoded q82. NOTE: public/images/Case Studies-slides is GITIGNORED
+   (the 239-slide dump stays out of the repo), so journey assets must
+   never be referenced from there — they'd 404 on Vercel. */
+const IMG_BASE = '/images/journey'
 
 const BUILDS = [
-  { file: 'Chevron Slide 0 Cover.jpg', tag: 'Build 01 — the cover' },
-  { file: 'Chevron Slide 1 New.jpg', tag: 'Build 02 — "Hi."' },
-  { file: 'Chevron Slide 2 New.jpg', tag: 'Build 03 — clearing the room' },
-  { file: 'Chevron Slide 3 New.jpg', tag: 'Build 04 — no logo hunt' },
-  { file: 'Chevron Slide 4 New.jpg', tag: 'Build 05 — no silver bullet' },
-  { file: 'Chevron Slide 5 New.jpg', tag: 'Build 06 — the turn' },
-  { file: 'Chevron Slide 6 New.jpg', tag: 'Build 07 — the people' },
-  { file: 'Chevron Slide 7 New.jpg', tag: 'Build 08 — the thinking' },
-  { file: 'Chevron Slide 8 New.jpg', tag: 'Build 09 — the question' },
-  { file: 'Chevron Slide 9 New.jpg', tag: 'Build 10 — the landing' },
+  { file: 'chevron-00-cover.jpg', tag: 'Build 01 — the cover' },
+  { file: 'chevron-01.jpg', tag: 'Build 02 — "Hi."' },
+  { file: 'chevron-02.jpg', tag: 'Build 03 — clearing the room' },
+  { file: 'chevron-03.jpg', tag: 'Build 04 — no logo hunt' },
+  { file: 'chevron-04.jpg', tag: 'Build 05 — no silver bullet' },
+  { file: 'chevron-05.jpg', tag: 'Build 06 — the turn' },
+  { file: 'chevron-06.jpg', tag: 'Build 07 — the people' },
+  { file: 'chevron-07.jpg', tag: 'Build 08 — the thinking' },
+  { file: 'chevron-08.jpg', tag: 'Build 09 — the question' },
+  { file: 'chevron-09.jpg', tag: 'Build 10 — the landing' },
 ]
 
 const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload'
@@ -475,7 +477,7 @@ export default function JourneyHero() {
               <div className="jn-seq-slide" key={b.file}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`${IMG_BASE}/${encodeURIComponent(b.file)}`}
+                  src={`${IMG_BASE}/${b.file}`}
                   alt=""
                   loading={i < 2 ? 'eager' : 'lazy'}
                   decoding="async"
@@ -556,17 +558,7 @@ export default function JourneyHero() {
           <div className="jn-door jn-door-left">
             <div className="jn-door-skin">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`${IMG_BASE}/TeddyBear.jpg`}
-                onError={(e) => {
-                  const img = e.currentTarget
-                  img.onerror = null
-                  img.src = `${IMG_BASE}/${encodeURIComponent('Chevron Slide 11 New - TeddyBear.jpg')}`
-                }}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
+              <img src={`${IMG_BASE}/door-teddy.jpg`} alt="" loading="lazy" decoding="async" />
               <span className="jn-door-shade" />
             </div>
             <span className="jn-knock">where every deck starts</span>
@@ -574,17 +566,7 @@ export default function JourneyHero() {
           <div className="jn-door jn-door-right">
             <div className="jn-door-skin">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={`${IMG_BASE}/${encodeURIComponent('Big Bear.jpg')}`}
-                onError={(e) => {
-                  const img = e.currentTarget
-                  img.onerror = null
-                  img.src = `${IMG_BASE}/${encodeURIComponent('Chevron Slide 10 New - Bear.jpg')}`
-                }}
-                alt=""
-                loading="lazy"
-                decoding="async"
-              />
+              <img src={`${IMG_BASE}/door-bear.jpg`} alt="" loading="lazy" decoding="async" />
               <span className="jn-door-shade" />
             </div>
             <span className="jn-knock">what we turn it into</span>
