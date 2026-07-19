@@ -4,6 +4,21 @@ import { caseStudies } from '@/content/case-studies'
 
 const BASE = 'https://www.liegeoisdesigns.com'
 
+/* Stable lastmod dates — bump these ONLY when a page meaningfully changes.
+   (Stamping new Date() on every deploy taught Google to distrust the
+   sitemap — 70 URLs "changed" daily. GSC showed the whole blog + work
+   catalog stuck in "Discovered, not indexed", July 2026.) */
+const LAUNCH = new Date('2026-07-04')
+const HOME_UPDATED = new Date('2026-07-19') // journey hero shipped
+const SERVICES_UPDATED = new Date('2026-07-19') // per-service pages added
+
+const SERVICE_SLUGS = [
+  'pitch-deck-design',
+  'executive-presentations',
+  'sales-agency-decks',
+  'strategic-narrative',
+]
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogRoutes = publishedPosts.map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
@@ -20,43 +35,51 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.75,
   }))
 
+  const serviceRoutes = SERVICE_SLUGS.map((slug) => ({
+    url: `${BASE}/services/${slug}`,
+    lastModified: SERVICES_UPDATED,
+    changeFrequency: 'monthly' as const,
+    priority: 0.85,
+  }))
+
   return [
     {
       url: BASE,
-      lastModified: new Date(),
+      lastModified: HOME_UPDATED,
       changeFrequency: 'monthly',
       priority: 1,
     },
     {
       url: `${BASE}/work`,
-      lastModified: new Date(),
+      lastModified: LAUNCH,
       changeFrequency: 'monthly',
       priority: 0.9,
     },
     {
       url: `${BASE}/services`,
-      lastModified: new Date(),
+      lastModified: SERVICES_UPDATED,
       changeFrequency: 'monthly',
       priority: 0.8,
     },
     {
       url: `${BASE}/about`,
-      lastModified: new Date(),
+      lastModified: LAUNCH,
       changeFrequency: 'monthly',
       priority: 0.7,
     },
     {
       url: `${BASE}/blog`,
-      lastModified: new Date(),
+      lastModified: HOME_UPDATED,
       changeFrequency: 'weekly',
       priority: 0.7,
     },
     {
       url: `${BASE}/contact`,
-      lastModified: new Date(),
+      lastModified: LAUNCH,
       changeFrequency: 'yearly',
       priority: 0.5,
     },
+    ...serviceRoutes,
     ...workRoutes,
     ...blogRoutes,
   ]

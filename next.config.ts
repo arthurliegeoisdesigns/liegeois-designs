@@ -98,7 +98,12 @@ const nextConfig: NextConfig = {
       { source: '/clients', destination: '/work', permanent: true },
       { source: '/pricing', destination: '/services', permanent: true },
       // ── Old Webflow service detail subpages → /services ──────────────────
-      { source: '/services/:slug+', destination: '/services', permanent: true },
+      // (Was a catch-all, but real per-service pages now live at
+      //  /services/<slug> — redirects run BEFORE the filesystem in Next,
+      //  so the catch-all would have clobbered them. Old Webflow slugs
+      //  carry a 5-char hash suffix; match those specifically.)
+      { source: '/services/brand-strategy-f19ea', destination: '/services', permanent: true },
+      { source: '/services/:slug(.*\\-[0-9a-f]{5})', destination: '/services', permanent: true },
     ]
   },
   async headers() {

@@ -174,6 +174,46 @@ export default async function BlogPostPage({
           )}
         </div>
       </section>
+
+      {/* ── Related posts — crawl paths for the un-indexed catalog
+             (SEO sprint, July 2026): shared theme first, then tags ── */}
+      {(() => {
+        const related = [
+          ...blogPosts.filter((p) => p.slug !== post.slug && !p.draft && p.theme === post.theme),
+          ...blogPosts.filter(
+            (p) => p.slug !== post.slug && !p.draft && p.theme !== post.theme &&
+              (p.tags ?? []).some((t) => (post.tags ?? []).includes(t)),
+          ),
+        ].slice(0, 3)
+        if (related.length === 0) return null
+        return (
+          <section style={{ background: 'var(--color-paper)', padding: '0 var(--section-pad-x) clamp(64px, 8vw, 110px)' }}>
+            <div style={{ maxWidth: '760px', margin: '0 auto', borderTop: '0.5px solid var(--color-border)', paddingTop: 'clamp(32px, 4vw, 48px)' }}>
+              <p style={{
+                fontFamily: 'var(--font-body)', fontSize: '0.6875rem', fontWeight: 500,
+                letterSpacing: '0.16em', textTransform: 'uppercase',
+                color: 'var(--color-text-muted)', margin: '0 0 20px',
+              }}>
+                Keep reading
+              </p>
+              {related.map((p) => (
+                <Link
+                  key={p.slug}
+                  href={`/blog/${p.slug}`}
+                  style={{ display: 'block', textDecoration: 'none', padding: '14px 0', borderBottom: '0.5px solid var(--color-border)' }}
+                >
+                  <span className="type-body" style={{ color: 'var(--color-text-primary)', fontWeight: 500, display: 'block' }}>
+                    {p.title}
+                  </span>
+                  <span className="type-body" style={{ color: 'var(--color-text-muted)', fontSize: '0.8125rem' }}>
+                    {p.readTime}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </section>
+        )
+      })()}
     </main>
   )
 }

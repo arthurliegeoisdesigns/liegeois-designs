@@ -263,6 +263,62 @@ export default async function CaseStudyPage({
               </div>
             </div>
           )}
+
+          {/* ── Related projects — crawl paths + authority flow (SEO sprint,
+                 July 2026): same industry first, then same format ── */}
+          {(() => {
+            const related = [
+              ...caseStudies.filter((c) => c.slug !== cs.slug && c.industry === cs.industry),
+              ...caseStudies.filter((c) => c.slug !== cs.slug && c.industry !== cs.industry && c.format === cs.format),
+            ].slice(0, 3)
+            if (related.length === 0) return null
+            return (
+              <div style={{
+                marginTop: 'clamp(40px, 5vw, 64px)',
+                paddingTop: 'clamp(40px, 5vw, 64px)',
+                borderTop: '0.5px solid rgba(255,255,255,0.06)',
+              }}>
+                <p style={{
+                  fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em',
+                  textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 24px',
+                }}>
+                  Related Projects
+                </p>
+                <div style={{
+                  display: 'grid',
+                  gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
+                  gap: '20px',
+                }}>
+                  {related.map((r) => (
+                    <a key={r.slug} href={`/work/${r.slug}`} style={{ textDecoration: 'none' }}>
+                      <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden', marginBottom: '10px' }}>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                          src={r.images[0].replace('/f_auto,q_auto/', '/f_auto,q_auto,w_600,c_fill,ar_16:10/')}
+                          alt={`${r.client} — ${r.project}`}
+                          loading="lazy"
+                          decoding="async"
+                          style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}
+                        />
+                      </div>
+                      <span style={{
+                        fontFamily: 'var(--font-body)', fontSize: '0.875rem', fontWeight: 500,
+                        color: 'var(--color-on-dark)', display: 'block',
+                      }}>
+                        {r.client}
+                      </span>
+                      <span style={{
+                        fontFamily: 'var(--font-body)', fontSize: '0.8125rem',
+                        color: 'rgba(255,255,255,0.45)',
+                      }}>
+                        {r.project}
+                      </span>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            )
+          })()}
         </div>
       </section>
     </main>

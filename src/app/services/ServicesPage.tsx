@@ -7,6 +7,14 @@ import { motion, useReducedMotion, AnimatePresence } from 'framer-motion'
 import { links } from '@/lib/config'
 import { ScrambleEyebrow } from '@/components/ui/ScrambleEyebrow'
 
+/* per-service landing pages (SEO sprint, July 2026) — index-aligned */
+const SERVICE_LINKS = [
+  'pitch-deck-design',
+  'executive-presentations',
+  'sales-agency-decks',
+  'strategic-narrative',
+]
+
 const services = [
   {
     number: '01',
@@ -517,6 +525,18 @@ export default function ServicesPage() {
                   transition={{ duration: 0.65, ease, delay: 0.08 }}
                 >
                   {service.description}
+                  {SERVICE_LINKS[i] && (
+                    <>
+                      {' '}
+                      <Link
+                        href={`/services/${SERVICE_LINKS[i]}`}
+                        className="btn-text"
+                        style={{ display: 'inline-block', marginTop: '14px' }}
+                      >
+                        Full service details ↗
+                      </Link>
+                    </>
+                  )}
                 </motion.p>
 
                 <motion.div
