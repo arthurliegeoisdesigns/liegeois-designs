@@ -248,7 +248,7 @@ export default function JourneyHero() {
           s3.fromTo(
             g,
             { scale: 0.6, opacity: 0, y: 90 * d },
-            { scale: 1 + d * 1.6, opacity: 0.9, y: -140 * d, ease: 'power1.in', duration: 0.5 + d * 0.2 },
+            { scale: 1 + d * 1.6, opacity: 1, y: -140 * d, ease: 'power1.in', duration: 0.5 + d * 0.2 },
             rng() * 0.5,
           )
         })
