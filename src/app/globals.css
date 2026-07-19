@@ -2653,16 +2653,17 @@ footer {
 .jn-storm { position: absolute; inset: 0; }
 .jn-ghost {
   position: absolute; font-weight: 300; white-space: nowrap;
-  /* legibility pass (July 2026): faint fill + stronger stroke — still
-     spectral, but readable against #0A0908 at storm peak */
-  color: rgba(247, 240, 228, 0.14);
-  -webkit-text-stroke: 1px rgba(247, 240, 228, 0.42);
-  text-shadow: 0 0 18px rgba(247, 240, 228, 0.12);
+  /* legibility pass v2 (July 2026): tuned for bright environments —
+     solid-ish fill + strong stroke; the ghost effect now comes from
+     the outline treatment and motion, not from low contrast */
+  color: rgba(247, 240, 228, 0.32);
+  -webkit-text-stroke: 1px rgba(247, 240, 228, 0.7);
+  text-shadow: 0 0 22px rgba(247, 240, 228, 0.2);
   font-family: var(--font-body); letter-spacing: 0.02em;
   will-change: transform, opacity; user-select: none; opacity: 0;
 }
 .jn-ghost-dead {
-  color: transparent; -webkit-text-stroke: 1px rgba(247, 240, 228, 0.22);
+  color: rgba(247, 240, 228, 0.12); -webkit-text-stroke: 1px rgba(247, 240, 228, 0.38);
   text-shadow: none; text-decoration: line-through;
 }
 .jn-blackout { position: absolute; inset: 0; background: var(--color-canvas); opacity: 0; z-index: 3; will-change: opacity; }
@@ -2684,11 +2685,11 @@ footer {
 .jn-tool-count {
   position: absolute; right: 6%; top: 10%; z-index: 2; text-align: right;
   font-size: 0.6875rem; letter-spacing: 0.2em; text-transform: uppercase;
-  color: rgba(247, 240, 228, 0.58);
+  color: rgba(247, 240, 228, 0.75);
 }
 .jn-tool-count b {
   display: block; font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 300;
-  color: rgba(247, 240, 228, 0.85); font-variant-numeric: tabular-nums;
+  color: rgba(247, 240, 228, 0.95); font-variant-numeric: tabular-nums;
 }
 
 /* ── SCENE 4 — PAYOFF ── */
