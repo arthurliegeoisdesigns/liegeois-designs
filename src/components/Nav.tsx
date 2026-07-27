@@ -25,6 +25,15 @@ export default function Nav() {
 
   useMotionValueEvent(scrollY, 'change', (y) => {
     if (pathname === '/services') return // services bg is always dark — keep nav dark
+    if (pathname === '/') {
+      // Home: the journey hero is dark for its whole scroll length — the
+      // nav stays transparent/white until the journey hands off to the
+      // rest of the page (SEO/UX audit, July 2026).
+      const journey = document.querySelector<HTMLElement>('.jn-journey')
+      const end = journey ? journey.offsetTop + journey.offsetHeight - 120 : 40
+      setScrolled(y > end)
+      return
+    }
     setScrolled(isDarkTopPage ? y > 40 : true)
   })
 

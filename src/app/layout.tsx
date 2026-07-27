@@ -17,15 +17,18 @@ const GTM_ID = 'GTM-N7XNZRDZ'
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.liegeoisdesigns.com'),
   title: {
-    default: 'Liégeois Designs — Strategic Visual Storytelling',
+    /* Query-led, brand last (SEO audit, July 2026): the homepage must
+       carry the terms people actually search, not just the positioning. */
+    default: 'Presentation Design Agency — Pitch Decks & Executive Presentations | Liégeois Designs',
     template: '%s | Liégeois Designs',
   },
   description:
-    'Visual storytelling for brands that refuse to blend in. Presentation design, pitch decks, and narrative strategy.',
+    'Presentation design agency for founders and executives. Investor pitch decks, board presentations, and strategic narratives — trusted by Chevron, IBM, Marriott, and Philips. Montclair, NJ, serving clients worldwide.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com' },
   openGraph: {
-    title: 'Liégeois Designs',
-    description: 'Strategic visual storytelling studio.',
+    title: 'Presentation Design Agency — Pitch Decks & Executive Presentations',
+    description:
+      'Investor pitch decks, board presentations, and strategic narratives — trusted by Chevron, IBM, Marriott, and Philips.',
     url: 'https://www.liegeoisdesigns.com',
     siteName: 'Liégeois Designs',
     locale: 'en_US',

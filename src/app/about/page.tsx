@@ -6,12 +6,12 @@ import AboutClientWrapper from './AboutClientWrapper'
 // Next.js 16 / Turbopack dual-React null-hook crash.
 
 export const metadata: Metadata = {
-  title: 'About Arthur Liégeois',
+  title: 'About Arthur Liégeois — Presentation Designer & Strategist',
   description:
     'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline: turning complex ideas into stories people actually feel.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/about' },
   openGraph: {
-    title: 'About Arthur Liégeois | Liégeois Designs',
+    title: 'About Arthur Liégeois — Presentation Designer & Strategist | Liégeois Designs',
     description:
       'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline.',
     url: 'https://www.liegeoisdesigns.com/about',
