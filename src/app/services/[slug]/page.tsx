@@ -27,7 +27,10 @@ export async function generateMetadata({
   const svc = servicePageBySlug[slug]
   if (!svc) return {}
   return {
-    title: svc.metaTitle,
+    // `absolute` bypasses the root layout's '%s | Liégeois Designs' template.
+    // metaTitle already carries the brand (openGraph below has no template and
+    // needs it), so letting the template run appended it a second time.
+    title: { absolute: svc.metaTitle },
     description: svc.metaDescription,
     alternates: { canonical: `${BASE}/services/${svc.slug}` },
     openGraph: {
