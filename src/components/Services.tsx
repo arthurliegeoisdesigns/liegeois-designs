@@ -12,21 +12,25 @@ import Link from 'next/link'
 const services = [
   {
     number: '01',
+    slug: 'pitch-deck-design',
     title: 'Pitch & Investor Decks',
     description: 'For founders raising capital. Built to move money.',
   },
   {
     number: '02',
+    slug: 'executive-presentations',
     title: 'Executive Presentations',
     description: 'Board meetings, all-hands, keynotes. High stakes by definition.',
   },
   {
     number: '03',
+    slug: 'sales-agency-decks',
     title: 'Sales & Agency Decks',
     description: "Proposals that don't wait for a follow-up email.",
   },
   {
     number: '04',
+    slug: 'strategic-narrative',
     title: 'Strategic Narrative',
     description: "When the problem isn't the design. It's the story.",
   },
@@ -67,7 +71,7 @@ export default function Services() {
           {services.map((s, i) => (
             <Link
               key={s.number}
-              href="/services"
+              href={`/services/${s.slug}`}
               className="svc-deck-card"
               style={{ top: `calc(96px + ${i * 18}px)` }}
               data-cursor-hover
