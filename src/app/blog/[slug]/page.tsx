@@ -175,6 +175,35 @@ export default async function BlogPostPage({
         </div>
       </section>
 
+      {/* ── Service link — the only blog → commercial crawl path on the site.
+             All 29 posts carried zero internal links in body copy, leaving the
+             content library a closed loop that fed no authority to /services. ── */}
+      {(() => {
+        const THEME_TO_SERVICE: Record<string, { slug: string; label: string }> = {
+          'presentation-design-tips': { slug: 'executive-presentations', label: 'Executive presentation design' },
+          'becoming-a-visual-storyteller': { slug: 'strategic-narrative', label: 'Strategic narrative' },
+          'breaking-free-from-the-script': { slug: 'strategic-narrative', label: 'Strategic narrative' },
+          'adhd-as-a-creative-asset': { slug: 'strategic-narrative', label: 'Strategic narrative' },
+          'lessons-for-fellow-travelers': { slug: 'pitch-deck-design', label: 'Pitch & investor deck design' },
+          'ai-in-design': { slug: 'pitch-deck-design', label: 'Pitch & investor deck design' },
+        }
+        const svc = post.theme ? THEME_TO_SERVICE[post.theme] : undefined
+        if (!svc) return null
+        return (
+          <section style={{ background: 'var(--color-paper)', padding: '0 var(--section-pad-x)' }}>
+            <div style={{ maxWidth: '760px', margin: '0 auto', paddingBottom: 'clamp(24px, 3vw, 36px)' }}>
+              <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: 0 }}>
+                Working on something like this?{' '}
+                <Link href={`/services/${svc.slug}`} style={{ color: 'var(--color-text-primary)', fontWeight: 500 }}>
+                  {svc.label}
+                </Link>{' '}
+                is where this thinking gets applied.
+              </p>
+            </div>
+          </section>
+        )
+      })()}
+
       {/* ── Related posts — crawl paths for the un-indexed catalog
              (SEO sprint, July 2026): shared theme first, then tags ── */}
       {(() => {

@@ -264,6 +264,43 @@ export default async function CaseStudyPage({
             </div>
           )}
 
+          {/* ── Related service — crawl path from work into commercial pages.
+                 Case study `format` maps 1:1 onto the four service pages;
+                 without this, /services/<slug> is reachable only via the
+                 /services index (depth 2) and went uncrawled through July. ── */}
+          {(() => {
+            const FORMAT_TO_SERVICE: Record<string, { slug: string; name: string }> = {
+              'Pitch & Investor Deck': { slug: 'pitch-deck-design', name: 'Pitch & Investor Deck Design' },
+              'Executive Presentation': { slug: 'executive-presentations', name: 'Executive Presentation Design' },
+              'Sales & Agency Deck': { slug: 'sales-agency-decks', name: 'Sales & Agency Deck Design' },
+              'Strategic Narrative': { slug: 'strategic-narrative', name: 'Strategic Narrative' },
+              // Training decks are executive-presentation work in practice.
+              'Training Presentation': { slug: 'executive-presentations', name: 'Executive Presentation Design' },
+            }
+            const svc = FORMAT_TO_SERVICE[cs.format]
+            if (!svc) return null
+            return (
+              <div style={{ marginTop: 'clamp(48px, 6vw, 80px)', paddingTop: 'clamp(28px, 3vw, 40px)', borderTop: '0.5px solid rgba(255,255,255,0.12)' }}>
+                <p style={{
+                  fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em',
+                  textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 12px',
+                }}>
+                  The Service
+                </p>
+                <a
+                  href={`/services/${svc.slug}`}
+                  style={{
+                    fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65,
+                    color: 'rgba(255,255,255,0.75)', textDecoration: 'none',
+                    display: 'inline-flex', alignItems: 'baseline', gap: '10px',
+                  }}
+                >
+                  <span>This project was {svc.name} work. See the service →</span>
+                </a>
+              </div>
+            )
+          })()}
+
           {/* ── Related projects — crawl paths + authority flow (SEO sprint,
                  July 2026): same industry first, then same format ── */}
           {(() => {
