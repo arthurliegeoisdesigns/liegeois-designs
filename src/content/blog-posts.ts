@@ -319,7 +319,7 @@ export const blogPosts: BlogPost[] = [
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-university-startups-pitch-deck-0001-8eedd5',
   },
 
-  // ── Drafts ─────────────────────────────────────────────────────────────────
+  // ── Published Aug 2026 (were drafts; bodies written, then shipped) ────────
   {
     slug: 'corporate-costume-creative-skin',
     title: 'From Corporate Costume to Thin Creative Skin',
@@ -328,7 +328,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2025-11-05',
     tags: ['Creativity'],
     theme: 'breaking-free-from-the-script',
-    draft: true,
+    draft: false,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-26am-d4710e',
   },
   {
@@ -339,7 +339,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2025-11-05',
     tags: ['Personal', 'Creativity'],
     theme: 'presentation-design-tips',
-    draft: true,
+    draft: false,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-26am-b23680',
   },
   {
@@ -350,7 +350,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2025-11-05',
     tags: ['Strategy'],
     theme: 'lessons-for-fellow-travelers',
-    draft: true,
+    draft: false,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-50am-c55e56',
   },
   {
@@ -361,7 +361,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2026-03-05',
     tags: ['Personal', 'Creativity'],
     theme: 'breaking-free-from-the-script',
-    draft: true,
+    draft: false,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-19am-777f6d',
   },
 ]
