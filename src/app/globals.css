@@ -771,6 +771,23 @@ body {
   justify-content: center;
   transition: transform 750ms cubic-bezier(0.76, 0, 0.24, 1);
 }
+/* Set by the blocking inline script in layout.tsx <head>, before the body
+   is parsed. The preloader ships in the document now (so it paints with
+   first paint and takes LCP off hydration), which means it must be hidden
+   pre-paint — not in an effect — for visitors who should never see it:
+   repeat sessions, prefers-reduced-motion, and every route but home. */
+.ld-no-intro .preloader {
+  display: none !important;
+}
+/* Reduced motion is handled declaratively rather than by the inline
+   script's matchMedia check — the JS path was measured letting a single
+   frame of the plate through before the class landed. A media query is
+   evaluated with the first style pass, so there is no frame to lose. */
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    display: none !important;
+  }
+}
 .preloader-exit { transform: translateY(-100%); }
 .preloader-inner {
   display: flex;

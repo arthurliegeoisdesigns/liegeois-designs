@@ -110,6 +110,25 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {/* Intro gate — MUST stay a blocking inline script in <head>.
+            The Preloader now ships in the document so its wordmark paints
+            with first paint rather than after hydration (that hydration
+            delay was costing ~690ms of LCP). The trade is that the plate
+            is in the HTML for everyone, so this runs before the body is
+            parsed and hides it for anyone who should not see the intro —
+            repeat visitors, reduced motion, and every route but home.
+            Setting the class here (not in an effect) is what prevents a
+            flash of the plate. Same pattern as dark-mode FOUC guards. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{var d=document.documentElement;" +
+              "if(location.pathname!=='/'||sessionStorage.getItem('ld-intro-done')||" +
+              "matchMedia('(prefers-reduced-motion: reduce)').matches){" +
+              "d.classList.add('ld-no-intro');}else{d.style.overflow='hidden';}" +
+              "}catch(e){}})();",
+          }}
+        />
       </head>
       <body>
         {/* Google Tag Manager — noscript fallback */}
