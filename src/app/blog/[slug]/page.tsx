@@ -25,7 +25,7 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `https://liegeoisdesigns.com/blog/${slug}`,
+      url: `https://www.liegeoisdesigns.com/blog/${slug}`,
       type: 'article',
       publishedTime: post.publishedAt,
       images: post.coverImage ? [{ url: post.coverImage, width: 1200, height: 630 }] : undefined,

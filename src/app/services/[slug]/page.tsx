@@ -37,7 +37,7 @@ export async function generateMetadata({
       title: svc.metaTitle,
       description: svc.metaDescription,
       url: `${BASE}/services/${svc.slug}`,
-      images: [{ url: svc.image }],
+      images: [{ url: svc.image, width: 1200, height: 630 }],
     },
   }
 }
