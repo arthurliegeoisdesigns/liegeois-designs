@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 /**
  * JourneyHero — "Scroll to present." (Hero v3, July 2026)
@@ -27,23 +28,34 @@ import Link from 'next/link'
  * - Reduced motion: no pins, no canvas — CSS shows a static fallback.
  */
 
-/* Journey assets live in /public/images/journey — web-safe names,
-   re-encoded q82. NOTE: public/images/Case Studies-slides is GITIGNORED
-   (the 239-slide dump stays out of the repo), so journey assets must
-   never be referenced from there — they'd 404 on Vercel. */
-const IMG_BASE = '/images/journey'
+/* Journey assets now live on CLOUDINARY, not /public (Aug 2026).
+   They were the only raster images on the site still served as local
+   files, which meant next/image's custom loader passed them straight
+   through — no AVIF, no responsive sizing. 12 files, 1824 KB of JPEG,
+   all 1920x1080 being painted at ~478px on a phone. That payload was
+   the whole of the 11.9s TTI: Lantern derives TTI from bytes on the
+   wire, and the page shipped 2756 KB total while TBT was only 60ms.
+   Nothing was blocking; there was just too much to download.
+
+   Via the Cloudinary loader these become f_auto (AVIF/WebP) + w_<size>
+   + c_limit, resized on Cloudinary's CDN so Vercel performs — and bills
+   — zero transformations. See src/lib/cloudinary-loader.ts and the note
+   in next.config.ts about the July 2026 overage.
+
+   Originals remain in /public/images/journey as the source of truth. */
+const CDN_BASE = 'https://res.cloudinary.com/dryyhpqew/image/upload/liegeois-designs/journey'
 
 const BUILDS = [
-  { file: 'chevron-00-cover.jpg', tag: 'Build 01 — the cover' },
-  { file: 'chevron-01.jpg', tag: 'Build 02 — "Hi."' },
-  { file: 'chevron-02.jpg', tag: 'Build 03 — clearing the room' },
-  { file: 'chevron-03.jpg', tag: 'Build 04 — no logo hunt' },
-  { file: 'chevron-04.jpg', tag: 'Build 05 — no silver bullet' },
-  { file: 'chevron-05.jpg', tag: 'Build 06 — the turn' },
-  { file: 'chevron-06.jpg', tag: 'Build 07 — the people' },
-  { file: 'chevron-07.jpg', tag: 'Build 08 — the thinking' },
-  { file: 'chevron-08.jpg', tag: 'Build 09 — the question' },
-  { file: 'chevron-09.jpg', tag: 'Build 10 — the landing' },
+  { file: 'chevron-00-cover', tag: 'Build 01 — the cover' },
+  { file: 'chevron-01', tag: 'Build 02 — "Hi."' },
+  { file: 'chevron-02', tag: 'Build 03 — clearing the room' },
+  { file: 'chevron-03', tag: 'Build 04 — no logo hunt' },
+  { file: 'chevron-04', tag: 'Build 05 — no silver bullet' },
+  { file: 'chevron-05', tag: 'Build 06 — the turn' },
+  { file: 'chevron-06', tag: 'Build 07 — the people' },
+  { file: 'chevron-07', tag: 'Build 08 — the thinking' },
+  { file: 'chevron-08', tag: 'Build 09 — the question' },
+  { file: 'chevron-09', tag: 'Build 10 — the landing' },
 ]
 
 const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload'
@@ -509,14 +521,22 @@ export default function JourneyHero() {
           <div className="jn-tunnel">
             {BUILDS.map((b, i) => (
               <div className="jn-seq-slide" key={b.file}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={assetsReady ? `${IMG_BASE}/${b.file}` : undefined}
-                  alt=""
-                  loading={i < 2 ? 'eager' : 'lazy'}
-                  decoding="async"
-                  fetchPriority="low"
-                />
+                {/* Rendered only once assetsReady flips — see the LCP GATE
+                    note above. GSAP animates .jn-seq-slide, never the image
+                    inside it, so mounting late is safe; the container is
+                    absolutely positioned with a locked aspect-ratio and its
+                    own background, so nothing shifts. */}
+                {assetsReady && (
+                  <Image
+                    src={`${CDN_BASE}/${b.file}`}
+                    alt=""
+                    fill
+                    sizes="(max-width: 768px) 92vw, 58vw"
+                    quality={70}
+                    loading={i < 2 ? 'eager' : 'lazy'}
+                    style={{ objectFit: 'cover' }}
+                  />
+                )}
                 <span className="jn-tag">{b.tag}</span>
               </div>
             ))}
@@ -541,14 +561,15 @@ export default function JourneyHero() {
                 className={`jn-frag${f.kind === 'txt' ? ' jn-frag-txt' : ''}${f.kind === 'chart' ? ' jn-frag-chart' : ''}`}
                 style={{ width: f.w }}
               >
-                {f.kind === 'img' && (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={assetsReady ? f.src : undefined}
+                {f.kind === 'img' && assetsReady && (
+                  <Image
+                    src={f.src}
                     alt=""
+                    fill
+                    sizes="(max-width: 768px) 20vw, 19vw"
+                    quality={65}
                     loading="lazy"
-                    decoding="async"
-                    fetchPriority="low"
+                    style={{ objectFit: 'cover', opacity: 0.92 }}
                   />
                 )}
                 {f.kind === 'txt' &&
@@ -598,28 +619,34 @@ export default function JourneyHero() {
           </div>
           <div className="jn-door jn-door-left">
             <div className="jn-door-skin">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={assetsReady ? `${IMG_BASE}/door-teddy.jpg` : undefined}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-              />
+              {assetsReady && (
+                <Image
+                  src={`${CDN_BASE}/door-teddy`}
+                  alt=""
+                  fill
+                  sizes="51vw"
+                  quality={70}
+                  loading="lazy"
+                  style={{ objectFit: 'cover' }}
+                />
+              )}
               <span className="jn-door-shade" />
             </div>
             <span className="jn-knock">where every deck starts</span>
           </div>
           <div className="jn-door jn-door-right">
             <div className="jn-door-skin">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={assetsReady ? `${IMG_BASE}/door-bear.jpg` : undefined}
-                alt=""
-                loading="lazy"
-                decoding="async"
-                fetchPriority="low"
-              />
+              {assetsReady && (
+                <Image
+                  src={`${CDN_BASE}/door-bear`}
+                  alt=""
+                  fill
+                  sizes="51vw"
+                  quality={70}
+                  loading="lazy"
+                  style={{ objectFit: 'cover' }}
+                />
+              )}
               <span className="jn-door-shade" />
             </div>
             <span className="jn-knock">what we turn it into</span>
