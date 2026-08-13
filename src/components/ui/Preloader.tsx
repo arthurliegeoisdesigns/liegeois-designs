@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { usePathname } from 'next/navigation'
 
 /**
@@ -29,15 +29,31 @@ import { usePathname } from 'next/navigation'
  * flash for repeat visitors, reduced-motion users, or non-home routes.
  * ──────────────────────────────────────────────────────────────────── */
 const KEY = 'ld-intro-done'
-const DURATION = 1400 // counter run
-const EXIT = 750 // wipe
+/* Measured (Lighthouse mobile, Aug 2026): the plate is what Speed Index
+   punishes — a covered viewport reads as zero visual progress. With the
+   intro on, SI was 7.0s (score 32) and TTI 11.7s (17); with it suppressed,
+   1.7s (100) and 6.8s (55). LCP moves the other way (2.9s with, 3.9s
+   without) because the wordmark paints early and claims the metric.
+
+   Since LCP is set at PAINT, not at exit, we keep the early paint and
+   simply spend less time on screen: 1400ms -> 700ms. The counter eases
+   out-expo, so it already reads ~97% complete by the halfway point — the
+   back half was dead time. EXIT stays 750ms and must keep matching the
+   750ms transform transition on .preloader in globals.css. */
+const DURATION = 700 // counter run
+const EXIT = 750 // wipe — keep in sync with .preloader transition
 
 export default function Preloader() {
   const pathname = usePathname()
   // 'idle' now RENDERS (see note above). Server and first client render
   // agree on it, so hydration matches.
-  const [phase, setPhase] = useState<'idle' | 'run' | 'exit' | 'done'>('idle')
-  const [count, setCount] = useState(0)
+  const [phase, setPhase] = useState<'idle' | 'exit' | 'done'>('idle')
+  // The counter deliberately does NOT live in React state. Driving it with
+  // setState re-rendered this component every animation frame (~84 renders)
+  // during the exact window hydration needs the main thread — a measurable
+  // slice of that 11.7s TTI. It writes straight to the DOM instead.
+  const fillRef = useRef<HTMLSpanElement>(null)
+  const countRef = useRef<HTMLSpanElement>(null)
 
   useEffect(() => {
     const root = document.documentElement
@@ -57,15 +73,20 @@ export default function Preloader() {
     // The inline head script already locked scroll; we just release it.
     let raf = 0
     let t0 = 0
+    let last = -1
     function tick(now: number) {
-      if (!t0) {
-        t0 = now
-        setPhase('run')
-      }
+      if (!t0) t0 = now
       const p = Math.min((now - t0) / DURATION, 1)
       // ease-out-expo on the counter
       const eased = 1 - Math.pow(2, -10 * p)
-      setCount(Math.round(eased * 100))
+      const n = Math.round(eased * 100)
+      // Direct DOM writes — no React render. Skip when the integer has not
+      // changed, so we touch the DOM ~100 times instead of once per frame.
+      if (n !== last) {
+        last = n
+        if (countRef.current) countRef.current.textContent = String(n).padStart(3, '0')
+        if (fillRef.current) fillRef.current.style.transform = `scaleX(${n / 100})`
+      }
       if (p < 1) {
         raf = requestAnimationFrame(tick)
       } else {
@@ -94,9 +115,11 @@ export default function Preloader() {
           Liégeois <em>Designs</em>
         </span>
         <span className="preloader-rule">
-          <span className="preloader-rule-fill" style={{ transform: `scaleX(${count / 100})` }} />
+          <span ref={fillRef} className="preloader-rule-fill" style={{ transform: 'scaleX(0)' }} />
         </span>
-        <span className="preloader-count">{String(count).padStart(3, '0')}</span>
+        <span ref={countRef} className="preloader-count">
+          000
+        </span>
       </div>
     </div>
   )
