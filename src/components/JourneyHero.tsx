@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 
 /**
@@ -79,6 +79,40 @@ const DEAD_TOOL = 'Tome (2020–2025)'
 export default function JourneyHero() {
   const rootRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
+
+  /* ── LCP GATE (measured, Aug 2026) ──────────────────────────────────
+     The scene-0 <h1> is the LCP element, and Chrome doesn't score it
+     until PP Migra repaints the text. On Slow 4G the display face was
+     landing at ~4.5s and LCP fired ~25ms later — because ~200 KB of
+     below-fold journey imagery was sharing the pipe with it.
+
+     These images are ALL decorative (alt="") and start at opacity:0
+     inside absolutely-positioned, aspect-ratio-locked containers, so
+     withholding src costs no layout shift and shows the user nothing
+     they could have seen anyway. We release them once the display face
+     has landed (or after 2.5s, whichever comes first). ────────────── */
+  const [assetsReady, setAssetsReady] = useState(false)
+
+  useEffect(() => {
+    let released = false
+    const release = () => {
+      if (released) return
+      released = true
+      setAssetsReady(true)
+    }
+
+    // Safety net: never hold decorative art hostage to a stalled font.
+    const timer = window.setTimeout(release, 2500)
+
+    const fonts = document.fonts
+    if (fonts?.ready) {
+      fonts.ready.then(release).catch(release)
+    } else {
+      release()
+    }
+
+    return () => window.clearTimeout(timer)
+  }, [])
 
   useEffect(() => {
     const root = rootRef.current
@@ -477,10 +511,11 @@ export default function JourneyHero() {
               <div className="jn-seq-slide" key={b.file}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src={`${IMG_BASE}/${b.file}`}
+                  src={assetsReady ? `${IMG_BASE}/${b.file}` : undefined}
                   alt=""
                   loading={i < 2 ? 'eager' : 'lazy'}
                   decoding="async"
+                  fetchPriority="low"
                 />
                 <span className="jn-tag">{b.tag}</span>
               </div>
@@ -508,7 +543,13 @@ export default function JourneyHero() {
               >
                 {f.kind === 'img' && (
                   // eslint-disable-next-line @next/next/no-img-element
-                  <img src={f.src} alt="" loading="lazy" decoding="async" />
+                  <img
+                    src={assetsReady ? f.src : undefined}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                  />
                 )}
                 {f.kind === 'txt' &&
                   f.lines.map((l, k) => (
@@ -558,7 +599,13 @@ export default function JourneyHero() {
           <div className="jn-door jn-door-left">
             <div className="jn-door-skin">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${IMG_BASE}/door-teddy.jpg`} alt="" loading="lazy" decoding="async" />
+              <img
+                src={assetsReady ? `${IMG_BASE}/door-teddy.jpg` : undefined}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
               <span className="jn-door-shade" />
             </div>
             <span className="jn-knock">where every deck starts</span>
@@ -566,7 +613,13 @@ export default function JourneyHero() {
           <div className="jn-door jn-door-right">
             <div className="jn-door-skin">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={`${IMG_BASE}/door-bear.jpg`} alt="" loading="lazy" decoding="async" />
+              <img
+                src={assetsReady ? `${IMG_BASE}/door-bear.jpg` : undefined}
+                alt=""
+                loading="lazy"
+                decoding="async"
+                fetchPriority="low"
+              />
               <span className="jn-door-shade" />
             </div>
             <span className="jn-knock">what we turn it into</span>
