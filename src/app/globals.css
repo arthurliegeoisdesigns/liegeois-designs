@@ -12,9 +12,9 @@
 
   /* ── Typography ──
      Display: PP Migra Extralight (licensed — see FONTS-README.md)
-     Body:    Cabinet Grotesk (Fontshare, free for commercial use)  */
+     Body:    Switzer (Fontshare — see CSP note in next.config.ts)  */
   --font-display: 'PP Migra', 'Migra', Georgia, 'Times New Roman', serif;
-  --font-body:    'Cabinet Grotesk', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body:    'Switzer', ui-sans-serif, system-ui, -apple-system, sans-serif;
 
   /* ── Warm palette — near-black + bone + one electric accent ── */
   --color-canvas:    #0A0908;   /* warm near-black — base dark canvas */
@@ -332,7 +332,7 @@ body {
 /* ============================================================
    TYPE SCALE
    PP Migra Extralight — display / headings (H1, H2)
-   Cabinet Grotesk — H3, body / labels / captions
+   Switzer — H3, body / labels / captions
    ============================================================ */
 
 .type-display {

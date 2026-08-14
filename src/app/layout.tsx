@@ -82,13 +82,16 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        {/* Cabinet Grotesk (body) — Fontshare, free for commercial use.
-            Replaced Switzer Aug 2026. Switzer measured no wider than the
-            alternatives (within 2% on the same string), so the problem was
-            never metrics — it was character: neutral to the point of
-            anonymity, which reads as absent next to a Didone. Cabinet
-            Grotesk sets the same lead paragraph in 2 lines where Switzer
-            needs 3, so it is also tighter in running copy.
+        {/* Switzer (body) — Fontshare, free for commercial use.
+
+            NOTE: until Aug 2026 this NEVER LOADED. api.fontshare.com was
+            missing from the CSP, so the browser blocked it and every visitor
+            read the site in system-ui while the CSS said Switzer. Fixed in
+            next.config.ts — do not remove fontshare from style-src/font-src.
+
+            Cabinet Grotesk was trialled as a replacement and reverted: its
+            letterfit crowds word spaces at 18px ('room of' reading close to
+            'roomof'), which Switzer does not.
 
             ONE LINK PER FAMILY. Fontshare's combined `f[]=a&f[]=b` syntax
             returns only the FIRST family and still answers 200 — the others
@@ -96,7 +99,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         <link
-          href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap"
           rel="stylesheet"
         />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
