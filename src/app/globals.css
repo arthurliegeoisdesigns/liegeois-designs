@@ -2918,3 +2918,62 @@ footer {
   .jn-s1 .jn-pinner, .jn-s2 .jn-pinner, .jn-s3 .jn-pinner { height: auto; padding: 15vh 0; }
   .jn-scene { height: auto; min-height: 60vh; padding: 15vh 0; }
 }
+
+/* ══════════════════════════════════════════════════════════════════════
+   SERVICE DETAIL HERO — the work as an object
+   Same pattern as JourneyHero scene 0, on a light surface. See the note in
+   src/app/services/[slug]/page.tsx for why a slide must be an OBJECT here
+   rather than a backdrop.
+   ══════════════════════════════════════════════════════════════════════ */
+.svc-hero {
+  padding: calc(var(--nav-h, 80px) + clamp(28px, 5vh, 64px)) var(--section-pad-x)
+    clamp(56px, 7vh, 96px);
+}
+.svc-hero-grid {
+  max-width: 1240px; margin: 0 auto;
+  display: grid; grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: center; gap: clamp(28px, 4vw, 72px);
+}
+.svc-hero-copy { min-width: 0; }
+/* Larger than the front card on purpose — text must win LCP. */
+.svc-hero-h1 { font-size: clamp(2.9rem, 6vw, 5.6rem); }
+
+.svc-hero-stage { position: relative; height: min(62vh, 540px); perspective: 1800px; }
+.svc-card {
+  position: absolute; width: clamp(280px, 44vw, 620px); aspect-ratio: 16 / 9;
+  overflow: hidden; background: var(--color-cream-surface);
+  /* softer shadow than the dark hero — a heavy drop on bone reads as dirt */
+  box-shadow: 0 30px 64px rgba(20, 18, 16, 0.22), 0 6px 18px rgba(20, 18, 16, 0.14);
+  outline: 1px solid rgba(20, 18, 16, 0.08); outline-offset: -1px;
+}
+.svc-card-1 { top: 2%;  left: 2%;  transform: rotateY(14deg) rotateX(3deg) rotateZ(-1.8deg) scale(0.82); opacity: 0.5;  filter: brightness(0.94); }
+.svc-card-2 { top: 20%; left: 13%; transform: rotateY(14deg) rotateX(2deg) rotateZ(-1.1deg) scale(0.91); opacity: 0.78; }
+.svc-card-3 { top: 38%; left: 25%; transform: rotateY(13deg) rotateX(1.5deg) rotateZ(-0.5deg); }
+
+@media (max-width: 900px) {
+  /* Single column; the deck sits fully above the fold, then the lead.
+     rotateY eases off — a steeper angle projects the card wider than its
+     own box and clips against the stage edge. */
+  .svc-hero {
+    padding-top: calc(var(--nav-h, 80px) + clamp(20px, 3vh, 40px));
+    padding-bottom: clamp(40px, 6vh, 64px);
+  }
+  .svc-hero-grid { grid-template-columns: 1fr; gap: clamp(20px, 3vh, 32px); align-items: start; }
+  .svc-hero-h1 { font-size: clamp(2.6rem, 11.5vw, 3.6rem); }
+  .svc-hero-stage { height: auto; aspect-ratio: 1 / 0.76; perspective: 1200px; }
+  .svc-card {
+    width: 72%;
+    box-shadow: 0 16px 34px rgba(20, 18, 16, 0.2), 0 4px 12px rgba(20, 18, 16, 0.12);
+  }
+  .svc-card-1 { top: 0;   left: 0;   transform: rotateY(7deg) rotateZ(-1.4deg); }
+  .svc-card-2 { top: 21%; left: 14%; transform: rotateY(7deg) rotateZ(-0.9deg); }
+  .svc-card-3 { top: 42%; left: 28%; transform: rotateY(6deg) rotateZ(-0.4deg); }
+}
+
+/* Flatten rather than hide — the deck is content, not decoration. */
+@media (prefers-reduced-motion: reduce) {
+  .svc-card-1, .svc-card-2, .svc-card-3 { transform: none; }
+  .svc-card-1 { top: 0;   left: 0; }
+  .svc-card-2 { top: 20%; left: 12%; }
+  .svc-card-3 { top: 40%; left: 24%; }
+}

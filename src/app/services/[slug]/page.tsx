@@ -102,35 +102,59 @@ export default async function ServiceDetailPage({
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
-      {/* ── hero ── */}
-      <section style={{ padding: 'clamp(140px, 16vh, 200px) var(--section-pad-x) clamp(48px, 6vw, 80px)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto' }}>
-          <p style={label}>
-            <Link href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>
-              Services
-            </Link>
-            {' — '}
-            {svc.tagline}
-          </p>
-          <h1
-            className="type-display"
-            style={{ color: 'var(--color-text-primary)', margin: '0 0 28px', maxWidth: '760px' }}
-          >
-            {svc.h1}
-          </h1>
-          <p
-            className="type-body-lg"
-            style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '560px', lineHeight: 1.7 }}
-          >
-            {svc.lead}
-          </p>
-        </div>
-      </section>
+      {/* ── hero: the work as an OBJECT, beside the argument ──────────────
+          Was a left-hand text column with the right half of the frame empty,
+          followed by a separate full-bleed image. Both are replaced by one
+          composition: argument left, the deck as a physical artifact right.
 
-      {/* ── image ── */}
-      <section style={{ padding: '0 var(--section-pad-x)' }}>
-        <div style={{ maxWidth: '1100px', margin: '0 auto', position: 'relative', aspectRatio: '16/8', overflow: 'hidden' }}>
-          <Image src={svc.image} alt={svc.imageAlt} fill sizes="(max-width: 1100px) 92vw, 1100px" quality={75} style={{ objectFit: 'cover' }} />
+          The stack is built from THIS service's own related case studies, so
+          each page shows the work a visitor is actually buying rather than a
+          single decorative image.
+
+          A slide used as a BACKDROP fails — its own typography competes with
+          the headline. At an angle with depth and shadow it reads as an
+          object instead, and the conflict disappears.
+
+          Only the front card is eager; the two behind are dimmed and lazy.
+          The h1 is sized to stay larger than the front card so TEXT holds
+          LCP — text paints with the font, an image waits on the network.
+          See DESIGN.md and the JourneyHero scene-0 note. ─────────────── */}
+      <section className="svc-hero">
+        <div className="svc-hero-grid">
+          <div className="svc-hero-copy">
+            <p style={label}>
+              <Link href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>
+                Services
+              </Link>
+              {' — '}
+              {svc.tagline}
+            </p>
+            <h1 className="type-display svc-hero-h1" style={{ color: 'var(--color-text-primary)', margin: '0 0 24px' }}>
+              {svc.h1}
+            </h1>
+            <p
+              className="type-body-lg"
+              style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '46ch', lineHeight: 1.7 }}
+            >
+              {svc.lead}
+            </p>
+          </div>
+
+          <div className="svc-hero-stage" aria-hidden={related.length > 0 ? undefined : true}>
+            {related[1] && (
+              <div className="svc-card svc-card-1">
+                <Image src={related[1]!.images[0]} alt="" fill sizes="(max-width: 900px) 72vw, 44vw" quality={55} loading="lazy" style={{ objectFit: 'cover' }} />
+              </div>
+            )}
+            {related[0] && (
+              <div className="svc-card svc-card-2">
+                <Image src={related[0]!.images[0]} alt="" fill sizes="(max-width: 900px) 72vw, 44vw" quality={60} loading="lazy" style={{ objectFit: 'cover' }} />
+              </div>
+            )}
+            <div className="svc-card svc-card-3">
+              <Image src={svc.image} alt={svc.imageAlt} fill sizes="(max-width: 900px) 72vw, 44vw" quality={70} style={{ objectFit: 'cover' }} />
+            </div>
+          </div>
         </div>
       </section>
 
