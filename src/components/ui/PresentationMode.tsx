@@ -95,7 +95,7 @@ export default function PresentationMode() {
         >
           {slide.kind === 'title' && (
             <div className="pmode-center">
-              <p className="pmode-eyebrow">LIÉGEOIS DESIGNS — A PRESENTATION ABOUT PRESENTATIONS</p>
+              <p className="pmode-eyebrow">LIÉGEOIS DESIGNS, A PRESENTATION ABOUT PRESENTATIONS</p>
               <h2 className="pmode-display">
                 Presentations
                 <br />
@@ -120,7 +120,7 @@ export default function PresentationMode() {
           {slide.kind === 'work' && (
             <div className="pmode-work">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={slide.image} alt={`${slide.client} — ${slide.project}`} />
+              <img src={slide.image} alt={`${slide.client}: ${slide.project}`} />
               <div className="pmode-work-caption">
                 <span>{slide.client}</span>
                 <span>{slide.project}</span>
@@ -131,7 +131,7 @@ export default function PresentationMode() {
           {slide.kind === 'quote' && (
             <div className="pmode-center">
               <p className="pmode-eyebrow">
-                {quote.author} — {quote.title}, {quote.company}
+                {quote.author}, {quote.title}, {quote.company}
               </p>
               <h2 className="pmode-quote">&ldquo;{quote.quote}&rdquo;</h2>
             </div>
@@ -154,8 +154,8 @@ export default function PresentationMode() {
 
       {/* chrome */}
       <div className="pmode-chrome" aria-hidden="true">
-        <span>P / ESC — EXIT</span>
-        <span>← → — NAVIGATE</span>
+        <span>P / ESC, EXIT</span>
+        <span>← →, NAVIGATE</span>
         <span className="pmode-counter">
           {String(idx + 1).padStart(2, '0')} / {String(SLIDES.length).padStart(2, '0')}
         </span>

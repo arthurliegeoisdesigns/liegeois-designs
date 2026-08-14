@@ -111,7 +111,7 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
   {
     "slug": "intercept-pharma",
     "client": "Intercept Pharmaceuticals",
-    "project": "POA Field Training — Strong Foundation",
+    "project": "POA Field Training, Strong Foundation",
     "format": "Training Presentation",
     "year": 2024,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-toddstreet-intercept-oca-aug-training-0001-ddc7f1"
@@ -135,7 +135,7 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
   {
     "slug": "university-startups",
     "client": "University Startups",
-    "project": "Pitch Deck — A Better Future for Students",
+    "project": "Pitch Deck, A Better Future for Students",
     "format": "Pitch & Investor Deck",
     "year": 2022,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-university-startups-pitch-deck-0001-8eedd5"
@@ -158,7 +158,7 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
   },
   {
     "slug": "projectbe-colorcode",
-    "client": "ProjectBe — ColorCode",
+    "client": "ProjectBe, ColorCode",
     "project": "Brand Pitch Deck",
     "format": "Pitch & Investor Deck",
     "year": 2023,

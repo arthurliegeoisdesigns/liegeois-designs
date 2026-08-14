@@ -6,12 +6,12 @@ import AboutClientWrapper from './AboutClientWrapper'
 // Next.js 16 / Turbopack dual-React null-hook crash.
 
 export const metadata: Metadata = {
-  title: 'About — Arthur Liégeois, Presentation Designer',
+  title: 'About: Arthur Liégeois, Presentation Designer',
   description:
     'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline: turning complex ideas into stories people actually feel.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/about' },
   openGraph: {
-    title: 'About — Arthur Liégeois, Presentation Designer | Liégeois Designs',
+    title: 'About: Arthur Liégeois, Presentation Designer | Liégeois Designs',
     description:
       'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline.',
     url: 'https://www.liegeoisdesigns.com/about',
@@ -46,7 +46,7 @@ const personSchema = {
     'Brand Identity',
   ],
   description:
-    'Founder of Liégeois Designs. Presentation designer and visual storyteller with fifteen years of experience across five countries — working with Chevron, IBM, Marriott, Philips, and Bloomberg.',
+    'Founder of Liégeois Designs. Presentation designer and visual storyteller with fifteen years of experience across five countries, working with Chevron, IBM, Marriott, Philips, and Bloomberg.',
 }
 
 export default function Page() {

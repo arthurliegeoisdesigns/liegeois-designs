@@ -21,7 +21,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'chevron-new-energies',
     tool: 'Keynote',
-    seoDescription: 'Strategic narrative and pitch deck design for Chevron New Energies — executive presentation design reframing a Fortune 500 energy company\'s clean energy transition story.',
+    seoDescription: 'Strategic narrative and pitch deck design for Chevron New Energies, executive presentation design reframing a Fortune 500 energy company\'s clean energy transition story.',
     client: 'Chevron New Energies',
     project: 'New Energies Strategic Narrative',
     format: 'Executive Presentation',
@@ -41,8 +41,8 @@ export const caseStudies: CaseStudy[] = [
     featured: true,
     order: 1,
     agency: 'Fivestone Studios',
-    summary: 'Partnering with Fivestone Studios and amazing strategist Tim Polder, we helped Chevron’s New Energies division articulate a cohesive visual story around its sustainability strategy. The keynote presentation combined editorial typography, abstract motion cues, and climate data to create an inspiring yet grounded roadmap—one that resonated equally with internal stakeholders and external partners.',
-    theAsk: 'Chevron’s New Energies division needed to develop a forward-facing keynote presentation to align stakeholders around their sustainability strategy. Fivestone Studios brought us in to lead the visual storytelling and content structure, with a mandate to bring credibility, elegance, and a strong sense of momentum to the message — while avoiding greenwashing or oversimplification.',
+    summary: 'Partnering with Fivestone Studios and amazing strategist Tim Polder, we helped Chevron’s New Energies division articulate a cohesive visual story around its sustainability strategy. The keynote presentation combined editorial typography, abstract motion cues, and climate data to create an inspiring yet grounded roadmap, one that resonated equally with internal stakeholders and external partners.',
+    theAsk: 'Chevron’s New Energies division needed to develop a forward-facing keynote presentation to align stakeholders around their sustainability strategy. Fivestone Studios brought us in to lead the visual storytelling and content structure, with a mandate to bring credibility, elegance, and a strong sense of momentum to the message, while avoiding greenwashing or oversimplification.',
     challenge: `• Chevron operates in a highly scrutinized space. Any sustainability communication must be airtight, supported by data, grounded in action, and visually trustworthy. 
 • The content was technical and broad, spanning decarbonization, innovation investment, and long-range climate targets. 
 • The challenge was to build a presentation that felt emotionally resonant, factually strong, and strategically aligned, all in a single keynote flow.`,
@@ -56,7 +56,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'marriott-luxury-group',
     tool: 'PowerPoint',
-    seoDescription: 'Executive presentation design for Marriott Luxury Group — YouTube content strategy deck for a global luxury hospitality brand, crafted for senior leadership and digital marketing teams.',
+    seoDescription: 'Executive presentation design for Marriott Luxury Group, YouTube content strategy deck for a global luxury hospitality brand, crafted for senior leadership and digital marketing teams.',
     client: 'Marriott Luxury Group',
     project: 'YouTube Content Strategy 2025',
     format: 'Executive Presentation',
@@ -86,7 +86,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'echo-society',
     tool: 'Keynote',
-    seoDescription: 'Brand and culture storytelling pitch deck design for Echo Society — startup presentation combining editorial design with a compelling narrative for a creative community platform.',
+    seoDescription: 'Brand and culture storytelling pitch deck design for Echo Society, startup presentation combining editorial design with a compelling narrative for a creative community platform.',
     client: 'Echo Society',
     project: 'Brand & Culture Storytelling Deck',
     format: 'Pitch & Investor Deck',
@@ -105,7 +105,7 @@ export const caseStudies: CaseStudy[] = [
     videoUploadDate: '2025-06-26',
     featured: true,
     order: 3,
-    summary: 'Echo Society needed to pitch a new model for content ownership and accelerated go-to-market storytelling. We designed their first investor deck around a disruptive thesis: control your IP, collapse timelines, and scale distribution. The design blends cinematic imagery with sharp strategic logic—setting the tone for a visionary fundraise.',
+    summary: 'Echo Society needed to pitch a new model for content ownership and accelerated go-to-market storytelling. We designed their first investor deck around a disruptive thesis: control your IP, collapse timelines, and scale distribution. The design blends cinematic imagery with sharp strategic logic, setting the tone for a visionary fundraise.',
     theAsk: `• Echo Society, a creative startup pioneering a new model of media production and content IP ownership, needed their first investor deck to communicate their vision to early-stage VCs and angel investors. 
 • The company’s approach was disruptive: own the content, compress the production timeline, and scale IP through a multi-platform strategy. 
 • They wanted a deck that felt premium, cinematic, and founder-led, while still delivering investor-level clarity and traction signals.`,
@@ -123,7 +123,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'the-spaceship',
     tool: 'Figma Slides',
-    seoDescription: 'Investor pitch deck design for The Spaceship — ESG startup presentation crafted to secure funding, turning a complex sustainability business model into a compelling visual story.',
+    seoDescription: 'Investor pitch deck design for The Spaceship, ESG startup presentation crafted to secure funding, turning a complex sustainability business model into a compelling visual story.',
     client: 'The Spaceship',
     project: 'Investor Deck',
     format: 'Pitch & Investor Deck',
@@ -131,13 +131,13 @@ export const caseStudies: CaseStudy[] = [
     year: 2024,
     tagline: 'A pitch deck that made the stakes of ESG feel cosmic.',
     images: [
-      `${CDN}/spaceship-01.jpg`,  // hero — cover
-      `${CDN}/spaceship-05.jpg`,  // gallery — early deck
-      `${CDN}/spaceship-09.jpg`,  // gallery — problem/opportunity
-      `${CDN}/spaceship-14.jpg`,  // gallery — solution
-      `${CDN}/spaceship-19.jpg`,  // gallery — market/model
-      `${CDN}/spaceship-24.jpg`,  // gallery — team/financials
-      `${CDN}/spaceship-28.jpg`,  // gallery — closing
+      `${CDN}/spaceship-01.jpg`,  // hero, cover
+      `${CDN}/spaceship-05.jpg`,  // gallery, early deck
+      `${CDN}/spaceship-09.jpg`,  // gallery, problem/opportunity
+      `${CDN}/spaceship-14.jpg`,  // gallery, solution
+      `${CDN}/spaceship-19.jpg`,  // gallery, market/model
+      `${CDN}/spaceship-24.jpg`,  // gallery, team/financials
+      `${CDN}/spaceship-28.jpg`,  // gallery, closing
     ],
     featured: true,
     order: 4,
@@ -146,17 +146,17 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'mcs-healthcare-jandj',
     tool: 'PowerPoint',
-    seoDescription: 'Internal achievements presentation design for MCS Healthcare and Johnson & Johnson — transforming a dense corporate deck into immersive visual storytelling that commands the room.',
+    seoDescription: 'Internal achievements presentation design for MCS Healthcare and Johnson & Johnson, transforming a dense corporate deck into immersive visual storytelling that commands the room.',
     client: 'MCS Healthcare × J&J',
     project: 'Internal Achievements Presentation',
     format: 'Sales & Agency Deck',
     industry: 'Healthcare / Pharma',
     year: 2024,
     tagline: 'Restraint as craft. A legacy corporate deck rebuilt into something immersive.',
-    theAsk: 'MCS Healthcare was already inside J&J. What they needed was an internal achievements presentation that reflected the quality of that relationship — polished enough to carry the brand, clear enough to actually move the room.',
+    theAsk: 'MCS Healthcare was already inside J&J. What they needed was an internal achievements presentation that reflected the quality of that relationship, polished enough to carry the brand, clear enough to actually move the room.',
     challenge: 'The existing deck had the hallmarks of every legacy corporate presentation: dense slides, cluttered data, formatting that had accumulated over years of internal revisions. J&J\'s achievements were real. The way they were being presented wasn\'t doing them justice.',
-    solution: 'The work was restraint as much as craft. Every slide audited for what it actually needed to say, then rebuilt around that single idea. Dense data became visual. Text-heavy layouts became hierarchy. What started as a traditional corporate deck became something immersive — editorial in feel, precise in execution. Slides 5, 8, and 9 show the shift most clearly.',
-    outcome: 'The client came back satisfied. Cleaner, more confident, easier to deliver — the kind of deck that reflects well on the agency presenting it. What changed wasn\'t the information. It was how much it could be trusted to land on its own.',
+    solution: 'The work was restraint as much as craft. Every slide audited for what it actually needed to say, then rebuilt around that single idea. Dense data became visual. Text-heavy layouts became hierarchy. What started as a traditional corporate deck became something immersive, editorial in feel, precise in execution. Slides 5, 8, and 9 show the shift most clearly.',
+    outcome: 'The client came back satisfied. Cleaner, more confident, easier to deliver, the kind of deck that reflects well on the agency presenting it. What changed wasn\'t the information. It was how much it could be trusted to land on its own.',
     images: [
       `${CDN}/mcs-jj-01.jpg`,
       `${CDN}/mcs-jj-02.jpg`,
@@ -189,7 +189,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'philips-healthcare',
     tool: 'PowerPoint',
-    seoDescription: 'Healthcare technology presentation design for Philips — medical innovation pitch deck crafted to make complex health tech accessible to executive and investor audiences.',
+    seoDescription: 'Healthcare technology presentation design for Philips, medical innovation pitch deck crafted to make complex health tech accessible to executive and investor audiences.',
     client: 'Philips Healthcare',
     project: 'Healthcare Technology Presentation',
     format: 'Executive Presentation',
@@ -208,11 +208,11 @@ export const caseStudies: CaseStudy[] = [
     videoUploadDate: '2025-06-01',
     featured: false,
     agency: 'Blondefish',
-    summary: 'Philips needed an interactive, visually stunning presentation that their Sales Enablement Managers (SEMs) could confidently use during face-to-face meetings with prospective clients visiting Philips’ flagship experience centers in Best and Cambridge. This wasn’t a standard sales deck: it had to feel immersive, on-brand, and intuitive to navigate in real time—giving SEMs the flexibility to tailor the story on the fly to different audiences, from clinicians to hospital executives.',
+    summary: 'Philips needed an interactive, visually stunning presentation that their Sales Enablement Managers (SEMs) could confidently use during face-to-face meetings with prospective clients visiting Philips’ flagship experience centers in Best and Cambridge. This wasn’t a standard sales deck: it had to feel immersive, on-brand, and intuitive to navigate in real time, giving SEMs the flexibility to tailor the story on the fly to different audiences, from clinicians to hospital executives.',
     theAsk: 'Upgrade Philips’ healthcare communications with consistent branding and impactful presentation design.',
     challenge: `• The existing presentation materials were linear and cluttered, forcing SEMs to skip around or improvise during live demos, undermining their confidence and distracting prospects. 
 • The experience centers were designed to impress, but the outdated, uninspired slides couldn’t match the innovation showcased in Philips’ state-of-the-art products.
-• The presentation had to handle deep dives into complex medical technology while staying engaging, and it needed a user-friendly interactive structure so SEMs could jump seamlessly between sections without technical hiccups—all within the constraints of Microsoft PowerPoint.`,
+• The presentation had to handle deep dives into complex medical technology while staying engaging, and it needed a user-friendly interactive structure so SEMs could jump seamlessly between sections without technical hiccups, all within the constraints of Microsoft PowerPoint.`,
     solution: `• Developed cohesive visual identity; 
 • Designed branded PowerPoint templates; 
 • Created modular content blocks for clarity and made the deck fully interactive for it to be presented on a touch-wall format.`,
@@ -222,9 +222,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'intercept-pharma',
     tool: 'PowerPoint',
-    seoDescription: 'Pharmaceutical sales training presentation design for Intercept Pharma — POA field training deck that transformed dense medical content into engaging, rep-ready visual material.',
+    seoDescription: 'Pharmaceutical sales training presentation design for Intercept Pharma, POA field training deck that transformed dense medical content into engaging, rep-ready visual material.',
     client: 'Intercept Pharmaceuticals',
-    project: 'POA Field Training — Strong Foundation',
+    project: 'POA Field Training, Strong Foundation',
     format: 'Training Presentation',
     industry: 'Pharmaceutical',
     year: 2024,
@@ -257,7 +257,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'rapp-opmg',
     tool: 'Keynote',
-    seoDescription: 'Connected data strategy deck design for OPMG and RAPP — agency presentation design turning complex marketing data into a clear, visually compelling narrative for enterprise clients.',
+    seoDescription: 'Connected data strategy deck design for OPMG and RAPP, agency presentation design turning complex marketing data into a clear, visually compelling narrative for enterprise clients.',
     client: 'OPMG × RAPP',
     project: 'Connected Data Deck',
     format: 'Sales & Agency Deck',
@@ -275,7 +275,7 @@ export const caseStudies: CaseStudy[] = [
     video: 'https://res.cloudinary.com/dryyhpqew/video/upload/v1782574190/opmg-reel_s5a5na.mp4',
     videoUploadDate: '2025-06-01',
     featured: false,
-    summary: 'OPMG was preparing a global internal C-suite strategy presentation focused on operationalizing connected data across marketing, media, and CRM. The existing framework was rich in capabilities but lacked visual clarity and conceptual cohesion — especially in the most advanced sections. They needed a strategist/designer hybrid who could both understand and simplify the tech stack without dumbing it down.',
+    summary: 'OPMG was preparing a global internal C-suite strategy presentation focused on operationalizing connected data across marketing, media, and CRM. The existing framework was rich in capabilities but lacked visual clarity and conceptual cohesion, especially in the most advanced sections. They needed a strategist/designer hybrid who could both understand and simplify the tech stack without dumbing it down.',
     theAsk: 'I was responsible for the most advanced and structurally critical section of the deck: illustrating how data signals across touchpoints are captured, modeled, enriched, and applied to drive business actions.',
     challenge: 'Think: from data ingestion to customer decisioning, in a language the CMO, CTO, and CRO could all align on.',
     solution: `• Audited OPMG’s signal taxonomy and frameworks to unify language across analytics, media, and creative teams
@@ -291,7 +291,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'underpin',
     tool: 'Figma Slides',
-    seoDescription: 'Startup investor pitch deck design for Underpin — geo-centric travel app presentation crafted to attract seed funding with sharp visual storytelling and a clear investment narrative.',
+    seoDescription: 'Startup investor pitch deck design for Underpin, geo-centric travel app presentation crafted to attract seed funding with sharp visual storytelling and a clear investment narrative.',
     client: 'Underpin',
     project: 'Startup Pitch Deck',
     format: 'Pitch & Investor Deck',
@@ -321,9 +321,9 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'university-startups',
     tool: 'PowerPoint',
-    seoDescription: 'Social entrepreneurship investor pitch deck design for University Startups — presentation crafted to secure funding for student-led ventures with a mission-driven visual narrative.',
+    seoDescription: 'Social entrepreneurship investor pitch deck design for University Startups, presentation crafted to secure funding for student-led ventures with a mission-driven visual narrative.',
     client: 'University Startups',
-    project: 'Pitch Deck — A Better Future for Students',
+    project: 'Pitch Deck, A Better Future for Students',
     format: 'Pitch & Investor Deck',
     industry: 'Education / EdTech',
     year: 2022,
@@ -337,7 +337,7 @@ export const caseStudies: CaseStudy[] = [
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-university-startups-pitch-deck-0014-68f786',
     ],
     featured: false,
-    summary: 'University Startups was building a platform to bridge the gap between university innovation and real-world commercialization. Their mission: help academic founders turn big ideas into viable ventures by streamlining access to funding, mentors, and go-to-market resources. But to raise capital themselves, they needed a pitch deck that felt less like a research abstract and more like a business case. I partnered with their founding team to bring clarity to their model, focus to their message, and visual structure to a complex ecosystem story—resulting in a deck that positioned them as both visionary and credible.',
+    summary: 'University Startups was building a platform to bridge the gap between university innovation and real-world commercialization. Their mission: help academic founders turn big ideas into viable ventures by streamlining access to funding, mentors, and go-to-market resources. But to raise capital themselves, they needed a pitch deck that felt less like a research abstract and more like a business case. I partnered with their founding team to bring clarity to their model, focus to their message, and visual structure to a complex ecosystem story, resulting in a deck that positioned them as both visionary and credible.',
     theAsk: 'Create a fundraising deck that explained the model, sharpened the investor hook, and turned academic credibility into venture-ready traction.',
     challenge: 'Mission was strong but hard to explain at scale; Narrative drifted into academia, visuals lacked clarity; Each slide had to both educate and convince',
     solution: `• Reframed story around mission and impact; 
@@ -372,13 +372,13 @@ export const caseStudies: CaseStudy[] = [
       `${CDN}/MCS-Healthcare-Lupus-JPM-14.jpg`,
     ],
     featured: false,
-    summary: 'Lupus doesn\'t look like what most people expect. That invisibility — the gap between how someone appears and how they feel — was the central challenge of this deck. Created through MCS Healthcare for JPMorgan\'s wellness and advocacy initiative, the goal was to transform clinical data into a story that moved decision-makers to act. Not a brochure. Not a report. A case for why this disease deserves more attention, more funding, and more seats at the table.',
+    summary: 'Lupus doesn\'t look like what most people expect. That invisibility, the gap between how someone appears and how they feel, was the central challenge of this deck. Created through MCS Healthcare for JPMorgan\'s wellness and advocacy initiative, the goal was to transform clinical data into a story that moved decision-makers to act. Not a brochure. Not a report. A case for why this disease deserves more attention, more funding, and more seats at the table.',
   },
 
   {
     slug: 'rapp-spectrum-enterprise',
     tool: 'Keynote',
-    seoDescription: 'Agency creative immersion presentation design for Spectrum Enterprise and RAPP — executive deck translating agency strategy and creative thinking into a high-impact client-facing format.',
+    seoDescription: 'Agency creative immersion presentation design for Spectrum Enterprise and RAPP, executive deck translating agency strategy and creative thinking into a high-impact client-facing format.',
     client: 'Spectrum Enterprise × RAPP',
     project: 'Creative Immersion Session',
     format: 'Sales & Agency Deck',
@@ -395,7 +395,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: false,
     agency: 'RAPP',
-    summary: 'RAPP hosted a strategic immersion workshop for Spectrum Enterprise to establish creative alignment, revisit brand positioning, and uncover communication opportunities across their B2B offerings. The goal was to bridge internal silos and create a cohesive narrative that would inform campaigns moving forward.I developed a modular deck system that blended enterprise-scale themes (technology, infrastructure, data) with emotionally resonant visuals (human connection, trust, diversity). The structure was deliberately color-coded and animated to guide participants through each phase of the session — from historical relationship timelines to brand strategy discussion points.',
+    summary: 'RAPP hosted a strategic immersion workshop for Spectrum Enterprise to establish creative alignment, revisit brand positioning, and uncover communication opportunities across their B2B offerings. The goal was to bridge internal silos and create a cohesive narrative that would inform campaigns moving forward.I developed a modular deck system that blended enterprise-scale themes (technology, infrastructure, data) with emotionally resonant visuals (human connection, trust, diversity). The structure was deliberately color-coded and animated to guide participants through each phase of the session, from historical relationship timelines to brand strategy discussion points.',
     theAsk: 'Design an immersive, branded deck to guide a multi-agency workshop, clarify Spectrum Enterprise’s brand journey and goals, and visualize a roadmap for creative collaboration with RAPP.',
     challenge: `• Translating complex enterprise offerings into engaging, accessible visuals
 • Balancing technical credibility (infrastructure, data) with emotional storytelling (trust, connection)
@@ -414,7 +414,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'projectbe-colorcode',
     tool: 'PowerPoint',
-    client: 'ProjectBe — ColorCode',
+    client: 'ProjectBe, ColorCode',
     project: 'Brand Pitch Deck',
     format: 'Pitch & Investor Deck',
     industry: 'Consumer Technology',
@@ -463,7 +463,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: false,
     agency: 'RAPP',
-    summary: 'Evolus is not your average pharma brand. Disrupting the aesthetics market with a bold, lifestyle-forward take on neurotoxins, Evolus needed a creative partner who could match that energy. RAPP, the global agency tasked with winning the account, reached out to develop a pitch deck that could both respect the clinical category and break out of its generic, overly-medical tropes. The result? A deck that felt more like a fashion campaign than a sales tool—without losing an ounce of strategy.',
+    summary: 'Evolus is not your average pharma brand. Disrupting the aesthetics market with a bold, lifestyle-forward take on neurotoxins, Evolus needed a creative partner who could match that energy. RAPP, the global agency tasked with winning the account, reached out to develop a pitch deck that could both respect the clinical category and break out of its generic, overly-medical tropes. The result? A deck that felt more like a fashion campaign than a sales tool, without losing an ounce of strategy.',
     theAsk: 'Design a bold immersion deck to position Evolus as a disruptive aesthetics brand and align RAPP’s creative strategy with leadership.',
     challenge: `• Needed balance between pharma credibility and lifestyle energy; 
 • Risk of content feeling too clinical; 
@@ -494,7 +494,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: false,
     agency: 'Special Forces',
-    summary: 'When StarzPlay UK needed to decode consumer behavior like a black ops mission, they tapped Special Forces Insights—and me—to design a high-stakes research and debrief deck. This wasn’t your average PowerPoint: it distilled complex data into a sharp, visual narrative that armed executives with actionable insights for strategic decisions. The result? A deck that didn’t just inform—it engaged, aligned, and empowered the StarzPlay team to execute with precision.',
+    summary: 'When StarzPlay UK needed to decode consumer behavior like a black ops mission, they tapped Special Forces Insights, and me, to design a high-stakes research and debrief deck. This wasn’t your average PowerPoint: it distilled complex data into a sharp, visual narrative that armed executives with actionable insights for strategic decisions. The result? A deck that didn’t just inform, it engaged, aligned, and empowered the StarzPlay team to execute with precision.',
     theAsk: 'Translate complex UK market insights into a clear, executive-ready deck to guide StarzPlay’s strategy.',
     challenge: 'Dense consumer data risked overwhelming; Needed clarity for executives; Insights had to be reframed as opportunities',
     solution: `• Structured narrative from context to insights to growth levers; 
@@ -555,7 +555,7 @@ export const caseStudies: CaseStudy[] = [
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/screenshot-2025-09-11-at-3-28-27-pm-2fc0e4',
     ],
     featured: false,
-    summary: 'Sunrise Cellars, with two stores in Westfield and Caldwell, NJ, wanted to evolve from their ShopRite-affiliated roots into a boutique wine destination. I guided the full transformation — from brand positioning and logo design to e-commerce optimization and promotional campaigns. The new identity highlights curated wines, natural and biodynamic selections, and a warm, expert tone of voice that resonates with both loyal locals and new customers. The result is a brand that feels modern, premium, and rooted in community.',
+    summary: 'Sunrise Cellars, with two stores in Westfield and Caldwell, NJ, wanted to evolve from their ShopRite-affiliated roots into a boutique wine destination. I guided the full transformation, from brand positioning and logo design to e-commerce optimization and promotional campaigns. The new identity highlights curated wines, natural and biodynamic selections, and a warm, expert tone of voice that resonates with both loyal locals and new customers. The result is a brand that feels modern, premium, and rooted in community.',
     theAsk: 'Rebrand two NJ wine shops into a boutique destination with a stronger identity, curated selection, and upgraded customer experience.',
     challenge: `•	Legacy branding tied to ShopRite made the stores feel generic
 •	Needed to stand out in a crowded retail market
@@ -587,7 +587,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: false,
     agency: 'ADM Productions',
-    summary: 'TGI Fridays teamed up with ADM Productions to develop the full visual identity and screen content for its 2020 Global Business Conference. Tasked with building cohesion and energy across a multi-day leadership summit, we brought the brand’s bold voice and iconic flavor to life through layered motion graphics, nostalgic callouts, and cheeky visual storytelling — all grounded in a high-energy theme: “Ignite the Future.”',
+    summary: 'TGI Fridays teamed up with ADM Productions to develop the full visual identity and screen content for its 2020 Global Business Conference. Tasked with building cohesion and energy across a multi-day leadership summit, we brought the brand’s bold voice and iconic flavor to life through layered motion graphics, nostalgic callouts, and cheeky visual storytelling, all grounded in a high-energy theme: “Ignite the Future.”',
     theAsk: 'Develop a full-stage visual language for a high-stakes global business conference.Design a look and feel that celebrates the brand’s past while galvanizing franchise owners and execs around a future-forward growth agenda.Unite diverse stakeholders with punchy, brand-immersive storytelling.',
     challenge: `• Create excitement while balancing business content and entertainment
 • Maintain TGI Fridays’ edgy and nostalgic tone without feeling outdated
@@ -606,7 +606,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'norigami-brand',
     tool: 'Other',
-    seoDescription: 'Brand identity design for Norigami food startup — full visual brand system including logo, color palette, typography, and packaging for a grab-and-go sushi concept.',
+    seoDescription: 'Brand identity design for Norigami food startup, full visual brand system including logo, color palette, typography, and packaging for a grab-and-go sushi concept.',
     client: 'Norigami',
     project: 'Designing a Full Food Startup Brand that Looks just like an Established Company',
     format: 'Strategic Narrative',
@@ -651,7 +651,7 @@ export const caseStudies: CaseStudy[] = [
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/foodspace-7-a1b2d0',
     ],
     featured: false,
-    summary: 'This internal presentation, created for a FoodSpace Lunch & Learn, explored cutting-edge technologies reshaping food retail—from aerial shelf scanning to AI-driven kitchen ops. I built a modular, keynote-style deck that balanced vision and technical realism to provoke discussion and align teams on innovation priorities.',
+    summary: 'This internal presentation, created for a FoodSpace Lunch & Learn, explored cutting-edge technologies reshaping food retail, from aerial shelf scanning to AI-driven kitchen ops. I built a modular, keynote-style deck that balanced vision and technical realism to provoke discussion and align teams on innovation priorities.',
     theAsk: 'FoodSpace requested a keynote-style deck for an internal Lunch & Learn session aimed at inspiring cross-functional teams around the future of foodservice technology. The theme was intentionally provocative: how robotics, automation, and inspiration (“eyes in the sky”) will reshape the way food is prepared, distributed, and monitored across retail chains.',
     challenge: `• The content was a mix of known tech and speculative innovation, which meant we needed to strike a balance between inspiration and credibility. 
 • The audience ranged from operations staff to senior leadership, requiring layered messaging that didn’t alienate non-technical participants. 
@@ -668,7 +668,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'grey-slide-sample-1-8439d',
     tool: 'Keynote',
-    seoDescription: 'New business pitch deck design for Post Consumer Brands — FMCG presentation design crafted to win agency business from a major consumer packaged goods company.',
+    seoDescription: 'New business pitch deck design for Post Consumer Brands, FMCG presentation design crafted to win agency business from a major consumer packaged goods company.',
     client: 'Post Consumer Brands',
     project: 'Designing a New Business Pitch Deck for a huge FMCG Brand',
     format: 'Pitch & Investor Deck',
@@ -685,7 +685,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: false,
     agency: 'Grey',
-    summary: 'I was tasked by Grey to bring storytelling and design discipline to a major new business opportunity. The pitch deck combined insight-driven slides with bold creative to tell Post’s growth story across breakfast innovation, family appeal, and cultural relevance—while maintaining a crisp, modern visual style throughout.',
+    summary: 'I was tasked by Grey to bring storytelling and design discipline to a major new business opportunity. The pitch deck combined insight-driven slides with bold creative to tell Post’s growth story across breakfast innovation, family appeal, and cultural relevance, while maintaining a crisp, modern visual style throughout.',
     theAsk: 'Design a pitch deck for Grey to pitch for Honey Bunch of Oats to Post Consumer Brands.',
     challenge: `• The biggest challenge was navigating multiple stakeholders, strategy leads, creatives, account directors, each with different takes on tone, message, and structure. 
 • The deck had grown too long and redundant during internal iteration. We needed to distill a sea of ideas into a concise, energetic pitch that told a compelling story. 
@@ -701,13 +701,13 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'ogilvy-for-cdw-1-98a9e',
     tool: 'Keynote',
-    seoDescription: 'New business pitch deck design for Ogilvy and CDW — agency credentials and strategy presentation designed to position Ogilvy as CDW\'s ideal creative partner.',
+    seoDescription: 'New business pitch deck design for Ogilvy and CDW, agency credentials and strategy presentation designed to position Ogilvy as CDW\'s ideal creative partner.',
     client: 'CDW',
     project: 'Designing a New Business Pitch Deck to online tech store CDW',
     format: 'Pitch & Investor Deck',
     industry: 'Technology',
     year: 2023,
-    tagline: 'For a high-stakes pitch, Ogilvy brought me in to design a sharp, on-brand deck that positioned them as CDW’s ideal creative partner—blending storytelling, clarity, and strategic depth.',
+    tagline: 'For a high-stakes pitch, Ogilvy brought me in to design a sharp, on-brand deck that positioned them as CDW’s ideal creative partner, blending storytelling, clarity, and strategic depth.',
     images: [
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-ogilvy-cdw-0001-2ddadb',
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-ogilvy-cdw-0002-dc43ab',
@@ -724,8 +724,8 @@ export const caseStudies: CaseStudy[] = [
 • Sector-specific B2B experience
 • Global scale and tech fluency
 • All within a cohesive, emotionally intelligent narrative that emphasized creative firepower and strategic depth.`,
-    challenge: `• The deck needed to speak to both marketing and procurement stakeholders — marrying creativity with business rigor
-• CDW operates in a complex, solution-driven B2B space, requiring more than flashy visuals — every slide had to earn its place
+    challenge: `• The deck needed to speak to both marketing and procurement stakeholders, marrying creativity with business rigor
+• CDW operates in a complex, solution-driven B2B space, requiring more than flashy visuals, every slide had to earn its place
 • Internal stakeholders at Ogilvy wanted to present both horizontal integration and vertical expertise without overwhelming the client`,
     solution: `• Built narrative around “impact happens at the intersection,” Ogilvy’s core idea
 • Highlighted five verticals with distinct but connected design blocks
@@ -756,7 +756,7 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: false,
     summary: 'I designed a fully responsive, CMS-powered website for the International Advertising Association to support their worldwide initiatives. From member directories to thought leadership libraries, the platform is structured for scale and accessibility. The visual style strikes a balance between institutional credibility and global creative energy.',
-    theAsk: 'The International Advertising Association (IAA) needed a complete overhaul of its global website — one that could support its multi-region operations, highlight its thought leadership, and offer a user-friendly experience to members worldwide. Their old website had become fragmented, slow, and difficult to update, making it hard for IAA to represent itself as a modern, globally connected organization.',
+    theAsk: 'The International Advertising Association (IAA) needed a complete overhaul of its global website, one that could support its multi-region operations, highlight its thought leadership, and offer a user-friendly experience to members worldwide. Their old website had become fragmented, slow, and difficult to update, making it hard for IAA to represent itself as a modern, globally connected organization.',
     challenge: 'IAA’s challenge was both technical and strategic: How do you build a digital presence that works equally well for visitors in Mumbai and New York, for students and CEOs, and for showcasing both regional and global content? The structure had to be scalable, intuitive, and on-brand, but also flexible enough for different regional teams to update their own pages. The existing content was outdated and inconsistent, requiring significant editorial restructuring and content strategy support.',
     solution: 'I designed and developed a clean, responsive website with a modular CMS that allows each IAA chapter to contribute and update content while preserving brand consistency. The information architecture was restructured around three core pillars: community, education, and advocacy. I created templates for events, news, leadership bios, and membership tiers, and integrated search and filter tools for easy navigation. The design language emphasized clarity, international accessibility, and visual storytelling.',
     outcome: 'The result is a future-proof digital home for IAA that reflects its global reach and mission. The centralized yet flexible CMS empowers local chapters to manage their own content, while the overarching brand voice and visual consistency reinforce IAA’s leadership in global advertising discourse. Engagement improved across key regions, and the platform now serves as both an advocacy hub and a membership engine for the organization.',
@@ -765,7 +765,7 @@ export const caseStudies: CaseStudy[] = [
   {
     slug: 'bloomberg-media-internal-dei-strategy',
     tool: 'PowerPoint',
-    seoDescription: 'Internal DEI strategy presentation design for Bloomberg Media Group — C-suite deck transforming diversity and inclusion initiatives into a compelling executive visual narrative.',
+    seoDescription: 'Internal DEI strategy presentation design for Bloomberg Media Group, C-suite deck transforming diversity and inclusion initiatives into a compelling executive visual narrative.',
     client: 'Bloomberg Media Group',
     project: 'Designing a fully detailed Internal DE&I Strategy Deck for the C-Suite',
     format: 'Executive Presentation',
@@ -796,7 +796,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
   {
     slug: 'norigami-slide-1-7cc23',
     tool: 'Keynote',
-    seoDescription: 'Investor pitch deck design for Norigami food startup — seed funding presentation for an allergen-free onigirazu brand, combining bold brand identity with a clear investment story.',
+    seoDescription: 'Investor pitch deck design for Norigami food startup, seed funding presentation for an allergen-free onigirazu brand, combining bold brand identity with a clear investment story.',
     client: 'Norigami',
     project: 'Designing an Engaging Investor Pitch Deck for a Food Startup that closed the deal.',
     format: 'Pitch & Investor Deck',
@@ -812,9 +812,9 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/screenshot-2024-10-07-at-14-19-46-51c568',
     ],
     featured: false,
-    summary: 'Norigami is a London-based food startup revolutionizing the grab-and-go category with a Japanese twist: Onigirazu — handheld rice sandwiches with premium fillings. This investor pitch deck was designed to help secure £400,000 in funding to launch Norigami’s first fixed-location store after validating the product through pop-ups and corporate catering. The brand pairs culinary innovation with wellness, tech-driven retail, and a deep sense of purpose — blending bold visual storytelling with mission-first positioning to engage investors and partners.',
+    summary: 'Norigami is a London-based food startup revolutionizing the grab-and-go category with a Japanese twist: Onigirazu, handheld rice sandwiches with premium fillings. This investor pitch deck was designed to help secure £400,000 in funding to launch Norigami’s first fixed-location store after validating the product through pop-ups and corporate catering. The brand pairs culinary innovation with wellness, tech-driven retail, and a deep sense of purpose, blending bold visual storytelling with mission-first positioning to engage investors and partners.',
     theAsk: 'Secure £400,000 in seed funding (SEIS/EIS advance assurance approved) in exchange for 15–20% equity to open Norigami’s first retail location in central London, optimize operational capabilities, and build out a scalable, tech-based, multi-channel expansion strategy.',
-    challenge: 'Although the UK grab-and-go market is booming, it’s saturated with processed, bread-based, and nutritionally weak options. Food intolerances are rising, and consumers are demanding more innovation, transparency, and authenticity — but few players deliver. Norigami needed a compelling story and clear value proposition to stand out and resonate with purpose-driven investors.',
+    challenge: 'Although the UK grab-and-go market is booming, it’s saturated with processed, bread-based, and nutritionally weak options. Food intolerances are rising, and consumers are demanding more innovation, transparency, and authenticity, but few players deliver. Norigami needed a compelling story and clear value proposition to stand out and resonate with purpose-driven investors.',
     solution: `• Designed narrative-rich pitch deck linking market trends, health awareness, and Japanese culture
 • Structured clear problem/solution framework with founder-led storytelling
 • Showcased product-market fit through pop-up success, press, and influencer traction
@@ -829,7 +829,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
   {
     slug: 'project-be-project-wellness-keynote',
     tool: 'Keynote',
-    seoDescription: 'Digital wellness keynote presentation design for Project Be — fully animated conference deck exploring technology and burnout, designed to inspire and provoke dialogue at a wellness summit.',
+    seoDescription: 'Digital wellness keynote presentation design for Project Be, fully animated conference deck exploring technology and burnout, designed to inspire and provoke dialogue at a wellness summit.',
     client: 'Project Be',
     project: 'Designing an Engaging, Fully Animated, Digital Wellness Keynote',
     format: 'Training Presentation',
@@ -847,7 +847,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     video: 'https://res.cloudinary.com/dryyhpqew/video/upload/v1782574187/project-be-wellness_rxqjl6.mp4',
     videoUploadDate: '2025-06-01',
     featured: false,
-    summary: 'For Project Be’s inaugural Digital Wellness Conference, they needed a keynote that didn’t just talk about mindfulness in the digital age—it had to feel like it. I crafted a fully animated, visually immersive presentation that wove complex wellness insights into a cinematic experience. Every transition, motion cue, and visual metaphor was designed to keep the audience hooked and inspired, transforming a static keynote into a dynamic storytelling journey that left attendees reflecting on their relationship with technology long after the last slide.',
+    summary: 'For Project Be’s inaugural Digital Wellness Conference, they needed a keynote that didn’t just talk about mindfulness in the digital age, it had to feel like it. I crafted a fully animated, visually immersive presentation that wove complex wellness insights into a cinematic experience. Every transition, motion cue, and visual metaphor was designed to keep the audience hooked and inspired, transforming a static keynote into a dynamic storytelling journey that left attendees reflecting on their relationship with technology long after the last slide.',
     theAsk: 'Design a keynote that addressed the impact of digital overload and inspired healthier tech habits, balancing data with emotional storytelling.',
     challenge: `• Topic risked feeling generic without strong narrative hooks
 • Needed credibility with corporate audiences while remaining relatable
@@ -863,7 +863,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
   {
     slug: 'echo-society-pitch-deck-2',
     tool: 'Keynote',
-    seoDescription: 'Startup investor pitch deck design for Echo Society — multi-platform IP production funding presentation with vibrant editorial design built to close a creative media investment round.',
+    seoDescription: 'Startup investor pitch deck design for Echo Society, multi-platform IP production funding presentation with vibrant editorial design built to close a creative media investment round.',
     client: 'Echo Society',
     project: 'Designing an Investor-Ready Startup Pitch Deck, Pt. 1',
     format: 'Pitch & Investor Deck',
@@ -914,8 +914,8 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/210604-foodspace-deck-007-bedf74',
     ],
     featured: false,
-    summary: 'I crafted a flexible sales deck for FoodSpace that clearly outlines their value proposition, solutions, and technology. Designed to support multiple audiences (from buyers to investors), the deck integrates modular storytelling with bold, brand-consistent visuals—empowering the team to adapt it quickly for different conversations.',
-    theAsk: 'FoodSpace needed a master sales deck that could clearly articulate their value proposition to a range of stakeholders — from national grocery buyers and retail tech partners to investors and procurement teams. The ask wasn’t just for “pretty slides,” but for a modular storytelling system that could flex based on audience type, depth of conversation, and stage of engagement.',
+    summary: 'I crafted a flexible sales deck for FoodSpace that clearly outlines their value proposition, solutions, and technology. Designed to support multiple audiences (from buyers to investors), the deck integrates modular storytelling with bold, brand-consistent visuals, empowering the team to adapt it quickly for different conversations.',
+    theAsk: 'FoodSpace needed a master sales deck that could clearly articulate their value proposition to a range of stakeholders, from national grocery buyers and retail tech partners to investors and procurement teams. The ask wasn’t just for “pretty slides,” but for a modular storytelling system that could flex based on audience type, depth of conversation, and stage of engagement.',
     challenge: `• The company’s offering is multifaceted, combining AI, computer vision, data science, and retail UX, which makes it challenging to explain quickly without overwhelming the viewer. 
 • Their prior decks leaned too heavily on text and internal language, which confused early-stage calls. 
 • We needed to clarify the story, highlight benefits over features, and build a visual system that could support short intros and deep dives alike.`,
@@ -945,7 +945,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
       'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/tbcg-iot-slide-5-53ba22',
     ],
     featured: false,
-    summary: 'Following the success of our first Apple Life Hacks workshop, The Be Curious Group invited me back to decode a much bigger mystery: the Internet of Things. Their goal? Help members understand what IoT means, how it shows up in daily life, and how to use it confidently — without the jargon. From smart doorbells to fitness trackers and kitchen devices, this session brought clarity and curiosity together.',
+    summary: 'Following the success of our first Apple Life Hacks workshop, The Be Curious Group invited me back to decode a much bigger mystery: the Internet of Things. Their goal? Help members understand what IoT means, how it shows up in daily life, and how to use it confidently: without the jargon. From smart doorbells to fitness trackers and kitchen devices, this session brought clarity and curiosity together.',
     theAsk: 'Create and present a fully animated keynote that:– Explains IoT in simple, visual terms– Highlights practical use cases across home, work, health, and parenting– Helps attendees choose between ecosystems (Apple, Alexa, Google)– Reassures the group about security, privacy, and device control',
     challenge: `• Tech fog: IoT is a buzzword, but most people don’t really know what it is. I had to make it feel tangible, familiar, and safe.
 • Overwhelm: With so many devices and platforms, the audience needed clarity on what’s worth investing in.
@@ -961,7 +961,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
   {
     slug: 'ibm-quantum-summit-2022-cn3q3',
     tool: 'PowerPoint',
-    seoDescription: 'IBM Quantum Summit 2022 keynote presentation design — enterprise visual storytelling for IBM\'s flagship quantum computing conference, translating dense technical content into a confident stage-ready deck.',
+    seoDescription: 'IBM Quantum Summit 2022 keynote presentation design, enterprise visual storytelling for IBM\'s flagship quantum computing conference, translating dense technical content into a confident stage-ready deck.',
     client: 'IBM Quantum',
     project: 'IBM Quantum Summit 2022 Keynote',
     format: 'Training Presentation',
@@ -983,7 +983,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 • Strict brand compliance: Every color, font, layout, and spacing had to follow IBM’s global standards precisely.
 • Confidentiality: Most content was internal or sensitive, with strict data-handling protocols.
 • Multiple speakers: The deck needed to support a seamless flow across various speakers and subject shifts.`,
-    solution: `• Visual consistency: Audited and redesigned 100+ slides using IBM’s carbon design system principles—ensuring typographic rhythm, uniform margins, and consistent visual hierarchy.
+    solution: `• Visual consistency: Audited and redesigned 100+ slides using IBM’s carbon design system principles, ensuring typographic rhythm, uniform margins, and consistent visual hierarchy.
 • Information architecture: Reorganized slides by topic and subtopic to improve pacing.
 • Subtle storytelling: Employed clean layouts, full-bleed imagery, and minimal animations to emphasize precision and forward-thinking innovation.
 • Speaker support: Structured slide sequences to enhance presenter flow across breakout topics like quantum-safe cryptography and OpenQASM.`,
@@ -1010,7 +1010,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     ],
     featured: false,
     agency: 'Special Forces',
-    summary: 'Special Forces, a boutique strategy agency in New York, was tapped by Google to decode the evolving dynamics of modern commerce—and needed help turning a complex research initiative into a deck that would resonate with senior stakeholders. I came in to transform their dense findings into a clean, narrative-driven visual story. Working closely with the Special Forces strategy team, I designed and structured the most critical section of the final presentation: a modular, insight-led deck that balanced rigor with rhythm, and gave Google leadership the clarity they needed to act on it.',
+    summary: 'Special Forces, a boutique strategy agency in New York, was tapped by Google to decode the evolving dynamics of modern commerce, and needed help turning a complex research initiative into a deck that would resonate with senior stakeholders. I came in to transform their dense findings into a clean, narrative-driven visual story. Working closely with the Special Forces strategy team, I designed and structured the most critical section of the final presentation: a modular, insight-led deck that balanced rigor with rhythm, and gave Google leadership the clarity they needed to act on it.',
     theAsk: 'Turn dense commerce research into an executive-ready presentation that sparked action from Google leadership.',
     challenge: `• Complex data risked losing non-specialists; 
 • Needed to balance depth with clarity; 
@@ -1072,9 +1072,9 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     featured: false,
     summary: 'I developed a refreshed visual identity for MCS Healthcare to better align with their strategic voice and credibility. The updated system includes a redesigned logo, custom iconography, a versatile color palette, and branded templates that project authority without losing warmth. The identity now reflects both their legacy and their future-facing ambition.',
     theAsk: 'After years of operating under a well-recognized but dated identity, MCS Healthcare sought a refreshed visual system to reflect its growth, relevance, and leadership in pharmaceutical communications. The rebrand needed to strike a delicate balance: maintaining continuity for long-time partners while signaling boldness and precision to new clients and prospects.',
-    challenge: 'Healthcare communications require a tone of seriousness and reliability, but MCS also wanted to show creativity and warmth. The old visual identity lacked versatility, and there were no formal brand guidelines, which led to inconsistencies across internal documents, digital touchpoints, and pitch materials. We needed to create a flexible system that could work across print, web, PowerPoint, and day-to-day internal comms — all while keeping the rollout manageable for a mid-sized agency.',
+    challenge: 'Healthcare communications require a tone of seriousness and reliability, but MCS also wanted to show creativity and warmth. The old visual identity lacked versatility, and there were no formal brand guidelines, which led to inconsistencies across internal documents, digital touchpoints, and pitch materials. We needed to create a flexible system that could work across print, web, PowerPoint, and day-to-day internal comms: all while keeping the rollout manageable for a mid-sized agency.',
     solution: 'We developed a modernized brand identity that preserved the legacy color palette but sharpened its contrast and hierarchy. The updated logo introduced clean typography and spacing, while a supporting visual system was built around modular layouts, flexible templates, and branded iconography. We also created an internal style guide and designed a series of presentation and document templates for the MCS team, enabling immediate adoption across departments.',
-    outcome: 'The refreshed identity improved brand consistency and confidence, internally and externally. Teams found it easier to create visually strong deliverables, and leadership reported increased enthusiasm from both clients and staff. The rebrand helped MCS present a unified front across pitches, partnerships, and hiring — strengthening their position as a top-tier healthcare communications partner.',
+    outcome: 'The refreshed identity improved brand consistency and confidence, internally and externally. Teams found it easier to create visually strong deliverables, and leadership reported increased enthusiasm from both clients and staff. The rebrand helped MCS present a unified front across pitches, partnerships, and hiring, strengthening their position as a top-tier healthcare communications partner.',
   },
 
   {
@@ -1097,7 +1097,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     featured: false,
     summary: 'I redesigned MCS Healthcare’s website to better reflect their credibility and leadership in pharmaceutical communications. The new layout is content-forward and clean, with a modular CMS framework to showcase case studies, thought leadership, and culture. The result is a polished digital presence that feels as professional as the clients they serve.',
     theAsk: 'MCS Healthcare, a well-established public relations agency specializing in pharma and biotech communications, needed a website overhaul that reflected their credibility and modernity. Their existing site lacked both usability and storytelling flair, limiting their ability to showcase case studies, thought leadership, and recruitment appeal. They asked for a content-forward, strategically designed web experience that would resonate with healthcare decision-makers and future talent alike.',
-    challenge: 'MCS’s legacy meant the redesign needed to respect a well-defined tone of professionalism and trust, while infusing a more contemporary and engaging digital presence. With a wide mix of long-form editorial content, case-based narratives, and dynamic team materials, the challenge was to create a system that could accommodate different formats and evolve over time — without sacrificing clarity or structure. Navigational logic and CMS scalability were key priorities, as was the integration of SEO best practices.',
+    challenge: 'MCS’s legacy meant the redesign needed to respect a well-defined tone of professionalism and trust, while infusing a more contemporary and engaging digital presence. With a wide mix of long-form editorial content, case-based narratives, and dynamic team materials, the challenge was to create a system that could accommodate different formats and evolve over time, without sacrificing clarity or structure. Navigational logic and CMS scalability were key priorities, as was the integration of SEO best practices.',
     solution: `• I designed a modern, editorial-style website that balanced content richness with elegant restraint. The layout was modular and intuitive, allowing MCS to feature deep-dive case studies, strategic service descriptions, and real-time blog content without overwhelming the visitor. 
 • Brand colors were updated slightly to improve legibility and impact, and content types were cleanly categorized to guide user flow. 
 • The CMS infrastructure was built in Webflow with a flexible back-end to support ongoing internal updates by non-technical staff.`,
@@ -1160,7 +1160,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     theAsk: 'Reignite internal brand engagement post-pandemic by turning Mastercard’s “Priceless” positioning inward, reconnecting their audience worldwide with the company’s purpose.',
     challenge: `• Mastercard’s “Priceless” platform was already globally recognizable, but internally, employees felt disconnected from its meaning.
 • Remote and hybrid work diluted team cohesion and cultural alignment.
-• Mastercard needed a unique and emotionally resonant way to energize staff around a unifying purpose — without relying on dry presentations or top-down messaging.`,
+• Mastercard needed a unique and emotionally resonant way to energize staff around a unifying purpose, without relying on dry presentations or top-down messaging.`,
     solution: `• Created “Discover the Priceless in Us,” a global anthem co-written and performed by employees with artist guidance
 • Designed split-screen videos of staff and artists singing together to symbolize unity across regions
 • Activated regional events with surprise celebrity appearances (e.g., Shakira) for cultural relevance
@@ -1168,7 +1168,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
 • Framed as a PR-worthy internal campaign strong enough to gain external media coverage`,
     outcome: `While speculative as a pitch, this concept had the potential to:• Deepen employee connection to Mastercard’s purpose and to one another.
 • Create viral, shareable internal moments that elevate morale and culture.
-• Reinforce Mastercard’s brand as not just a financial leader — but a human-first, emotionally intelligent organization.
+• Reinforce Mastercard’s brand as not just a financial leader, but a human-first, emotionally intelligent organization.
 • Enable participation and pride through creativity, not corporate mandates.`,
   },
 

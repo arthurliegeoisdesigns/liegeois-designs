@@ -15,13 +15,13 @@ export async function generateMetadata({
   const { slug } = await params
   const cs = caseStudies.find((c) => c.slug === slug)
   if (!cs) return {}
-  const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client} — ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
+  const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client}, ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
   return {
-    title: `${cs.client} — ${cs.project}`,
+    title: `${cs.client}: ${cs.project}`,
     description: metaDesc,
     alternates: { canonical: `https://www.liegeoisdesigns.com/work/${slug}` },
     openGraph: {
-      title: `${cs.client} — ${cs.project}`,
+      title: `${cs.client}: ${cs.project}`,
       description: metaDesc,
       url: `https://www.liegeoisdesigns.com/work/${slug}`,
       images: [{ url: cs.images[0], width: 1200, height: 900 }],
@@ -42,12 +42,12 @@ export default async function CaseStudyPage({
   const prev = caseStudies[currentIndex - 1] ?? null
   const next = caseStudies[currentIndex + 1] ?? null
 
-  const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client} — ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
+  const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client}, ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
 
   const creativeWorkSchema = {
     '@context': 'https://schema.org',
     '@type': 'CreativeWork',
-    name: `${cs.client} — ${cs.project}`,
+    name: `${cs.client}: ${cs.project}`,
     description: metaDesc,
     creator: {
       '@type': 'Person',
@@ -72,7 +72,7 @@ export default async function CaseStudyPage({
     itemListElement: [
       { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://www.liegeoisdesigns.com' },
       { '@type': 'ListItem', position: 2, name: 'Work', item: 'https://www.liegeoisdesigns.com/work' },
-      { '@type': 'ListItem', position: 3, name: `${cs.client} — ${cs.project}`, item: `https://www.liegeoisdesigns.com/work/${cs.slug}` },
+      { '@type': 'ListItem', position: 3, name: `${cs.client}: ${cs.project}`, item: `https://www.liegeoisdesigns.com/work/${cs.slug}` },
     ],
   }
 
@@ -80,7 +80,7 @@ export default async function CaseStudyPage({
     ? {
         '@context': 'https://schema.org',
         '@type': 'VideoObject',
-        name: `${cs.client} — ${cs.project}`,
+        name: `${cs.client}: ${cs.project}`,
         description: metaDesc,
         thumbnailUrl: cs.images[0],
         uploadDate: cs.videoUploadDate ?? `${cs.year}-01-01`,
@@ -332,7 +332,7 @@ export default async function CaseStudyPage({
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                           src={r.images[0].replace('/f_auto,q_auto/', '/f_auto,q_auto,w_600,c_fill,ar_16:10/')}
-                          alt={`${r.client} — ${r.project}`}
+                          alt={`${r.client}: ${r.project}`}
                           loading="lazy"
                           decoding="async"
                           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }}

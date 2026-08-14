@@ -33,7 +33,7 @@ export default function Blog() {
             Ideas that don&apos;t beg for your attention.
           </h2>
           <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: 0 }}>
-            Thinking about the ideas that make stories land — and the ones that make audiences lean in.
+            Thinking about the ideas that make stories land, and the ones that make audiences lean in.
           </p>
         </motion.div>
 

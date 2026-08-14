@@ -76,7 +76,7 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
         {/* After — base layer */}
         <img
           src={clOpt(after)}
-          alt={`${label ?? `Slide ${index + 1}`} — after`}
+          alt={`${label ?? `Slide ${index + 1}`}: after`}
           draggable={false}
           style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
         />
@@ -92,7 +92,7 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
         >
           <img
             src={clOpt(before)}
-            alt={`${label ?? `Slide ${index + 1}`} — before`}
+            alt={`${label ?? `Slide ${index + 1}`}: before`}
             draggable={false}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />

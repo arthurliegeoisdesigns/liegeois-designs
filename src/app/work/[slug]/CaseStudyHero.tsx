@@ -48,7 +48,7 @@ export default function CaseStudyHero({
         >
           <Image
             src={cs.images[0]}
-            alt={`${cs.client} — ${cs.project}`}
+            alt={`${cs.client}: ${cs.project}`}
             fill
             priority
             style={{ objectFit: 'cover', objectPosition: 'center top' }}

@@ -46,16 +46,16 @@ import Image from 'next/image'
 const CDN_BASE = 'https://res.cloudinary.com/dryyhpqew/image/upload/liegeois-designs/journey'
 
 const BUILDS = [
-  { file: 'chevron-00-cover', tag: 'Build 01 — the cover' },
-  { file: 'chevron-01', tag: 'Build 02 — "Hi."' },
-  { file: 'chevron-02', tag: 'Build 03 — clearing the room' },
-  { file: 'chevron-03', tag: 'Build 04 — no logo hunt' },
-  { file: 'chevron-04', tag: 'Build 05 — no silver bullet' },
-  { file: 'chevron-05', tag: 'Build 06 — the turn' },
-  { file: 'chevron-06', tag: 'Build 07 — the people' },
-  { file: 'chevron-07', tag: 'Build 08 — the thinking' },
-  { file: 'chevron-08', tag: 'Build 09 — the question' },
-  { file: 'chevron-09', tag: 'Build 10 — the landing' },
+  { file: 'chevron-00-cover', tag: 'Build 01: the cover' },
+  { file: 'chevron-01', tag: 'Build 02: "Hi."' },
+  { file: 'chevron-02', tag: 'Build 03: clearing the room' },
+  { file: 'chevron-03', tag: 'Build 04: no logo hunt' },
+  { file: 'chevron-04', tag: 'Build 05: no silver bullet' },
+  { file: 'chevron-05', tag: 'Build 06: the turn' },
+  { file: 'chevron-06', tag: 'Build 07: the people' },
+  { file: 'chevron-07', tag: 'Build 08: the thinking' },
+  { file: 'chevron-08', tag: 'Build 09: the question' },
+  { file: 'chevron-09', tag: 'Build 10: the landing' },
 ]
 
 const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload'
@@ -148,7 +148,7 @@ export default function JourneyHero() {
       const mobile = window.matchMedia('(max-width: 768px)').matches
       const slideNo = root.querySelector<HTMLElement>('.jn-slide-no')
       const setNo = (n: number) => {
-        if (slideNo) slideNo.textContent = `Slide 0${n} — 05`
+        if (slideNo) slideNo.textContent = `Slide 0${n} / 05`
       }
 
       /* ── storm placement: 7×5 shuffled grid, no clusters ── */
@@ -493,7 +493,7 @@ export default function JourneyHero() {
     <div className="jn-journey" ref={rootRef}>
       <canvas className="jn-vortex" ref={canvasRef} aria-hidden="true" />
       <div className="jn-deck-frame" aria-hidden="true">
-        <span className="jn-slide-no">Slide 01 — 05</span>
+        <span className="jn-slide-no">Slide 01, 05</span>
       </div>
 
       {/* SCENE 0 — TITLE SLIDE, work as the object
@@ -568,14 +568,14 @@ export default function JourneyHero() {
             <div className="jn-s0-slide jn-s0-c3">
               <Image
                 src={`${CDN_BASE}/chevron-00-cover`}
-                alt="Chevron New Energies — strategic narrative deck"
+                alt="Chevron New Energies: strategic narrative deck"
                 fill
                 sizes="(max-width: 900px) 72vw, 41vw"
                 quality={70}
                 style={{ objectFit: 'cover' }}
               />
             </div>
-            <span className="jn-s0-tag">Chevron New Energies — strategic narrative</span>
+            <span className="jn-s0-tag">Chevron New Energies, strategic narrative</span>
           </div>
         </div>
 
@@ -615,9 +615,9 @@ export default function JourneyHero() {
             ))}
           </div>
           <div className="jn-seq-caption">
-            <p className="jn-eyebrow">Scene 01 — The Sequence</p>
+            <p className="jn-eyebrow">Scene 01, The Sequence</p>
             <p className="jn-cap" data-jn-cap="0">One slide is not a scene.</p>
-            <p className="jn-cap" data-jn-cap="1">A scene is slides in sequence — timed to the story.</p>
+            <p className="jn-cap" data-jn-cap="1">A scene is slides in sequence, timed to the story.</p>
             <p className="jn-cap" data-jn-cap="2">Build after build, until the message lands.</p>
           </div>
         </div>
@@ -671,7 +671,7 @@ export default function JourneyHero() {
             ))}
             <div className="jn-s2-reveal">
               <div className="jn-s2-wrap">
-                <p className="jn-eyebrow">Scene 02 — The Doors</p>
+                <p className="jn-eyebrow">Scene 02, The Doors</p>
                 <h2>
                   One story,
                   <br />
@@ -679,14 +679,14 @@ export default function JourneyHero() {
                 </h2>
                 <p className="jn-s2-body">
                   We cut your deck the way an editor cuts a film. Every element enters
-                  exactly when the story needs it — so the progression feels natural,
+                  exactly when the story needs it, so the progression feels natural,
                   obvious, inevitable. The audience never sees slides changing.
                   They see one idea unfolding.
                 </p>
               </div>
             </div>
             <div className="jn-composed-label">
-              <p className="jn-eyebrow">— and what the room sees</p>
+              <p className="jn-eyebrow">and what the room sees</p>
               <p className="jn-composed-big">Chaos, streamlined.</p>
             </div>
           </div>
@@ -737,7 +737,7 @@ export default function JourneyHero() {
           <div className="jn-blackout" />
           <div className="jn-truth">
             <div className="jn-truth-wrap">
-              <p className="jn-eyebrow">Scene 03 — The Whisper</p>
+              <p className="jn-eyebrow">Scene 03, The Whisper</p>
               <h2>
                 <span className="jn-strike">
                   The tool<i />
@@ -760,11 +760,11 @@ export default function JourneyHero() {
             <br />
             Who did those?&quot;
           </p>
-          <p className="jn-attr">— overheard at Apple, after the presentation</p>
+          <p className="jn-attr">overheard at Apple, after the presentation</p>
           <p className="jn-pitch">
-            That&apos;s the moment we design for. Not the deck — the debrief.
+            That&apos;s the moment we design for. Not the deck, the debrief.
             When the room is still talking about your slides the next day,
-            when your speech and your visuals felt like one continuous thought —
+            when your speech and your visuals felt like one continuous thought,
             that wasn&apos;t luck. It was aligned on purpose, scene by scene,
             long before you walked in.
           </p>

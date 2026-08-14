@@ -78,13 +78,13 @@ export default function BlogIndexClient() {
             transition={{ duration: 0.7, ease }}
           >
             <p className="eyebrow" style={{ color: 'var(--color-on-dark-faint)', margin: '0 0 16px' }}>
-              THE BLOG — {allPosts.length} ESSAYS
+              THE BLOG, {allPosts.length} ESSAYS
             </p>
             <h1 className="type-display" style={{ color: 'var(--color-on-dark)', margin: '0 0 16px' }}>
               Ideas that don&apos;t <em style={{ fontStyle: 'italic' }}>beg</em> for attention.
             </h1>
             <p className="type-body-lg" style={{ color: 'var(--color-on-dark-muted)', margin: 0, maxWidth: '520px' }}>
-              Thinking about the ideas that make stories land — and the ones that make audiences
+              Thinking about the ideas that make stories land, and the ones that make audiences
               lean in.
             </p>
           </motion.div>
@@ -163,7 +163,7 @@ export default function BlogIndexClient() {
                     )}
                     <span className="blog-ed-featured-body">
                       <span className="eyebrow" style={{ color: 'var(--color-accent)' }}>
-                        LATEST — {(featured.theme ? getThemeBySlug(featured.theme)?.label : undefined) ?? featured.tags[0]}
+                        LATEST, {(featured.theme ? getThemeBySlug(featured.theme)?.label : undefined) ?? featured.tags[0]}
                       </span>
                       <span className="blog-ed-featured-title">{featured.title}</span>
                       <span className="blog-ed-row-excerpt" style={{ maxWidth: '480px' }}>
@@ -188,7 +188,7 @@ export default function BlogIndexClient() {
                 {fieldNotes.length > 0 && (
                   <div className="blog-ed-strand">
                     <p className="eyebrow" style={{ color: 'var(--color-on-dark-faint)' }}>
-                      FIELD NOTES — <em style={{ fontStyle: 'italic', textTransform: 'none', letterSpacing: 0 }}>the personal strand</em>
+                      FIELD NOTES, <em style={{ fontStyle: 'italic', textTransform: 'none', letterSpacing: 0 }}>the personal strand</em>
                     </p>
                     <p className="type-body" style={{ color: 'var(--color-on-dark-muted)', maxWidth: '520px', margin: '12px 0 0' }}>
                       Reinvention, ADHD as a creative asset, and honest notes for fellow travelers.

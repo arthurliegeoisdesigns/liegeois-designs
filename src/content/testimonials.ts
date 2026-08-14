@@ -8,7 +8,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-anya',
     quote:
-      'Arthur is a rare creative mind with the discipline of a strategist. He transformed our chaos into clarity — and our deck into a conversation-starter.',
+      'Arthur is a rare creative mind with the discipline of a strategist. He transformed our chaos into clarity, and our deck into a conversation-starter.',
     author: 'Anya Pechko',
     title: 'Founder',
     company: 'Project Be',
@@ -17,7 +17,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-denise',
     quote:
-      'Arthur sees things from a high level — then translates that vision into slides that actually land. Working with him feels like having a strategist and designer in one.',
+      'Arthur sees things from a high level, then translates that vision into slides that actually land. Working with him feels like having a strategist and designer in one.',
     author: 'Denise Moses',
     title: 'Executive VP & Cofounder',
     company: 'Toddstreet',
@@ -35,7 +35,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-apple-2',
     quote:
-      "I've been getting so many compliments — not just for my presentation, but for the entire deck. People keep asking, 'Who did those? They're so well done, so well aligned together.' What they did was really amazing.",
+      "I've been getting so many compliments, not just for my presentation, but for the entire deck. People keep asking, 'Who did those? They're so well done, so well aligned together.' What they did was really amazing.",
     author: 'Anonymous',
     title: 'Presenter',
     company: 'Apple',
@@ -79,7 +79,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-kristen',
     quote:
-      'Arthur is not just a fantastic designer — he is a strategic partner. He understood our brand, our audience, and our goals from day one.',
+      'Arthur is not just a fantastic designer. He is a strategic partner. He understood our brand, our audience, and our goals from day one.',
     author: 'Kristen Hartley',
     title: 'Director Global Content Marketing',
     company: 'Marriott International',
@@ -97,7 +97,7 @@ export const testimonials: Testimonial[] = [
   {
     id: 'testimonial-peter',
     quote:
-      'Arthur is an extremely talented designer who brings both craft and strategy to the table. Our Underpin deck was exactly what we needed — and then some.',
+      'Arthur is an extremely talented designer who brings both craft and strategy to the table. Our Underpin deck was exactly what we needed, and then some.',
     author: 'Peter Desloge',
     title: 'Founder',
     company: 'Underpin',

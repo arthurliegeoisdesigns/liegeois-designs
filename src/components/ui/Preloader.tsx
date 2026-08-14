@@ -41,7 +41,7 @@ const KEY = 'ld-intro-done'
    back half was dead time. EXIT stays 750ms and must keep matching the
    750ms transform transition on .preloader in globals.css. */
 const DURATION = 700 // counter run
-const EXIT = 750 // wipe — keep in sync with .preloader transition
+const EXIT = 750 // wipe, keep in sync with.preloader transition
 
 export default function Preloader() {
   const pathname = usePathname()

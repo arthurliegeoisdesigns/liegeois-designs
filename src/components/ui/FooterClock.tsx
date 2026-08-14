@@ -30,7 +30,7 @@ export default function FooterClock() {
   if (!time) return <span className="footer-clock">{CITY}</span>
   return (
     <span className="footer-clock">
-      {CITY} — {time}
+      {CITY}, {time}
     </span>
   )
 }

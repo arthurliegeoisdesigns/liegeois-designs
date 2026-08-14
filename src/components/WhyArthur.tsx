@@ -8,12 +8,12 @@ const blocks = [
   {
     eyebrow: 'Business Acumen',
     headline: 'Most decks fail before the first slide.',
-    body: "I've been in the room — on the agency side, the startup side, and the boardroom side. I know which questions investors are waiting to hear and which answers kill the deal before the room warms up. I don't just design decks. I fix the story, challenge the model, and make sure you're ready for every question before you walk in.",
+    body: "I've been in the room, on the agency side, the startup side, and the boardroom side. I know which questions investors are waiting to hear and which answers kill the deal before the room warms up. I don't just design decks. I fix the story, challenge the model, and make sure you're ready for every question before you walk in.",
   },
   {
     eyebrow: 'Human-Made Design',
     headline: "AI generates slides in seconds. That’s the problem.",
-    body: "Generic inputs produce generic outputs. I use AI where it belongs — generating imagery, accelerating research. The design itself is human, intentional, and built around your story, your delivery style, and the room you’re walking into. Animation builds trigger at exactly the right moment. That’s not something a prompt can do.",
+    body: "Generic inputs produce generic outputs. I use AI where it belongs, generating imagery, accelerating research. The design itself is human, intentional, and built around your story, your delivery style, and the room you’re walking into. Animation builds trigger at exactly the right moment. That’s not something a prompt can do.",
   },
 ]
 

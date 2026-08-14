@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import ServicesPage from './ServicesPage'
 
 export const metadata: Metadata = {
-  title: 'Presentation Design Services — Pitch & Executive Decks',
+  title: 'Presentation Design Services: Pitch & Executive Decks',
   description:
-    'Pitch decks, executive presentations, sales decks, and strategic narratives — built to move rooms and close deals.',
+    'Pitch decks, executive presentations, sales decks, and strategic narratives, built to move rooms and close deals.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/services' },
   openGraph: {
-    title: 'Presentation Design Services — Pitch & Executive Decks | Liégeois Designs',
+    title: 'Presentation Design Services: Pitch & Executive Decks | Liégeois Designs',
     description: 'Presentation design and strategic narrative for brands that refuse to blend in.',
     url: 'https://www.liegeoisdesigns.com/services',
     siteName: 'Liégeois Designs',
@@ -25,7 +25,7 @@ const faqSchema = {
       name: 'What does a presentation designer do?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'A presentation designer translates complex ideas, data, and strategies into compelling visual narratives. At Liégeois Designs, this means combining narrative architecture with editorial-quality design to build pitch decks, executive presentations, and sales decks that move audiences and drive decisions — not just inform them.',
+        text: 'A presentation designer translates complex ideas, data, and strategies into compelling visual narratives. At Liégeois Designs, this means combining narrative architecture with editorial-quality design to build pitch decks, executive presentations, and sales decks that move audiences and drive decisions: not just inform them.',
       },
     },
     {
@@ -65,7 +65,7 @@ const faqSchema = {
       name: 'Does Liégeois Designs work with startups?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes. Liégeois Designs has designed investor pitch decks for early-stage startups across food tech, travel, sustainability, and social entrepreneurship — several of which successfully closed funding rounds. The studio is experienced in translating early-stage vision into investment-ready narratives.',
+        text: 'Yes. Liégeois Designs has designed investor pitch decks for early-stage startups across food tech, travel, sustainability, and social entrepreneurship, several of which successfully closed funding rounds. The studio is experienced in translating early-stage vision into investment-ready narratives.',
       },
     },
     {
@@ -81,7 +81,7 @@ const faqSchema = {
       name: 'Can Liégeois Designs help with the content and story, not just the design?',
       acceptedAnswer: {
         '@type': 'Answer',
-        text: 'Yes — narrative strategy is core to the process. Liégeois Designs approaches every project from the story first. This includes helping structure the narrative arc, refine messaging, and identify which information to lead with and what to cut. Design serves the story, never the other way around.',
+        text: 'Yes, narrative strategy is core to the process. Liégeois Designs approaches every project from the story first. This includes helping structure the narrative arc, refine messaging, and identify which information to lead with and what to cut. Design serves the story, never the other way around.',
       },
     },
   ],

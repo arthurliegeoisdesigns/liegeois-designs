@@ -68,7 +68,7 @@ export default function WorkPageClient() {
             transition={{ duration: 0.7, ease }}
           >
             <p className="eyebrow" style={{ color: 'var(--color-on-dark-faint)', margin: '0 0 16px' }}>
-              SELECTED & COMPLETE — {caseStudies.length} PROJECTS
+              SELECTED & COMPLETE, {caseStudies.length} PROJECTS
             </p>
             <h1 className="type-display" style={{ color: 'var(--color-on-dark)', margin: '0 0 20px' }}>
               Work that changed <em style={{ fontStyle: 'italic' }}>the room.</em>
@@ -212,7 +212,7 @@ export default function WorkPageClient() {
                     <div className="portfolio-card-image">
                       <Image
                         src={cs.images[0]}
-                        alt={`${cs.client} — ${cs.project}`}
+                        alt={`${cs.client}: ${cs.project}`}
                         fill
                         style={{ objectFit: 'cover' }}
                         sizes="(max-width: 768px) 100vw, 33vw"

@@ -2,12 +2,12 @@ import type { Metadata } from 'next'
 import WorkPageClient from './WorkPageClient'
 
 export const metadata: Metadata = {
-  title: 'Presentation Design Portfolio — Chevron, IBM, Marriott',
+  title: 'Presentation Design Portfolio: Chevron, IBM, Marriott',
   description:
     'Case studies in presentation design, pitch decks, and strategic narratives for brands like Chevron, Marriott, and Philips.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/work' },
   openGraph: {
-    title: 'Presentation Design Portfolio — Chevron, IBM, Marriott | Liégeois Designs',
+    title: 'Presentation Design Portfolio: Chevron, IBM, Marriott | Liégeois Designs',
     description:
       'Case studies in presentation design, pitch decks, and strategic narratives.',
     url: 'https://www.liegeoisdesigns.com/work',

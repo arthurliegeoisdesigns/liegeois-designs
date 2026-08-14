@@ -457,7 +457,7 @@ export default function ContactPage() {
                 textTransform: 'uppercase',
               }}
             >
-              Arthur Liégeois — Founder, Liégeois Designs
+              Arthur Liégeois, Founder, Liégeois Designs
             </span>
           </motion.div>
         </div>

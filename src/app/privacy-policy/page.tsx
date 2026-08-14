@@ -4,7 +4,7 @@ import ObfuscatedEmail from '@/components/ui/ObfuscatedEmail'
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description:
-    'Privacy Policy for Liégeois Designs — how we collect, use, and protect your personal information.',
+    'Privacy Policy for Liégeois Designs, how we collect, use, and protect your personal information.',
   alternates: { canonical: 'https://liegeoisdesigns.com/privacy-policy' },
 }
 

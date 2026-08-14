@@ -24,7 +24,7 @@ export default function Nav() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   useMotionValueEvent(scrollY, 'change', (y) => {
-    if (pathname === '/services') return // services bg is always dark — keep nav dark
+    if (pathname === '/services') return // services bg is always dark, keep nav dark
     if (pathname === '/') {
       // Home: the journey hero is dark for its whole scroll length — the
       // nav stays transparent/white until the journey hands off to the
@@ -59,7 +59,7 @@ export default function Nav() {
   return (
     <>
       <nav className={`nav${scrolled ? ' scrolled' : ''}${menuOpen ? ' nav-menu-open' : ''}`}>
-        <Link href="/" className="nav-logo" aria-label="Liégeois Designs — Home">
+        <Link href="/" className="nav-logo" aria-label="Liégeois Designs, Home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={scrolled ? '/images/logo-liegeois-dark.svg' : '/images/logo-liegeois-white.svg'}
@@ -141,7 +141,7 @@ export default function Nav() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.5 }}
               >
-                <span>Montclair, NJ — worldwide</span>
+                <span>Montclair, NJ, worldwide</span>
                 <span className="nav-menu-meta-hint">Press P to present</span>
               </motion.div>
             </div>

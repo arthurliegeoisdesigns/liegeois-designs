@@ -9,11 +9,11 @@ const pillars = [
   },
   {
     title: 'Story',
-    body: 'The narrative arc that connects vision to audience — and makes the work impossible to forget.',
+    body: 'The narrative arc that connects vision to audience, and makes the work impossible to forget.',
   },
   {
     title: 'Design',
-    body: 'The visual execution that makes it undeniable — bold, clear, and built to last.',
+    body: 'The visual execution that makes it undeniable, bold, clear, and built to last.',
   },
 ]
 
@@ -55,7 +55,7 @@ export default function About() {
             transition={{ duration: 0.85, ease }}
             viewport={{ once: true, margin: '-80px' }}
           >
-            Founder. Strategist. Designer. I&apos;ve sat where you&apos;re sitting — and I know
+            Founder. Strategist. Designer. I&apos;ve sat where you&apos;re sitting. And I know
             what&apos;s on the line. The work earns its place because it starts with the right questions.
           </motion.p>
           <Link href="/about" className="btn-text">

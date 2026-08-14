@@ -11,7 +11,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'i-built-this-website-with-ai-heres-what-actually-happened',
     title: 'I Built This Website With AI. Here\'s What Actually Happened.',
-    excerpt: 'A designer with no code, a dark room full of tools, and the learning curve nobody posts about — the vocabulary tax, the model maze, and what all the wasted evenings actually bought.',
+    excerpt: 'A designer with no code, a dark room full of tools, and the learning curve nobody posts about, the vocabulary tax, the model maze, and what all the wasted evenings actually bought.',
     readTime: '9 min read',
     publishedAt: '2026-07-11',
     tags: ['AI & Design', 'Design Process', 'Personal'],
@@ -99,7 +99,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'permission-slips-for-reinvention',
     title: 'Permission Slips for Reinvention',
-    excerpt: "Stop waiting for diplomas, managers, or permission — write your own slip.",
+    excerpt: "Stop waiting for diplomas, managers, or permission, write your own slip.",
     readTime: '10 min read',
     publishedAt: '2025-11-05',
     tags: ['Creativity'],
@@ -121,7 +121,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'the-art-of-presentation-as-persuasion',
     title: 'The Art of Presentation as Persuasion',
-    excerpt: "Decks aren't slideshows — they're decisions in disguise.",
+    excerpt: "Decks aren't slideshows. They're decisions in disguise.",
     readTime: '10 min read',
     publishedAt: '2025-11-05',
     tags: ['Pitch Decks', 'Storytelling', 'Presentation Design'],
@@ -189,7 +189,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'your-deck-has-a-story-problem',
     title: 'Your Deck Has a Story Problem (Not a Design Problem)',
-    excerpt: 'Most presentations fail upstream of the design. Story architecture comes first, always — design is the last mile, not the foundation.',
+    excerpt: 'Most presentations fail upstream of the design. Story architecture comes first, always, design is the last mile, not the foundation.',
     readTime: '8 min read',
     publishedAt: '2026-07-07',
     tags: ['Presentation Design', 'Storytelling'],
@@ -211,7 +211,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'business-tension-in-presentations',
     title: 'The Business Tension Your Slides Are Ignoring',
-    excerpt: 'Every great presentation has a tension — a gap between where things are and where they need to go. Without it, the deck has no spine.',
+    excerpt: 'Every great presentation has a tension, a gap between where things are and where they need to go. Without it, the deck has no spine.',
     readTime: '8 min read',
     publishedAt: '2026-07-21',
     tags: ['Presentation Design', 'Storytelling'],
@@ -222,7 +222,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'features-advantages-benefits',
     title: 'Features Are Facts. Benefits Are Why Anyone Cares.',
-    excerpt: 'Your product does X. So what? The slide that wins isn\'t the one with more specs — it\'s the one that answers "what does this mean for me?"',
+    excerpt: 'Your product does X. So what? The slide that wins isn\'t the one with more specs, it\'s the one that answers "what does this mean for me?"',
     readTime: '8 min read',
     publishedAt: '2026-07-28',
     tags: ['Presentation Design', 'Pitch Decks'],
@@ -233,7 +233,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'rule-of-three-in-presentations',
     title: 'The Rule of Three Isn\'t Just a Writing Trick',
-    excerpt: 'Every deck with seven key takeaways communicates zero. Structure is a memory device — and human memory runs on threes.',
+    excerpt: 'Every deck with seven key takeaways communicates zero. Structure is a memory device, and human memory runs on threes.',
     readTime: '7 min read',
     publishedAt: '2026-08-04',
     tags: ['Presentation Design', 'Storytelling'],
@@ -266,7 +266,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'presentation-altitude',
     title: 'Altitude: Why the Same Story Needs Three Different Decks',
-    excerpt: 'An engineer, a VP, and a CEO need three different presentations — even if the core idea is identical.',
+    excerpt: 'An engineer, a VP, and a CEO need three different presentations, even if the core idea is identical.',
     readTime: '8 min read',
     publishedAt: '2026-08-25',
     tags: ['Presentation Design', 'Storytelling'],
@@ -288,7 +288,7 @@ export const blogPosts: BlogPost[] = [
   {
     slug: 'slides-as-speaker-support',
     title: 'Slides Don\'t Present Themselves. (But They Should Come Close.)',
-    excerpt: 'If you can leave the room and your audience can understand your deck on their own — you\'ve built a PDF, not a presentation.',
+    excerpt: 'If you can leave the room and your audience can understand your deck on their own, you\'ve built a PDF, not a presentation.',
     readTime: '7 min read',
     publishedAt: '2026-09-08',
     tags: ['Presentation Design', 'Storytelling'],

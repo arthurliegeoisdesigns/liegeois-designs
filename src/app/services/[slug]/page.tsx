@@ -126,7 +126,7 @@ export default async function ServiceDetailPage({
               <Link href="/services" style={{ color: 'inherit', textDecoration: 'none' }}>
                 Services
               </Link>
-              {' — '}
+              {', '}
               {svc.tagline}
             </p>
             <h1 className="type-display svc-hero-h1" style={{ color: 'var(--color-text-primary)', margin: '0 0 24px' }}>
@@ -197,7 +197,7 @@ export default async function ServiceDetailPage({
                 </li>
               ))}
             </ul>
-            <p style={label}>Process — {svc.timeline}</p>
+            <p style={label}>Process, {svc.timeline}</p>
             <ol style={{ listStyle: 'none', padding: 0, margin: 0, counterReset: 'step' }}>
               {svc.process.map((st, i) => (
                 <li key={st.title} style={{ padding: '10px 0', borderBottom: '0.5px solid var(--color-border)' }}>
@@ -205,7 +205,7 @@ export default async function ServiceDetailPage({
                     className="type-body"
                     style={{ color: 'var(--color-text-primary)', display: 'block', fontWeight: 500 }}
                   >
-                    {String(i + 1).padStart(2, '0')} — {st.title}
+                    {String(i + 1).padStart(2, '0')}, {st.title}
                   </span>
                   <span className="type-body" style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem' }}>
                     {st.detail}
@@ -232,7 +232,7 @@ export default async function ServiceDetailPage({
               {related.map((cs) => (
                 <Link key={cs!.slug} href={`/work/${cs!.slug}`} style={{ textDecoration: 'none' }}>
                   <div style={{ position: 'relative', aspectRatio: '16/10', overflow: 'hidden', marginBottom: '12px' }}>
-                    <Image src={cs!.images[0]} alt={`${cs!.client} — ${cs!.project}`} fill sizes="(max-width: 768px) 92vw, 350px" quality={70} style={{ objectFit: 'cover' }} />
+                    <Image src={cs!.images[0]} alt={`${cs!.client}: ${cs!.project}`} fill sizes="(max-width: 768px) 92vw, 350px" quality={70} style={{ objectFit: 'cover' }} />
                   </div>
                   <span className="type-body" style={{ color: 'var(--color-text-primary)', display: 'block', fontWeight: 500 }}>
                     {cs!.client}
@@ -274,7 +274,7 @@ export default async function ServiceDetailPage({
             Ready when you are.
           </h2>
           <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 32px' }}>
-            A 30-minute intake call. No forms, no auto-responders — the project, the stakes,
+            A 30-minute intake call. No forms, no auto-responders, the project, the stakes,
             and whether there&apos;s a fit.
           </p>
           <Link href="/contact" className="btn-primary" style={{ display: 'inline-block' }}>

@@ -62,7 +62,7 @@ export default function CaseStudyGallery({
       >
         <Image
           src={featured}
-          alt={`${client} — slide 2`}
+          alt={`${client}: slide 2`}
           fill
           style={{ objectFit: 'cover' }}
           sizes="(max-width: 960px) 100vw, 960px"
@@ -119,7 +119,7 @@ export default function CaseStudyGallery({
             >
               <Image
                 src={src}
-                alt={`${client} — slide ${i + 3}`}
+                alt={`${client}: slide ${i + 3}`}
                 fill
                 style={{ objectFit: 'cover' }}
                 sizes="(max-width: 768px) 50vw, 480px"
@@ -168,7 +168,7 @@ export default function CaseStudyGallery({
             >
               <Image
                 src={images[lightbox]}
-                alt={`${client} — slide ${lightbox + 2}`}
+                alt={`${client}: slide ${lightbox + 2}`}
                 fill
                 style={{ objectFit: 'contain' }}
                 sizes="100vw"

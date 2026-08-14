@@ -32,7 +32,7 @@ const services = [
     ],
     timeline: '1–2 weeks',
     image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-rapp-evolus-pitch-deck-0007-19640a',
-    imageAlt: 'Evolus pitch deck — Liégeois Designs',
+    imageAlt: 'Evolus pitch deck: Liégeois Designs',
   },
   {
     number: '02',
@@ -50,7 +50,7 @@ const services = [
     ],
     timeline: '1–2 weeks',
     image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/fivestone-20-20chevron-201-1-922e8d',
-    imageAlt: 'Chevron executive presentation — Liégeois Designs',
+    imageAlt: 'Chevron executive presentation: Liégeois Designs',
   },
   {
     number: '03',
@@ -68,7 +68,7 @@ const services = [
     ],
     timeline: '1–3 weeks',
     image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-rapp-spectrum-0001-4046a6',
-    imageAlt: 'Spectrum × RAPP sales deck — Liégeois Designs',
+    imageAlt: 'Spectrum × RAPP sales deck: Liégeois Designs',
   },
   {
     number: '04',
@@ -86,7 +86,7 @@ const services = [
     ],
     timeline: '2–4 weeks',
     image: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/marriott-the-luxury-group-slide-1-c397f7',
-    imageAlt: 'Marriott Luxury Group strategic narrative — Liégeois Designs',
+    imageAlt: 'Marriott Luxury Group strategic narrative: Liégeois Designs',
   },
 ]
 
@@ -224,7 +224,7 @@ export default function ServicesPage() {
   return (
     <main style={{ background: 'var(--color-void)', minHeight: '100vh' }}>
 
-      <h1 className="sr-only">Services — Liégeois Designs</h1>
+      <h1 className="sr-only">Services, Liégeois Designs</h1>
 
       {/* ── Panel indicator bar ───────────────────────────────────
            Sits BELOW the global nav, not on top of it. This bar used to
@@ -399,7 +399,7 @@ export default function ServicesPage() {
         ref={trackRef}
         className="services-scroll-track"
         tabIndex={0}
-        aria-label="Service panels — use arrow keys to navigate"
+        aria-label="Service panels, use arrow keys to navigate"
         onKeyDown={onKeyDown}
         style={{
           display: 'flex',

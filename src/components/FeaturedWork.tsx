@@ -102,7 +102,7 @@ export default function FeaturedWork() {
                   these stole slow-4G bandwidth from the hero LCP image */}
               <Image
                 src={cs.image}
-                alt={`${cs.client} — ${cs.project}`}
+                alt={`${cs.client}: ${cs.project}`}
                 fill
                 sizes="(max-width: 768px) 88vw, 58vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}

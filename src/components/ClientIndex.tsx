@@ -107,7 +107,7 @@ export default function ClientIndex() {
                 key={entry.id}
                 href={`/work/${entry.slug}`}
                 className="client-index-item is-linked"
-                aria-label={`${entry.name} — view case study`}
+                aria-label={`${entry.name}, view case study`}
                 data-cursor="View"
                 {...shared}
               >

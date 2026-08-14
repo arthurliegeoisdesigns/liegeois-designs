@@ -29,7 +29,7 @@ export async function sendContactForm(
 
   // If no Formspree ID is configured, log and return success (dev mode)
   if (!formId) {
-    console.log('[Contact form] No FORMSPREE_FORM_ID set — submission logged only:', {
+    console.log('[Contact form] No FORMSPREE_FORM_ID set, submission logged only:', {
       name, company, email, projectType, timeline, budget, message,
     })
     return { status: 'success', name }

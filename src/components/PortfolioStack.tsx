@@ -70,7 +70,7 @@ export default function PortfolioStack() {
           {/* Full-bleed image */}
           <Image
             src={cs.images[0]}
-            alt={`${cs.client} — ${cs.project}`}
+            alt={`${cs.client}: ${cs.project}`}
             fill
             priority={i === 0}
             className="pstack-card-image"

@@ -4,7 +4,7 @@ import ObfuscatedEmail from '@/components/ui/ObfuscatedEmail'
 export const metadata: Metadata = {
   title: 'Terms of Use',
   description:
-    'Terms of Use for Liégeois Designs — the rules and conditions that govern your use of liegeoisdesigns.com.',
+    'Terms of Use for Liégeois Designs, the rules and conditions that govern your use of liegeoisdesigns.com.',
   alternates: { canonical: 'https://liegeoisdesigns.com/terms-of-use' },
 }
 
@@ -54,8 +54,8 @@ export default function TermsOfUsePage() {
             Intellectual Property
           </h2>
           <p className="type-body" style={bodyStyle}>
-            All content on this website — including but not limited to text, images, graphics,
-            logos, videos, case studies, and design work — is the property of Arthur Liégeois or
+            All content on this website, including but not limited to text, images, graphics,
+            logos, videos, case studies, and design work, is the property of Arthur Liégeois or
             used with permission from respective clients. Unauthorized use of any materials may
             violate copyright, trademark, and other applicable laws.
           </p>
@@ -100,8 +100,8 @@ export default function TermsOfUsePage() {
             This website is provided on an &ldquo;as is&rdquo; and &ldquo;as available&rdquo;
             basis. Arthur Liégeois makes no warranties, express or implied, regarding the accuracy,
             reliability, or availability of the site or its content. To the fullest extent permitted
-            by law, all warranties — including implied warranties of merchantability, fitness for a
-            particular purpose, and non-infringement — are disclaimed.
+            by law, all warranties, including implied warranties of merchantability, fitness for a
+            particular purpose, and non-infringement, are disclaimed.
           </p>
 
           <h2 className="type-h2" style={h2Style}>
