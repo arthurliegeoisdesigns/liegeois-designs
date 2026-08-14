@@ -326,7 +326,16 @@ body {
   font-family: var(--font-display);
   font-size: clamp(3.25rem, 9.5vw, 7.5rem);
   font-weight: var(--font-display-weight, 400);
-  line-height: 0.98;
+  /* 1.05 is the brand system's --leading-display. It was 0.98 here, i.e.
+     a line box SHORTER than the font size — PP Migra is a Didone with long
+     descenders, so on any heading that wraps, a g/p/y/j/q on a non-final
+     line ran into the cap-height of the line below. Visible at 120px on
+     /services/strategic-narrative ("Strategic" g into "Narrative") and
+     /services/sales-agency-decks ("Proposal" p into "Design"), and it
+     clipped the trailing g of "Design" against the block's bottom edge.
+     Applies to 12 surfaces, so this was a site-wide typographic bug, not
+     a services-page one. Do not take this below 1.0 again. */
+  line-height: 1.05;
   letter-spacing: -0.015em;
   text-wrap: balance;
 }
