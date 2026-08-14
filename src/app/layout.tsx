@@ -82,11 +82,21 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        {/* Switzer (body) — served from Fontshare, free for commercial use */}
+        {/* Cabinet Grotesk (body) — Fontshare, free for commercial use.
+            Replaced Switzer Aug 2026. Switzer measured no wider than the
+            alternatives (within 2% on the same string), so the problem was
+            never metrics — it was character: neutral to the point of
+            anonymity, which reads as absent next to a Didone. Cabinet
+            Grotesk sets the same lead paragraph in 2 lines where Switzer
+            needs 3, so it is also tighter in running copy.
+
+            ONE LINK PER FAMILY. Fontshare's combined `f[]=a&f[]=b` syntax
+            returns only the FIRST family and still answers 200 — the others
+            silently fall back with no error anywhere. */}
         <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
         <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
         <link
-          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap"
+          href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@400,500,700&display=swap"
           rel="stylesheet"
         />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />

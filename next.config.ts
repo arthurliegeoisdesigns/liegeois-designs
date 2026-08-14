@@ -16,10 +16,16 @@ const securityHeaders = [
       "default-src 'self'",
       // Next.js requires unsafe-inline for hydration scripts; unsafe-eval for dev HMR
       "script-src 'self' 'unsafe-inline' https://assets.calendly.com https://www.googletagmanager.com https://www.google-analytics.com",
-      // Inline styles used by framer-motion and Next.js
-      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
-      // Google Fonts
-      "font-src 'self' https://fonts.gstatic.com",
+      // Inline styles used by framer-motion and Next.js.
+      // api.fontshare.com serves the BODY face stylesheet. It was missing here,
+      // so the browser blocked it and the body font silently fell back to
+      // system-ui on every page since launch — no build error, no runtime
+      // error, only a console CSP warning nobody was reading. The site has
+      // never rendered its intended body typeface.
+      "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://api.fontshare.com",
+      // Font FILES: gstatic for Google, cdn.fontshare.com for Fontshare.
+      // Allowing the stylesheet without the font host fails the same way.
+      "font-src 'self' https://fonts.gstatic.com https://cdn.fontshare.com",
       // Images from Cloudinary, Webflow CDN, and data URIs
       "img-src 'self' data: blob: https://res.cloudinary.com https://liegeoisdesigns.com https://www.google-analytics.com https://www.googletagmanager.com https://stats.g.doubleclick.net",
       // Videos from Cloudinary
