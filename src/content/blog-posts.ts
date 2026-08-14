@@ -319,7 +319,9 @@ export const blogPosts: BlogPost[] = [
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-university-startups-pitch-deck-0001-8eedd5',
   },
 
-  // ── Published Aug 2026 (were drafts; bodies written, then shipped) ────────
+  // ── Held back: AI-drafted bodies contain invented client stories ─────────
+  //    (healthcare raise, food-waste startup, housing nonprofit). Do not
+  //    republish until the anecdotes are replaced with real case studies.
   {
     slug: 'corporate-costume-creative-skin',
     title: 'From Corporate Costume to Thin Creative Skin',
@@ -328,7 +330,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2025-11-05',
     tags: ['Creativity'],
     theme: 'breaking-free-from-the-script',
-    draft: false,
+    draft: true,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-26am-d4710e',
   },
   {
@@ -339,7 +341,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2025-11-05',
     tags: ['Personal', 'Creativity'],
     theme: 'presentation-design-tips',
-    draft: false,
+    draft: true,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-26am-b23680',
   },
   {
@@ -350,7 +352,7 @@ export const blogPosts: BlogPost[] = [
     publishedAt: '2025-11-05',
     tags: ['Strategy'],
     theme: 'lessons-for-fellow-travelers',
-    draft: false,
+    draft: true,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-50am-c55e56',
   },
   {

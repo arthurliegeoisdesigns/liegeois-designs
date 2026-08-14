@@ -21,6 +21,16 @@ export async function generateMetadata({
   return {
     title: post.title,
     description: post.excerpt,
+    /* Drafts must be noindex, not merely unlisted.
+       generateStaticParams above builds from blogPosts (ALL posts), while
+       the blog index and sitemap.ts read publishedPosts. So a draft is a
+       live 200 that nothing links to — and until Aug 2026 it also inherited
+       the site-wide 'index, follow', which is the worst of both: crawlable,
+       unlinked, undeclared. That is the "Discovered, not indexed" state the
+       comment at the top of sitemap.ts warns about.
+       draft => noindex closes it. Removing draft:true is what publishes a
+       post, and that now flips indexing too, in one place. */
+    robots: post.draft ? { index: false, follow: false } : undefined,
     alternates: { canonical: `https://www.liegeoisdesigns.com/blog/${slug}` },
     openGraph: {
       title: post.title,
