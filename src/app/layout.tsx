@@ -82,25 +82,28 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-        {/* Switzer (body) — Fontshare, free for commercial use.
+        {/* Body face is now PP Neue Montreal — LICENSED and SELF-HOSTED,
+            so no Fontshare request at all. Fontshare stays allowed in the CSP
+            (next.config.ts) because removing it would silently break any
+            future Fontshare use the same way it broke Switzer: blocked
+            stylesheet, 200 response, zero bytes, no error anywhere.
 
-            NOTE: until Aug 2026 this NEVER LOADED. api.fontshare.com was
-            missing from the CSP, so the browser blocked it and every visitor
-            read the site in system-ui while the CSS said Switzer. Fixed in
-            next.config.ts — do not remove fontshare from style-src/font-src.
-
-            Cabinet Grotesk was trialled as a replacement and reverted: its
-            letterfit crowds word spaces at 18px ('room of' reading close to
-            'roomof'), which Switzer does not.
-
-            ONE LINK PER FAMILY. Fontshare's combined `f[]=a&f[]=b` syntax
-            returns only the FIRST family and still answers 200 — the others
-            silently fall back with no error anywhere. */}
-        <link rel="preconnect" href="https://api.fontshare.com" crossOrigin="anonymous" />
-        <link rel="preconnect" href="https://cdn.fontshare.com" crossOrigin="anonymous" />
+            Preloaded because body text paints on every page and these are
+            self-hosted, so there is no DNS/TLS cost to race. Only 400 and
+            500 exist — Pangram Pangram licenses per weight. */}
         <link
-          href="https://api.fontshare.com/v2/css?f[]=switzer@400,500,600&display=swap"
-          rel="stylesheet"
+          rel="preload"
+          href="/fonts/pp/PPNeueMontreal-Regular.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
+        <link
+          rel="preload"
+          href="/fonts/pp/PPNeueMontreal-Medium.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
         />
         <link rel="dns-prefetch" href="https://res.cloudinary.com" />
         <link rel="preconnect" href="https://res.cloudinary.com" crossOrigin="anonymous" />

@@ -12,9 +12,16 @@
 
   /* ── Typography ──
      Display: PP Migra Extralight (licensed — see FONTS-README.md)
-     Body:    Switzer (Fontshare — see CSP note in next.config.ts)  */
+     Body:    PP Neue Montreal (licensed, self-hosted, 400/500 only) */
   --font-display: 'PP Migra', 'Migra', Georgia, 'Times New Roman', serif;
-  --font-body:    'Switzer', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-body:    'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, sans-serif;
+
+  /* PP Neue Montreal draws a narrow space: 4.17px at 18px against 5.91px for
+     system-ui — 29% tighter. Combined with the +0.01em tracking on body
+     copy it reads as crowded ('room of' closing toward 'roomof'). This
+     nudge restores the word gap without touching the letterforms.
+     Measured, not guessed. Re-check if the body face ever changes. */
+  --word-space-body: 0.045em;
 
   /* ── Warm palette — near-black + bone + one electric accent ── */
   --color-canvas:    #0A0908;   /* warm near-black — base dark canvas */
@@ -115,6 +122,27 @@
    Two licensed styles; the full weight range maps to them so
    Migra always renders Extralight — never faux-bold.
    ============================================================ */
+/* ── Body: PP Neue Montreal (licensed, self-hosted) ───────────────────
+   Two weights only — 400 and 500 — because Pangram Pangram licenses per
+   weight and the codebase uses exactly these two for body text. Do not
+   add 600/700 without buying them.
+   Subsetted by scripts/subset-fonts.py: 157 KB -> 25 KB across both.
+   Self-hosted, so no third-party request on the critical path. */
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/pp/PPNeueMontreal-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PP Neue Montreal';
+  src: url('/fonts/pp/PPNeueMontreal-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
 @font-face {
   font-family: 'PP Migra';
   src: url('/fonts/pp/PPMigra-Extralight.woff2') format('woff2');
@@ -332,7 +360,7 @@ body {
 /* ============================================================
    TYPE SCALE
    PP Migra Extralight — display / headings (H1, H2)
-   Switzer — H3, body / labels / captions
+   PP Neue Montreal — H3, body / labels / captions
    ============================================================ */
 
 .type-display {
@@ -391,6 +419,7 @@ body {
   line-height: 1.75;
   letter-spacing: 0.01em;
   text-wrap: pretty;
+  word-spacing: var(--word-space-body);
 }
 
 .type-body {
@@ -400,6 +429,7 @@ body {
   line-height: 1.7;
   letter-spacing: 0.01em;
   text-wrap: pretty;
+  word-spacing: var(--word-space-body);
 }
 
 .type-caption {

@@ -25,7 +25,14 @@ except ImportError:
     sys.exit("Missing deps. Run: pip install fonttools brotli")
 
 SRC_DIR = "public/fonts/pp"
-FACES = ["PPMigra-Extralight", "PPMigra-ExtralightItalic"]
+FACES = [
+    "PPMigra-Extralight",
+    "PPMigra-ExtralightItalic",
+    # Body face. Only 400/500 are licensed — Pangram Pangram charges per
+    # weight. Do not add more without buying them.
+    "PPNeueMontreal-Regular",
+    "PPNeueMontreal-Medium",
+]
 
 # Latin-1 + smart quotes, dashes, ellipsis, bullet, arrows the site uses.
 UNICODES = ",".join([
