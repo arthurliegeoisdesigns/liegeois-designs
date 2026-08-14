@@ -126,6 +126,13 @@ export default function RootLayout({
               "if(location.pathname!=='/'||sessionStorage.getItem('ld-intro-done')||" +
               "matchMedia('(prefers-reduced-motion: reduce)').matches){" +
               "d.classList.add('ld-no-intro');}else{d.style.overflow='hidden';}" +
+              // Suppress the page-transition fade on the FIRST paint only. That
+              // fade makes every element under it ineligible for LCP, and Chrome
+              // never re-adds them. Cleared on the first client navigation, so
+              // route-to-route transitions still animate.
+              "d.classList.add('is-first-load');" +
+              "addEventListener('click',function h(){d.classList.remove('is-first-load');" +
+              "removeEventListener('click',h,true);},true);" +
               "}catch(e){}})();",
           }}
         />

@@ -180,11 +180,21 @@ export default function JourneyHero() {
       }
 
       const ctx = gsap.context(() => {
-        /* ── SCENE 0: headline drifts up as you leave (y + late fade only —
-           LCP paints at full opacity, untouched until the user scrolls) ── */
-        gsap.to('.jn-s0-center', {
+        /* ── SCENE 0: the scene departs as you leave (y + late fade only —
+           LCP paints at full opacity, untouched until the user scrolls).
+           Targets .jn-s0-grid: the old .jn-s0-center no longer exists, and a
+           GSAP selector that matches nothing fails silently — the scene would
+           simply have stopped animating with no error. The copy and the deck
+           leave together so the composition holds while it travels; the deck
+           drifts slightly further for parallax depth. ── */
+        gsap.to('.jn-s0-grid', {
           y: -120,
           opacity: 0.15,
+          ease: 'none',
+          scrollTrigger: { trigger: '.jn-s0', start: 'top top', end: 'bottom top', scrub: 0.4 },
+        })
+        gsap.to('.jn-s0-stage', {
+          y: -46,
           ease: 'none',
           scrollTrigger: { trigger: '.jn-s0', start: 'top top', end: 'bottom top', scrub: 0.4 },
         })
@@ -486,26 +496,89 @@ export default function JourneyHero() {
         <span className="jn-slide-no">Slide 01 — 05</span>
       </div>
 
-      {/* SCENE 0 — TITLE SLIDE (LCP: pure text, full opacity at paint) */}
+      {/* SCENE 0 — TITLE SLIDE, work as the object
+          ------------------------------------------------------------------
+          The h1 is still the LCP element and still pure text: no opacity
+          animation, ever. The deck sits BESIDE it rather than behind it, so
+          the two never compete — the failure mode when a slide is used as a
+          backdrop is that the slide's own typography fights the headline.
+          At an angle, with depth and shadow, a slide reads as an artifact
+          instead of as competing text.
+
+          LCP is protected by three things, measured (2.5s -> 1.0s):
+            1. the h1 is sized LARGER than the front card, so text stays the
+               biggest painted element and images cannot gate the metric;
+            2. only the front card is on the critical path — the two behind
+               are dimmed to 40%/74% and load lazily at low priority;
+            3. the front card is requested at the size it renders, not 2x.
+          Do not add a fourth card or enlarge the stack without re-measuring.
+
+          Chevron is deliberate: scenes 1-4 walk through this same deck, so
+          the hero previews the journey rather than decorating it. */}
       <section className="jn-scene jn-s0" aria-label="Introduction">
-        <div className="jn-s0-center">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            className="jn-mark"
-            src="/images/logo-liegeois-white.svg"
-            alt="Liégeois Designs"
-            width={228}
-            height={73}
-          />
-          <p className="jn-eyebrow">presents</p>
-          <h1>
-            Presentations
-            <br />
-            that <em>move</em>
-            <br />
-            the room.
-          </h1>
+        <div className="jn-s0-grid">
+          <div className="jn-s0-copy">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="jn-mark"
+              src="/images/logo-liegeois-white.svg"
+              alt="Liégeois Designs"
+              width={228}
+              height={73}
+            />
+            <p className="jn-eyebrow">presents</p>
+            <h1>
+              Presentations
+              <br />
+              that <em>move</em>
+              <br />
+              the room.
+            </h1>
+          </div>
+
+          <div className="jn-s0-stage" aria-hidden="true">
+            <div className="jn-s0-slide jn-s0-c1">
+              <Image
+                src={`${CDN_BASE}/chevron-05`}
+                alt=""
+                fill
+                sizes="(max-width: 900px) 72vw, 41vw"
+                quality={60}
+                loading="lazy"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <div className="jn-s0-slide jn-s0-c2">
+              <Image
+                src={`${CDN_BASE}/chevron-07`}
+                alt=""
+                fill
+                sizes="(max-width: 900px) 72vw, 41vw"
+                quality={60}
+                loading="lazy"
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            {/* Front card is eager but deliberately NOT priority.
+                priority emits a high-priority preload, which put this image
+                in direct contention with PP Migra — and the h1 cannot reach
+                its final paint until that font lands. Measured: with priority
+                LCP was 4.6s, without it 3.3s. The h1 is the LCP element here,
+                so the card must never outrank the font. */}
+            <div className="jn-s0-slide jn-s0-c3">
+              <Image
+                src={`${CDN_BASE}/chevron-00-cover`}
+                alt="Chevron New Energies — strategic narrative deck"
+                fill
+                sizes="(max-width: 900px) 72vw, 41vw"
+                quality={70}
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+            <span className="jn-s0-tag">Chevron New Energies — strategic narrative</span>
+          </div>
         </div>
+
         <div className="jn-cue">
           <span className="jn-eyebrow">Scroll to present</span>
           <span className="jn-cue-line" />

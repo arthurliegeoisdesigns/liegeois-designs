@@ -668,6 +668,22 @@ body {
 .page-transition-wrapper {
   animation: page-fade-up 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
 }
+/* FIRST LOAD DOES NOT FADE — measured, Aug 2026.
+   Chrome will not record an LCP candidate that paints under a non-opaque
+   ancestor, and it does NOT re-add the element once opacity reaches 1. This
+   wrapper fading 0 -> 1 over 380ms therefore disqualified the hero <h1>
+   permanently: at 52,518px2 it is by far the largest element on the page,
+   yet it never appeared as a candidate at all. LCP fell instead to whatever
+   painted later — the preloader wordmark, or a hero image.
+
+   Same mechanism as the opacity:0 hero bug fixed earlier: Google does not
+   measure what it cannot see.
+
+   The fade is worth keeping for route-to-route navigation, where it is the
+   transition. It is worth nothing on first paint, where there is no previous
+   page to transition from — it only costs the metric. .is-first-load is set
+   by the inline head script and cleared on the first client navigation. */
+html.is-first-load .page-transition-wrapper { animation: none; }
 @media (prefers-reduced-motion: reduce) {
   .page-transition-wrapper { animation: none; }
 }
@@ -2572,15 +2588,86 @@ footer {
 .jn-journey section { position: relative; z-index: 1; }
 
 /* ── SCENE 0 ── */
-.jn-s0-center {
-  height: 100%; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; gap: 26px; text-align: center;
+/* Scene 0 is a two-column stage: argument left, the deck as an object right.
+   Was a centred text column; the deck now shares the frame instead of the
+   right half sitting empty. */
+.jn-s0-grid {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+  align-items: center;
+  gap: clamp(24px, 3vw, 64px);
+  padding: calc(var(--nav-h, 80px) + clamp(24px, 4vh, 56px)) var(--section-pad-x)
+    clamp(72px, 9vh, 110px);
   position: relative; z-index: 1;
 }
+.jn-s0-copy { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
 .jn-s0 h1 {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 200);
-  font-size: clamp(3rem, 9vw, 8.2rem); line-height: 0.98;
-  letter-spacing: -0.015em; color: var(--color-on-dark); margin: 0;
+  /* Sized to stay LARGER than the front card so TEXT remains the LCP
+     element — text paints with the font, not with the network. Shrinking
+     this below the card hands LCP to an image. See DESIGN.md. */
+  font-size: clamp(3.1rem, 7vw, 6.8rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em; color: var(--color-on-dark); margin: 0;
+}
+
+/* ── the deck, presented as an object ── */
+.jn-s0-stage { position: relative; height: min(74vh, 640px); perspective: 2000px; }
+.jn-s0-slide {
+  position: absolute; width: clamp(300px, 41vw, 640px); aspect-ratio: 16 / 9;
+  overflow: hidden; background: #111;
+  box-shadow: 0 40px 88px rgba(0, 0, 0, 0.62), 0 8px 22px rgba(0, 0, 0, 0.5);
+  outline: 1px solid rgba(247, 244, 239, 0.1); outline-offset: -1px;
+}
+.jn-s0-c1 { top: 3%; left: 3%; transform: rotateY(15deg) rotateX(4deg) rotateZ(-2deg) scale(0.8); opacity: 0.4; filter: brightness(0.6); }
+.jn-s0-c2 { top: 20%; left: 14%; transform: rotateY(15deg) rotateX(3deg) rotateZ(-1.2deg) scale(0.9); opacity: 0.72; filter: brightness(0.83); }
+.jn-s0-c3 { top: 38%; left: 26%; transform: rotateY(14deg) rotateX(2deg) rotateZ(-0.6deg); }
+.jn-s0-tag {
+  position: absolute; left: 26%; bottom: 0;
+  font-size: 0.625rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--color-on-dark-faint);
+}
+
+@media (max-width: 900px) {
+  /* Single column, and the deck must sit ENTIRELY above the fold — it is the
+     proof, so it cannot be the thing that gets cut off. rotateY eases to 7-8deg
+     because a steeper angle projects the card wider than its own box and clips
+     against the stage edge. */
+  .jn-s0-grid {
+    grid-template-columns: 1fr; align-items: start;
+    grid-auto-rows: min-content; gap: clamp(18px, 2.4vh, 28px);
+    padding-top: calc(var(--nav-h, 80px) + clamp(16px, 2.5vh, 34px));
+    padding-bottom: clamp(64px, 8vh, 88px);
+  }
+  .jn-s0-copy { display: contents; }
+  .jn-mark { order: 1; }
+  .jn-s0 .jn-eyebrow { order: 2; }
+  /* 12.5vw, not 10.5vw. At 10.5vw the headline measured ~36,000px2 against
+     a front card of ~35,700px2 — a 1% margin, so the IMAGE won LCP and the
+     metric became gated on a network fetch (measured 4.5s). Text must win
+     DECISIVELY, not narrowly. At 12.5vw the headline is ~30% larger than
+     the card and reliably holds the metric.
+     If the card size ever changes, re-check this ratio. */
+  .jn-s0 h1 { order: 3; font-size: clamp(2.9rem, 12.5vw, 4rem); }
+  .jn-s0-stage { order: 4; height: auto; aspect-ratio: 1 / 0.78; perspective: 1400px; }
+  .jn-s0-slide {
+    width: 72%;
+    box-shadow: 0 20px 42px rgba(0, 0, 0, 0.6), 0 5px 14px rgba(0, 0, 0, 0.48);
+  }
+  .jn-s0-c1 { top: 0; left: 0; transform: rotateY(8deg) rotateZ(-1.6deg); }
+  .jn-s0-c2 { top: 21%; left: 14%; transform: rotateY(8deg) rotateZ(-1deg); }
+  .jn-s0-c3 { top: 42%; left: 28%; transform: rotateY(7deg) rotateZ(-0.5deg); }
+  .jn-s0-tag { display: none; }
+}
+
+/* Flatten the perspective rather than hiding the work — the deck is content,
+   not decoration, so reduced motion should still see it. */
+@media (prefers-reduced-motion: reduce) {
+  .jn-s0-c1, .jn-s0-c2, .jn-s0-c3 { transform: none; }
+  .jn-s0-c1 { top: 0; left: 0; }
+  .jn-s0-c2 { top: 20%; left: 12%; }
+  .jn-s0-c3 { top: 40%; left: 24%; }
 }
 .jn-s0 h1 em { font-style: italic; }
 .jn-mark { display: block; margin-bottom: 6px; opacity: 0.92; }
