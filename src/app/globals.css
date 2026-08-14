@@ -42,7 +42,16 @@
   --color-on-dark-ghost:  rgba(255, 253, 248, 0.15);
 
   /* ── The one chromatic voice — signal orange, used like a scalpel ── */
-  --color-accent:       #E84420;
+  /* Accent exists at two luminances because the site has two surface
+     families. NOT two brand colours — hue is identical at 11 degrees, only
+     lightness differs, so it reads as one colour correctly adapted.
+       #E84420 on void  5.09:1  AA body
+       #E84420 on bone  3.53:1  large text / UI only — FAILS AA body
+       #CA3615 on bone  4.60:1  AA body
+     Anything accent-coloured at body size on a light surface must use
+     --color-accent-on-light. See DESIGN.md §2. */
+  --color-accent:          #E84420;
+  --color-accent-on-light: #CA3615;
   --color-accent-hover: #C93411;
   --color-neon:         #E84420;
   --color-neon-cyan:    #C93411;
