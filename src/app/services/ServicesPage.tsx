@@ -226,35 +226,32 @@ export default function ServicesPage() {
 
       <h1 className="sr-only">Services — Liégeois Designs</h1>
 
-      {/* ── Fixed top bar ─────────────────────────────────────── */}
+      {/* ── Panel indicator bar ───────────────────────────────────
+           Sits BELOW the global nav, not on top of it. This bar used to
+           be position:fixed at top:0 — the same coordinates as <Nav />,
+           which is also fixed at top:0 and 80px tall at z-index 110. The
+           nav painted over this bar, so its "← Home" link rendered
+           straight through the wordmark. Visible on mobile AND desktop.
+
+           The "← Home" link is gone rather than moved: the wordmark in
+           the nav already links home, so it was duplicating an existing
+           affordance while causing the collision. The dots stay — they
+           are the only control unique to this page — right-aligned and
+           clear of the hamburger above them. ─────────────────────── */}
       <div
         style={{
           position: 'fixed',
-          top: 0,
+          top: 'var(--nav-h, 80px)',
           left: 0,
           right: 0,
           zIndex: 50,
-          padding: '24px var(--section-pad-x)',
+          padding: '8px var(--section-pad-x)',
           display: 'flex',
-          justifyContent: 'space-between',
+          justifyContent: 'flex-end',
           alignItems: 'center',
           pointerEvents: 'none',
         }}
       >
-        <Link
-          href="/"
-          style={{
-            fontFamily: 'var(--font-body)',
-            fontSize: '0.8125rem',
-            color: 'var(--color-on-dark-muted)',
-            textDecoration: 'none',
-            letterSpacing: '0.04em',
-            pointerEvents: 'auto',
-            transition: 'color 200ms ease',
-          }}
-        >
-          ← Home
-        </Link>
         <div style={{ display: 'flex', pointerEvents: 'auto' }}>
           {services.map((_, i) => (
             <button
@@ -439,7 +436,7 @@ export default function ServicesPage() {
             {/* Work sample image — right side */}
             <div
               aria-hidden="true"
-              className="svc-panel-img"
+              className="svc-panel-img svc-panel-media"
               style={{ position: 'absolute', top: 0, right: 0, width: '52%', height: '100%', pointerEvents: 'none' }}
             >
               <Image
@@ -447,16 +444,19 @@ export default function ServicesPage() {
                 alt={service.imageAlt}
                 fill
                 priority={i === 0}
-                sizes="52vw"
+                sizes="(max-width: 768px) 100vw, 52vw"
                 style={{ objectFit: 'cover', objectPosition: 'center' }}
               />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--color-void) 0%, rgba(8,8,9,0.55) 25%, rgba(8,8,9,0.15) 55%, transparent 100%)' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--color-void) 0%, rgba(8,8,9,0.30) 30%, transparent 58%)' }} />
+              {/* Horizontal scrim: only meaningful in the desktop split, where
+                  copy sits left of the image. Disabled on mobile in CSS. */}
+              <div className="svc-scrim-x" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to right, var(--color-void) 0%, rgba(8,8,9,0.55) 25%, rgba(8,8,9,0.15) 55%, transparent 100%)' }} />
+              <div className="svc-scrim-y" style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, var(--color-void) 0%, rgba(8,8,9,0.30) 30%, transparent 58%)' }} />
             </div>
 
             {/* Large background number */}
             <div
               aria-hidden="true"
+              className="svc-ghost-number"
               style={{
                 position: 'absolute',
                 top: '50%',
@@ -475,8 +475,18 @@ export default function ServicesPage() {
               {service.number}
             </div>
 
-            {/* Top-left: number + tagline */}
+            {/* Top-left: number + tagline.
+                KNOWN ISSUE, deliberately left alone: this is absolute while
+                the h2 below is in normal flow, so the two do not reserve
+                space against each other and the eyebrow clips the heading's
+                ascenders (~3px at 390px). Pushing this row down only made it
+                worse — it moved further INTO the h2 (16-18px on panels 2-4)
+                because the h2 never moves in response. The real fix is to put
+                this row in normal flow above the h2 so the stack reserves its
+                own space, which is a layout change for the redesign, not a
+                nudge. */}
             <div
+              className="svc-eyebrow-row"
               style={{
                 position: 'absolute',
                 top: 'clamp(88px, 10vh, 120px)',
@@ -518,26 +528,33 @@ export default function ServicesPage() {
                   marginBottom: 'clamp(24px, 3vh, 36px)',
                 }}
               >
-                <motion.p
-                  className="type-body-lg"
-                  style={{ color: 'rgba(255,255,255,0.90)', margin: 0, maxWidth: '520px', lineHeight: 1.8 }}
+                {/* The link is a SIBLING of the paragraph, not a child of it.
+                    It used to sit inside <p> preceded by a space, so despite
+                    display:inline-block + marginTop it stayed in the text flow
+                    and ran on from the last sentence — on mobile it read as
+                    "...the whole thing fixed. Full service details ↗", one
+                    continuous line. marginTop cannot break an inline box out
+                    of its line box; it needed to leave the paragraph. */}
+                <motion.div
                   animate={animatedPanels.has(i) ? { opacity: 1, y: 0 } : { opacity: 0, y: 12 }}
                   transition={{ duration: 0.65, ease, delay: 0.08 }}
                 >
-                  {service.description}
+                  <p
+                    className="type-body-lg"
+                    style={{ color: 'rgba(255,255,255,0.90)', margin: 0, maxWidth: '520px', lineHeight: 1.8 }}
+                  >
+                    {service.description}
+                  </p>
                   {SERVICE_LINKS[i] && (
-                    <>
-                      {' '}
-                      <Link
-                        href={`/services/${SERVICE_LINKS[i]}`}
-                        className="btn-text"
-                        style={{ display: 'inline-block', marginTop: '14px' }}
-                      >
-                        Full service details ↗
-                      </Link>
-                    </>
+                    <Link
+                      href={`/services/${SERVICE_LINKS[i]}`}
+                      className="btn-text"
+                      style={{ display: 'inline-block', marginTop: '18px' }}
+                    >
+                      Full service details ↗
+                    </Link>
                   )}
-                </motion.p>
+                </motion.div>
 
                 <motion.div
                   className="svc-tabs-col"

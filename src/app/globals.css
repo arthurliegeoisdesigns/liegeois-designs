@@ -6,6 +6,10 @@
    ============================================================ */
 
 :root {
+  /* Height of the fixed global <Nav />. Anything else that pins to the top
+     of the viewport must offset by this token. */
+  --nav-h: 80px;
+
   /* ── Typography ──
      Display: PP Migra Extralight (licensed — see FONTS-README.md)
      Body:    Switzer (Fontshare, free for commercial use)         */
@@ -501,7 +505,11 @@ body {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 100;
-  height: 80px;
+  /* --nav-h is the single source of truth for this height. Anything else
+     that pins itself to the top of the viewport must offset by it, or it
+     lands underneath the nav — which is exactly how the /services panel
+     bar ended up rendering its back-link through the wordmark. */
+  height: var(--nav-h, 80px);
   padding: 0 max(clamp(24px, 6vw, 80px), env(safe-area-inset-right, 0px));
   padding-left: max(clamp(24px, 6vw, 80px), env(safe-area-inset-left, 0px));
   display: flex;
@@ -2294,6 +2302,26 @@ footer {
   .services-bottom-grid {
     grid-template-columns: 1fr !important;
     gap: 28px !important;
+  }
+
+  /* ── Mobile backdrop legibility ──────────────────────────────────
+     The panel is a desktop split: copy left, image pinned right at 52%
+     behind a `to right` scrim. On mobile the grid collapses to one column
+     and the copy spans full width — straight over the image.
+
+     .svc-panel-img above already sets width:100% and opacity:0.22 here.
+     Note that fading the WRAPPER also fades the two scrims inside it, so
+     they contribute almost nothing on mobile — the wrapper's own opacity
+     is the only lever that matters. 0.22 was too high for these sources:
+     they are presentation slides with large white type, so the slide's
+     own words ("customer data", "evolving digital landscape") stayed
+     legible behind the deliverables list and read as overlapping content.
+     The problem is source material, not stacking. */
+  .svc-panel-img { opacity: 0.1 !important; }
+  /* Texture, not competing content. */
+  .svc-ghost-number {
+    font-size: clamp(110px, 30vw, 170px) !important;
+    color: rgba(255, 255, 255, 0.055) !important;
   }
 }
 
