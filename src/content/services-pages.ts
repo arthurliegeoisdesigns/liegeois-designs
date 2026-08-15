@@ -58,7 +58,7 @@ export const servicePages: ServicePage[] = [
     faqs: [
       {
         q: 'How much does professional pitch deck design cost?',
-        a: 'It depends on scope: a focused redesign of an existing narrative costs less than a full strategic build from scratch. After a 30-minute intake call you get a fixed quote, not an hourly meter. No surprises mid-project.',
+        a: 'Engagements start at $5,000. Beyond that it depends on scope: a focused redesign of an existing narrative costs less than a full strategic build from scratch. After a 30-minute intake call you get a fixed quote, not an hourly meter. No surprises mid-project.',
       },
       {
         q: 'How long does a pitch deck take?',
