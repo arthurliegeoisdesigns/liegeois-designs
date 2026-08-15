@@ -58,7 +58,14 @@ const FAQS = [
   },
 ]
 
+/* Spelled from servicePages.length rather than typed. The h1 read "Four ways
+   in" for several hours after the fifth service shipped, which is the third
+   hardcoded-count drift caught in one day (sitemap SERVICE_SLUGS, industry hub
+   leads, this). If a number describes data, derive it. */
+const COUNT_WORD = ['no', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven', 'Eight']
+
 export default function ServicesPage() {
+  const ways = COUNT_WORD[servicePages.length] ?? String(servicePages.length)
   return (
     <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
       {/* ── header ── */}
@@ -73,7 +80,7 @@ export default function ServicesPage() {
             className="type-display"
             style={{ color: 'var(--color-text-primary)', margin: '0 0 22px', maxWidth: '17ch' }}
           >
-            Four ways in. One method.
+            {ways} ways in. One method.
           </h1>
           <p
             className="type-body-lg"
