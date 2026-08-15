@@ -108,12 +108,14 @@ export default function Home() {
       <main>
         {/* The journey IS the hero (v3, July 2026). Its sections live in a
             div, so ParallaxFlow's `main > section` query ignores them. */}
-        <JourneyHero />
+        {/* Credentials rides INSIDE the journey, between the hero headline
+            and the first pinned scene. It used to sit here in page order,
+            after the whole journey, which measured 17.9 screens down on
+            desktop and 13.7 on mobile: past any realistic scroll depth.
+            Scene 0 is one screen and unpinned, so this is the only early
+            slot available without cutting the journey itself. */}
+        <JourneyHero interlude={<Credentials />} />
         <ClientIndex />
-        {/* Proof for the hero's claim. The logos say who trusted him; this
-            says why they were right to. Placed before the work because the
-            work is more persuasive once you know who made it. */}
-        <Credentials />
         <FeaturedWork />
         <Services />
         {/* Light passage — one bone "paper sheet" floating over the dark

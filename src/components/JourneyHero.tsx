@@ -88,7 +88,15 @@ const TOOLS = [
 ]
 const DEAD_TOOL = 'Tome (2020–2025)'
 
-export default function JourneyHero() {
+/**
+ * `interlude` renders BETWEEN scene 0 (the hero headline) and scene 1 (the
+ * first pinned scene). Measured 15 Aug 2026: scene 0 is exactly one screen
+ * and is NOT pinned, but scenes 1-3 pin for +=580%, +=380% and +=240%, so
+ * anything after the journey sits ~17 screens down and is effectively
+ * unreachable. This slot is the only place on the homepage where content can
+ * follow the h1 without paying that toll.
+ */
+export default function JourneyHero({ interlude }: { interlude?: React.ReactNode }) {
   const rootRef = useRef<HTMLDivElement>(null)
   const canvasRef = useRef<HTMLCanvasElement>(null)
 
@@ -591,6 +599,11 @@ export default function JourneyHero() {
           Skip intro ↓
         </button>
       </section>
+
+      {/* Interlude — see the note on the component signature. Sits inside
+          .jn-journey, so ParallaxFlow (which queries `main > section`) leaves
+          it alone; it must therefore carry its own dark surface. */}
+      {interlude}
 
       {/* SCENE 1 — THE SEQUENCE */}
       <section className="jn-s1" aria-label="The sequence">
