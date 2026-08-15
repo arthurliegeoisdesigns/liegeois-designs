@@ -343,6 +343,14 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
+/* overflow-x:hidden on <body> alone does NOT clip when <html> is the scroll
+   container, which is the case here. Measured 15 Aug 2026: the mobile
+   homepage had scrollWidth 492 against a 390 viewport, so it scrolled
+   sideways ~100px. Offenders are the WorldCanvas ambience layers
+   (.world-silk/.world-ember/.world-dust) and the .client-index marquee.
+   CLIP, not hidden: hidden on <html> would turn it into a scroll container
+   and break every position:sticky descendant, including .cred-copy. */
+html { overflow-x: clip; }
 
 /* ── Screen reader only ── */
 .sr-only {
@@ -3065,6 +3073,15 @@ footer {
   padding-top: clamp(24px, 3vw, 34px);
   border-top: 0.5px solid var(--color-border-mid);
 }
+
+/* DO NOT make .cred-copy position:sticky. Tried it 15 Aug 2026 to close the
+   whitespace left of the four-row ledger; it computes as sticky and does
+   nothing. ParallaxFlow tweens a GSAP translateY on every `main > section`
+   of the homepage, and a transformed ancestor destroys sticky positioning in
+   its descendants. Opting out with data-no-drift would work but would leave
+   this one section static while its neighbours drift, which breaks the
+   homepage's motion language for a purely aesthetic gain. The whitespace is
+   the cheaper cost. */
 
 @media (max-width: 860px) {
   .cred-grid { grid-template-columns: 1fr; gap: clamp(28px, 5vh, 40px); }

@@ -108,6 +108,12 @@ export default function AboutPage() {
                 Quota Club four years running.
               </p>
               <p className="type-body about-bio-p">
+                Four at Apple in Paris, delivering strategic presentations to C-suite
+                audiences on how their businesses could work differently, and closing
+                the first European multi-stakeholder iPad programme with General Motors
+                and Disneyland Paris.
+              </p>
+              <p className="type-body about-bio-p">
                 Four more in London, running a food and beverage brand I founded, where
                 I raised $110,000 on the strength of a deck I built myself. Selfridges
                 and Sourced Market both took us on for pop-ups. In May 2018 BBC Good

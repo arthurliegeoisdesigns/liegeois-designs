@@ -13,7 +13,7 @@ import { motion, useReducedMotion } from 'framer-motion'
  *
  * Arthur's clients arrive wanting a deck made pretty and get converted to
  * strategy in the first call. This section does that conversion earlier, on the
- * page, by showing WHY the challenge is credible: he has occupied all three
+ * page, by showing WHY the challenge is credible: he has occupied all four
  * seats in the room. Competing agencies quote their clients' raise totals
  * ($3B, $500M). The $110,000 here is his own money, raised on his own deck,
  * which is the one claim none of them can make.
@@ -36,18 +36,25 @@ const seats = [
       'Global key account manager, one year in Dublin and four in Paris, carrying more than $10 million a year. Quota Club four years running.',
   },
   {
-    seat: 'The one raising',
-    org: 'Norigami',
-    years: '2016 – 2020',
-    body:
-      'Founded a food and beverage brand in London. Raised $110,000 on a deck I made myself. Selfridges and Sourced Market both took us on for pop-ups.',
-  },
-  {
     seat: 'The one being pitched to',
     org: 'Smartbox Group',
     years: '2006 – 2010',
     body:
       'COO of a 35-person business in Lisbon, on the receiving end of everyone else’s slides.',
+  },
+  {
+    seat: 'The one in front of the room',
+    org: 'Apple',
+    years: '2011 – 2015',
+    body:
+      'Senior relationship manager in Paris, delivering strategic presentations to C-suite audiences across nine stores. Closed the first European multi-stakeholder iPad program with General Motors and Disneyland Paris.',
+  },
+  {
+    seat: 'The one raising',
+    org: 'Norigami',
+    years: '2016 – 2020',
+    body:
+      'Founded a food and beverage brand in London. Raised $110,000 on a deck I made myself. Selfridges and Sourced Market both took us on for pop-ups.',
   },
 ]
 
@@ -105,8 +112,8 @@ export default function Credentials() {
           transition={{ duration: 0.8, ease, delay: 0.1 }}
         >
           Today I write Keynotes for Apple Engineering executives. I know what
-          lands in a room because I have been the one pitching, the one raising,
-          and the one being pitched to.
+          lands in a room because I have sold in it, presented in it, raised in it,
+          and sat on the other side of the table while someone tried all three on me.
         </motion.p>
       </div>
     </section>
