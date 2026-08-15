@@ -51,7 +51,7 @@ export const industries: Industry[] = [
     h1: 'Presentation design for healthcare and pharma',
     metaTitle: 'Healthcare & Pharma Presentation Design | Liégeois Designs',
     metaDescription:
-      'Presentation design for healthcare and pharmaceutical teams. Field training, medical affairs summits and board decks for Philips, Johnson & Johnson, Intercept and EMD Serono.',
+      'Presentation design for healthcare and pharma. Field training, medical affairs summits and board decks for Philips, J&J and Intercept.',
     lead:
       'Medical affairs, commercial and field teams, where the science is airtight and the argument still has to survive review.',
     body: [
@@ -66,7 +66,7 @@ export const industries: Industry[] = [
     industry: 'Technology & Telecom',
     name: 'Technology & Telecom',
     h1: 'Presentation design for technology companies',
-    metaTitle: 'Technology Presentation & Pitch Deck Design | Liégeois Designs',
+    metaTitle: 'Technology Pitch Deck & Keynote Design | Liégeois Designs',
     metaDescription:
       'Pitch decks, keynotes and executive presentations for technology and telecom teams, including IBM Quantum, Google, CDW, Spectrum Enterprise and Underpin.',
     lead:
@@ -85,7 +85,7 @@ export const industries: Industry[] = [
     h1: 'Presentation design for agencies and consultancies',
     metaTitle: 'Agency Pitch & Capabilities Deck Design | Liégeois Designs',
     metaDescription:
-      'New business pitches, capabilities decks and strategic narrative for agencies and consultancies, including Ogilvy Performance Marketing, RAPP, MCS Healthcare and the IAA.',
+      'New business pitches and capabilities decks for agencies and consultancies, including Ogilvy Performance Marketing, RAPP and the IAA.',
     lead:
       'New business pitches and capabilities decks, where the deck itself is judged as the work sample.',
     body: [
@@ -100,9 +100,9 @@ export const industries: Industry[] = [
     industry: 'Startups & Venture',
     name: 'Startups & Venture',
     h1: 'Pitch deck design for startups raising capital',
-    metaTitle: 'Startup Pitch Deck Design for Founders Raising | Liégeois Designs',
+    metaTitle: 'Startup Pitch Deck Design for Founders | Liégeois Designs',
     metaDescription:
-      'Investor pitch deck design for founders raising capital. Narrative-first decks built around your ask, from a designer who raised his own round on a deck he built himself.',
+      'Investor pitch deck design for founders raising capital, from a designer who raised his own round on a deck he built himself.',
     lead:
       'Founders raising capital. I raised $110,000 for my own company on a deck I built myself, so I know which slide the room goes quiet on.',
     body: [
@@ -119,7 +119,7 @@ export const industries: Industry[] = [
     h1: 'Presentation design for consumer and retail brands',
     metaTitle: 'Consumer & Retail Brand Presentation Design | Liégeois Designs',
     metaDescription:
-      'Brand, franchise and new business presentation design for consumer and retail, including Marriott Luxury Group, Mastercard, Evolus, TGI Fridays and Post Consumer Brands.',
+      'Brand, franchise and new business presentation design for consumer and retail. Work for Marriott, Mastercard, Evolus and TGI Fridays.',
     lead:
       'Hospitality, franchise, beauty and FMCG brands, where there is never a shortage of feeling and often no spine.',
     body: [

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import BlogIndexClient from './BlogIndexClient'
 
 export const metadata: Metadata = {
-  title: 'Presentation Design Blog: Visual Storytelling & Pitch Strategy',
+  title: { absolute: 'Presentation Design Blog: Visual Storytelling & Pitch Strategy' },
   description:
     'Ideas on visual storytelling, pitch strategy, and the craft behind presentations that move rooms.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/blog' },

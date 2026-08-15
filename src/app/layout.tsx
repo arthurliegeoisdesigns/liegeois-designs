@@ -14,11 +14,11 @@ export const metadata: Metadata = {
   title: {
     /* Query-led, brand last (SEO audit, July 2026): the homepage must
        carry the terms people actually search, not just the positioning. */
-    default: 'Presentation Design Agency | Pitch Decks & Executive Presentations | Liégeois Designs',
+    default: 'Presentation & Pitch Deck Design Studio | Liégeois Designs',
     template: '%s | Liégeois Designs',
   },
   description:
-    'Presentation design agency for founders and executives. Investor pitch decks, board presentations, and strategic narratives, trusted by Chevron, IBM, Marriott, and Philips. Montclair, NJ, serving clients worldwide.',
+    'Investor pitch decks, board presentations and strategic narratives for founders and executives. Trusted by Chevron, IBM, Marriott and Philips.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com' },
   openGraph: {
     title: 'Presentation Design Agency: Pitch Decks & Executive Presentations',

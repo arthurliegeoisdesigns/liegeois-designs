@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import WorkPageClient from './WorkPageClient'
 
 export const metadata: Metadata = {
-  title: 'Presentation Design Portfolio: Chevron, IBM, Marriott',
+  title: { absolute: 'Presentation Design Portfolio: Chevron, IBM, Marriott' },
   description:
     'Case studies in presentation design, pitch decks, and strategic narratives for brands like Chevron, Marriott, and Philips.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/work' },

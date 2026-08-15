@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { caseStudies } from '@/content/case-studies'
+import { caseStudyTitle, clampDescription } from '@/lib/seo'
 import CaseStudyClientWrapper from './CaseStudyClientWrapper'
 
 export function generateStaticParams() {
@@ -15,9 +16,16 @@ export async function generateMetadata({
   const { slug } = await params
   const cs = caseStudies.find((c) => c.slug === slug)
   if (!cs) return {}
-  const metaDesc = cs.seoDescription ?? `${cs.format} for ${cs.client}, ${cs.tagline} Presentation design and visual storytelling by Liégeois Designs.`
+  // Clamped: raw seoDescription/tagline ran to 371 chars on some studies and
+  // Google cuts at ~158. Full text still goes to the schema below, which has
+  // no length constraint.
+  const metaDesc = clampDescription(
+    cs.seoDescription ?? `${cs.format} for ${cs.client}. ${cs.tagline} Presentation design by Liégeois Designs.`,
+  )
   return {
-    title: `${cs.client}: ${cs.project}`,
+    // `absolute` so the helper controls the brand suffix; the root template
+    // would otherwise append it and blow the 60-char budget.
+    title: { absolute: caseStudyTitle(cs.client, cs.format) },
     description: metaDesc,
     alternates: { canonical: `https://www.liegeoisdesigns.com/work/${slug}` },
     openGraph: {

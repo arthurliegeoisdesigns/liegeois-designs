@@ -13,9 +13,9 @@ import AboutPage from './AboutPage'
 // readable without JavaScript.
 
 export const metadata: Metadata = {
-  title: 'About: Arthur Liégeois, Presentation Designer',
+  title: { absolute: 'About: Arthur Liégeois, Presentation Designer' },
   description:
-    'Twenty years in rooms where presentations decided things. Oracle Quota Club four years running, a brand I founded and raised $110K for, and Keynotes for Apple Engineering executives. Then I became the designer.',
+    'Twenty years in rooms where presentations decided things: Oracle Quota Club four years running, a brand I founded and raised $110K for. Then I became the designer.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/about' },
   openGraph: {
     title: 'About: Arthur Liégeois, Presentation Designer | Liégeois Designs',

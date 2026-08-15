@@ -42,9 +42,9 @@ export const servicePages: ServicePage[] = [
     slug: 'pitch-deck-design',
     name: 'Pitch & Investor Decks',
     h1: 'Pitch Deck Design',
-    metaTitle: 'Pitch Deck Design Services: Investor Decks That Raise | Liégeois Designs',
+    metaTitle: 'Pitch Deck Design Services | Liégeois Designs',
     metaDescription:
-      'Professional pitch deck design for founders raising capital. Narrative-first investor decks built around your story and your ask (1–2 week turnaround. Montclair, NJ) serving founders worldwide.',
+      'Investor pitch deck design for founders raising capital. Narrative-first decks built around your story and your ask. 1–2 week turnaround.',
     tagline: 'For founders raising capital.',
     lead:
       'The deck you bring into the most important room of your year. Built around your story, your audience, and the specific ask that needs to land.',
@@ -93,9 +93,9 @@ export const servicePages: ServicePage[] = [
     slug: 'executive-presentations',
     name: 'Executive Presentations',
     h1: 'Executive Presentation Design',
-    metaTitle: 'Executive Presentation Design: Board Decks & Keynotes | Liégeois Designs',
+    metaTitle: 'Executive Presentation & Board Deck Design | Liégeois Designs',
     metaDescription:
-      'Executive presentation design for board decks, C-suite briefings, and keynotes. Strategic narratives trusted by Chevron, IBM, Philips, and Apple presenters. Designed to be trusted on sight.',
+      'Board decks, C-suite briefings and keynotes, trusted by Chevron, IBM and Philips presenters. Designed to be trusted on sight.',
     tagline: 'High stakes by definition.',
     lead:
       'Board decks, C-suite briefings, and strategic reviews that show, not just tell, the decision that needs to be made.',
@@ -145,9 +145,9 @@ export const servicePages: ServicePage[] = [
     slug: 'sales-agency-decks',
     name: 'Sales & Agency Decks',
     h1: 'Sales Deck & Proposal Design',
-    metaTitle: 'Sales Deck Design: Proposals & Capabilities Decks That Close | Liégeois Designs',
+    metaTitle: 'Sales Deck & Proposal Design | Liégeois Designs',
     metaDescription:
-      'Sales deck and proposal design for agencies and B2B teams. Capabilities decks, RFP responses, and modular slide systems built around your buyer, editable templates included.',
+      'Sales deck and proposal design for agencies and B2B teams. Capabilities decks, RFP responses and modular slide systems that close.',
     tagline: "Proposals that don't wait for a follow-up.",
     lead:
       'Proposals, capabilities decks, and RFP responses that make prospects say yes before the meeting ends.',
@@ -192,7 +192,7 @@ export const servicePages: ServicePage[] = [
     slug: 'strategic-narrative',
     name: 'Strategic Narrative',
     h1: 'Strategic Narrative Design',
-    metaTitle: 'Strategic Narrative: Story Architecture Before Slide Design | Liégeois Designs',
+    metaTitle: 'Strategic Narrative Design | Liégeois Designs',
     metaDescription:
       'Strategic narrative engagements for teams whose story needs fixing before their slides do. Audience workshops, message architecture, and full deck design, 2–4 weeks.',
     tagline: 'When the story needs fixing first.',
@@ -239,9 +239,9 @@ export const servicePages: ServicePage[] = [
     slug: 'training-keynote-design',
     name: 'Keynotes & Training',
     h1: 'Keynote & Training Presentation Design',
-    metaTitle: 'Keynote & Training Presentation Design: Decks That Teach | Liégeois Designs',
+    metaTitle: 'Keynote & Training Presentation Design | Liégeois Designs',
     metaDescription:
-      'Keynote and training presentation design for conferences, summits and field teams. Sales training, franchise rollouts, and stage keynotes for IBM, EMD Serono and Intercept.',
+      'Keynote and training design for conferences, summits and field teams. Work for IBM Quantum, EMD Serono and Intercept.',
     tagline: 'When the room has to learn something.',
     lead:
       'Conference keynotes, summit sessions, and field training that people actually absorb. Different from a pitch: nobody here is deciding whether to fund you. They are deciding whether to listen.',

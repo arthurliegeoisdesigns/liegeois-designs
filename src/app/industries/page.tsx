@@ -16,14 +16,16 @@ const BASE = 'https://www.liegeoisdesigns.com'
 export const metadata: Metadata = {
   title: 'Industries: Presentation Design by Sector',
   description:
-    'Presentation and pitch deck design across healthcare and pharma, technology, agencies, startups, and consumer brands. Work for Philips, IBM, Google, Marriott, Chevron and Johnson & Johnson.',
+    'Presentation design across healthcare, technology, agencies, startups and consumer brands. Work for Philips, IBM, Google and Marriott.',
   alternates: { canonical: `${BASE}/industries` },
   openGraph: {
     title: 'Industries: Presentation Design by Sector | Liégeois Designs',
     description:
       'Presentation design across healthcare, technology, agencies, startups and consumer brands.',
     url: `${BASE}/industries`,
+    images: [{ url: `${BASE}/opengraph-image`, width: 1200, height: 630 }],
   },
+  twitter: { card: 'summary_large_image' },
 }
 
 export default function IndustriesIndex() {

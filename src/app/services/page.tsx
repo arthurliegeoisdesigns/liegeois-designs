@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import ServicesPage from './ServicesPage'
 
 export const metadata: Metadata = {
-  title: 'Presentation Design Services: Pitch & Executive Decks',
+  title: { absolute: 'Presentation Design Services: Pitch & Executive Decks' },
   description:
     'Pitch decks, executive presentations, sales decks, and strategic narratives, built to move rooms and close deals.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/services' },

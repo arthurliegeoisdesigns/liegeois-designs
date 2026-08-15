@@ -5,6 +5,7 @@ import path from 'path'
 import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { blogPosts } from '@/content/blog-posts'
+import { clampDescription } from '@/lib/seo'
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }))
@@ -19,8 +20,11 @@ export async function generateMetadata({
   const post = blogPosts.find((p) => p.slug === slug)
   if (!post) return {}
   return {
-    title: post.title,
-    description: post.excerpt,
+    /* Editorial titles run long and are the keyword-bearing part, so the brand
+       suffix is dropped once appending it would blow the ~60-char SERP budget.
+       Short titles keep it. */
+    title: post.title.length > 42 ? { absolute: post.title } : post.title,
+    description: clampDescription(post.excerpt),
     /* Drafts must be noindex, not merely unlisted.
        generateStaticParams above builds from blogPosts (ALL posts), while
        the blog index and sitemap.ts read publishedPosts. So a draft is a
@@ -34,7 +38,7 @@ export async function generateMetadata({
     alternates: { canonical: `https://www.liegeoisdesigns.com/blog/${slug}` },
     openGraph: {
       title: post.title,
-      description: post.excerpt,
+      description: clampDescription(post.excerpt),
       url: `https://www.liegeoisdesigns.com/blog/${slug}`,
       type: 'article',
       publishedTime: post.publishedAt,
@@ -63,7 +67,7 @@ export default async function BlogPostPage({
     '@context': 'https://schema.org',
     '@type': 'Article',
     headline: post.title,
-    description: post.excerpt,
+    description: clampDescription(post.excerpt),
     ...(post.coverImage ? { image: post.coverImage } : {}),
     author: {
       '@type': 'Person',
