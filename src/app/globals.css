@@ -58,7 +58,12 @@
      Anything accent-coloured at body size on a light surface must use
      --color-accent-on-light. See DESIGN.md §2. */
   --color-accent:          #E84420;
-  --color-accent-on-light: #CA3615;
+  /* #CA3615 was validated against --color-paper (#F4F1EC) only, where it is
+     4.60:1. It is also used on --color-cream-surface (#ECE7DF), which is
+     darker: 4.21:1, an AA failure. Measured across the site 15 Aug 2026 on the
+     homepage client marquee (45 instances) and the service ServiceProof band.
+     #C13414 keeps the hue and passes on BOTH: paper 4.95:1, cream 4.53:1. */
+  --color-accent-on-light: #C13414;
   --color-accent-hover: #C93411;
   --color-neon:         #E84420;
   --color-neon-cyan:    #C93411;
@@ -2033,12 +2038,15 @@ footer {
 }
 .svc-proof-inner { max-width: 1100px; margin: 0 auto; }
 .svc-proof-eyebrow {
+  /* text-secondary, NOT text-muted: this band sits on --color-cream-surface
+     (#ECE7DF), where muted measures 4.48:1 and fails AA by 0.02. Secondary is
+     6.29:1 there. Muted is fine on --color-paper (4.89:1) and stays elsewhere. */
   font-family: var(--font-body);
   font-size: 0.625rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--color-text-muted);
+  color: var(--color-text-secondary);
   margin: 0 0 18px;
 }
 .svc-proof-lead {
@@ -2381,4 +2389,15 @@ footer {
   .v2-hero.is-settled .v2-c1, .v2-hero.is-settled .v2-c2, .v2-hero.is-settled .v2-c3 { animation: none !important; }
   .v2-tilt { transition: none !important; }
   .v2-wshot img { transition: none; }
+}
+
+
+/* ── WCAG 2.2 target size (24x24 minimum) ────────────────────────────────
+   Audit 15 Aug 2026: the /services/[slug] breadcrumb and the "Also see"
+   cross-links measured 67x14 and 154x16. Padding rather than a bigger font,
+   so the type scale is untouched. */
+.svc-hero-copy a,
+.svc-crosslinks a {
+  display: inline-block;
+  padding-block: 5px;
 }

@@ -288,7 +288,7 @@ export default async function ServiceDetailPage({
           <Link href="/contact" className="btn-primary" style={{ display: 'inline-block' }}>
             Let&apos;s talk
           </Link>
-          <p className="type-body" style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem', margin: '40px 0 0' }}>
+          <p className="type-body svc-crosslinks" style={{ color: 'var(--color-text-muted)', fontSize: '0.875rem', margin: '40px 0 0' }}>
             Also see:{' '}
             {servicePages
               .filter((s) => s.slug !== svc.slug)
