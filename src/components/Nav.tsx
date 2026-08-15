@@ -17,14 +17,18 @@ export default function Nav() {
   const reduced = useReducedMotion()
   const pathname = usePathname()
 
-  // Pages with a dark full-screen hero/bg at the top — nav starts transparent + white
-  const isDarkTopPage = pathname === '/' || pathname === '/services'
+  // Pages with a dark full-screen hero/bg at the top — nav starts transparent + white.
+  //
+  // /services USED to be here: it was a dark full-bleed panel carousel. It was
+  // rewritten as a light bone index on 15 Aug 2026, which left the nav in
+  // dark-page mode over a #F4F1EC background, i.e. a white logo on bone —
+  // invisible. Only the home journey is dark at the top now.
+  const isDarkTopPage = pathname === '/'
 
   const [scrolled, setScrolled] = useState(!isDarkTopPage)
   const [menuOpen, setMenuOpen] = useState(false)
 
   useMotionValueEvent(scrollY, 'change', (y) => {
-    if (pathname === '/services') return // services bg is always dark, keep nav dark
     if (pathname === '/') {
       // Home: the journey hero is dark for its whole scroll length — the
       // nav stays transparent/white until the journey hands off to the
