@@ -17,27 +17,20 @@ export default function Nav() {
   const reduced = useReducedMotion()
   const pathname = usePathname()
 
-  // Pages with a dark full-screen hero/bg at the top — nav starts transparent + white.
-  //
-  // /services USED to be here: it was a dark full-bleed panel carousel. It was
-  // rewritten as a light bone index on 15 Aug 2026, which left the nav in
-  // dark-page mode over a #F4F1EC background, i.e. a white logo on bone —
-  // invisible. Only the home journey is dark at the top now.
-  const isDarkTopPage = pathname === '/'
+  // NO route has a dark hero any more. /services lost its dark carousel and the
+  // homepage lost its dark journey, both on 15 Aug 2026. Leaving either in this
+  // list puts a white logo on a #F4F1EC background, i.e. invisible. Kept as a
+  // named constant rather than deleted so the intent survives if a dark hero
+  // ever comes back.
+  const isDarkTopPage = false
 
   const [scrolled, setScrolled] = useState(!isDarkTopPage)
   const [menuOpen, setMenuOpen] = useState(false)
 
+  // The home branch here used to measure .jn-journey to know when the dark hero
+  // ended. That element no longer exists. With no dark-topped route left, the
+  // nav is simply always in its solid state.
   useMotionValueEvent(scrollY, 'change', (y) => {
-    if (pathname === '/') {
-      // Home: the journey hero is dark for its whole scroll length — the
-      // nav stays transparent/white until the journey hands off to the
-      // rest of the page (SEO/UX audit, July 2026).
-      const journey = document.querySelector<HTMLElement>('.jn-journey')
-      const end = journey ? journey.offsetTop + journey.offsetHeight - 120 : 40
-      setScrolled(y > end)
-      return
-    }
     setScrolled(isDarkTopPage ? y > 40 : true)
   })
 

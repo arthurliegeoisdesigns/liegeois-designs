@@ -141,17 +141,17 @@ export default async function ServiceDetailPage({
             </p>
           </div>
 
-          <div className="svc-hero-stage" aria-hidden={related.length > 0 ? undefined : true}>
-            {related[1] && (
-              <div className="svc-card svc-card-1">
-                <Image src={related[1]!.images[0]} alt="" fill sizes="(max-width: 900px) 72vw, 44vw" quality={55} loading="lazy" style={{ objectFit: 'cover' }} />
-              </div>
-            )}
-            {related[0] && (
-              <div className="svc-card svc-card-2">
-                <Image src={related[0]!.images[0]} alt="" fill sizes="(max-width: 900px) 72vw, 44vw" quality={60} loading="lazy" style={{ objectFit: 'cover' }} />
-              </div>
-            )}
+          {/* Deck stack. The two rear cards come from svc.deckSlides, NOT from
+              relatedWork[].images[0]: that derived the mid card from the same
+              file as svc.image, so the front slide appeared twice on three of
+              the four pages. deckSlides guarantees three different projects. */}
+          <div className="svc-hero-stage" aria-hidden="true">
+            <div className="svc-card svc-card-1">
+              <Image src={svc.deckSlides[0]} alt="" fill sizes="(max-width: 900px) 72vw, 44vw" quality={55} loading="lazy" style={{ objectFit: 'cover' }} />
+            </div>
+            <div className="svc-card svc-card-2">
+              <Image src={svc.deckSlides[1]} alt="" fill sizes="(max-width: 900px) 72vw, 44vw" quality={60} loading="lazy" style={{ objectFit: 'cover' }} />
+            </div>
             <div className="svc-card svc-card-3">
               <Image src={svc.image} alt={svc.imageAlt} fill sizes="(max-width: 900px) 72vw, 44vw" quality={70} style={{ objectFit: 'cover' }} />
             </div>

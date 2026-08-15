@@ -5,12 +5,7 @@ import Nav from '@/components/Nav'
 import Footer from '@/components/Footer'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
-import Grain from '@/components/ui/Grain'
-import WorldCanvas from '@/components/ui/WorldCanvas'
-import Preloader from '@/components/ui/Preloader'
 import PresentationMode from '@/components/ui/PresentationMode'
-import ParallaxFlow from '@/components/providers/ParallaxFlow'
-import ScrollReveals from '@/components/providers/ScrollReveals'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
 
@@ -126,26 +121,21 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
-        {/* Intro gate — MUST stay a blocking inline script in <head>.
-            The Preloader now ships in the document so its wordmark paints
-            with first paint rather than after hydration (that hydration
-            delay was costing ~690ms of LCP). The trade is that the plate
-            is in the HTML for everyone, so this runs before the body is
-            parsed and hides it for anyone who should not see the intro —
-            repeat visitors, reduced motion, and every route but home.
-            Setting the class here (not in an effect) is what prevents a
-            flash of the plate. Same pattern as dark-mode FOUC guards. */}
+        {/* LCP guard — MUST stay a blocking inline script in <head>.
+            template.tsx wraps every route in .page-transition-wrapper, which
+            fades opacity on mount. Any element under a non-opaque ancestor is
+            ineligible for LCP and Chrome NEVER re-adds it, which is what hid
+            the hero h1 from the metric site-wide. Suppressing the fade on the
+            first paint only fixes that; it is cleared on the first click so
+            route-to-route transitions still animate.
+
+            The preloader half of this script was removed 15 Aug 2026 with the
+            homepage rebuild: the intro plate made every visitor wait to see
+            the headline. */}
         <script
           dangerouslySetInnerHTML={{
             __html:
               "(function(){try{var d=document.documentElement;" +
-              "if(location.pathname!=='/'||sessionStorage.getItem('ld-intro-done')||" +
-              "matchMedia('(prefers-reduced-motion: reduce)').matches){" +
-              "d.classList.add('ld-no-intro');}else{d.style.overflow='hidden';}" +
-              // Suppress the page-transition fade on the FIRST paint only. That
-              // fade makes every element under it ineligible for LCP, and Chrome
-              // never re-adds them. Cleared on the first client navigation, so
-              // route-to-route transitions still animate.
               "d.classList.add('is-first-load');" +
               "addEventListener('click',function h(){d.classList.remove('is-first-load');" +
               "removeEventListener('click',h,true);},true);" +
@@ -162,14 +152,9 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
-        <WorldCanvas />
-        <Preloader />
         <PresentationMode />
         <SmoothScrollProvider>
           <ClientOnlyLayer />
-          <ParallaxFlow />
-          <ScrollReveals />
-          <Grain />
           <a href="#main-content" className="skip-link">Skip to content</a>
           <Nav />
           <div id="main-content">

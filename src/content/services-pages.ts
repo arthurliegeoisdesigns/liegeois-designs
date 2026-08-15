@@ -26,6 +26,13 @@ export type ServicePage = {
   relatedWork: string[]
   image: string
   imageAlt: string
+  /** Hero deck stack, BACK and MID cards. The front card is `image`.
+      Explicit rather than derived from relatedWork[].images[0], because that
+      was usually the SAME FILE as `image` and rendered the front slide twice
+      (measured on 3 of 4 pages, 15 Aug 2026). Each entry must be a different
+      project from the other two, and non-cover slides are preferred here so
+      the stack reads as a deck rather than three title cards. */
+  deckSlides: [string, string]
 }
 
 const CDN = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs'
@@ -80,6 +87,7 @@ export const servicePages: ServicePage[] = [
     // Echo Society cover, which is a real startup pitch deck.
     image: `${CDN}/webflow/portfolio-slides-echo-society-pitch-deck-0001-51d816`,
     imageAlt: 'Investor pitch deck design sample: Echo Society cover slide',
+    deckSlides: [`${CDN}/spaceship-09.jpg`, `${CDN}/webflow/portfolio-slides-university-startups-pitch-deck-0004-f1a8ad`],
   },
   {
     slug: 'executive-presentations',
@@ -126,6 +134,7 @@ export const servicePages: ServicePage[] = [
     relatedWork: ['chevron-new-energies', 'ibm-quantum-summit-2022-cn3q3', 'philips-healthcare'],
     image: `${CDN}/webflow/fivestone-20-20chevron-201-1-922e8d`,
     imageAlt: 'Executive presentation design: Chevron New Energies strategic narrative',
+    deckSlides: [`${CDN}/webflow/portfolio-slides-philips-experience-intro-0004-8fc69a`, `${CDN}/webflow/portfolio-slides-ibm-quantum-summit-0011-b40ab6`],
   },
   {
     slug: 'sales-agency-decks',
@@ -172,6 +181,7 @@ export const servicePages: ServicePage[] = [
     relatedWork: ['rapp-spectrum-enterprise', 'ogilvy-for-cdw-1-98a9e', 'foodspace-sales-deck'],
     image: `${CDN}/webflow/portfolio-slides-rapp-spectrum-0001-4046a6`,
     imageAlt: 'Sales deck design: Spectrum Enterprise × RAPP',
+    deckSlides: [`${CDN}/webflow/portfolio-slides-rapp-evolus-pitch-deck-0005-e97303`, `${CDN}/webflow/portfolio-slides-ogilvy-cdw-0007-743d5c`],
   },
   {
     slug: 'strategic-narrative',
@@ -218,6 +228,7 @@ export const servicePages: ServicePage[] = [
     relatedWork: ['chevron-new-energies', 'marriott-luxury-group', 'bloomberg-media-internal-dei-strategy'],
     image: `${CDN}/webflow/marriott-the-luxury-group-slide-1-c397f7`,
     imageAlt: 'Strategic narrative design: Marriott Luxury Group',
+    deckSlides: [`${CDN}/webflow/portfolio-slides-bloomberg-internal-deck-0002-065b4b`, `${CDN}/journey/chevron-05`],
   },
 ]
 
