@@ -6,6 +6,7 @@ import type { Metadata } from 'next'
 import { MDXRemote } from 'next-mdx-remote/rsc'
 import { blogPosts } from '@/content/blog-posts'
 import { clampDescription } from '@/lib/seo'
+import { serviceForPost } from '@/lib/post-service'
 
 export function generateStaticParams() {
   return blogPosts.map((post) => ({ slug: post.slug }))
@@ -213,6 +214,28 @@ export default async function BlogPostPage({
                 </Link>{' '}
                 is where this thinking gets applied.
               </p>
+            </div>
+          </section>
+        )
+      })()}
+
+      {/* ── The commercial link ────────────────────────────────────────────
+             A reader who has just finished the piece is the most qualified
+             visitor on the site, and until now the page offered them nothing
+             to do. serviceForPost returns null for the personal essays, so a
+             piece about burnout or reinvention gets no CTA at all — a forced
+             one there would be worse than none. ─────────────────────────── */}
+      {(() => {
+        const svc = serviceForPost(post)
+        if (!svc) return null
+        return (
+          <section style={{ background: 'var(--color-paper)', padding: '0 var(--section-pad-x) clamp(28px, 4vw, 44px)' }}>
+            <div style={{ maxWidth: '760px', margin: '0 auto' }}>
+              <Link href={`/services/${svc.slug}`} className="post-svc">
+                <span className="post-svc-eyebrow">This is what I do about it</span>
+                <span className="post-svc-name">{svc.name}</span>
+                <span className="post-svc-tag">{svc.tagline}</span>
+              </Link>
             </div>
           </section>
         )
