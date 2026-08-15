@@ -132,8 +132,13 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedWork: ['chevron-new-energies', 'ibm-quantum-summit-2022-cn3q3', 'philips-healthcare'],
-    image: `${CDN}/webflow/fivestone-20-20chevron-201-1-922e8d`,
-    imageAlt: 'Executive presentation design: Chevron New Energies strategic narrative',
+    // Was a text-heavy Chevron slide. Replaced 15 Aug 2026: a page selling
+    // executive presentations should lead with a slide an executive could read
+    // in two seconds, not a paragraph. This one is three figures and an image.
+    // Full URL rather than the CDN template because it sits outside the
+    // liegeois-designs folder; cloudinary-loader still applies f_auto/q/w.
+    image: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1783868679/250923_Fivestone-Studios-Chevron.079_vpaazn.jpg',
+    imageAlt: 'Executive presentation design: a by-the-numbers impact slide, Chevron via Fivestone Studios',
     deckSlides: [`${CDN}/webflow/portfolio-slides-philips-experience-intro-0004-8fc69a`, `${CDN}/webflow/portfolio-slides-ibm-quantum-summit-0011-b40ab6`],
   },
   {
