@@ -25,7 +25,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Chevron New Energies',
     project: 'New Energies Strategic Narrative',
     format: 'Executive Presentation',
-    industry: 'Energy / Sustainability',
+    industry: 'Energy & Sustainability',
     year: 2025,
     tagline: 'A strategic narrative that reframed an energy giant\'s future.',
     images: [
@@ -60,7 +60,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Marriott Luxury Group',
     project: 'YouTube Content Strategy 2025',
     format: 'Executive Presentation',
-    industry: 'Luxury Hospitality',
+    industry: 'Consumer & Retail',
     year: 2025,
     tagline: 'A content strategy deck as cinematic as the brands it represents.',
     images: [
@@ -90,7 +90,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Echo Society',
     project: 'Brand & Culture Storytelling Deck',
     format: 'Pitch & Investor Deck',
-    industry: 'Media / Culture',
+    industry: 'Startups & Venture',
     year: 2024,
     tagline: 'Culture presented with the same craft it celebrates.',
     images: [
@@ -127,7 +127,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'The Spaceship',
     project: 'Investor Deck',
     format: 'Pitch & Investor Deck',
-    industry: 'Sustainability / ESG',
+    industry: 'Startups & Venture',
     year: 2024,
     tagline: 'A pitch deck that made the stakes of ESG feel cosmic.',
     images: [
@@ -150,7 +150,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'MCS Healthcare × J&J',
     project: 'Internal Achievements Presentation',
     format: 'Sales & Agency Deck',
-    industry: 'Healthcare / Pharma',
+    industry: 'Healthcare & Pharma',
     year: 2024,
     tagline: 'Restraint as craft. A legacy corporate deck rebuilt into something immersive.',
     theAsk: 'MCS Healthcare was already inside J&J. What they needed was an internal achievements presentation that reflected the quality of that relationship, polished enough to carry the brand, clear enough to actually move the room.',
@@ -193,7 +193,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Philips Healthcare',
     project: 'Healthcare Technology Presentation',
     format: 'Executive Presentation',
-    industry: 'Healthcare Technology',
+    industry: 'Healthcare & Pharma',
     year: 2024,
     tagline: 'Technical complexity, made human.',
     images: [
@@ -226,7 +226,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Intercept Pharmaceuticals',
     project: 'POA Field Training, Strong Foundation',
     format: 'Training Presentation',
-    industry: 'Pharmaceutical',
+    industry: 'Healthcare & Pharma',
     year: 2024,
     tagline: 'Field training that reps actually wanted to sit through.',
     images: [
@@ -261,7 +261,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'OPMG × RAPP',
     project: 'Connected Data Deck',
     format: 'Sales & Agency Deck',
-    industry: 'Marketing Technology',
+    industry: 'Agencies & Consultancies',
     year: 2025,
     tagline: 'A data story that made complexity look like clarity.',
     images: [
@@ -295,7 +295,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Underpin',
     project: 'Startup Pitch Deck',
     format: 'Pitch & Investor Deck',
-    industry: 'Travel Technology',
+    industry: 'Technology & Telecom',
     year: 2023,
     tagline: 'A geo-centric travel app, pitched with the same sense of adventure.',
     images: [
@@ -325,7 +325,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'University Startups',
     project: 'Pitch Deck, A Better Future for Students',
     format: 'Pitch & Investor Deck',
-    industry: 'Education / EdTech',
+    industry: 'Startups & Venture',
     year: 2022,
     tagline: 'Social entrepreneurship, framed to inspire and fund.',
     images: [
@@ -352,7 +352,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Lupus Association × JPMorgan',
     project: 'Lupus Awareness Campaign Deck',
     format: 'Executive Presentation',
-    industry: 'Healthcare / Finance',
+    industry: 'Healthcare & Pharma',
     year: 2024,
     tagline: 'A sensitive subject, handled with authority and care.',
     images: [
@@ -382,7 +382,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Spectrum Enterprise × RAPP',
     project: 'Creative Immersion Session',
     format: 'Sales & Agency Deck',
-    industry: 'Telecommunications',
+    industry: 'Technology & Telecom',
     year: 2023,
     tagline: 'Agency thinking, made tangible for an enterprise client.',
     images: [
@@ -417,7 +417,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'ProjectBe, ColorCode',
     project: 'Brand Pitch Deck',
     format: 'Pitch & Investor Deck',
-    industry: 'Consumer Technology',
+    industry: 'Technology & Telecom',
     year: 2023,
     tagline: 'A brand concept, pitched with the confidence to match.',
     images: [
@@ -450,7 +450,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Evolus',
     project: 'A Lifestyle-Driven Pharma Pitch Deck That Breaks the Mold',
     format: 'Pitch & Investor Deck',
-    industry: 'Pharmaceutical',
+    industry: 'Healthcare & Pharma',
     year: 2023,
     tagline: 'Helping a global agency cut through clinical clutter with a lifestyle-first, high-touch pitch deck for a modern aesthetics brand.',
     images: [
@@ -481,7 +481,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Starz',
     project: 'Special Forces Insights for StarzPlay UK',
     format: 'Executive Presentation',
-    industry: 'Media / Entertainment',
+    industry: 'Media & Entertainment',
     year: 2023,
     tagline: 'To help StarzPlay grow in the UK, Special Forces NYC ran a multi-phase insights program decoding British TV culture and its influence on VOD habits through semiotics, expert panels, and consumer research.',
     images: [
@@ -509,7 +509,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'The Special Event Company',
     project: 'The Special Event Company Capabilities Fully Animated Deck',
     format: 'Sales & Agency Deck',
-    industry: 'Event Production',
+    industry: 'Agencies & Consultancies',
     year: 2023,
     tagline: 'The Special Event Company is a woman-owned, award-winning agency known for producing live and virtual events worldwide. They needed a bold, fully animated PowerPoint deck to showcase their offerings and track record with a premium yet accessible look.',
     images: [
@@ -543,7 +543,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Sunrise Cellars',
     project: 'Rebranding Old Wine Stores to Become a Future-proof high-end, One-Stop Shop for Wine Lovers',
     format: 'Strategic Narrative',
-    industry: 'Retail / E-Commerce',
+    industry: 'Consumer & Retail',
     year: 2025,
     tagline: 'From supermarket aisle to boutique destination: I rebranded Sunrise Cellars into a premium wine store that celebrates discovery, craftsmanship, and everyday celebration.',
     images: [
@@ -574,7 +574,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'TGI Fridays Franchisor, LLC',
     project: 'Designing Impactful Visuals for a Food Franchisor\'s Keynote Event',
     format: 'Training Presentation',
-    industry: 'Lifestyle / Consumer',
+    industry: 'Consumer & Retail',
     year: 2023,
     tagline: 'Bringing sizzle to the stage: A bold, brand-forward visual campaign designed to unite global franchisees under one electrifying rallying cry. Ignite the Future.',
     images: [
@@ -610,7 +610,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Norigami',
     project: 'Designing a Full Food Startup Brand that Looks just like an Established Company',
     format: 'Strategic Narrative',
-    industry: 'Startup / Venture',
+    industry: 'Startups & Venture',
     year: 2016,
     tagline: 'The lovechild of sushi and a sandwich, NORIGAMI’s bold brand identity slices through the noise with playful icons, witty copy, and color-coded clarity, proving healthy grab-and-go can be fresh, fun, and undeniably irresistible.',
     images: [
@@ -639,7 +639,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'FoodSpace',
     project: 'Designing a Lunch & Learn Keynote for Architects: How Technology will change to ',
     format: 'Conference Keynote',
-    industry: 'Consulting / Foodservice',
+    industry: 'Agencies & Consultancies',
     year: 2021,
     tagline: 'A futurist keynote designed to spark industry dialogue around AI, drones, and automation in foodservice.',
     images: [
@@ -672,7 +672,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Post Consumer Brands',
     project: 'Designing a New Business Pitch Deck for a huge FMCG Brand',
     format: 'Pitch & Investor Deck',
-    industry: 'FMCG / Consumer Goods',
+    industry: 'Consumer & Retail',
     year: 2023,
     tagline: 'A compelling new business pitch for Post Consumer Brands, crafted with clarity, style, and confidence.',
     images: [
@@ -705,7 +705,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'CDW',
     project: 'Designing a New Business Pitch Deck to online tech store CDW',
     format: 'Pitch & Investor Deck',
-    industry: 'Technology',
+    industry: 'Technology & Telecom',
     year: 2023,
     tagline: 'For a high-stakes pitch, Ogilvy brought me in to design a sharp, on-brand deck that positioned them as CDW’s ideal creative partner, blending storytelling, clarity, and strategic depth.',
     images: [
@@ -743,7 +743,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'IAA',
     project: 'Designing a new homepage for high-level marketing community event producers',
     format: 'Strategic Narrative',
-    industry: 'Creative Agencies',
+    industry: 'Agencies & Consultancies',
     year: 2024,
     tagline: 'A global reboot of the IAA’s web presence: clean, international, and built for a content-first future.',
     images: [
@@ -769,7 +769,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Bloomberg Media Group',
     project: 'Designing a fully detailed Internal DE&I Strategy Deck for the C-Suite',
     format: 'Executive Presentation',
-    industry: 'Media / Entertainment',
+    industry: 'Media & Entertainment',
     year: 2023,
     tagline: 'Designed an internal DE&I presentation deck for Bloomberg Media Group, transforming employee initiatives into a compelling visual story that celebrates inclusion, leadership, and cultural strategy.',
     images: [
@@ -800,7 +800,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'Norigami',
     project: 'Designing an Engaging Investor Pitch Deck for a Food Startup that closed the deal.',
     format: 'Pitch & Investor Deck',
-    industry: 'Startup / Venture',
+    industry: 'Startups & Venture',
     year: 2019,
     tagline: 'A purpose-driven food brand redefining grab-and-go with sushi-quality, allergen-free onigirazu sandwiches and a bold mission to inspire healthier living.',
     images: [
@@ -833,7 +833,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'Project Be',
     project: 'Designing an Engaging, Fully Animated, Digital Wellness Keynote',
     format: 'Conference Keynote',
-    industry: 'Event Production',
+    industry: 'Media & Entertainment',
     year: 2023,
     tagline: 'Designed a thought-provoking keynote deck for a wellness tech conference, exploring the role of technology in digital burnout and reconnection.',
     images: [
@@ -867,7 +867,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'Echo Society',
     project: 'Designing an Investor-Ready Startup Pitch Deck, Pt. 1',
     format: 'Pitch & Investor Deck',
-    industry: 'Startup / Venture',
+    industry: 'Startups & Venture',
     year: 2024,
     tagline: 'A vibrant, genre-bending pitch deck created for Echo Society to secure funding for their multi-platform IP production strategy.',
     images: [
@@ -902,7 +902,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'FoodSpace',
     project: 'Designing an engaging Sales Deck in Foodservice',
     format: 'Sales & Agency Deck',
-    industry: 'Consulting / Foodservice',
+    industry: 'Agencies & Consultancies',
     year: 2022,
     tagline: 'A sales tool that speaks startup energy with enterprise-level clarity, built to grow with the business.',
     images: [
@@ -933,7 +933,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'The Be Curious Group',
     project: 'Designing and Delivering a Training Deck to Explain the IoT to Female Entrepreneurs',
     format: 'Training Presentation',
-    industry: 'Education / EdTech',
+    industry: 'Technology & Telecom',
     year: 2020,
     tagline: 'A visually rich, animated keynote that demystifies the Internet of Things (IoT) for non-tech audiences, turning abstract tech into relatable, real-world use cases.',
     images: [
@@ -965,7 +965,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'IBM Quantum',
     project: 'IBM Quantum Summit 2022 Keynote',
     format: 'Conference Keynote',
-    industry: 'Technology',
+    industry: 'Technology & Telecom',
     year: 2022,
     tagline: 'Presentation design for IBM’s flagship Quantum Summit keynote, turning dense, technical material into a clean, confident, and brand-consistent visual experience.',
     images: [
@@ -997,7 +997,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'Google',
     project: 'Special Forces Insights Deck for Google',
     format: 'Executive Presentation',
-    industry: 'Technology',
+    industry: 'Technology & Telecom',
     year: 2023,
     tagline: 'Helping a strategy agency turn high-level insights into a sleek, story-driven deck for Google’s executive teams.',
     images: [
@@ -1027,7 +1027,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'Intercept Pharmaceuticals',
     project: 'ToddStreet for Intercept',
     format: 'Training Presentation',
-    industry: 'Pharmaceutical',
+    industry: 'Healthcare & Pharma',
     year: 2024,
     tagline: 'A regional training deck for Intercept’s salesforce, designed to align teams around market needs with clarity, consistency, and strong visual structure.',
     images: [
@@ -1058,7 +1058,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'MCS Healthcare',
     project: 'Rebranding and Modernizing the Look and Feel of an Established, Healthcare-focused PR Agency ',
     format: 'Strategic Narrative',
-    industry: 'Creative Agencies',
+    industry: 'Agencies & Consultancies',
     year: 2025,
     tagline: 'A modernized brand identity system for a mission-driven PR agency specializing in healthcare and pharma.',
     images: [
@@ -1083,7 +1083,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'MCS Healthcare PR',
     project: 'Redesigning the Website of an established PR Agency expert in Healthcare',
     format: 'Strategic Narrative',
-    industry: 'Creative Agencies',
+    industry: 'Agencies & Consultancies',
     year: 2025,
     tagline: 'A sleek, editorial-style website designed to elevate a top-tier healthcare PR agency with clarity, polish, and confidence.',
     images: [
@@ -1112,7 +1112,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'EMD Group Serono',
     project: 'EMD Serono Group 2024 MA&PS Summit',
     format: 'Conference Keynote',
-    industry: 'Pharmaceutical',
+    industry: 'Healthcare & Pharma',
     year: 2023,
     tagline: 'A global keynote deck for EMD Serono’s leadership, unifying regional teams under a clear, empowering message.',
     images: [
@@ -1143,7 +1143,7 @@ Slide themes ranged from cultural trends and DE&I practices to leadership, well-
     client: 'Mastercard',
     project: '“Discover the Priceless in Us" High level, New Business Pitch Deck',
     format: 'Pitch & Investor Deck',
-    industry: 'Financial Services',
+    industry: 'Consumer & Retail',
     year: 2022,
     tagline: 'An internal global campaign pitch crafted to emotionally connect Mastercard employees through music, transforming staff spirit into song.',
     images: [
