@@ -235,6 +235,65 @@ export const servicePages: ServicePage[] = [
     imageAlt: 'Strategic narrative design: Marriott Luxury Group',
     deckSlides: [`${CDN}/webflow/portfolio-slides-bloomberg-internal-deck-0002-065b4b`, `${CDN}/journey/chevron-05`],
   },
+  {
+    slug: 'training-keynote-design',
+    name: 'Keynotes & Training',
+    h1: 'Keynote & Training Presentation Design',
+    metaTitle: 'Keynote & Training Presentation Design: Decks That Teach | Liégeois Designs',
+    metaDescription:
+      'Keynote and training presentation design for conferences, summits and field teams. Sales training, franchise rollouts, and stage keynotes for IBM, EMD Serono and Intercept.',
+    tagline: 'When the room has to learn something.',
+    lead:
+      'Conference keynotes, summit sessions, and field training that people actually absorb. Different from a pitch: nobody here is deciding whether to fund you. They are deciding whether to listen.',
+    body: [
+      "A pitch asks for a decision. A keynote or a training deck asks for attention, and then for retention, which is harder. The audience did not choose to be persuaded; they chose to be in the room, and they will decide within ninety seconds whether to stay in it mentally. Most training decks lose them because they were built as reference documents that someone then read aloud.",
+      'The fix is structural. A teaching presentation needs a spine that survives being paused, questioned and returned to, so we build it around a small number of ideas the audience can carry out of the room, not around everything the subject-matter expert knows. Then the density comes down, the sequence does the explaining, and the slides stop competing with the speaker.',
+      "That principle scales in both directions. IBM's Quantum Summit keynote had to make quantum computing land for a mixed technical and executive audience. Intercept's field training had to align a regional salesforce around a market shift. EMD Serono's summit had to unify leadership across regions. Same discipline, different rooms.",
+    ],
+    deliverables: [
+      'Learning-first structure',
+      'Slide design (20–60 slides)',
+      'Animation and build sequencing',
+      'Facilitator and speaker notes',
+    ],
+    process: [
+      { title: 'Audience and outcome', detail: 'Who is in the room, and what should they do differently after' },
+      { title: 'Content triage', detail: 'What survives, what becomes a leave-behind, what goes' },
+      { title: 'Teaching structure', detail: 'The few ideas they carry out, and the order that makes them stick' },
+      { title: 'Design and build', detail: 'Sequencing and animation so the slides support the speaker' },
+      { title: 'Facilitator notes', detail: 'So anyone on the team can deliver it, not just the author' },
+    ],
+    timeline: '2–3 weeks',
+    faqs: [
+      {
+        q: 'How is a training deck different from a pitch deck?',
+        a: 'A pitch has one ask and one moment. A training deck has to survive interruption, questions and a facilitator who is not the person who wrote it. It is built for retention rather than persuasion, which changes the structure, the density, and how much lives in speaker notes instead of on the slide.',
+      },
+      {
+        q: 'Our deck is 60 slides of dense technical content. Can that work on stage?',
+        a: 'Yes, and it usually should not stay 60 slides. IBM Quantum Summit is the reference point: dense technical material for a mixed technical and executive audience. The content did not shrink, the sequencing changed so each slide carried one idea rather than five.',
+      },
+      {
+        q: 'Can our team deliver it without you?',
+        a: 'That is the point. Every training engagement ships facilitator notes, so a regional lead or a rep can run the session as well as the person who built it. If the deck only works when its author presents it, it is not finished.',
+      },
+      {
+        q: 'Do you handle animation and build sequencing?',
+        a: 'Yes, and for teaching material it matters more than for a pitch. Revealing a diagram in the order the explanation follows is the difference between an audience listening and an audience reading ahead.',
+      },
+      {
+        q: 'What does it cost?',
+        a: 'Engagements start at $5,000. Training and keynote projects usually run 2–3 weeks, and the range depends on slide count, animation depth, and whether facilitator notes are needed for multiple regions. You get a fixed quote after a 30-minute intake call.',
+      },
+    ],
+    relatedWork: ['ibm-quantum-summit-2022-cn3q3', 'intercept-pharma', 'adm-productions-emd-1-c6815'],
+    image: `${CDN}/webflow/portfolio-slides-ibm-quantum-summit-0017-aa11b2`,
+    imageAlt: 'Keynote design: IBM Quantum Summit 2022',
+    deckSlides: [
+      `${CDN}/webflow/tbcg-iot-slide-1-30e79f`,
+      `${CDN}/webflow/portfolio-slides-toddstreet-intercept-oca-aug-training-0001-ddc7f1`,
+    ],
+  },
 ]
 
 export const servicePageBySlug = Object.fromEntries(servicePages.map((s) => [s.slug, s]))

@@ -42,6 +42,11 @@ const BY_SLUG: Record<string, { lead: string; stats: Stat[] }> = {
       'Before I designed a single slide I spent twenty years carrying a number. I have written the proposal, walked it into the room, and watched it win or die on the third slide.',
     stats: [ORACLE, SPIN, RAISED],
   },
+  'training-keynote-design': {
+    lead:
+      'I have stood on the other side of this: four years delivering strategic presentations to C-suite audiences at Apple, across nine Paris stores. I know what a room looks like at minute forty, and I build decks that survive it.',
+    stats: [APPLE, SPIN, ORACLE],
+  },
   'strategic-narrative': {
     lead:
       'I trained in SPIN Selling at Huthwaite, a formal method for asking the questions that surface what a decision-maker actually needs to hear. I run it on your narrative before I open a design file.',

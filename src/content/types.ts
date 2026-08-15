@@ -8,6 +8,11 @@ export type ServiceFormat =
   | 'Pitch & Investor Deck'
   | 'Executive Presentation'
   | 'Sales & Agency Deck'
+  /** Conference and summit keynotes: a stage, an audience that chose to be
+      there, and a speaker. Distinct from Training Presentation, which is a
+      facilitated session someone other than the author usually delivers.
+      Split 15 Aug 2026 — both had been filed as Training Presentation. */
+  | 'Conference Keynote'
   | 'Training Presentation'
   | 'Strategic Narrative'
 
