@@ -38,7 +38,7 @@ const FAQS = [
   },
   {
     q: 'What tools do you design in?',
-    a: "PowerPoint, Keynote, and Figma Slides, depending on what your team needs to own and edit after delivery. If you're unsure, we'll sort it out on the intake call.",
+    a: "Keynote first, given the choice, for the motion and build sequencing it allows. PowerPoint whenever your team has to own and edit the deck afterwards, and I know it inside out. Figma Slides where a design team is already living there. Google Slides only if you are locked to it.",
   },
   {
     q: 'How many revision rounds are included?',

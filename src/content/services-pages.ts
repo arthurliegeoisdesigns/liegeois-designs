@@ -50,7 +50,7 @@ export const servicePages: ServicePage[] = [
       'The deck you bring into the most important room of your year. Built around your story, your audience, and the specific ask that needs to land.',
     body: [
       "Most pitch decks fail before the first slide, because they're built as inventories (team, product, market, traction) instead of arguments. Investors don't fund inventories. They fund a story about why this, why now, and why you, told by someone who clearly understands the room they're walking into.",
-      "That's where we start: not in PowerPoint, but with your narrative. Who's across the table, what they believe before you speak, which objections are already forming, and what needs to be true when you finish. Then the deck gets designed around that argument, structure first, design second. Always.",
+      "That's where I start: not in PowerPoint, but with your narrative. Who's across the table, what they believe before you speak, which objections are already forming, and what needs to be true when you finish. Then the deck gets designed around that argument, structure first, design second. Always.",
       'The result is a deck that works twice: on the wall while you present, and alone in the follow-up email when partners who missed the meeting flip through it at midnight. Both readings are designed for, deliberately.',
     ],
     deliverables: ['Narrative architecture', 'Slide design (10–30 slides)', 'Speaker notes', 'PDF + editable file'],
@@ -73,7 +73,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: "We're raising a bridge round, not a priced round. Does that change anything?",
-        a: "It changes the argument, not the process. A bridge has to explain why the extra runway produces a materially different company at the next raise, which is a harder story than a straight growth narrative and the one most decks skip. That is the slide we would spend the most time on.",
+        a: "It changes the argument, not the process. A bridge has to explain why the extra runway produces a materially different company at the next raise, which is a harder story than a straight growth narrative and the one most decks skip. That is the slide I would spend the most time on.",
       },
       {
         q: 'How much does professional pitch deck design cost?',
@@ -85,7 +85,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: 'Do you work on the story, or just make slides look better?',
-        a: "Story first, always. Roughly half of every engagement is narrative work: the argument, the objection sequence, the one sentence investors repeat to their partners. Design that decorates a broken story is money wasted. We don't sell it.",
+        a: "Story first, always. Roughly half of every engagement is narrative work: the argument, the objection sequence, the one sentence investors repeat to their partners. Design that decorates a broken story is money wasted. I don't sell it.",
       },
       {
         q: 'What stage founders do you work with?',
@@ -113,7 +113,7 @@ export const servicePages: ServicePage[] = [
       'Board decks, C-suite briefings, and strategic reviews that show, not just tell, the decision that needs to be made.',
     body: [
       'An executive audience gives you minutes, not meetings. They skim, they interrupt, they decide early and confirm late. A deck built for that room does something most corporate presentations never do: it respects the audience enough to lead with the point, prove it visually, and stop.',
-      "We've designed executive narratives for Chevron, IBM, Philips, Bloomberg Media, and teams inside Apple, rooms where the presenter's credibility is decided in the first ninety seconds. The design language that survives those rooms is calm, precise, and dense with meaning, never with text.",
+      "I've designed executive narratives for Chevron, IBM, Philips, Bloomberg Media, and teams inside Apple, rooms where the presenter's credibility is decided in the first ninety seconds. The design language that survives those rooms is calm, precise, and dense with meaning, never with text.",
       'Every engagement covers the content architecture (what stays, what moves, what dies), data visualization that an executive can read from the back of the room, and the presenter notes that keep your delivery and your slides moving as one continuous thought.',
     ],
     deliverables: ['Story structure review', 'Data visualization', 'Executive-grade design', 'Multiple format exports'],
@@ -136,7 +136,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: 'Can you work under NDA with confidential board material?',
-        a: 'Yes, most executive engagements run under NDA, and several clients appear in our portfolio only as anonymized formats. Confidentiality workflows (redacted reviews, secure transfer, no cloud AI processing of your data) are standard, not special requests.',
+        a: 'Yes, most executive engagements run under NDA, and several clients appear in my portfolio only as anonymized formats. Confidentiality workflows (redacted reviews, secure transfer, no cloud AI processing of your data) are standard, not special requests.',
       },
       {
         q: 'Our deck is 60 slides. Is that a problem?',
@@ -144,11 +144,11 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: 'Do you design in our corporate template?',
-        a: 'When the template serves the story, yes. When it fights the story, we design within your brand system but beyond the template, and give you the ammunition to defend that choice internally.',
+        a: 'When the template serves the story, yes. When it fights the story, I design within your brand system but beyond the template, and give you the ammunition to defend that choice internally.',
       },
       {
         q: 'PowerPoint, Keynote, or Google Slides?',
-        a: "Whichever your organization needs to own afterward. We're fluent in all of them and loyal to none. The tool was never the point.",
+        a: "Keynote first, given the choice. It gives more room for motion, build sequencing and the kind of visual storytelling that holds a room. PowerPoint whenever your team has to own and edit the deck afterwards, which is most enterprise work, and I know it inside out. Google Slides I will work in if you are locked to it, but I will not recommend it: it is too basic and too clunky for the delivery and audience experience these decks are built for.",
       },
     ],
     relatedWork: ['chevron-new-energies', 'ibm-quantum-summit-2022-cn3q3', 'philips-healthcare'],
@@ -173,7 +173,7 @@ export const servicePages: ServicePage[] = [
       'Proposals, capabilities decks, and RFP responses that make prospects say yes before the meeting ends.',
     body: [
       "A sales deck has a harder job than a pitch deck: it gets presented by many people, forwarded to strangers, and read in silence more often than it's ever presented. Design that depends on a charismatic presenter fails the moment the PDF leaves your hands.",
-      "So we build sales decks as modular systems: slides that work in sequence and standalone, a narrative spine that survives reordering, and a positioning pass that sharpens your value proposition until it cuts. Agencies use us for the meta-problem, the pitch about pitching, because we've sat on their side of the table at Ogilvy, Grey, and RAPP engagements.",
+      "So I build sales decks as modular systems: slides that work in sequence and standalone, a narrative spine that survives reordering, and a positioning pass that sharpens your value proposition until it cuts. Agencies bring me in for the meta-problem, the pitch about pitching, because I've sat on their side of the table at Ogilvy, Grey, and RAPP engagements.",
       'Every system ships as a fully editable master template your team actually keeps using, with a walkthrough session so the deck stays on-brand after the tenth edit, not just the first.',
     ],
     deliverables: ['Positioning review', 'Modular slide system', 'Brand integration', 'Editable master template'],
@@ -192,15 +192,15 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: 'Can you handle a live RFP deadline?',
-        a: 'Often, yes. RFP responses run on compressed timelines by nature, tell us the submission date on day one and we will be honest about what is achievable within it.',
+        a: 'Often, yes. RFP responses run on compressed timelines by nature, tell me the submission date on day one and I will be honest about what is achievable within it.',
       },
       {
         q: 'Do you write the proposal content too?',
-        a: 'We shape it. You bring the substance, the offer, the numbers, the scope. We restructure it into an argument, cut what dilutes it, and write the connective copy that makes it read like one voice.',
+        a: 'I shape it. You bring the substance, the offer, the numbers, the scope. I restructure it into an argument, cut what dilutes it, and write the connective copy that makes it read like one voice.',
       },
       {
         q: 'What makes an agency capabilities deck different?',
-        a: "It's a pitch about pitching, your prospects judge the deck itself as a work sample. The bar is higher and the meta-game is real. That's exactly the brief we enjoy most.",
+        a: "It's a pitch about pitching, your prospects judge the deck itself as a work sample. The bar is higher and the meta-game is real. That's exactly the brief I enjoy most.",
       },
     ],
     relatedWork: ['rapp-spectrum-enterprise', 'ogilvy-for-cdw-1-98a9e', 'foodspace-sales-deck'],
@@ -255,7 +255,7 @@ export const servicePages: ServicePage[] = [
       },
       {
         q: 'What does this cost relative to a standard deck project?',
-        a: "It's the largest engagement we offer, typically two to three times a standard deck, reflecting the workshop and strategy time. It's also the one clients describe as changing how their whole team communicates, not just one presentation.",
+        a: "It's the largest engagement I offer, typically two to three times a standard deck, reflecting the workshop and strategy time. It's also the one clients describe as changing how their whole team communicates, not just one presentation.",
       },
     ],
     relatedWork: ['chevron-new-energies', 'marriott-luxury-group', 'bloomberg-media-internal-dei-strategy'],
@@ -275,7 +275,7 @@ export const servicePages: ServicePage[] = [
       'Conference keynotes, summit sessions, and field training that people actually absorb. Different from a pitch: nobody here is deciding whether to fund you. They are deciding whether to listen.',
     body: [
       "A pitch asks for a decision. A keynote or a training deck asks for attention, and then for retention, which is harder. The audience did not choose to be persuaded; they chose to be in the room, and they will decide within ninety seconds whether to stay in it mentally. Most training decks lose them because they were built as reference documents that someone then read aloud.",
-      'The fix is structural. A teaching presentation needs a spine that survives being paused, questioned and returned to, so we build it around a small number of ideas the audience can carry out of the room, not around everything the subject-matter expert knows. Then the density comes down, the sequence does the explaining, and the slides stop competing with the speaker.',
+      'The fix is structural. A teaching presentation needs a spine that survives being paused, questioned and returned to, so I build it around a small number of ideas the audience can carry out of the room, not around everything the subject-matter expert knows. Then the density comes down, the sequence does the explaining, and the slides stop competing with the speaker.',
       "That principle scales in both directions. IBM's Quantum Summit keynote had to make quantum computing land for a mixed technical and executive audience. Intercept's field training had to align a regional salesforce around a market shift. EMD Serono's summit had to unify leadership across regions. Same discipline, different rooms.",
     ],
     deliverables: [
