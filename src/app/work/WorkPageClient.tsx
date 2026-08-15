@@ -19,14 +19,36 @@ import { caseStudies } from '@/content/case-studies'
  * cursor (the ClientIndex pattern, exhaustive). Grid view remains one
  * toggle away for scanners. Dark, on the one-world aesthetic.
  */
+/* DERIVED, not typed. This list was hardcoded to four formats and silently
+   omitted Strategic Narrative, Training Presentation and Conference Keynote,
+   making 14 of 36 case studies unreachable by filter. Fourth hardcoded-list
+   drift found in one day; the rule is now to derive anything that describes
+   the data. Ordered by volume so the biggest bodies of work lead. */
+const formatCounts = caseStudies.reduce<Record<string, number>>((acc, cs) => {
+  acc[cs.format] = (acc[cs.format] ?? 0) + 1
+  return acc
+}, {})
 const formats = [
   { label: 'All', value: 'All' },
-  { label: 'Pitch & Investor Decks', value: 'Pitch & Investor Deck' },
-  { label: 'Executive Presentations', value: 'Executive Presentation' },
-  { label: 'Sales & Agency Decks', value: 'Sales & Agency Deck' },
-] as const
+  ...Object.keys(formatCounts)
+    .sort((a, b) => formatCounts[b] - formatCounts[a])
+    .map((f) => ({ label: f, value: f })),
+]
 
-type FormatValue = (typeof formats)[number]['value']
+/* Second axis. The industry taxonomy was consolidated from 23 values to 7 on
+   15 Aug 2026, which is what makes it usable as a filter at all. */
+const industryCounts = caseStudies.reduce<Record<string, number>>((acc, cs) => {
+  acc[cs.industry] = (acc[cs.industry] ?? 0) + 1
+  return acc
+}, {})
+const industriesList = [
+  { label: 'All', value: 'All' },
+  ...Object.keys(industryCounts)
+    .sort((a, b) => industryCounts[b] - industryCounts[a])
+    .map((i) => ({ label: i, value: i })),
+]
+
+type FormatValue = string
 type View = 'index' | 'grid'
 
 const ease = [0.16, 1, 0.3, 1] as const
@@ -34,11 +56,13 @@ const ease = [0.16, 1, 0.3, 1] as const
 export default function WorkPageClient() {
   const reduced = useReducedMotion()
   const [active, setActive] = useState<FormatValue>('All')
+  const [sector, setSector] = useState<string>('All')
   const [view, setView] = useState<View>('index')
   const [hovered, setHovered] = useState<string | null>(null)
 
-  const filtered =
-    active === 'All' ? caseStudies : caseStudies.filter((cs) => cs.format === active)
+  const filtered = caseStudies.filter(
+    (cs) => (active === 'All' || cs.format === active) && (sector === 'All' || cs.industry === sector),
+  )
 
   const hoveredStudy = caseStudies.find((cs) => cs.slug === hovered)
 
@@ -88,10 +112,8 @@ export default function WorkPageClient() {
           >
             <div className="work-filters" role="tablist" aria-label="Filter work by format">
               {formats.map((f) => {
-                const count =
-                  f.value === 'All'
-                    ? caseStudies.length
-                    : caseStudies.filter((cs) => cs.format === f.value).length
+                const pool = sector === 'All' ? caseStudies : caseStudies.filter((cs) => cs.industry === sector)
+                const count = f.value === 'All' ? pool.length : pool.filter((cs) => cs.format === f.value).length
                 const isActive = active === f.value
                 return (
                   <button
@@ -106,6 +128,26 @@ export default function WorkPageClient() {
                 )
               })}
             </div>
+            <div className="work-filters work-filters-sector" role="tablist" aria-label="Filter work by industry">
+              {industriesList.map((f) => {
+                const pool = active === 'All' ? caseStudies : caseStudies.filter((cs) => cs.format === active)
+                const count = f.value === 'All' ? pool.length : pool.filter((cs) => cs.industry === f.value).length
+                if (count === 0 && f.value !== 'All') return null
+                const isActive = sector === f.value
+                return (
+                  <button
+                    key={f.value}
+                    role="tab"
+                    aria-pressed={isActive}
+                    className={`work-filter${isActive ? ' is-active' : ''}`}
+                    onClick={() => setSector(f.value)}
+                  >
+                    {f.label} <sup>{count}</sup>
+                  </button>
+                )
+              })}
+            </div>
+
             <div className="work-view-toggle" role="tablist" aria-label="View">
               <button
                 role="tab"

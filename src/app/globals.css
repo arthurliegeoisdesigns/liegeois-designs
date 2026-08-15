@@ -2517,3 +2517,8 @@ footer {
   display: block; font-family: var(--font-body); font-size: 0.875rem;
   color: var(--color-text-secondary);
 }
+
+/* Second filter row on /work — industry. Slightly quieter than the format
+   row so the primary axis still reads first. */
+.work-filters-sector { margin-top: 10px; opacity: 0.82; }
+.work-filters-sector .work-filter { font-size: 0.6875rem; }
