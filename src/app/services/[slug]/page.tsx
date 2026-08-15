@@ -4,6 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { servicePages, servicePageBySlug } from '@/content/services-pages'
 import { caseStudies } from '@/content/case-studies'
+import ServiceProof from '@/components/ServiceProof'
 
 /**
  * Per-service landing pages — the SEO backbone (July 2026).
@@ -157,6 +158,13 @@ export default async function ServiceDetailPage({
           </div>
         </div>
       </section>
+
+      {/* ── who is arguing ──────────────────────────────────────────────
+          Placed directly under the hero rather than further down: these
+          pages are the landing point for commercial search, so the visitor
+          meets the argument and its author in the same screenful. Per-slug
+          emphasis lives in ServiceProof. ─────────────────────────────── */}
+      <ServiceProof slug={svc.slug} />
 
       {/* ── body + facts ── */}
       <section style={{ padding: 'clamp(56px, 7vw, 96px) var(--section-pad-x)' }}>
