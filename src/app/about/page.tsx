@@ -1,9 +1,16 @@
 import type { Metadata } from 'next'
-import AboutClientWrapper from './AboutClientWrapper'
+import AboutPage from './AboutPage'
 
-// AboutClientWrapper is a 'use client' component that hosts the ssr:false
-// dynamic import — keeping it out of this server component avoids the
-// Next.js 16 / Turbopack dual-React null-hook crash.
+// Renders AboutPage directly. It used to sit behind an ssr:false dynamic
+// import (AboutClientWrapper) to dodge a Next.js 16 / Turbopack dual-React
+// null-hook crash during static prerendering. That cost the page ALL of its
+// server HTML: 62 words and no <h1> at all, measured 15 Aug 2026.
+//
+// Next 16.3.0 no longer crashes. Verified by removing the wrapper: build is
+// clean and the page went 62 -> 903 words with its h1 restored. If the crash
+// ever returns on a Next upgrade, fix it properly rather than reinstating
+// the wrapper — this page carries the credibility argument and has to be
+// readable without JavaScript.
 
 export const metadata: Metadata = {
   title: 'About: Arthur Liégeois, Presentation Designer',
@@ -56,7 +63,7 @@ export default function Page() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
       />
-      <AboutClientWrapper />
+      <AboutPage />
     </>
   )
 }

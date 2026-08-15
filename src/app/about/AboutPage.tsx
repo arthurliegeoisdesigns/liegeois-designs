@@ -103,13 +103,15 @@ export default function AboutPage() {
                 I spent twenty years in rooms where presentations decided things.
               </p>
               <p className="type-body about-bio-p">
-                Four of them at Oracle, as a global key account manager carrying more
-                than $10 million a year. Quota Club four years running.
+                Five of them at Oracle as a global key account manager, one year in
+                Dublin and four in Paris, carrying more than $10 million a year.
+                Quota Club four years running.
               </p>
               <p className="type-body about-bio-p">
                 Four more in London, running a food and beverage brand I founded, where
                 I raised $110,000 on the strength of a deck I built myself. Selfridges
-                stocked us. The Evening Standard and BBC Good Food covered us.
+                and Sourced Market both took us on for pop-ups. In May 2018 BBC Good
+                Food named us one of the best sandwiches in London.
               </p>
               <p className="type-body about-bio-p">
                 Between them, four years as COO of a 35-person business in Lisbon,

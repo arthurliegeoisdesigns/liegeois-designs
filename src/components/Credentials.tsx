@@ -28,16 +28,19 @@ const seats = [
   {
     seat: 'The one pitching',
     org: 'Oracle',
-    years: '2002 – 2006',
+    // Five years total: one in Dublin, four in Paris. His resume lists only
+    // the Paris span (2002–2006); the 2001 start is his own correction,
+    // confirmed 15 Aug 2026.
+    years: '2001 – 2006',
     body:
-      'Global key account manager in Paris, carrying more than $10 million a year. Quota Club four years running.',
+      'Global key account manager, one year in Dublin and four in Paris, carrying more than $10 million a year. Quota Club four years running.',
   },
   {
     seat: 'The one raising',
     org: 'Norigami',
     years: '2016 – 2020',
     body:
-      'Founded a food and beverage brand in London. Raised $110,000 on a deck I made myself. Selfridges stocked us.',
+      'Founded a food and beverage brand in London. Raised $110,000 on a deck I made myself. Selfridges and Sourced Market both took us on for pop-ups.',
   },
   {
     seat: 'The one being pitched to',
