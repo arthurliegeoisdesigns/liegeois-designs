@@ -48,12 +48,49 @@ const personSchema = {
     'Presentation Design',
     'Pitch Deck Design',
     'Executive Presentations',
+    'Conference Keynotes',
+    'Training Presentations',
     'Visual Storytelling',
     'Strategic Narrative',
     'Brand Identity',
   ],
+  /* ── GEO: the credential graph ─────────────────────────────────────────
+     Generative engines answer "is this person credible" from structured,
+     attributed facts, not from adjectives. Everything below is verifiable
+     and matches the on-page copy exactly; nothing is inferred. Added
+     15 Aug 2026 alongside the credential work on the visible page. */
+  hasCredential: [
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: 'Huthwaite SPIN Selling Certification',
+      credentialCategory: 'certification',
+      recognizedBy: { '@type': 'Organization', name: 'Huthwaite International' },
+    },
+    {
+      '@type': 'EducationalOccupationalCredential',
+      name: "Master's Degree in Management, specialisation in Marketing",
+      credentialCategory: 'degree',
+      recognizedBy: { '@type': 'CollegeOrUniversity', name: 'Neoma Business School' },
+    },
+  ],
+  award: 'Oracle Quota Club, four consecutive years (2002–2006)',
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'Neoma Business School' },
+    { '@type': 'Organization', name: 'Oracle' },
+    { '@type': 'Organization', name: 'Apple' },
+    { '@type': 'Organization', name: 'Smartbox Group' },
+  ],
+  hasOccupation: {
+    '@type': 'Occupation',
+    name: 'Presentation Designer',
+    occupationLocation: { '@type': 'Country', name: 'United States' },
+    skills: 'Narrative architecture, pitch deck design, executive presentation design, data visualization',
+  },
+  founder: { '@type': 'Organization', name: 'Norigami' },
+  nationality: { '@type': 'Country', name: 'France' },
+  knowsLanguage: ['French', 'English', 'Portuguese'],
   description:
-    'Founder of Liégeois Designs. Presentation designer and visual storyteller with fifteen years of experience across five countries, working with Chevron, IBM, Marriott, Philips, and Bloomberg.',
+    'Founder of Liégeois Designs. Twenty years in rooms where presentations decided things: global key account manager at Oracle carrying $10M+ a year with Quota Club four years running, COO of a 35-person business, strategic presentations to C-suite audiences at Apple, and founder of Norigami, where he raised $110,000 on a deck he built himself. Clients include Chevron, IBM, Marriott, Philips, Johnson & Johnson and Bloomberg.',
 }
 
 export default function Page() {
