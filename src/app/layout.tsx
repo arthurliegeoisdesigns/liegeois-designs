@@ -110,13 +110,10 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
-        <link
-          rel="preload"
-          href="/fonts/pp/PPMigra-ExtralightItalic.woff2"
-          as="font"
-          type="font/woff2"
-          crossOrigin="anonymous"
-        />
+        {/* PPMigra Italic is NOT preloaded: it sets a handful of <em> words and
+            competed with the LCP image for bandwidth on Slow 4G. font-display
+            swap means those words paint in the roman first and reflow within
+            the same line box, so no CLS. */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

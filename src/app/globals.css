@@ -312,7 +312,10 @@ body {
    (.world-silk/.world-ember/.world-dust) and the .client-index marquee.
    CLIP, not hidden: hidden on <html> would turn it into a scroll container
    and break every position:sticky descendant, including .cred-copy. */
-html { overflow-x: clip; }
+/* Explicit background on <html> as well as <body>: without it the canvas is
+   whatever the browser defaults to until body paints, which shows as a dark
+   flash in headless captures and on slow first paints. */
+html { overflow-x: clip; background: var(--color-paper); }
 
 /* ============================================================
    TYPE SCALE

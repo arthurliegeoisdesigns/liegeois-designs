@@ -15,6 +15,19 @@ import { useEffect, useRef } from 'react'
  * slide changing rather than two images swapping.
  */
 
+/** Rebuild a Cloudinary URL at a given width, replacing any baked-in transform. */
+const WIDTHS = [480, 720, 960, 1200, 1600]
+const SIZES = '(max-width: 840px) 94vw, min(1100px, 92vw)'
+function src(url: string, w: number) {
+  const i = url.indexOf('/upload/')
+  if (i === -1) return url
+  let tail = url.slice(i + 8)
+  const first = tail.split('/')[0]
+  if (first.includes('_') && /^[a-z]{1,4}_/.test(first)) tail = tail.slice(first.length + 1)
+  return `${url.slice(0, i + 8)}f_auto,q_auto,w_${w},c_limit/${tail}`
+}
+const srcSet = (url: string) => WIDTHS.map((w) => `${src(url, w)} ${w}w`).join(', ')
+
 type Props = { before: string; after: string; project: string; slide: string }
 
 export default function ProofSlider({ before, after, project, slide }: Props) {
@@ -77,10 +90,19 @@ export default function ProofSlider({ before, after, project, slide }: Props) {
   return (
     <>
       <div className="v2-ba" ref={box}>
+        {/* LAZY + RESPONSIVE, both deliberate.
+            These sit ~2 screens down but were shipping eagerly at w_1600:
+            242 KB + 205 KB = 447 KB on the critical path, which React was even
+            emitting <link rel=preload as=image> for. That was Lighthouse's
+            "improve image delivery, 476 KiB" and it competed with the hero on
+            Slow 4G. Identical srcset/sizes on BOTH frames so they stay
+            pixel-identical, which the clip-path reveal depends on. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img src={before} alt={`${project}, original slide`} />
+        <img src={src(before, 1200)} srcSet={srcSet(before)} sizes={SIZES}
+             loading="lazy" decoding="async" alt={`${project}, original slide`} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img className="v2-ba-after" src={after} alt={`${project}, redesigned slide`} />
+        <img className="v2-ba-after" src={src(after, 1200)} srcSet={srcSet(after)} sizes={SIZES}
+             loading="lazy" decoding="async" alt={`${project}, redesigned slide`} />
         <span className="v2-ba-tag is-l">Before</span>
         <span className="v2-ba-tag is-r">After</span>
         <div className="v2-ba-handle" ref={handle} />
