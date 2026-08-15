@@ -1,8 +1,9 @@
 ---
 name: Liégeois Designs
 description: Strategic Visual Storytelling studio — where strategy finds its voice.
-version: 3.0.0
+version: 3.1.0
 generatedAt: 2026-08-13
+revisedAt: 2026-08-15   # body face corrected to PP Neue Montreal
 derivedFrom: shipped code (liegeois-designs/src/app/globals.css), not aspiration
 supersedes:
   - docs/DESIGN.superseded-2026-06-15.md              # named Cormorant Garamond / DM Sans; declared "no light mode"
@@ -46,15 +47,15 @@ typography:
     lineHeight: 1.08
     letterSpacing: "-0.01em"
   body-lg:
-    fontFamily: "'Switzer', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, sans-serif"
     fontSize: "clamp(0.9375rem, 1.5vw, 1.125rem)"
     lineHeight: 1.75
   body:
-    fontFamily: "'Switzer', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, sans-serif"
     fontSize: "1rem"
     lineHeight: 1.7
   label:
-    fontFamily: "'Switzer', ui-sans-serif, system-ui, sans-serif"
+    fontFamily: "'PP Neue Montreal', ui-sans-serif, system-ui, -apple-system, sans-serif"
     fontSize: "0.625rem"
     fontWeight: 500
     letterSpacing: "0.18em"
@@ -146,7 +147,10 @@ element competing inside a single viewport.
 
 ## 3. Typography
 
-**PP Migra Extralight** (display) + **Switzer** (body). PP Migra is a licensed
+**PP Migra Extralight** (display) + **PP Neue Montreal** (body). Both are
+licensed Pangram Pangram faces, self-hosted and subsetted. Switzer was the body
+face until 15 Aug 2026; it was replaced because it read as wide and unrefined at
+text sizes. PP Migra is a licensed
 commercial Didone — high stroke contrast, long descenders, genuinely
 distinctive. It is an established brand asset and is **not** subject to
 reflex-reject rules aimed at greenfield font picks. Do not swap it out on
@@ -215,7 +219,7 @@ the intro plate, so breaking it breaks indexing behaviour too.
 | Item | Old docs | v3 | Why |
 |---|---|---|---|
 | Display font | Bodoni Moda / Cormorant / Fraunces | **PP Migra** | What ships; licensed and distinctive |
-| Body font | Inter / DM Sans | **Switzer** | What ships |
+| Body font | Inter / DM Sans / Switzer | **PP Neue Montreal** | What ships; licensed, self-hosted, subsetted 157KB to 25KB |
 | Accent | `#C8A96E` gold | `#E84420` + `#CA3615` | Gold fails 3:1 on bone |
 | Darkest | `#0A0A0A` / `#080808` | `#070605` | What ships |
 | Radius | 3–16px | **0px** | What ships; deliberate |

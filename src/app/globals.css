@@ -2912,7 +2912,14 @@ footer {
 
 /* ── reduced motion: static, everything readable, no pins ── */
 @media (prefers-reduced-motion: reduce) {
-  .jn-vortex, .jn-door, .jn-frag, .jn-blackout, .jn-tool-count, .jn-cue { display: none; }
+  /* .jn-deck-frame is position:fixed and is normally faded out by a GSAP
+     ScrollTrigger on .jn-s4. Under reduced motion those triggers never run,
+     so the frame and its "Slide 01 / 05" counter stayed pinned over every
+     section of the homepage permanently (measured Aug 2026: opacity 1 at
+     page bottom). It is pure decoration for the journey conceit, and the
+     journey is flattened here, so it goes. */
+  .jn-vortex, .jn-door, .jn-frag, .jn-blackout, .jn-tool-count, .jn-cue,
+  .jn-deck-frame { display: none; }
   .jn-cap[data-jn-cap="0"], .jn-s2-reveal, .jn-truth-wrap { opacity: 1 !important; }
   .jn-seq-slide { opacity: 1; position: relative; left: auto; top: auto; transform: none; margin: 24px auto; }
   .jn-s1 .jn-pinner, .jn-s2 .jn-pinner, .jn-s3 .jn-pinner { height: auto; padding: 15vh 0; }
@@ -2976,4 +2983,156 @@ footer {
   .svc-card-1 { top: 0;   left: 0; }
   .svc-card-2 { top: 20%; left: 12%; }
   .svc-card-3 { top: 40%; left: 24%; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   CREDENTIALS — the credibility band (Aug 2026)
+   Argument left, ledger right. The seat labels carry the actual argument:
+   pitching / raising / being pitched to. Hairline rules and tabular years
+   make it read as a record rather than a brag.
+   ════════════════════════════════════════════════════════════════════ */
+.cred-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(32px, 5vw, 88px);
+  align-items: start;
+}
+.cred-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 20px;
+}
+.cred-h2 { color: var(--color-text-primary); margin: 0 0 20px; max-width: 12ch; }
+.cred-lead {
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 38ch;
+  line-height: 1.7;
+}
+
+.cred-ledger { border-top: 0.5px solid var(--color-border-mid); }
+.cred-row {
+  padding: clamp(22px, 2.6vw, 32px) 0;
+  border-bottom: 0.5px solid var(--color-border);
+}
+.cred-seat {
+  font-family: var(--font-body);
+  font-size: 0.5625rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-accent);
+  margin: 0 0 10px;
+}
+.cred-org {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.2vw, 1.75rem);
+  line-height: 1.15;
+  color: var(--color-text-primary);
+  margin: 0 0 8px;
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.cred-years {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.1em;
+  color: var(--color-text-muted);
+}
+.cred-body {
+  font-family: var(--font-body);
+  font-size: 0.9375rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 52ch;
+}
+
+.cred-close {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1.35vw, 1.1875rem);
+  line-height: 1.7;
+  color: var(--color-text-primary);
+  margin: clamp(40px, 5vw, 64px) 0 0;
+  max-width: 62ch;
+  padding-top: clamp(24px, 3vw, 34px);
+  border-top: 0.5px solid var(--color-border-mid);
+}
+
+@media (max-width: 860px) {
+  .cred-grid { grid-template-columns: 1fr; gap: clamp(28px, 5vh, 40px); }
+  .cred-h2 { max-width: none; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   HOW THIS WORKS — the qualifier (Aug 2026)
+   Runs on the bone sheet. The closing paragraph is the only place on the
+   site that turns work away, so it gets an accent rule and a size bump
+   rather than being buried as the third paragraph of three.
+   ════════════════════════════════════════════════════════════════════ */
+.htw-eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.625rem;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin: 0 0 clamp(28px, 3.5vw, 44px);
+}
+.htw-h2 {
+  color: var(--color-text-primary);
+  margin: 0 0 clamp(32px, 4vw, 52px);
+  max-width: 20ch;
+}
+.htw-body {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+  gap: clamp(24px, 3.5vw, 56px);
+  align-items: start;
+}
+.htw-p {
+  color: var(--color-text-secondary);
+  margin: 0;
+  line-height: 1.75;
+  max-width: 46ch;
+}
+.htw-filter {
+  color: var(--color-text-primary);
+  border-left: 2px solid var(--color-accent-on-light);
+  padding-left: clamp(16px, 1.8vw, 24px);
+}
+
+@media (max-width: 860px) {
+  .htw-h2 { max-width: none; }
+  .htw-filter { padding-left: 16px; }
+}
+
+/* ── About page biography (Aug 2026) ──────────────────────────────────
+   Replaces a single lead paragraph, so it must stay ONE grid item inside
+   .about-hero-grid. The closing paragraph carries the argument, so it is
+   set at lead size with an accent rule rather than trailing off. */
+.about-bio { max-width: 56ch; }
+.about-bio-lead {
+  color: var(--color-text-primary);
+  margin: 0 0 24px;
+  line-height: 1.55;
+}
+.about-bio-p {
+  color: var(--color-text-secondary);
+  margin: 0 0 16px;
+  line-height: 1.75;
+}
+.about-bio-close {
+  color: var(--color-text-primary);
+  margin: 28px 0 0;
+  line-height: 1.75;
+  padding-left: clamp(16px, 1.6vw, 22px);
+  border-left: 2px solid var(--color-accent);
 }

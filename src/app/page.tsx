@@ -1,7 +1,9 @@
 import JourneyHero from '@/components/JourneyHero'
 import ClientIndex from '@/components/ClientIndex'
+import Credentials from '@/components/Credentials'
 import FeaturedWork from '@/components/FeaturedWork'
 import Services from '@/components/Services'
+import HowThisWorks from '@/components/HowThisWorks'
 import About from '@/components/About'
 import WhyArthur from '@/components/WhyArthur'
 import Blog from '@/components/Blog'
@@ -108,6 +110,10 @@ export default function Home() {
             div, so ParallaxFlow's `main > section` query ignores them. */}
         <JourneyHero />
         <ClientIndex />
+        {/* Proof for the hero's claim. The logos say who trusted him; this
+            says why they were right to. Placed before the work because the
+            work is more persuasive once you know who made it. */}
+        <Credentials />
         <FeaturedWork />
         <Services />
         {/* Light passage — one bone "paper sheet" floating over the dark
@@ -115,6 +121,10 @@ export default function Home() {
             Wrapping in a div removes these from ParallaxFlow's
             `main > section` query, so they keep the light theme. */}
         <div className="light-sheet">
+          {/* Follows Services deliberately: you have just read what he sells,
+              now read how the engagement actually goes, including who should
+              not book it. */}
+          <HowThisWorks />
           <About />
           <WhyArthur />
           <Blog />

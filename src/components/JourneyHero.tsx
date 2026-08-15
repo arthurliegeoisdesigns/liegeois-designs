@@ -493,7 +493,11 @@ export default function JourneyHero() {
     <div className="jn-journey" ref={rootRef}>
       <canvas className="jn-vortex" ref={canvasRef} aria-hidden="true" />
       <div className="jn-deck-frame" aria-hidden="true">
-        <span className="jn-slide-no">Slide 01, 05</span>
+        {/* Must match the scroll handler's format above (`Slide 0n / 05`).
+            The Aug 2026 em-dash sweep rewrote the template literal but not this
+            static fallback, so the first paint read "Slide 01, 05" until the
+            first scroll event corrected it. */}
+        <span className="jn-slide-no">Slide 01 / 05</span>
       </div>
 
       {/* SCENE 0 — TITLE SLIDE, work as the object

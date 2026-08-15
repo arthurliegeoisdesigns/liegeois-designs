@@ -8,12 +8,12 @@ import AboutClientWrapper from './AboutClientWrapper'
 export const metadata: Metadata = {
   title: 'About: Arthur Liégeois, Presentation Designer',
   description:
-    'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline: turning complex ideas into stories people actually feel.',
+    'Twenty years in rooms where presentations decided things. Oracle Quota Club four years running, a brand I founded and raised $110K for, and Keynotes for Apple Engineering executives. Then I became the designer.',
   alternates: { canonical: 'https://www.liegeoisdesigns.com/about' },
   openGraph: {
     title: 'About: Arthur Liégeois, Presentation Designer | Liégeois Designs',
     description:
-      'Founder. Strategist. Designer. Five countries, fifteen years, and one discipline.',
+      'Oracle key account manager, founder who raised on his own deck, and now the designer. Twenty years of stakes before the craft.',
     url: 'https://www.liegeoisdesigns.com/about',
     siteName: 'Liégeois Designs',
     type: 'website',

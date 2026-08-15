@@ -92,11 +92,36 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease: [0.16, 1, 0.3, 1], delay: 0.18 }}
           >
-            <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: 0 }}>
-              Founder. Strategist. Designer. I've worked in five countries, built brands at Apple
-              and Oracle, and launched a startup from scratch, all to answer one question: how
-              do you turn a complex idea into something people actually feel?
-            </p>
+            {/* Biography first, values later (Aug 2026). This page used to open
+                on abstract claims (Systems Thinking, Strategic Empathy) that any
+                consultant could make. The facts below are the differentiator and
+                every one traces to the resume: Oracle Quota Club four years
+                running, $110K raised on his own deck, Smartbox COO. See
+                COPY-POSITIONING.md in the workspace root. */}
+            <div className="about-bio">
+              <p className="type-body-lg about-bio-lead">
+                I spent twenty years in rooms where presentations decided things.
+              </p>
+              <p className="type-body about-bio-p">
+                Four of them at Oracle, as a global key account manager carrying more
+                than $10 million a year. Quota Club four years running.
+              </p>
+              <p className="type-body about-bio-p">
+                Four more in London, running a food and beverage brand I founded, where
+                I raised $110,000 on the strength of a deck I built myself. Selfridges
+                stocked us. The Evening Standard and BBC Good Food covered us.
+              </p>
+              <p className="type-body about-bio-p">
+                Between them, four years as COO of a 35-person business in Lisbon,
+                sitting on the other side of the table while other people presented to me.
+              </p>
+              <p className="type-body about-bio-p">Then I became the designer.</p>
+              <p className="type-body about-bio-close">
+                That order matters. Most presentation designers learn the craft and then
+                learn the stakes. I learned the stakes first, for two decades, and it is
+                why I cannot leave a weak narrative alone.
+              </p>
+            </div>
             <div className="about-hero-ctas">
               <a
                 href={links.calendly}
