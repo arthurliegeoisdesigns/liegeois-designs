@@ -450,7 +450,7 @@ export const caseStudies: CaseStudy[] = [
     client: 'Evolus',
     project: 'A Lifestyle-Driven Pharma Pitch Deck That Breaks the Mold',
     format: 'Pitch & Investor Deck',
-    industry: 'Healthcare & Pharma',
+    industry: 'Consumer & Retail',
     year: 2023,
     tagline: 'Helping a global agency cut through clinical clutter with a lifestyle-first, high-touch pitch deck for a modern aesthetics brand.',
     images: [

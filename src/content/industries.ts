@@ -30,7 +30,11 @@ export type Industry = {
   h1: string
   metaTitle: string
   metaDescription: string
-  /** one sentence under the h1 */
+  /** One sentence under the h1. MUST NOT contain counts or client lists: the
+      page generates both from case-studies.ts, and a hand-written duplicate
+      goes stale the moment a study is added or re-tagged. That happened
+      within hours of shipping — Evolus moved out of Healthcare and two leads
+      were instantly wrong. */
   lead: string
   /** 2–3 paragraphs. What is actually different about presenting in this
       sector — written from the work, not from a template. */
@@ -47,9 +51,9 @@ export const industries: Industry[] = [
     h1: 'Presentation design for healthcare and pharma',
     metaTitle: 'Healthcare & Pharma Presentation Design | Liégeois Designs',
     metaDescription:
-      'Presentation and pitch deck design for healthcare and pharmaceutical teams. Field training, medical affairs summits, board decks and investor decks for Philips, Johnson & Johnson, Intercept and EMD Serono.',
+      'Presentation design for healthcare and pharmaceutical teams. Field training, medical affairs summits and board decks for Philips, Johnson & Johnson, Intercept and EMD Serono.',
     lead:
-      'Seven engagements across medical affairs, commercial and field teams, for Philips, Johnson & Johnson, Intercept, Evolus and EMD Serono.',
+      'Medical affairs, commercial and field teams, where the science is airtight and the argument still has to survive review.',
     body: [
       'Healthcare decks fail in a specific way: the science is airtight and the argument never arrives. Medical, legal and regulatory review rewards precision and punishes claims, so slides accumulate qualifiers until the point is buried three levels down. The reviewer is satisfied and the room is lost.',
       'The work is finding the argument that survives review intact. That usually means moving the conclusion to the top of the slide rather than the bottom, letting one number carry what a paragraph was carrying, and putting the caveats where they belong instead of where they interrupt. None of that requires weakening the claim, which is the objection this sector raises first.',
@@ -66,7 +70,7 @@ export const industries: Industry[] = [
     metaDescription:
       'Pitch decks, keynotes and executive presentations for technology and telecom teams, including IBM Quantum, Google, CDW, Spectrum Enterprise and Underpin.',
     lead:
-      'Seven engagements for technology and telecom teams, including IBM Quantum, Google, CDW, Spectrum Enterprise and Underpin.',
+      'Enterprise and startup technology teams, where the person presenting usually understands the subject too well to explain it.',
     body: [
       'The recurring problem in technology decks is that the person presenting understands the thing too well. Expertise compresses: what took years to learn becomes one dense slide, and the audience is asked to decompress it in real time. The IBM Quantum Summit keynote is the clearest case, quantum computing for a room that was half engineers and half executives.',
       'The fix is not simplification, which technical audiences correctly resent. It is sequencing. One idea per slide, revealed in the order the explanation actually follows, so the diagram builds as the speaker talks rather than sitting there complete while everyone reads ahead.',
@@ -83,7 +87,7 @@ export const industries: Industry[] = [
     metaDescription:
       'New business pitches, capabilities decks and strategic narrative for agencies and consultancies, including Ogilvy Performance Marketing, RAPP, MCS Healthcare and the IAA.',
     lead:
-      'Seven engagements for agencies and consultancies, including OPMG × RAPP, MCS Healthcare, the IAA and The Special Event Company.',
+      'New business pitches and capabilities decks, where the deck itself is judged as the work sample.',
     body: [
       'Agencies are the hardest client and the best one. Hardest because the deck is judged as a work sample: a new business pitch that looks average is an argument against hiring you, whatever it says. Best because nobody has to be convinced that the craft matters.',
       'What agencies actually need is capacity and distance. Capacity because pitch weeks collide with delivery, and distance because the team closest to the work is the least able to see which slide is doing nothing. I have been the outside pair of eyes on new business pitches for Ogilvy Performance Marketing, RAPP and Grey.',
@@ -100,7 +104,7 @@ export const industries: Industry[] = [
     metaDescription:
       'Investor pitch deck design for founders raising capital. Narrative-first decks built around your ask, from a designer who raised his own round on a deck he built himself.',
     lead:
-      'Six fundraise engagements, and one of my own: I raised $110,000 for Norigami on a deck I built myself.',
+      'Founders raising capital. I raised $110,000 for my own company on a deck I built myself, so I know which slide the room goes quiet on.',
     body: [
       'Most pitch decks fail before the first slide because they are built as inventories rather than arguments. Team, product, market, traction, ask, in that order, every time, because that is the order of the template. Investors do not fund inventories. They fund a claim about why this, why now, and why you, with the evidence arranged to make the conclusion feel like their own idea.',
       'I have been on the other side of this. Norigami was my company; I wrote the deck, walked it into the room, and raised $110,000 on it. That is a small number next to the totals agencies advertise, and it is the point: those are their clients’ raises. This one was mine, and I remember exactly which slide the room went quiet on.',
@@ -115,9 +119,9 @@ export const industries: Industry[] = [
     h1: 'Presentation design for consumer and retail brands',
     metaTitle: 'Consumer & Retail Brand Presentation Design | Liégeois Designs',
     metaDescription:
-      'Brand, franchise and new business presentation design for consumer and retail, including Marriott Luxury Group, Mastercard, TGI Fridays and Post Consumer Brands.',
+      'Brand, franchise and new business presentation design for consumer and retail, including Marriott Luxury Group, Mastercard, Evolus, TGI Fridays and Post Consumer Brands.',
     lead:
-      'Five engagements across hospitality, franchise and FMCG, including Marriott Luxury Group, Mastercard, TGI Fridays and Post Consumer Brands.',
+      'Hospitality, franchise, beauty and FMCG brands, where there is never a shortage of feeling and often no spine.',
     body: [
       'Consumer brands arrive with the opposite problem to pharma: no shortage of feeling, no spine. The deck is beautiful, on-brand, full of lifestyle photography, and after twenty slides the room still cannot say what is being asked of them.',
       'These audiences are also unusually design-literate, which cuts both ways. They will notice craft, and they will notice when craft is standing in for an argument. A franchise rollout has to land with operators who did not choose to be there; a luxury brand narrative has to sound like the brand and still make a case.',
