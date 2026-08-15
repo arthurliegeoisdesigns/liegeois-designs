@@ -84,8 +84,8 @@ export default function HeroDeck() {
                 alt={c.alt}
                 fill
                 sizes="(max-width: 940px) 74vw, 42vw"
-                quality={i === 2 ? 72 : 58}
-                loading={i === 2 ? undefined : 'lazy'}
+                quality={i === 2 ? 70 : 55}
+                {...(i === 2 ? { priority: true } : { loading: 'lazy' as const })}
                 style={{ objectFit: 'cover' }}
               />
             </div>
