@@ -66,17 +66,62 @@ export default async function ServiceDetailPage({
     .map((s) => caseStudies.find((cs) => cs.slug === s))
     .filter(Boolean)
 
+  /* GEO: a generative engine answering "who does X and what does it cost"
+     needs the price floor, the deliverables and the provider's credentials in
+     structured form. All of it already exists on the page in prose; this makes
+     it machine-readable. Nothing here is a claim the page does not also make
+     in words. */
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
     name: svc.h1,
+    alternateName: svc.name,
     description: svc.metaDescription,
+    serviceType: svc.name,
     provider: {
       '@type': 'ProfessionalService',
       name: 'Liégeois Designs',
       url: BASE,
+      founder: {
+        '@type': 'Person',
+        name: 'Arthur Liégeois',
+        url: `${BASE}/about`,
+        award: 'Oracle Quota Club, four consecutive years',
+        hasCredential: {
+          '@type': 'EducationalOccupationalCredential',
+          name: 'Huthwaite SPIN Selling Certification',
+        },
+      },
     },
-    areaServed: ['United States', 'Canada'],
+    areaServed: [
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Canada' },
+    ],
+    availableChannel: {
+      '@type': 'ServiceChannel',
+      serviceUrl: `${BASE}/contact`,
+      servicePhone: undefined,
+      availableLanguage: ['English', 'French'],
+    },
+    offers: {
+      '@type': 'Offer',
+      priceSpecification: {
+        '@type': 'PriceSpecification',
+        minPrice: 5000,
+        priceCurrency: 'USD',
+      },
+      url: `${BASE}/services/${svc.slug}`,
+      availability: 'https://schema.org/InStock',
+    },
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: `${svc.name} deliverables`,
+      itemListElement: svc.deliverables.map((d) => ({
+        '@type': 'Offer',
+        itemOffered: { '@type': 'Service', name: d },
+      })),
+    },
+    termsOfService: `${BASE}/terms-of-use`,
     url: `${BASE}/services/${svc.slug}`,
   }
   const faqSchema = {
