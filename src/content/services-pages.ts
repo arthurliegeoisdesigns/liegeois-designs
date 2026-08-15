@@ -68,8 +68,8 @@ export const servicePages: ServicePage[] = [
         a: "Usually yes. A focused rebuild runs 1–2 weeks, and three weeks leaves room for a round of investor feedback before the real meetings. What I need on day one is the ask, the traction you can actually evidence, and the two objections you already know are coming. If you are inside ten days, say so in the first message and I will tell you honestly what is achievable.",
       },
       {
-        q: "Can you work from our data room and existing materials?",
-        a: "Yes, and it is usually faster that way. The financial model, the memo, the previous deck and any investor updates you have sent already contain the argument; it is generally buried rather than missing. NDAs are signed before anything is shared.",
+        q: "Can you work from what we already have?",
+        a: "Yes, and it is usually faster that way. Send the previous deck, the financial model, and the last couple of investor updates. Founders often have all of that collected in a data room for diligence; whatever form yours is in, that is fine. The argument is almost always already written down somewhere in there, just not in the order that makes it land. NDAs are signed before anything is shared.",
       },
       {
         q: "We're raising a bridge round, not a priced round. Does that change anything?",
