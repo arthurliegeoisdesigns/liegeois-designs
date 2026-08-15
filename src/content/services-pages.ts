@@ -64,6 +64,18 @@ export const servicePages: ServicePage[] = [
     timeline: '1–2 weeks',
     faqs: [
       {
+        q: "We're three weeks out from a Series A. Is that enough time?",
+        a: "Usually yes. A focused rebuild runs 1–2 weeks, and three weeks leaves room for a round of investor feedback before the real meetings. What I need on day one is the ask, the traction you can actually evidence, and the two objections you already know are coming. If you are inside ten days, say so in the first message and I will tell you honestly what is achievable.",
+      },
+      {
+        q: "Can you work from our data room and existing materials?",
+        a: "Yes, and it is usually faster that way. The financial model, the memo, the previous deck and any investor updates you have sent already contain the argument; it is generally buried rather than missing. NDAs are signed before anything is shared.",
+      },
+      {
+        q: "We're raising a bridge round, not a priced round. Does that change anything?",
+        a: "It changes the argument, not the process. A bridge has to explain why the extra runway produces a materially different company at the next raise, which is a harder story than a straight growth narrative and the one most decks skip. That is the slide we would spend the most time on.",
+      },
+      {
         q: 'How much does professional pitch deck design cost?',
         a: 'Engagements start at $5,000. Beyond that it depends on scope: a focused redesign of an existing narrative costs less than a full strategic build from scratch. After a 30-minute intake call you get a fixed quote, not an hourly meter. No surprises mid-project.',
       },
@@ -114,6 +126,14 @@ export const servicePages: ServicePage[] = [
     ],
     timeline: '1–2 weeks',
     faqs: [
+      {
+        q: "Is this the same as a board deck?",
+        a: "A board deck is the most common version of it, yes, along with quarterly business reviews, investor updates and LP reports. What they share is an audience that has read the numbers before the meeting and is deciding whether to trust your read of them.",
+      },
+      {
+        q: "Our board pack is 40 pages of appendix. Do you touch that?",
+        a: "The appendix stays an appendix, and it should. The work is separating the ten slides that carry the decision from the thirty that exist to answer questions, then making sure the presented section stands alone when it circulates afterwards without you in the room.",
+      },
       {
         q: 'Can you work under NDA with confidential board material?',
         a: 'Yes, most executive engagements run under NDA, and several clients appear in our portfolio only as anonymized formats. Confidentiality workflows (redacted reviews, secure transfer, no cloud AI processing of your data) are standard, not special requests.',
@@ -213,6 +233,14 @@ export const servicePages: ServicePage[] = [
     ],
     timeline: '2–4 weeks',
     faqs: [
+      {
+        q: "We're pre-product-market-fit. Is it too early for this?",
+        a: "Often it is exactly the right time, because the thing that is unclear is usually the story rather than the product. But be honest with yourself about which one it is. If the positioning genuinely has not settled, narrative work will surface that fast, which is useful and occasionally uncomfortable.",
+      },
+      {
+        q: "Does this cover the go-to-market narrative, not just a deck?",
+        a: "Yes. The message architecture is format-agnostic: the same spine feeds the pitch deck, the website, the sales one-pager and how the founding team answers the question at a dinner. Most teams come for the deck and find the second use is worth more.",
+      },
       {
         q: 'How is this different from hiring a presentation designer?',
         a: "A presentation designer improves your slides. A strategic narrative engagement questions whether those slides should exist. It's closer to positioning work than design work, the deck at the end is the artifact, not the product.",
