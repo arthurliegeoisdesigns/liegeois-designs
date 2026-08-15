@@ -2197,9 +2197,15 @@ footer {
   align-items: center; min-height: 88vh; margin: 0 auto; max-width: 1440px;
   padding: calc(var(--nav-h, 80px) + clamp(24px, 5vh, 60px)) var(--section-pad-x) clamp(40px, 6vh, 80px);
 }
+/* LCP: this h1 must stay the LARGEST element in the mobile viewport.
+   Measured 15 Aug 2026 at 412px: h1 34,319px² vs hero front card 40,694px².
+   The card being larger made an IMAGE the LCP element, which can never beat
+   the network on Slow 4G (LCP sat at 3.6-4.4s while FCP was 1.8-2.0s). Text
+   paints the moment the preloaded display face arrives. The mobile floor here
+   is raised so the headline wins; if it is ever reduced, re-measure both. */
 .v2-h1 {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
-  font-size: clamp(2.9rem, 7.4vw, 6.8rem); line-height: 1.02; letter-spacing: -0.022em;
+  font-size: clamp(3.5rem, 10vw, 6.8rem); line-height: 1.02; letter-spacing: -0.022em;
   color: var(--color-text-primary); margin: 20px 0 24px;
 }
 .v2-h1 em { font-style: italic; }
@@ -2245,8 +2251,8 @@ footer {
                    50%     { transform: translateZ(0) rotateY(-14deg) rotateZ(.5deg) translateY(-6px); } }
 @media (max-width: 940px) {
   .v2-hero { grid-template-columns: 1fr; min-height: 0; }
-  .v2-stage { height: auto; aspect-ratio: 1 / .82; }
-  .v2-card { width: 74%; }
+  .v2-stage { height: auto; aspect-ratio: 1 / .74; }
+  .v2-card { width: 68%; }
   .v2-hero.is-ready .v2-c1 { transform: rotateY(-8deg) rotateZ(1.6deg) scale(.86); }
   .v2-hero.is-ready .v2-c2 { transform: rotateY(-8deg) rotateZ(1deg)   scale(.93); }
   .v2-hero.is-ready .v2-c3 { transform: rotateY(-7deg); }
