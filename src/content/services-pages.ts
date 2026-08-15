@@ -74,8 +74,12 @@ export const servicePages: ServicePage[] = [
       },
     ],
     relatedWork: ['echo-society-pitch-deck-2', 'university-startups', 'norigami-brand'],
-    image: `${CDN}/webflow/portfolio-slides-rapp-evolus-pitch-deck-0007-19640a`,
-    imageAlt: 'Investor pitch deck design sample: Evolus × RAPP',
+    // Was a slide from the Evolus x RAPP deck ("Adapting to the evolving data
+    // landscape"). That is agency work, not a founder pitch deck, so it sat
+    // wrong on the page selling investor decks. Swapped 15 Aug 2026 for the
+    // Echo Society cover, which is a real startup pitch deck.
+    image: `${CDN}/webflow/portfolio-slides-echo-society-pitch-deck-0001-51d816`,
+    imageAlt: 'Investor pitch deck design sample: Echo Society cover slide',
   },
   {
     slug: 'executive-presentations',
