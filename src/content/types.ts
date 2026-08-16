@@ -45,11 +45,23 @@ export type CaseStudy = {
    */
   video?: string
   /**
-   * ISO 8601 date the video was uploaded/published.
-   * Required by Google for VideoObject schema indexing.
-   * Format: 'YYYY-MM-DD'
+   * Date the video was published, as a bare calendar date: 'YYYY-MM-DD'.
+   *
+   * Store the plain date here and nothing else. Search Console rejected the
+   * previous values twice — once as "missing a timezone" and once as an
+   * "invalid datetime value" — because a bare date is not a valid
+   * schema.org DateTime. The offset is applied in one place, by
+   * videoMetaFor() in src/lib/video.ts, so the two consumers (the
+   * VideoObject on the case study and the video sitemap) can never disagree
+   * about it again.
    */
   videoUploadDate?: string
+  /**
+   * Runtime in whole seconds, measured from the actual file with ffprobe.
+   * Google treats duration as a strong quality signal on video results and
+   * will suppress a thumbnail without it. Do not estimate this.
+   */
+  videoDuration?: number
   /**
    * Optional before/after slide pairs for the transformation section.
    * Renders a drag-to-reveal slider for each pair.

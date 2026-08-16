@@ -2,6 +2,7 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { caseStudies } from '@/content/case-studies'
 import { caseStudyTitle, clampDescription } from '@/lib/seo'
+import { videoMetaFor } from '@/lib/video'
 import CaseStudyClientWrapper from './CaseStudyClientWrapper'
 
 export function generateStaticParams() {
@@ -84,16 +85,24 @@ export default async function CaseStudyPage({
     ],
   }
 
-  const videoSchema = cs.video
+  /* Built from videoMetaFor so the sitemap at /video-sitemap.xml describes
+     these videos in exactly the same terms. See src/lib/video.ts. */
+  const vm = videoMetaFor(cs, metaDesc)
+  const videoSchema = vm
     ? {
         '@context': 'https://schema.org',
         '@type': 'VideoObject',
-        name: `${cs.client}: ${cs.project}`,
-        description: metaDesc,
-        thumbnailUrl: cs.images[0],
-        uploadDate: cs.videoUploadDate ?? `${cs.year}-01-01`,
-        contentUrl: cs.video,
-        embedUrl: `https://www.liegeoisdesigns.com/work/${cs.slug}`,
+        name: vm.title,
+        description: vm.description,
+        thumbnailUrl: vm.thumbnailUrl,
+        uploadDate: vm.uploadDate,
+        ...(vm.duration ? { duration: vm.duration } : {}),
+        contentUrl: vm.contentUrl,
+        /* embedUrl deliberately omitted. It previously pointed at this page,
+           but embedUrl must be a player endpoint that can be loaded in an
+           iframe, and this page is a case study. Declaring a non-player URL
+           as a player is one of the things Google checks when deciding
+           whether a video sits on a watch page. contentUrl alone is valid. */
         publisher: {
           '@type': 'Organization',
           name: 'Liégeois Designs',

@@ -80,15 +80,30 @@ function NarrativeBlock({
   )
 }
 
-// ── Video player — autoplay muted loop ───────────────────────────────────────
-function VideoPlayer({ src, poster }: { src: string; poster: string }) {
+// ── Video player ─────────────────────────────────────────────────────────────
+/**
+ * Autoplays muted, then hands control to the viewer.
+ *
+ * This was an autoplaying muted loop with no controls, which is the shape of
+ * a decorative background texture rather than a video. Search Console read it
+ * that way too and refused all five videos with "Video isn't on a watch
+ * page" — the criterion is a video a visitor can actually play, pause and
+ * scrub, not one that happens to be moving.
+ *
+ * loop is gone with it. These reels run 19 to 44 seconds; restarting one
+ * forever behind a case study is a distraction, and a video that ends is
+ * also what tells the browser the runtime advertised in the schema is real.
+ */
+function VideoPlayer({ src, poster, label }: { src: string; poster: string; label: string }) {
   return (
     <video
       src={src}
       poster={poster}
+      title={label}
+      aria-label={label}
+      controls
       autoPlay
       muted
-      loop
       playsInline
       preload="metadata"
       style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: 'var(--color-paper)' }}
@@ -288,7 +303,11 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               }}>
                 In Motion
               </p>
-              <VideoPlayer src={cs.video} poster={cs.images[0]} />
+              <VideoPlayer
+                src={cs.video}
+                poster={cs.images[0]}
+                label={`${cs.client}: ${cs.project}`}
+              />
             </div>
           </motion.div>
         </>
