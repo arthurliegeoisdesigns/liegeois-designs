@@ -106,7 +106,7 @@ export default async function CaseStudyPage({
     : null
 
   return (
-    <main style={{ background: 'var(--color-dark)', minHeight: '100vh' }}>
+    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }}
@@ -141,8 +141,8 @@ export default async function CaseStudyPage({
       <section
         aria-label="Project details"
         style={{
-          background: 'var(--color-dark)',
-          borderTop: '0.5px solid rgba(255,255,255,0.08)',
+          background: 'var(--color-paper)',
+          borderTop: '0.5px solid rgba(20, 18, 16, 0.11)',
           padding: 'clamp(48px, 6vw, 72px) var(--section-pad-x)',
         }}
       >
@@ -153,7 +153,7 @@ export default async function CaseStudyPage({
             fontWeight: 500,
             letterSpacing: '0.16em',
             textTransform: 'uppercase',
-            color: 'var(--color-on-dark-faint)',
+            color: 'var(--color-text-muted)',
             margin: '0 0 clamp(24px, 3vw, 36px)',
           }}>
             Project Overview
@@ -170,7 +170,7 @@ export default async function CaseStudyPage({
                 fontWeight: 700,
                 lineHeight: 1.1,
                 letterSpacing: '-0.02em',
-                color: 'var(--color-on-dark)',
+                color: 'var(--color-text-primary)',
                 margin: '0 0 8px',
               }}>
                 {cs.client}
@@ -179,7 +179,7 @@ export default async function CaseStudyPage({
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.9375rem',
                 fontWeight: 400,
-                color: 'rgba(255,255,255,0.45)',
+                color: 'var(--color-text-secondary)',
                 margin: '0 0 20px',
               }}>
                 {cs.project}
@@ -188,7 +188,7 @@ export default async function CaseStudyPage({
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.9375rem',
                 lineHeight: 1.65,
-                color: 'rgba(255,255,255,0.60)',
+                color: 'var(--color-text-primary)',
                 margin: 0,
               }}>
                 {cs.tagline}
@@ -212,7 +212,7 @@ export default async function CaseStudyPage({
                     fontSize: '0.6875rem',
                     letterSpacing: '0.10em',
                     textTransform: 'uppercase',
-                    color: 'var(--color-on-dark-faint)',
+                    color: 'var(--color-text-muted)',
                     minWidth: '80px',
                     flexShrink: 0,
                     paddingTop: '1px',
@@ -222,7 +222,7 @@ export default async function CaseStudyPage({
                   <span style={{
                     fontFamily: 'var(--font-body)',
                     fontSize: '0.875rem',
-                    color: 'rgba(255,255,255,0.55)',
+                    color: 'var(--color-text-primary)',
                   }}>
                     {value}
                   </span>
@@ -236,7 +236,7 @@ export default async function CaseStudyPage({
             <div style={{
               marginTop: 'clamp(40px, 5vw, 64px)',
               paddingTop: 'clamp(40px, 5vw, 64px)',
-              borderTop: '0.5px solid rgba(255,255,255,0.06)',
+              borderTop: '0.5px solid rgba(20, 18, 16, 0.08)',
               display: 'grid',
               gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 360px), 1fr))',
               gap: 'clamp(32px, 4vw, 56px)',
@@ -244,28 +244,28 @@ export default async function CaseStudyPage({
               <div>
                 {cs.theAsk && (
                   <div style={{ marginBottom: '32px' }}>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 10px' }}>The Ask</p>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', margin: 0 }}>{cs.theAsk}</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-text-muted)', margin: '0 0 10px' }}>The Ask</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-text-primary)', margin: 0 }}>{cs.theAsk}</p>
                   </div>
                 )}
                 {cs.challenge && (
                   <div>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 10px' }}>The Challenge</p>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', margin: 0 }}>{cs.challenge}</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-text-muted)', margin: '0 0 10px' }}>The Challenge</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-text-primary)', margin: 0 }}>{cs.challenge}</p>
                   </div>
                 )}
               </div>
               <div>
                 {cs.solution && (
                   <div style={{ marginBottom: '32px' }}>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 10px' }}>The Solution</p>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', margin: 0 }}>{cs.solution}</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-text-muted)', margin: '0 0 10px' }}>The Solution</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-text-primary)', margin: 0 }}>{cs.solution}</p>
                   </div>
                 )}
                 {cs.outcome && (
                   <div>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 10px' }}>The Outcome</p>
-                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'rgba(255,255,255,0.55)', margin: 0 }}>{cs.outcome}</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'var(--color-text-muted)', margin: '0 0 10px' }}>The Outcome</p>
+                    <p style={{ fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65, color: 'var(--color-text-primary)', margin: 0 }}>{cs.outcome}</p>
                   </div>
                 )}
               </div>
@@ -288,10 +288,10 @@ export default async function CaseStudyPage({
             const svc = FORMAT_TO_SERVICE[cs.format]
             if (!svc) return null
             return (
-              <div style={{ marginTop: 'clamp(48px, 6vw, 80px)', paddingTop: 'clamp(28px, 3vw, 40px)', borderTop: '0.5px solid rgba(255,255,255,0.12)' }}>
+              <div style={{ marginTop: 'clamp(48px, 6vw, 80px)', paddingTop: 'clamp(28px, 3vw, 40px)', borderTop: '0.5px solid rgba(20, 18, 16, 0.16)' }}>
                 <p style={{
                   fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em',
-                  textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 12px',
+                  textTransform: 'uppercase', color: 'var(--color-text-muted)', margin: '0 0 12px',
                 }}>
                   The Service
                 </p>
@@ -299,7 +299,7 @@ export default async function CaseStudyPage({
                   href={`/services/${svc.slug}`}
                   style={{
                     fontFamily: 'var(--font-body)', fontSize: '0.9375rem', lineHeight: 1.65,
-                    color: 'rgba(255,255,255,0.75)', textDecoration: 'none',
+                    color: 'var(--color-text-primary)', textDecoration: 'none',
                     display: 'inline-flex', alignItems: 'baseline', gap: '10px',
                   }}
                 >
@@ -321,11 +321,11 @@ export default async function CaseStudyPage({
               <div style={{
                 marginTop: 'clamp(40px, 5vw, 64px)',
                 paddingTop: 'clamp(40px, 5vw, 64px)',
-                borderTop: '0.5px solid rgba(255,255,255,0.06)',
+                borderTop: '0.5px solid rgba(20, 18, 16, 0.08)',
               }}>
                 <p style={{
                   fontFamily: 'var(--font-body)', fontSize: '0.625rem', letterSpacing: '0.14em',
-                  textTransform: 'uppercase', color: 'var(--color-on-dark-faint)', margin: '0 0 24px',
+                  textTransform: 'uppercase', color: 'var(--color-text-muted)', margin: '0 0 24px',
                 }}>
                   Related Projects
                 </p>
@@ -348,13 +348,13 @@ export default async function CaseStudyPage({
                       </div>
                       <span style={{
                         fontFamily: 'var(--font-body)', fontSize: '0.875rem', fontWeight: 500,
-                        color: 'var(--color-on-dark)', display: 'block',
+                        color: 'var(--color-text-primary)', display: 'block',
                       }}>
                         {r.client}
                       </span>
                       <span style={{
                         fontFamily: 'var(--font-body)', fontSize: '0.8125rem',
-                        color: 'rgba(255,255,255,0.45)',
+                        color: 'var(--color-text-secondary)',
                       }}>
                         {r.project}
                       </span>

@@ -64,11 +64,11 @@ export default function AboutPage() {
   const reduced = useReducedMotion()
 
   return (
-    <main style={{ background: 'var(--color-dark)', minHeight: '100vh' }}>
+    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section
-        className="section section-dark"
+        className="section"
         style={{ paddingTop: 'calc(80px + clamp(48px, 8vw, 96px))' }}
       >
         <div className="container">
@@ -145,9 +145,9 @@ export default function AboutPage() {
 
       {/* ── PILLARS ───────────────────────────────────────────────── */}
       <section
-        className="section section-dark"
+        className="section"
         style={{
-          borderTop: '0.5px solid var(--color-dark-border)',
+          borderTop: '0.5px solid var(--color-border)',
           paddingTop: '72px',
           paddingBottom: '72px',
         }}
@@ -167,7 +167,7 @@ export default function AboutPage() {
               <motion.div
                 key={p.label}
                 className="about-pillar-item"
-                style={{ borderLeft: i > 0 ? '0.5px solid var(--color-dark-border)' : 'none' }}
+                style={{ borderLeft: i > 0 ? '0.5px solid var(--color-border)' : 'none' }}
                 variants={reduced ? undefined : {
                   hidden: { opacity: 0, y: 20 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.75, ease: [0.16, 1, 0.3, 1] } },
@@ -178,7 +178,7 @@ export default function AboutPage() {
                     fontFamily: 'var(--font-body)',
                     fontSize: '0.625rem',
                     letterSpacing: '0.16em',
-                    color: 'var(--color-on-dark-muted)',
+                    color: 'var(--color-text-secondary)',
                     fontWeight: 400,
                     textTransform: 'uppercase',
                     display: 'block',
@@ -201,8 +201,8 @@ export default function AboutPage() {
 
       {/* ── JOURNEY ───────────────────────────────────────────────── */}
       <section
-        className="section section-dark section-surface"
-        style={{ borderTop: '0.5px solid var(--color-dark-border)' }}
+        className="section section-cream"
+        style={{ borderTop: '0.5px solid var(--color-border)' }}
       >
         <div className="container">
           <div className="about-journey-grid">
@@ -225,7 +225,7 @@ export default function AboutPage() {
                         fontFamily: 'var(--font-display)',
                         fontSize: 'clamp(2.5rem, 5.5vw, 4rem)',
                         fontWeight: 300,
-                        color: 'var(--color-on-dark-muted)',
+                        color: 'var(--color-text-secondary)',
                         margin: '0 0 4px',
                         lineHeight: 1,
                         letterSpacing: '-0.01em',
@@ -270,7 +270,7 @@ export default function AboutPage() {
               <p
                 className="type-body"
                 style={{
-                  color: 'var(--color-on-dark-hint)',
+                  color: 'var(--color-border-mid)',
                   margin: 0,
                 }}
               >
@@ -285,8 +285,8 @@ export default function AboutPage() {
 
       {/* ── SKILLS ────────────────────────────────────────────────── */}
       <section
-        className="section section-dark"
-        style={{ borderTop: '0.5px solid var(--color-dark-border)' }}
+        className="section"
+        style={{ borderTop: '0.5px solid var(--color-border)' }}
       >
         <div className="container">
           <motion.h2
@@ -337,8 +337,8 @@ export default function AboutPage() {
 
       {/* ── HOW I WORK ────────────────────────────────────────────── */}
       <section
-        className="section section-dark section-surface"
-        style={{ borderTop: '0.5px solid var(--color-dark-border)' }}
+        className="section section-cream"
+        style={{ borderTop: '0.5px solid var(--color-border)' }}
       >
         <div className="container">
           <motion.p
@@ -348,7 +348,7 @@ export default function AboutPage() {
               fontWeight: 500,
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: 'var(--color-on-dark-faint)',
+              color: 'var(--color-text-muted)',
               margin: '0 0 clamp(40px, 5vw, 56px)',
             }}
             initial={reduced ? false : { opacity: 0 }}
@@ -363,7 +363,7 @@ export default function AboutPage() {
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 400px), 1fr))',
             gap: 'clamp(40px, 6vw, 80px)',
-            borderTop: '0.5px solid var(--color-dark-border)',
+            borderTop: '0.5px solid var(--color-border)',
             paddingTop: 'clamp(36px, 4.5vw, 56px)',
           }}>
             {[
@@ -391,7 +391,7 @@ export default function AboutPage() {
                   fontWeight: 500,
                   letterSpacing: '0.14em',
                   textTransform: 'uppercase',
-                  color: 'var(--color-accent)',
+                  color: 'var(--color-accent-on-light)',
                   margin: '0 0 16px',
                 }}>
                   {item.label}
@@ -410,8 +410,8 @@ export default function AboutPage() {
 
       {/* ── TOOLS ─────────────────────────────────────────────────── */}
       <section
-        className="section section-dark"
-        style={{ borderTop: '0.5px solid var(--color-dark-border)' }}
+        className="section"
+        style={{ borderTop: '0.5px solid var(--color-border)' }}
       >
         <div className="container">
           <motion.p
@@ -421,7 +421,7 @@ export default function AboutPage() {
               fontWeight: 500,
               letterSpacing: '0.16em',
               textTransform: 'uppercase',
-              color: 'var(--color-on-dark-faint)',
+              color: 'var(--color-text-muted)',
               margin: '0 0 clamp(40px, 5vw, 56px)',
             }}
             initial={reduced ? false : { opacity: 0 }}
@@ -435,7 +435,7 @@ export default function AboutPage() {
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(min(100%, 240px), 1fr))',
-            borderTop: '0.5px solid var(--color-dark-border)',
+            borderTop: '0.5px solid var(--color-border)',
           }}>
             {[
               {
@@ -465,7 +465,7 @@ export default function AboutPage() {
                   padding: 'clamp(28px, 3.5vw, 44px) clamp(0px, 0vw, 0px)',
                   paddingRight: 'clamp(20px, 3vw, 36px)',
                   paddingLeft: i > 0 ? 'clamp(20px, 3vw, 36px)' : '0',
-                  borderLeft: i > 0 ? '0.5px solid var(--color-dark-border)' : 'none',
+                  borderLeft: i > 0 ? '0.5px solid var(--color-border)' : 'none',
                 }}
                 initial={reduced ? false : { opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -482,7 +482,7 @@ export default function AboutPage() {
                 }}>
                   <p
                     className="type-h3"
-                    style={{ color: 'var(--color-on-dark)', margin: 0 }}
+                    style={{ color: 'var(--color-text-primary)', margin: 0 }}
                   >
                     {item.tool}
                   </p>
@@ -492,9 +492,9 @@ export default function AboutPage() {
                     fontWeight: 500,
                     letterSpacing: '0.13em',
                     textTransform: 'uppercase',
-                    color: item.level === 'Primary' ? 'var(--color-accent)'
-                         : item.level === 'Expert'   ? 'rgba(255,255,255,0.50)'
-                         : 'rgba(255,255,255,0.30)',
+                    color: item.level === 'Primary' ? 'var(--color-accent-on-light)'
+                         : item.level === 'Expert'   ? 'var(--color-text-secondary)'
+                         : 'var(--color-text-secondary)',
                     flexShrink: 0,
                   }}>
                     {item.level}
@@ -502,7 +502,7 @@ export default function AboutPage() {
                 </div>
                 <p
                   className="type-body"
-                  style={{ color: 'rgba(255,255,255,0.45)', margin: 0, fontSize: '0.875rem', lineHeight: 1.65 }}
+                  style={{ color: 'var(--color-text-secondary)', margin: 0, fontSize: '0.875rem', lineHeight: 1.65 }}
                 >
                   {item.note}
                 </p>
@@ -514,8 +514,8 @@ export default function AboutPage() {
 
       {/* ── PORTRAIT + CTA ────────────────────────────────────────── */}
       <section
-        className="section section-dark section-surface"
-        style={{ borderTop: '0.5px solid var(--color-dark-border)', overflow: 'hidden' }}
+        className="section section-cream"
+        style={{ borderTop: '0.5px solid var(--color-border)', overflow: 'hidden' }}
       >
         <div className="container">
           <div className="about-cta-grid">
@@ -536,7 +536,7 @@ export default function AboutPage() {
                 lost in cities I&apos;ve never been to.
               </p>
 
-              <div style={{ borderTop: '0.5px solid var(--color-dark-border)', paddingTop: '44px' }}>
+              <div style={{ borderTop: '0.5px solid var(--color-border)', paddingTop: '44px' }}>
                 <h2
                   className="type-h1"
                   style={{ color: 'var(--color-text-primary)', margin: '0 0 20px', maxWidth: '440px' }}

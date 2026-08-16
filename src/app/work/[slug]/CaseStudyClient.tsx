@@ -57,7 +57,7 @@ function NarrativeBlock({
         fontWeight: 400,
         letterSpacing: '0.14em',
         textTransform: 'uppercase',
-        color: 'var(--color-on-dark-muted)',
+        color: 'var(--color-text-secondary)',
         margin: '0 0 16px',
       }}>
         {label}
@@ -65,14 +65,14 @@ function NarrativeBlock({
       {isBulletList ? (
         <ul style={{ listStyle: 'none', padding: 0, margin: 0, display: 'flex', flexDirection: 'column', gap: '10px' }}>
           {lines.map((line, i) => (
-            <li key={i} className="type-body" style={{ color: 'rgba(255,255,255,0.62)', paddingLeft: '16px', position: 'relative' }}>
-              <span style={{ position: 'absolute', left: 0, color: 'var(--color-on-dark-faint)' }}>•</span>
+            <li key={i} className="type-body" style={{ color: 'var(--color-text-primary)', paddingLeft: '16px', position: 'relative' }}>
+              <span style={{ position: 'absolute', left: 0, color: 'var(--color-text-muted)' }}>•</span>
               {line.replace(/^•\s*/, '')}
             </li>
           ))}
         </ul>
       ) : (
-        <p className="type-body" style={{ color: 'rgba(255,255,255,0.62)', margin: 0, whiteSpace: 'pre-line', lineHeight: 1.7 }}>
+        <p className="type-body" style={{ color: 'var(--color-text-primary)', margin: 0, whiteSpace: 'pre-line', lineHeight: 1.7 }}>
           {text}
         </p>
       )}
@@ -91,7 +91,7 @@ function VideoPlayer({ src, poster }: { src: string; poster: string }) {
       loop
       playsInline
       preload="metadata"
-      style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: 'var(--color-canvas)' }}
+      style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: 'var(--color-paper)' }}
     />
   )
 }
@@ -123,7 +123,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             left: 0,
             right: 0,
             height: '2px',
-            background: 'var(--color-accent)',
+            background: 'var(--color-accent-on-light)',
             transformOrigin: 'left center',
             scaleX: progressScaleX,
             zIndex: 200,
@@ -146,10 +146,10 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          background: 'rgba(10,10,10,0.72)',
+          background: 'rgba(244, 241, 236, 0.88)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          border: '0.5px solid rgba(255,255,255,0.10)',
+          border: '0.5px solid rgba(20, 18, 16, 0.14)',
           padding: '6px 16px 6px 12px',
           whiteSpace: 'nowrap',
         }}
@@ -159,21 +159,21 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
           width: '6px',
           height: '6px',
           borderRadius: '50%',
-          background: 'var(--color-accent)',
+          background: 'var(--color-accent-on-light)',
           flexShrink: 0,
         }} />
         <span style={{
           fontFamily: 'var(--font-body)',
           fontSize: '0.75rem',
           letterSpacing: '0.04em',
-          color: 'rgba(255,255,255,0.80)',
+          color: 'var(--color-text-primary)',
         }}>
           {cs.client}
         </span>
         <span style={{
           fontFamily: 'var(--font-body)',
           fontSize: '0.6875rem',
-          color: 'rgba(255,255,255,0.35)',
+          color: 'var(--color-text-secondary)',
           letterSpacing: '0.08em',
         }}>
           {index + 1} / {total}
@@ -188,7 +188,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
         <div style={{
           maxWidth: '960px',
           margin: '0 auto',
-          borderTop: '0.5px solid var(--color-dark-border)',
+          borderTop: '0.5px solid var(--color-border)',
           paddingTop: 'clamp(48px, 5vw, 64px)',
         }}>
           {/* Metadata strip — always visible, indexable by Google (plain HTML, no motion to avoid SSR crash) */}
@@ -205,7 +205,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
                 fontWeight: 500,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
-                color: 'var(--color-on-dark-faint)',
+                color: 'var(--color-text-muted)',
               }}>
                 {tag}
               </span>
@@ -219,7 +219,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               fontWeight: 700,
               lineHeight: 1.1,
               letterSpacing: '-0.02em',
-              color: 'var(--color-on-dark)',
+              color: 'var(--color-text-primary)',
               margin: '0 0 12px',
             }}>
               {cs.client}
@@ -228,7 +228,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               fontFamily: 'var(--font-body)',
               fontSize: 'clamp(0.875rem, 1.5vw, 1rem)',
               fontWeight: 400,
-              color: 'rgba(255,255,255,0.50)',
+              color: 'var(--color-text-secondary)',
               margin: '0 0 20px',
               letterSpacing: '0.01em',
             }}>
@@ -238,7 +238,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               fontFamily: 'var(--font-body)',
               fontSize: 'clamp(0.9375rem, 1.5vw, 1.0625rem)',
               lineHeight: 1.65,
-              color: 'rgba(255,255,255,0.62)',
+              color: 'var(--color-text-primary)',
               margin: 0,
               maxWidth: '600px',
             }}>
@@ -269,7 +269,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
       {/* ── Video reel ── */}
       {cs.video && (
         <>
-          <div style={{ height: '0.5px', background: 'var(--color-on-dark-border)' }} />
+          <div style={{ height: '0.5px', background: 'var(--color-border)' }} />
           <motion.div
             style={{ padding: 'clamp(32px, 4vw, 48px) var(--section-pad-x)' }}
             initial={reduced ? false : { opacity: 0, y: 20 }}
@@ -283,7 +283,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
                 fontSize: '0.5625rem',
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
-                color: 'var(--color-on-dark-faint)',
+                color: 'var(--color-text-muted)',
                 margin: '0 0 clamp(20px, 3vw, 32px)',
               }}>
                 In Motion
@@ -302,7 +302,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
       {/* ── Gallery ── */}
       {hasGallery && (
         <>
-          <div style={{ height: '0.5px', background: 'var(--color-on-dark-border)' }} />
+          <div style={{ height: '0.5px', background: 'var(--color-border)' }} />
 
           <div style={{ padding: 'clamp(32px, 4vw, 48px) var(--section-pad-x)' }}>
             {/* Gallery eyebrow */}
@@ -312,7 +312,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
                 fontSize: '0.5625rem',
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
-                color: 'var(--color-on-dark-faint)',
+                color: 'var(--color-text-muted)',
                 margin: '0 0 clamp(20px, 3vw, 32px)',
               }}
               initial={reduced ? false : { opacity: 0 }}
@@ -332,7 +332,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
       <motion.section
         style={{
           padding: 'clamp(56px, 7vw, 96px) var(--section-pad-x)',
-          borderTop: '0.5px solid var(--color-on-dark-border)',
+          borderTop: '0.5px solid var(--color-border)',
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
@@ -349,7 +349,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
           fontSize: '0.5625rem',
           letterSpacing: '0.18em',
           textTransform: 'uppercase',
-          color: 'var(--color-on-dark-faint)',
+          color: 'var(--color-text-muted)',
           margin: 0,
         }}>
           Start a project
@@ -357,7 +357,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
         <h2
           className="type-display"
           style={{
-            color: 'var(--color-on-dark)',
+            color: 'var(--color-text-primary)',
             margin: 0,
             maxWidth: '600px',
             lineHeight: 1.05,
@@ -365,7 +365,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
         >
           Your deck should change the room.
         </h2>
-        <p className="type-body" style={{ color: 'rgba(255,255,255,0.55)', margin: 0, maxWidth: '440px' }}>
+        <p className="type-body" style={{ color: 'var(--color-text-primary)', margin: 0, maxWidth: '440px' }}>
           Let&apos;s build something that moves an audience. Not just informs them.
         </p>
         <Link
@@ -379,19 +379,19 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             fontSize: '0.8125rem',
             letterSpacing: '0.08em',
             textTransform: 'uppercase',
-            color: 'var(--color-on-dark)',
+            color: 'var(--color-text-primary)',
             textDecoration: 'none',
             padding: '14px 32px',
-            border: '0.5px solid rgba(255,255,255,0.25)',
+            border: '0.5px solid rgba(20, 18, 16, 0.16)',
             transition: 'background 250ms ease, border-color 250ms ease',
           }}
           onMouseEnter={(e) => {
-            e.currentTarget.style.background = 'rgba(255,255,255,0.07)'
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.45)'
+            e.currentTarget.style.background = 'rgba(20, 18, 16, 0.10)'
+            e.currentTarget.style.borderColor = 'var(--color-text-secondary)'
           }}
           onMouseLeave={(e) => {
             e.currentTarget.style.background = 'transparent'
-            e.currentTarget.style.borderColor = 'rgba(255,255,255,0.25)'
+            e.currentTarget.style.borderColor = 'rgba(20, 18, 16, 0.16)'
           }}
           data-cursor-hover
         >

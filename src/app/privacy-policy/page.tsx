@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function PrivacyPolicyPage() {
   return (
     <>
-      <main style={{ background: 'var(--color-dark)', minHeight: '100vh' }}>
+      <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
         <article
           className="prose"
           style={{
@@ -23,13 +23,13 @@ export default function PrivacyPolicyPage() {
         >
           <p
             className="type-label"
-            style={{ color: 'var(--color-on-dark-faint)', margin: '0 0 20px' }}
+            style={{ color: 'var(--color-text-muted)', margin: '0 0 20px' }}
           >
             Effective August 1, 2021
           </p>
           <h1
             className="type-display"
-            style={{ color: 'var(--color-on-dark)', margin: '0 0 48px' }}
+            style={{ color: 'var(--color-text-primary)', margin: '0 0 48px' }}
           >
             Privacy Policy
           </h1>
@@ -197,18 +197,18 @@ export default function PrivacyPolicyPage() {
 }
 
 const bodyStyle: React.CSSProperties = {
-  color: 'var(--color-on-dark-muted)',
+  color: 'var(--color-text-secondary)',
   margin: '0 0 20px',
 }
 
 const h2Style: React.CSSProperties = {
-  color: 'var(--color-on-dark)',
+  color: 'var(--color-text-primary)',
   margin: '48px 0 16px',
   fontSize: 'clamp(1.125rem, 2vw, 1.375rem)',
 }
 
 const listStyle: React.CSSProperties = {
-  color: 'var(--color-on-dark-muted)',
+  color: 'var(--color-text-secondary)',
   margin: '0 0 20px',
   paddingLeft: '20px',
   display: 'flex',
@@ -217,6 +217,6 @@ const listStyle: React.CSSProperties = {
 }
 
 const linkStyle: React.CSSProperties = {
-  color: 'var(--color-on-dark-muted)',
+  color: 'var(--color-text-secondary)',
   textDecoration: 'none',
 }

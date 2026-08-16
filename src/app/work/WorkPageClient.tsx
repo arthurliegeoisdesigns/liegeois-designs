@@ -79,8 +79,8 @@ export default function WorkPageClient() {
 
   return (
     <main
-      className="section-dark"
-      style={{ background: 'var(--color-canvas)', minHeight: '100vh' }}
+      
+      style={{ background: 'var(--color-paper)', minHeight: '100vh' }}
       onMouseMove={reduced ? undefined : onMove}
     >
       {/* Header */}
@@ -91,13 +91,13 @@ export default function WorkPageClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <p className="eyebrow" style={{ color: 'var(--color-on-dark-faint)', margin: '0 0 16px' }}>
+            <p className="eyebrow" style={{ color: 'var(--color-text-muted)', margin: '0 0 16px' }}>
               SELECTED & COMPLETE, {caseStudies.length} PROJECTS
             </p>
-            <h1 className="type-display" style={{ color: 'var(--color-on-dark)', margin: '0 0 20px' }}>
+            <h1 className="type-display" style={{ color: 'var(--color-text-primary)', margin: '0 0 20px' }}>
               Work that changed <em style={{ fontStyle: 'italic' }}>the room.</em>
             </h1>
-            <p className="type-body-lg" style={{ color: 'var(--color-on-dark-muted)', margin: 0, maxWidth: '560px' }}>
+            <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '560px' }}>
               Every deck built to shift something: in the room, in the market, in how an audience
               sees a brand.
             </p>
@@ -261,13 +261,13 @@ export default function WorkPageClient() {
                       />
                     </div>
                     <div className="portfolio-card-body">
-                      <p className="type-label" style={{ color: 'var(--color-on-dark-faint)', marginBottom: '6px' }}>
+                      <p className="type-label" style={{ color: 'var(--color-text-muted)', marginBottom: '6px' }}>
                         {cs.format} · {cs.year}
                       </p>
-                      <h2 className="type-h3" style={{ color: 'var(--color-on-dark)', margin: '0 0 6px' }}>
+                      <h2 className="type-h3" style={{ color: 'var(--color-text-primary)', margin: '0 0 6px' }}>
                         {cs.client}
                       </h2>
-                      <p className="type-caption" style={{ color: 'var(--color-on-dark-muted)', margin: 0 }}>
+                      <p className="type-caption" style={{ color: 'var(--color-text-secondary)', margin: 0 }}>
                         {cs.tagline}
                       </p>
                     </div>

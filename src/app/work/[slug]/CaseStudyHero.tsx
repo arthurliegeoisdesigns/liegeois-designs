@@ -36,7 +36,7 @@ export default function CaseStudyHero({
           width: '100%',
           height: 'clamp(380px, 72vh, 800px)',
           overflow: 'hidden',
-          background: 'var(--color-canvas)',
+          background: 'var(--color-paper)',
         }}
       >
         <motion.div
@@ -62,7 +62,7 @@ export default function CaseStudyHero({
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, rgba(10,9,9,0.15) 0%, transparent 40%, var(--color-dark) 100%)',
+            background: 'linear-gradient(to bottom, rgba(10,9,9,0.15) 0%, transparent 40%, var(--color-paper) 100%)',
             pointerEvents: 'none',
           }}
         />
@@ -84,7 +84,7 @@ export default function CaseStudyHero({
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '0.8125rem',
-              color: 'rgba(255,255,255,0.65)',
+              color: 'var(--color-text-primary)',
               textDecoration: 'none',
               letterSpacing: '0.04em',
               display: 'inline-flex',
@@ -94,8 +94,8 @@ export default function CaseStudyHero({
             initial={reduced ? false : { opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--color-on-dark)' }}
-            onMouseLeave={(e) => { e.currentTarget.style.color = 'rgba(255,255,255,0.65)' }}
+            onMouseEnter={(e) => { e.currentTarget.style.color = 'var(--color-text-primary)' }}
+            onMouseLeave={(e) => { e.currentTarget.style.color = 'var(--color-text-primary)' }}
           >
             ← All Work
           </motion.a>
@@ -105,7 +105,7 @@ export default function CaseStudyHero({
               fontSize: '0.6875rem',
               fontWeight: 400,
               letterSpacing: '0.1em',
-              color: 'rgba(255,255,255,0.40)',
+              color: 'var(--color-text-secondary)',
               textTransform: 'uppercase',
             }}
             initial={reduced ? false : { opacity: 0 }}
@@ -138,8 +138,8 @@ export default function CaseStudyHero({
                   letterSpacing: '0.08em',
                   textTransform: 'uppercase',
                   padding: '5px 14px',
-                  border: '0.5px solid var(--color-on-dark-border)',
-                  color: 'var(--color-on-dark-faint)',
+                  border: '0.5px solid var(--color-border)',
+                  color: 'var(--color-text-muted)',
                 }}
               >
                 {tag}
@@ -150,7 +150,7 @@ export default function CaseStudyHero({
           {/* Client */}
           <motion.h1
             className="type-display"
-            style={{ color: 'var(--color-on-dark)', margin: '0 0 14px', maxWidth: '760px' }}
+            style={{ color: 'var(--color-text-primary)', margin: '0 0 14px', maxWidth: '760px' }}
             initial={reduced ? false : { opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.85, ease, delay: 0.28 }}
@@ -161,7 +161,7 @@ export default function CaseStudyHero({
           {/* Project title */}
           <motion.p
             className="type-h3"
-            style={{ color: 'var(--color-on-dark-muted)', margin: '0 0 10px', fontWeight: 400 }}
+            style={{ color: 'var(--color-text-secondary)', margin: '0 0 10px', fontWeight: 400 }}
             initial={reduced ? false : { opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.75, ease, delay: 0.35 }}
@@ -175,7 +175,7 @@ export default function CaseStudyHero({
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.8125rem',
-                color: 'var(--color-on-dark-faint)',
+                color: 'var(--color-text-muted)',
                 margin: '0 0 32px',
                 letterSpacing: '0.01em',
               }}
@@ -191,7 +191,7 @@ export default function CaseStudyHero({
           <motion.p
             className="type-body-lg"
             style={{
-              color: 'rgba(255,255,255,0.72)',
+              color: 'var(--color-text-primary)',
               margin: cs.agency ? '0' : '24px 0 0',
               maxWidth: '600px',
               lineHeight: 1.7,

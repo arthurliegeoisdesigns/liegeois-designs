@@ -64,7 +64,7 @@ export default function BlogIndexClient() {
   const filtered = activeTheme ? allPosts.filter((p) => p.theme === activeTheme) : null
 
   return (
-    <main className="section-dark" style={{ background: 'var(--color-canvas)', minHeight: '100vh' }}>
+    <main  style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
       <section
         className="section"
         style={{ paddingTop: 'calc(72px + clamp(40px, 6vw, 72px))' }}
@@ -77,13 +77,13 @@ export default function BlogIndexClient() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease }}
           >
-            <p className="eyebrow" style={{ color: 'var(--color-on-dark-faint)', margin: '0 0 16px' }}>
+            <p className="eyebrow" style={{ color: 'var(--color-text-muted)', margin: '0 0 16px' }}>
               THE BLOG, {allPosts.length} ESSAYS
             </p>
-            <h1 className="type-display" style={{ color: 'var(--color-on-dark)', margin: '0 0 16px' }}>
+            <h1 className="type-display" style={{ color: 'var(--color-text-primary)', margin: '0 0 16px' }}>
               Ideas that don&apos;t <em style={{ fontStyle: 'italic' }}>beg</em> for attention.
             </h1>
-            <p className="type-body-lg" style={{ color: 'var(--color-on-dark-muted)', margin: 0, maxWidth: '520px' }}>
+            <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: 0, maxWidth: '520px' }}>
               Thinking about the ideas that make stories land, and the ones that make audiences
               lean in.
             </p>
@@ -132,7 +132,7 @@ export default function BlogIndexClient() {
                   <PostRow key={p.slug} post={p} />
                 ))}
                 {filtered.length === 0 && (
-                  <p className="type-body" style={{ color: 'var(--color-on-dark-muted)', padding: '48px 0' }}>
+                  <p className="type-body" style={{ color: 'var(--color-text-secondary)', padding: '48px 0' }}>
                     No posts in this theme yet.
                   </p>
                 )}
@@ -162,7 +162,7 @@ export default function BlogIndexClient() {
                       </span>
                     )}
                     <span className="blog-ed-featured-body">
-                      <span className="eyebrow" style={{ color: 'var(--color-accent)' }}>
+                      <span className="eyebrow" style={{ color: 'var(--color-accent-on-light)' }}>
                         LATEST, {(featured.theme ? getThemeBySlug(featured.theme)?.label : undefined) ?? featured.tags[0]}
                       </span>
                       <span className="blog-ed-featured-title">{featured.title}</span>
@@ -176,7 +176,7 @@ export default function BlogIndexClient() {
 
                 {/* The Craft */}
                 <div className="blog-ed-strand">
-                  <p className="eyebrow" style={{ color: 'var(--color-on-dark-faint)' }}>THE CRAFT</p>
+                  <p className="eyebrow" style={{ color: 'var(--color-text-muted)' }}>THE CRAFT</p>
                   <div className="blog-ed-list">
                     {craft.map((p) => (
                       <PostRow key={p.slug} post={p} />
@@ -187,10 +187,10 @@ export default function BlogIndexClient() {
                 {/* Field Notes */}
                 {fieldNotes.length > 0 && (
                   <div className="blog-ed-strand">
-                    <p className="eyebrow" style={{ color: 'var(--color-on-dark-faint)' }}>
+                    <p className="eyebrow" style={{ color: 'var(--color-text-muted)' }}>
                       FIELD NOTES, <em style={{ fontStyle: 'italic', textTransform: 'none', letterSpacing: 0 }}>the personal strand</em>
                     </p>
-                    <p className="type-body" style={{ color: 'var(--color-on-dark-muted)', maxWidth: '520px', margin: '12px 0 0' }}>
+                    <p className="type-body" style={{ color: 'var(--color-text-secondary)', maxWidth: '520px', margin: '12px 0 0' }}>
                       Reinvention, ADHD as a creative asset, and honest notes for fellow travelers.
                       The person behind the pixels.
                     </p>
