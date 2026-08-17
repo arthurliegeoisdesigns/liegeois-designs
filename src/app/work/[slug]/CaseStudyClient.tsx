@@ -2,7 +2,6 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
-import dynamic from 'next/dynamic'
 import {
   motion,
   useScroll,
@@ -11,13 +10,15 @@ import {
   useReducedMotion,
 } from 'framer-motion'
 import type { CaseStudy } from '@/content/types'
+import CaseStudyHero from './CaseStudyHero'
+import CaseStudyGallery from './CaseStudyGallery'
+import CaseStudyNav from './CaseStudyNav'
+import BeforeAfterSlider from './BeforeAfterSlider'
 
-// ssr:false breaks the Turbopack dual-React null-hook crash that occurs
-// when framer-motion client components are statically prerendered in Next.js 16.
-const CaseStudyHero       = dynamic(() => import('./CaseStudyHero'),       { ssr: false })
-const CaseStudyGallery    = dynamic(() => import('./CaseStudyGallery'),    { ssr: false })
-const CaseStudyNav        = dynamic(() => import('./CaseStudyNav'),        { ssr: false })
-const BeforeAfterSlider   = dynamic(() => import('./BeforeAfterSlider'),   { ssr: false })
+// These four were loaded with dynamic({ ssr: false }) until 17 Aug 2026,
+// against a Turbopack prerender crash that no longer reproduces on Next 16.3.
+// The cost was that the hero, the gallery images, the before/after slider and
+// the prev/next links existed only after hydration. Direct imports now.
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -198,7 +199,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
       {/* ── Hero — full-width image/video ── */}
       <CaseStudyHero cs={cs} index={index} total={total} />
 
-      {/* ── Project metadata + narrative — always server-rendered for SEO ── */}
+      {/* ── Project metadata + narrative ── */}
       <section style={{ padding: 'clamp(56px, 6vw, 80px) var(--section-pad-x)' }}>
         <div style={{
           maxWidth: '960px',
@@ -206,7 +207,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
           borderTop: '0.5px solid var(--color-border)',
           paddingTop: 'clamp(48px, 5vw, 64px)',
         }}>
-          {/* Metadata strip — always visible, indexable by Google (plain HTML, no motion to avoid SSR crash) */}
+          {/* Metadata strip — plain HTML, no motion */}
           <div style={{
             display: 'flex',
             flexWrap: 'wrap',
@@ -227,8 +228,12 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             ))}
           </div>
 
+          {/* h2, not h1. CaseStudyHero already sets the page's h1 to cs.client;
+              this section repeats it as a heading for the narrative block. Both
+              were h1 for as long as neither reached the HTML, so nothing caught
+              it. Tag changed, styles are inline, so the rendering is identical. */}
           <div style={{ marginBottom: hasNarrative ? 'clamp(40px, 5vw, 64px)' : 0 }}>
-            <h1 style={{
+            <h2 style={{
               fontFamily: 'var(--font-display)',
               fontSize: 'clamp(1.5rem, 3vw, 2.25rem)',
               fontWeight: 700,
@@ -238,8 +243,8 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               margin: '0 0 12px',
             }}>
               {cs.client}
-            </h1>
-            <h2 style={{
+            </h2>
+            <h3 style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'clamp(0.875rem, 1.5vw, 1rem)',
               fontWeight: 400,
@@ -248,7 +253,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
               letterSpacing: '0.01em',
             }}>
               {cs.project}
-            </h2>
+            </h3>
             <p style={{
               fontFamily: 'var(--font-body)',
               fontSize: 'clamp(0.9375rem, 1.5vw, 1.0625rem)',
