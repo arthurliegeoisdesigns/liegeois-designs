@@ -3,7 +3,26 @@ import type { Metadata } from 'next'
 import { caseStudies } from '@/content/case-studies'
 import { caseStudyTitle, clampDescription } from '@/lib/seo'
 import { videoMetaFor } from '@/lib/video'
-import CaseStudyClientWrapper from './CaseStudyClientWrapper'
+/**
+ * Imported directly, not through a dynamic() wrapper.
+ *
+ * This used to go through CaseStudyClientWrapper, whose only job was to load
+ * CaseStudyClient with ssr:false. The stated reason was a Turbopack
+ * dual-React crash when framer-motion hooks ran during static prerendering.
+ * That crash no longer reproduces on Next 16.3 — removing the flag builds
+ * all 36 pages cleanly.
+ *
+ * What the flag was costing: everything from the video reel down — the
+ * player, the gallery, the before/after slider and the closing CTA — existed
+ * only after hydration. Served HTML carried zero <video> elements while the
+ * page's own VideoObject schema declared one, which is a direct explanation
+ * for Search Console's "Video isn't on a watch page". Mean rendered body copy
+ * across the 36 case studies went from ~360 words to 539 by deleting one flag.
+ *
+ * If a prerender crash ever returns, fix the offending hook. Do not restore
+ * ssr:false — it takes the gallery and the before/after work with it.
+ */
+import CaseStudyClient from './CaseStudyClient'
 
 export function generateStaticParams() {
   return caseStudies.map((cs) => ({ slug: cs.slug }))
@@ -132,7 +151,7 @@ export default async function CaseStudyPage({
       )}
 
       {/* ── Animated case study experience — client-side only (ssr:false via wrapper) ── */}
-      <CaseStudyClientWrapper
+      <CaseStudyClient
         cs={cs}
         index={currentIndex}
         total={caseStudies.length}
