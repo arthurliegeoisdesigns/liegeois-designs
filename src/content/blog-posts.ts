@@ -334,12 +334,18 @@ export const blogPosts: BlogPost[] = [
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-9-26am-d4710e',
   },
   {
-    slug: 'the-moment-i-made-things-undeniable',
-    title: 'The Moment I Made Things Undeniable (Not Just Pretty)',
-    excerpt: 'When design stops being decoration and starts being persuasion.',
-    readTime: '10 min read',
+    /* Retitled and re-slugged 17 Aug 2026. The old title, "The Moment I Made
+       Things Undeniable", asserted the single-epiphany story that the rewritten
+       essay explicitly rejects — it opens with "There was no moment." Safe to
+       change the slug because draft: true means it was never published, so
+       there is nothing to redirect. Tags moved off Personal/Creativity: the
+       piece is now a craft and business argument, not a memoir. */
+    slug: 'undeniable-is-a-method',
+    title: 'Undeniable Is a Method, Not a Moment',
+    excerpt: 'The argument has to be finished before the first slide exists.',
+    readTime: '6 min read',
     publishedAt: '2025-11-05',
-    tags: ['Personal', 'Creativity'],
+    tags: ['Presentation Design', 'Storytelling', 'Business Strategy'],
     theme: 'presentation-design-tips',
     draft: true,
     coverImage: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/generated-image-august-29-2025-10-26am-b23680',

@@ -22,6 +22,11 @@ import { servicePageBySlug } from '@/content/services-pages'
 const OVERRIDE: Record<string, string> = {
   'the-real-roi-of-presentation-design-for-startups': 'pitch-deck-design',
   'your-deck-has-a-story-problem': 'strategic-narrative',
+  /* Not pitch-deck-design, which is where the presentation-design-tips theme
+     would otherwise send it. The essay's whole argument is that the narrative
+     is finished before any slide exists, so Strategic Narrative is the service
+     it actually earns. */
+  'undeniable-is-a-method': 'strategic-narrative',
   'connect-to-strategic-direction': 'strategic-narrative',
   'business-tension-in-presentations': 'strategic-narrative',
   'lead-with-the-outcome': 'executive-presentations',
