@@ -343,7 +343,7 @@ export const blogPosts: BlogPost[] = [
     slug: 'undeniable-is-a-method',
     title: 'Undeniable Is a Method, Not a Moment',
     excerpt: 'The argument has to be finished before the first slide exists.',
-    readTime: '6 min read',
+    readTime: '5 min read',
     publishedAt: '2025-11-05',
     tags: ['Presentation Design', 'Storytelling', 'Business Strategy'],
     theme: 'presentation-design-tips',
