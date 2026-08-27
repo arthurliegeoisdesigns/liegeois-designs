@@ -4,6 +4,8 @@ import { useRef } from 'react'
 import Image from 'next/image'
 import { motion, useScroll, useTransform, useReducedMotion } from 'framer-motion'
 import type { CaseStudy } from '@/content/types'
+import Link from 'next/link'
+import { industryByName } from '@/content/industries'
 
 const ease = [0.16, 1, 0.3, 1] as const
 
@@ -128,23 +130,40 @@ export default function CaseStudyHero({
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, ease, delay: 0.2 }}
           >
-            {[cs.format, cs.industry, String(cs.year)].filter(Boolean).map((tag) => (
-              <span
-                key={tag}
-                style={{
-                  fontFamily: 'var(--font-body)',
-                  fontSize: '0.6875rem',
-                  fontWeight: 400,
-                  letterSpacing: '0.08em',
-                  textTransform: 'uppercase',
-                  padding: '5px 14px',
-                  border: '0.5px solid var(--color-border)',
-                  color: 'var(--color-text-muted)',
-                }}
-              >
-                {tag}
-              </span>
-            ))}
+            {[cs.format, cs.industry, String(cs.year)].filter(Boolean).map((tag) => {
+              /* The industry tag becomes a link to its hub. This is the
+                 internal linking the hubs shipped without: 32 of the 36
+                 studies now point at one. The other 4 are Media &
+                 Entertainment (3) and Energy & Sustainability (1), which
+                 have no hub because a hub built on one case study is a thin
+                 page. Those fall through to the plain span, so nothing links
+                 to a page that isn't there. Counted from the data, not by
+                 hand, because I first wrote 31 here and was wrong. */
+              const hub = tag === cs.industry ? industryByName[cs.industry] : undefined
+              const style = {
+                fontFamily: 'var(--font-body)',
+                fontSize: '0.6875rem',
+                fontWeight: 400,
+                letterSpacing: '0.08em',
+                textTransform: 'uppercase' as const,
+                padding: '5px 14px',
+                border: '0.5px solid var(--color-border)',
+                color: 'var(--color-text-muted)',
+              }
+              return hub ? (
+                <Link
+                  key={tag}
+                  href={`/industries/${hub.slug}`}
+                  style={{ ...style, textDecoration: 'none' }}
+                >
+                  {tag}
+                </Link>
+              ) : (
+                <span key={tag} style={style}>
+                  {tag}
+                </span>
+              )
+            })}
           </motion.div>
 
           {/* Client */}

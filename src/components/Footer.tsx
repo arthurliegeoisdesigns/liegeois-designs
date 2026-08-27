@@ -25,6 +25,14 @@ const cols: Array<{
     heading: 'WORK',
     links: [
       { label: 'Case Studies', href: '/work' },
+      /* The only site-wide link to /industries. The six hub pages shipped in
+         August 2026 with nothing anywhere pointing at them: not the nav, not
+         the footer, not one component. Search Console listed all six as
+         "Discovered - currently not indexed" with a last-crawled date of
+         1969-12-31, the epoch, meaning Google saw them in the sitemap and
+         never bothered fetching them. This link plus the per-study links in
+         CaseStudyHero are what make them reachable. */
+      { label: 'Industries', href: '/industries' },
       { label: 'Blog', href: '/blog' },
     ],
   },

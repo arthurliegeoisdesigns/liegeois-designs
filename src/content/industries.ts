@@ -132,3 +132,16 @@ export const industries: Industry[] = [
 ]
 
 export const industryBySlug = Object.fromEntries(industries.map((i) => [i.slug, i]))
+
+/**
+ * Look up a hub by a CaseStudy.industry value. Returns undefined for the two
+ * sectors that have no hub (Media & Entertainment, Energy & Sustainability),
+ * so every caller must handle the miss rather than assume a link exists.
+ *
+ * This powers the industry tag on each case study, which is the internal
+ * linking that was missing when the hubs shipped. 31 of the 36 studies now
+ * point at a hub. The other 5 render the tag as plain text, exactly as before.
+ */
+export const industryByName = Object.fromEntries(
+  industries.map((i) => [i.industry, i]),
+) as Record<string, Industry | undefined>
