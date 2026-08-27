@@ -6,9 +6,9 @@ export default function robots(): MetadataRoute.Robots {
       userAgent: '*',
       allow: '/',
     },
-    sitemap: [
-      'https://www.liegeoisdesigns.com/sitemap.xml',
-      'https://www.liegeoisdesigns.com/video-sitemap.xml',
-    ],
+    /* video-sitemap.xml removed 27 Aug 2026 along with the VideoObject
+       schema. Advertising a video sitemap for pages that are not watch pages
+       just asks Google to re-reject them. See work/[slug]/page.tsx. */
+    sitemap: 'https://www.liegeoisdesigns.com/sitemap.xml',
   }
 }

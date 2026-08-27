@@ -2,7 +2,6 @@ import { notFound } from 'next/navigation'
 import type { Metadata } from 'next'
 import { caseStudies } from '@/content/case-studies'
 import { caseStudyTitle, clampDescription } from '@/lib/seo'
-import { videoMetaFor } from '@/lib/video'
 /**
  * Imported directly, not through a dynamic() wrapper.
  *
@@ -104,34 +103,18 @@ export default async function CaseStudyPage({
     ],
   }
 
-  /* Built from videoMetaFor so the sitemap at /video-sitemap.xml describes
-     these videos in exactly the same terms. See src/lib/video.ts. */
-  const vm = videoMetaFor(cs, metaDesc)
-  const videoSchema = vm
-    ? {
-        '@context': 'https://schema.org',
-        '@type': 'VideoObject',
-        name: vm.title,
-        description: vm.description,
-        thumbnailUrl: vm.thumbnailUrl,
-        uploadDate: vm.uploadDate,
-        ...(vm.duration ? { duration: vm.duration } : {}),
-        contentUrl: vm.contentUrl,
-        /* embedUrl deliberately omitted. It previously pointed at this page,
-           but embedUrl must be a player endpoint that can be loaded in an
-           iframe, and this page is a case study. Declaring a non-player URL
-           as a player is one of the things Google checks when deciding
-           whether a video sits on a watch page. contentUrl alone is valid. */
-        publisher: {
-          '@type': 'Organization',
-          name: 'Liégeois Designs',
-          logo: {
-            '@type': 'ImageObject',
-            url: 'https://www.liegeoisdesigns.com/images/logos/liegeois-designs-logo.png',
-          },
-        },
-      }
-    : null
+  /* NO VideoObject SCHEMA HERE, DELIBERATELY.
+     Removed 27 Aug 2026 after Search Console held all four videos at "Video
+     isn't on a watch page" for three months. Google's rule is that a watch
+     page is one where the main reason to visit is to watch the video, above
+     the fold and prominent. On a case study the reel sits roughly 400 words
+     down, under the hero, the metadata, the Ask and the Solution. That is
+     the correct place for it and it is not a watch page.
+     The markup was making a claim the page structure could not support.
+     Video search presence moves to YouTube, whose pages are watch pages by
+     definition. If a youtubeId lands on CaseStudy later, embed it here and
+     let YouTube carry the indexing. Do not reinstate VideoObject. */
+
 
   return (
     <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
@@ -143,12 +126,6 @@ export default async function CaseStudyPage({
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
-      {videoSchema && (
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(videoSchema) }}
-        />
-      )}
 
       {/* ── Animated case study experience — client-side only (ssr:false via wrapper) ── */}
       <CaseStudyClient
