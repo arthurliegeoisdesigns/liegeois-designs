@@ -220,6 +220,22 @@ export const caseStudies: CaseStudy[] = [
 • Designed branded PowerPoint templates; 
 • Created modular content blocks for clarity and made the deck fully interactive for it to be presented on a touch-wall format.`,
     outcome: 'Strengthened Philips’ healthcare storytelling with clear, branded materials that elevated authority and consistency.',
+    /* Real before/after pairs, shot by Arthur and uploaded 6 Sep 2026.
+       07 is the stronger pair: the before is a wall of fifteen certification
+       logos, the after is three photographed columns. The transformation is
+       removal, which is the argument the homepage makes. */
+    beforeAfter: [
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788697490/philips-07-before_lkszxd.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788697491/philips-07-after_efbciw.jpg',
+        label:  'ESG commitments',
+      },
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788697475/philips-02-before_obbdot.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788697475/philips-02-after_bu38j3.jpg',
+        label:  'The Quadruple Aim',
+      },
+    ],
   },
 
   {
