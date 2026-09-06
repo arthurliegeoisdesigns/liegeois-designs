@@ -64,7 +64,7 @@ export default function AboutPage() {
   const reduced = useReducedMotion()
 
   return (
-    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
+    <main style={{ background: 'transparent', minHeight: '100vh' }}>
 
       {/* ── HERO ──────────────────────────────────────────────────── */}
       <section
@@ -391,7 +391,7 @@ export default function AboutPage() {
                   fontWeight: 500,
                   letterSpacing: '0.14em',
                   textTransform: 'uppercase',
-                  color: 'var(--color-accent-on-light)',
+                  color: 'var(--color-accent-text)',
                   margin: '0 0 16px',
                 }}>
                   {item.label}
@@ -492,7 +492,7 @@ export default function AboutPage() {
                     fontWeight: 500,
                     letterSpacing: '0.13em',
                     textTransform: 'uppercase',
-                    color: item.level === 'Primary' ? 'var(--color-accent-on-light)'
+                    color: item.level === 'Primary' ? 'var(--color-accent-text)'
                          : item.level === 'Expert'   ? 'var(--color-text-secondary)'
                          : 'var(--color-text-secondary)',
                     flexShrink: 0,

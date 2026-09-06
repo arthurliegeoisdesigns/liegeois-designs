@@ -6,6 +6,8 @@ import Footer from '@/components/Footer'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
 import PresentationMode from '@/components/ui/PresentationMode'
+import Backdrop from '@/components/Backdrop'
+import BackdropParallax from '@/components/BackdropParallax'
 
 const GTM_ID = 'GTM-N7XNZRDZ'
 
@@ -149,6 +151,14 @@ export default function RootLayout({
             style={{ display: 'none', visibility: 'hidden' }}
           />
         </noscript>
+        {/* THE ROOM. One backdrop for the whole document, server rendered, sat
+            behind everything. It is deliberately the first thing in <body> and
+            deliberately NOT inside SmoothScrollProvider: it is position:fixed
+            and must not inherit any transform from a scroll wrapper, or it
+            would become a containing block and stop being fixed. */}
+        <Backdrop />
+        <BackdropParallax />
+        <div className="grain" aria-hidden="true" />
         <PresentationMode />
         <SmoothScrollProvider>
           <ClientOnlyLayer />

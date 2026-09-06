@@ -103,13 +103,13 @@ export default async function BlogPostPage({
   }
 
   return (
-    <main style={{ minHeight: '100vh', background: 'var(--color-paper)' }}>
+    <main style={{ minHeight: '100vh', background: 'transparent' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
       {/* Header */}
       <header
         style={{
-          background: 'var(--color-paper)',
+          background: 'transparent',
           borderBottom: '0.5px solid var(--color-border)',
           padding: 'var(--section-pad-y) var(--section-pad-x)',
           paddingTop: '100px',
@@ -162,7 +162,7 @@ export default async function BlogPostPage({
       {/* Body */}
       <section
         style={{
-          background: 'var(--color-paper)',
+          background: 'transparent',
           padding: 'var(--section-pad-y) var(--section-pad-x)',
         }}
       >
@@ -205,7 +205,7 @@ export default async function BlogPostPage({
         const svc = post.theme ? THEME_TO_SERVICE[post.theme] : undefined
         if (!svc) return null
         return (
-          <section style={{ background: 'var(--color-paper)', padding: '0 var(--section-pad-x)' }}>
+          <section style={{ background: 'transparent', padding: '0 var(--section-pad-x)' }}>
             <div style={{ maxWidth: '760px', margin: '0 auto', paddingBottom: 'clamp(24px, 3vw, 36px)' }}>
               <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: 0 }}>
                 Working on something like this?{' '}
@@ -229,7 +229,7 @@ export default async function BlogPostPage({
         const svc = serviceForPost(post)
         if (!svc) return null
         return (
-          <section style={{ background: 'var(--color-paper)', padding: '0 var(--section-pad-x) clamp(28px, 4vw, 44px)' }}>
+          <section style={{ background: 'transparent', padding: '0 var(--section-pad-x) clamp(28px, 4vw, 44px)' }}>
             <div style={{ maxWidth: '760px', margin: '0 auto' }}>
               <Link href={`/services/${svc.slug}`} className="post-svc">
                 <span className="post-svc-eyebrow">This is what I do about it</span>
@@ -253,7 +253,7 @@ export default async function BlogPostPage({
         ].slice(0, 3)
         if (related.length === 0) return null
         return (
-          <section style={{ background: 'var(--color-paper)', padding: '0 var(--section-pad-x) clamp(64px, 8vw, 110px)' }}>
+          <section style={{ background: 'transparent', padding: '0 var(--section-pad-x) clamp(64px, 8vw, 110px)' }}>
             <div style={{ maxWidth: '760px', margin: '0 auto', borderTop: '0.5px solid var(--color-border)', paddingTop: 'clamp(32px, 4vw, 48px)' }}>
               <p style={{
                 fontFamily: 'var(--font-body)', fontSize: '0.6875rem', fontWeight: 500,

@@ -143,7 +143,7 @@ export default async function ServiceDetailPage({
   }
 
   return (
-    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
+    <main style={{ background: 'transparent', minHeight: '100vh' }}>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

@@ -25,8 +25,12 @@
 
   /* ── Warm palette — near-black + bone + one electric accent ── */
   --color-canvas:    #0A0908;   /* warm near-black — base dark canvas */
-  --color-paper:     #F4F1EC;   /* bone — light section bg */
-  --color-ink:       #141210;   /* text on light */
+  /* Bone is no longer a page background. THE ROOM, 6 Sep 2026: the site is the
+     room and the work is the light source, so bone is now only the colour of
+     the work itself — slides, documents, the lit surface. If you are reaching
+     for --color-paper to fill a section, that is the old system talking. */
+  --color-paper:     #F4F1EC;   /* bone — the work, never the page */
+  --color-ink:       #141210;   /* text ON the work, e.g. inside a slide mock */
   --color-fog:       #E8E3DB;   /* subtle surface / light borders */
   --color-smoke:     #BDB7AE;   /* secondary text on dark */
   --color-ash:       #8B857C;   /* muted text, metadata */
@@ -49,33 +53,41 @@
   --color-on-dark-ghost:  rgba(255, 253, 248, 0.15);
 
   /* ── The one chromatic voice — signal orange, used like a scalpel ── */
-  /* Accent exists at two luminances because the site has two surface
-     families. NOT two brand colours — hue is identical at 11 degrees, only
-     lightness differs, so it reads as one colour correctly adapted.
-       #E84420 on void  5.09:1  AA body
-       #E84420 on bone  3.53:1  large text / UI only — FAILS AA body
-       #CA3615 on bone  4.60:1  AA body
-     Anything accent-coloured at body size on a light surface must use
-     --color-accent-on-light. See DESIGN.md §2. */
-  --color-accent:          #E84420;
-  /* #CA3615 was validated against --color-paper (#F4F1EC) only, where it is
-     4.60:1. It is also used on --color-cream-surface (#ECE7DF), which is
-     darker: 4.21:1, an AA failure. Measured across the site 15 Aug 2026 on the
-     homepage client marquee (45 instances) and the service ServiceProof band.
-     #C13414 keeps the hue and passes on BOTH: paper 4.95:1, cream 4.53:1. */
-  --color-accent-on-light: #C13414;
-  --color-accent-hover: #C93411;
-  --color-neon:         #E84420;
-  --color-neon-cyan:    #C93411;
+  /* THE ROOM, 6 Sep 2026: the site is dark throughout, so both accent values
+     were retuned against the dark canvas. They are still ONE colour at two
+     luminances, not two brand colours: hue is identical at 10.8 degrees.
 
-  /* ── Semantic surface tokens — light default, flipped in .section-dark ── */
-  --color-text-primary:   #141210;
-  --color-text-secondary: #57524B;
-  --color-text-muted:     #6E6860;   /* kept above WCAG AA on bone */
-  --color-border:         rgba(20, 18, 16, 0.08);
-  --color-border-mid:     rgba(20, 18, 16, 0.14);
-  --color-card-bg:        #ECE7DF;
-  --color-card-border:    rgba(20, 18, 16, 0.08);
+     Ratios are measured against #241E2E, the BRIGHTEST plausible point of the
+     backdrop, not against pure void. The backdrop base is lifted off black
+     (#12101A falling to #0A0908) so anything validated on void alone is
+     optimistic by about a full point.
+
+       #E84420 on lifted  4.06:1  large text / UI only — FAILS AA body
+       #E84420 on canvas  5.00:1
+       #FF6442 on lifted  5.50:1  AA body, hue held at 10.8
+       #FF6442 on canvas  6.78:1
+
+     Anything accent-coloured at BODY size must use --color-accent-text.
+     #FF6B3D was the previous lifted value and also passes, but its hue drifts
+     to 14.2, which breaks the one-colour rule. Rejected for that reason. */
+  --color-accent:       #E84420;   /* the signal: display, eyebrows over 18px, UI */
+  --color-accent-text:  #FF6442;   /* accent at body size, safe on the lifted base */
+  --color-accent-hover: #FF7556;
+  --color-neon:         #E84420;
+  --color-neon-cyan:    #FF6442;
+
+  /* ── Semantic surface tokens ──
+     Dark is now the DEFAULT, not an override. Before 6 Sep these held the
+     light values and .section-dark flipped them; that inverted when the site
+     went dark throughout. Anything that never got explicitly themed now
+     inherits the correct surface instead of the wrong one. */
+  --color-text-primary:   var(--color-on-dark);         /* #F7F4EF  14.72:1 on lifted */
+  --color-text-secondary: var(--color-on-dark-muted);   /* #BDB7AE   8.11:1 */
+  --color-text-muted:     var(--color-on-dark-faint);   /* #A19A90   5.72:1 */
+  --color-border:         rgba(255, 255, 255, 0.08);
+  --color-border-mid:     rgba(255, 255, 255, 0.16);
+  --color-card-bg:        var(--color-dark-elevated);
+  --color-card-border:    rgba(255, 255, 255, 0.08);
 
   /* ── Legacy aliases ── */
   --color-cream:          #F4F1EC;
@@ -112,14 +124,35 @@
   --duration-slow: 700ms;
 
   /* ── Focus ── */
-  --color-focus-ring: #0d0d0d;
+  --color-focus-ring: #ffffff;
 
-  /* ── Glass tokens (reduced, no blur) ── */
-  --glass-bg:         rgba(255, 255, 255, 0.025);
-  --glass-bg-hover:   rgba(255, 255, 255, 0.045);
-  --glass-border:     rgba(255, 255, 255, 0.08);
-  --glass-border-lit: rgba(255, 255, 255, 0.15);
-  --glass-blur:       0px;
+  /* ── Glass — SOFT. Arthur's pick, 6 Sep 2026, from four candidates. ──
+     Cheapest to render and the least likely to date. Because the frost is
+     doing less here, the BORDER and the INNER TOP HIGHLIGHT carry the card.
+     Lose either and it flattens into a plain panel. The 150% saturation and
+     the brightness lift are what make it read as a surface; the blur radius
+     is not. Do not "simplify" this to blur alone.
+
+     Glass is only for something sitting OVER something else where both must
+     stay visible: a card over the backdrop, a caption over an image, nav over
+     a page. Never floating on flat colour — that is the version that dates. */
+  --glass-bg:         linear-gradient(150deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
+  --glass-bg-hover:   linear-gradient(150deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
+  --glass-filter:     blur(14px) saturate(150%) brightness(1.08);
+  --glass-border:     rgba(247, 244, 239, 0.14);
+  --glass-border-lit: rgba(247, 244, 239, 0.30);
+  --glass-shadow:     0 26px 60px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .24);
+
+  /* ── The backdrop: ONE field, directional light ──
+     Radial gradients were rejected on 6 Sep: a radial always has a centre, so
+     it always reads as a ball floating in space no matter how soft. Light in a
+     room arrives FROM a direction — a projector, a window, a doorway. All
+     backdrop light is angled linear gradients with the source off-frame.
+     The base is lifted off pure void (#12101A → #0A0908); a backdrop at the
+     same value as the content reads as absence, not atmosphere. */
+  --bd-base:   linear-gradient(180deg, #12101A 0%, #0D0B10 55%, #0A0908 100%);
+  --bd-blur-far:  84px;
+  --bd-blur-near: 64px;
 }
 
 /* ============================================================
@@ -304,8 +337,8 @@ html.custom-cursor-active * {
 }
 
 body {
-  background: var(--color-paper);
-  color: var(--color-ink);
+  background: var(--color-void);
+  color: var(--color-on-dark);
   font-family: var(--font-body);
   margin: 0;
   overflow-x: hidden;
@@ -318,9 +351,11 @@ body {
    CLIP, not hidden: hidden on <html> would turn it into a scroll container
    and break every position:sticky descendant, including .cred-copy. */
 /* Explicit background on <html> as well as <body>: without it the canvas is
-   whatever the browser defaults to until body paints, which shows as a dark
-   flash in headless captures and on slow first paints. */
-html { overflow-x: clip; background: var(--color-paper); }
+   whatever the browser defaults to until body paints, which showed as a flash
+   in headless captures and on slow first paints. Now void rather than bone —
+   same reasoning, opposite direction, and the flash it prevents is a WHITE
+   one, which on a dark site is far worse than the dark flash it used to fix. */
+html { overflow-x: clip; background: var(--color-void); }
 
 /* ============================================================
    TYPE SCALE
@@ -423,8 +458,12 @@ html { overflow-x: clip; background: var(--color-paper); }
   font-size: 0.8125rem;
   font-weight: 400;
   letter-spacing: 0.02em;
-  background: var(--color-text-primary);
-  color: #ffffff;
+  /* Explicit, not token-derived. This used to be text-primary (ink) on white,
+     which inverted into white-on-white the moment text-primary became light.
+     A solid button's two colours have to be stated as a PAIR or they drift
+     apart when the surface family changes. */
+  background: var(--color-on-dark);
+  color: var(--color-void);
   padding: 13px 28px;
   border-radius: var(--radius-sm);
   border: none;
@@ -435,7 +474,8 @@ html { overflow-x: clip; background: var(--color-paper); }
   transition: opacity var(--duration-fast) var(--ease-out-expo),
               transform var(--duration-fast) var(--ease-out-expo);
 }
-.section-dark .btn-primary { background: #ffffff; color: #0d0d0d; }
+/* .section-dark .btn-primary is gone: the base rule above is now exactly what
+   it used to override, so keeping it would be two names for one behaviour. */
 .btn-primary:hover { opacity: 0.80; transform: translateY(-1px); }
 .btn-primary:active { transform: scale(0.97); }
 
@@ -459,10 +499,12 @@ html { overflow-x: clip; background: var(--color-paper); }
 }
 .btn-ghost:hover {
   border-color: var(--color-text-secondary);
-  background: rgba(0, 0, 0, 0.04);
+  /* Was rgba(0,0,0,.04) — darkening a dark surface is invisible. The
+     .section-dark override that used to supply the light version is now the
+     only behaviour, so it is folded in here and the override is gone. */
+  background: rgba(255, 255, 255, 0.06);
   transform: translateY(-1px);
 }
-.section-dark .btn-ghost:hover { background: rgba(255, 255, 255, 0.06); }
 .btn-ghost:active { transform: scale(0.97); }
 
 .btn-text {
@@ -514,11 +556,17 @@ html { overflow-x: clip; background: var(--color-paper); }
   transition: background var(--duration-base) var(--ease-out-expo),
               backdrop-filter var(--duration-base) var(--ease-out-expo);
 }
+/* Was a near-opaque WHITE bar. On a dark site that dropped a white slab into
+   frame on every scroll, which is the single most visible thing the light
+   theme left behind. Now dark glass: nav over a page is the textbook case for
+   glass, since both the bar and what passes under it must stay readable.
+   Slightly stronger blur than the .glass default (20px vs 14px) because the
+   nav sits over MOVING content and needs to hold its own edge. */
 .nav.scrolled {
-  background: rgba(255, 255, 255, 0.94);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.08);
+  background: rgba(14, 12, 18, 0.72);
+  backdrop-filter: blur(20px) saturate(150%) brightness(1.06);
+  -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(1.06);
+  border-bottom: 1px solid var(--glass-border);
 }
 .nav-logo {
   display: flex;
@@ -531,8 +579,8 @@ html { overflow-x: clip; background: var(--color-paper); }
   align-items: center;
   gap: 32px;
 }
-.nav.scrolled .nav-link { color: #666666; }
-.nav.scrolled .nav-link:hover { color: #0d0d0d; }
+.nav.scrolled .nav-link { color: var(--color-on-dark-muted); }
+.nav.scrolled .nav-link:hover { color: var(--color-on-dark); }
 .nav-cta {
   font-family: var(--font-body);
   font-size: 0.8125rem;
@@ -547,8 +595,11 @@ html { overflow-x: clip; background: var(--color-paper); }
   display: inline-block;
 }
 .nav-cta:hover { border-color: rgba(255, 255, 255, 0.65); background: rgba(255,255,255,0.06); }
-.nav.scrolled .nav-cta { color: #0d0d0d; border-color: rgba(0, 0, 0, 0.20); }
-.nav.scrolled .nav-cta:hover { background: rgba(0, 0, 0, 0.04); border-color: rgba(0, 0, 0, 0.40); }
+/* The unscrolled .nav-cta above is already light-on-dark, so the scrolled
+   state no longer needs to differ at all. Kept as a named rule rather than
+   deleted so the parallel structure with .nav-link stays obvious. */
+.nav.scrolled .nav-cta { color: var(--color-on-dark); border-color: rgba(247, 244, 239, 0.30); }
+.nav.scrolled .nav-cta:hover { background: rgba(247, 244, 239, 0.08); border-color: rgba(247, 244, 239, 0.65); }
 .nav-cta:active { transform: scale(0.97); }
 
 /* --- PORTFOLIO CARD --- */
@@ -687,7 +738,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   letter-spacing: 0.06em;
   padding: 10px 18px;
   border-radius: 9999px;
-  border: 0.5px solid rgba(20, 18, 16, 0.14);
+  border: 0.5px solid rgba(247, 244, 239, 0.14);
   background: transparent;
   color: var(--color-text-secondary);
   cursor: pointer;
@@ -695,10 +746,10 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 }
 .work-filter sup {
   font-size: 0.5625rem;
-  color: var(--color-accent-on-light);
+  color: var(--color-accent-text);
   margin-left: 3px;
 }
-.work-filter:hover { color: var(--color-text-primary); border-color: rgba(20, 18, 16, 0.22); }
+.work-filter:hover { color: var(--color-text-primary); border-color: rgba(247, 244, 239, 0.30); }
 .work-filter.is-active {
   color: var(--color-paper);
   background: var(--color-text-primary);
@@ -713,7 +764,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   align-items: baseline;
   gap: clamp(16px, 3vw, 40px);
   padding: clamp(14px, 2vh, 22px) 0;
-  border-bottom: 0.5px solid rgba(20, 18, 16, 0.07);
+  border-bottom: 0.5px solid rgba(247, 244, 239, 0.10);
   text-decoration: none;
 }
 .work-index-num {
@@ -747,14 +798,14 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 .work-index-row .work-index-row-arrow,
 .blog-ed-row-arrow {
   font-family: var(--font-body);
-  color: var(--color-accent-on-light);
+  color: var(--color-accent-text);
   opacity: 0;
   transform: translateX(-8px);
   transition: opacity 250ms ease, transform 350ms var(--ease-out-expo);
 }
-.work-index-row:hover .work-index-num { color: var(--color-accent-on-light); }
+.work-index-row:hover .work-index-num { color: var(--color-accent-text); }
 .work-index-row:hover .work-index-client {
-  color: var(--color-accent-on-light);
+  color: var(--color-accent-text);
   font-style: italic;
   transform: translateX(10px);
 }
@@ -777,7 +828,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   display: block;
   aspect-ratio: 16 / 10;
   overflow: hidden;
-  border: 0.5px solid rgba(20, 18, 16, 0.11);
+  border: 0.5px solid rgba(247, 244, 239, 0.12);
 }
 .blog-ed-featured-media img { transition: transform 900ms var(--ease-out-expo); }
 .blog-ed-featured:hover .blog-ed-featured-media img { transform: scale(1.04); }
@@ -791,7 +842,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   color: var(--color-text-primary);
   transition: color 250ms ease;
 }
-.blog-ed-featured:hover .blog-ed-featured-title { color: var(--color-accent-on-light); }
+.blog-ed-featured:hover .blog-ed-featured-title { color: var(--color-accent-text); }
 @media (max-width: 900px) {
   .blog-ed-featured { grid-template-columns: 1fr; }
 }
@@ -805,7 +856,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   align-items: baseline;
   gap: clamp(16px, 3vw, 40px);
   padding: clamp(16px, 2.2vh, 24px) 0;
-  border-bottom: 0.5px solid rgba(20, 18, 16, 0.07);
+  border-bottom: 0.5px solid rgba(247, 244, 239, 0.10);
   text-decoration: none;
 }
 .blog-ed-row-date {
@@ -825,7 +876,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   color: var(--color-text-primary);
   transition: color 250ms ease;
 }
-.blog-ed-row:hover .blog-ed-row-title { color: var(--color-accent-on-light); }
+.blog-ed-row:hover .blog-ed-row-title { color: var(--color-accent-text); }
 .blog-ed-row-excerpt {
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -849,7 +900,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 .blog-ed-draft {
   margin-left: 10px;
   padding: 2px 8px;
-  border: 0.5px solid rgba(20, 18, 16, 0.20);
+  border: 0.5px solid rgba(247, 244, 239, 0.22);
   border-radius: 9999px;
   font-family: var(--font-body);
   font-size: 0.5625rem;
@@ -944,7 +995,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 253, 248, 0.25);
 }
-.pmode-email a:hover { color: var(--color-accent); border-color: var(--color-accent); }
+.pmode-email a:hover { color: var(--color-accent-text); border-color: var(--color-accent); }
 .pmode-work {
   position: relative;
   width: min(86vw, calc(78vh * 1.6));
@@ -1035,7 +1086,12 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 
   /* Legibility: secondary text was too dim on the dark canvas at
      mobile sizes (About pillars & co.) */
-  .section-dark {
+  /* Was scoped to .section-dark. Rescoped to :root on 6 Sep — .section-dark is
+     now on one route, and the whole site is dark, so leaving it scoped would
+     have quietly regressed mobile legibility on every page. The original
+     finding still stands: secondary text on a dark canvas reads too dim at
+     mobile sizes, where the screen is small, bright and often outdoors. */
+  :root {
     --color-text-secondary: #D8D3CB;
     --color-text-muted: #C6C0B6;
     --color-on-dark-muted: #D0CAC1;
@@ -1143,19 +1199,14 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 section[id] {
   scroll-margin-top: 80px;
 }
-.section-dark {
-  background: var(--color-dark);
-  --color-text-primary:   var(--color-on-dark);
-  --color-text-secondary: var(--color-on-dark-muted);
-  --color-text-muted:     var(--color-on-dark-faint);
-  --color-border:         rgba(255, 255, 255, 0.08);
-  --color-border-mid:     rgba(255, 255, 255, 0.16);
-  --color-card-bg:        var(--color-dark-elevated);
-  --color-card-border:    rgba(255, 255, 255, 0.08);
-  --color-accent:         #FF6B3D;   /* accent lifted for contrast on dark */
-  --color-accent-hover:   #E84420;
-  --color-focus-ring:     #ffffff;
-}
+/* .section-dark is now a no-op for colour: every token it used to override is
+   the :root default since the site went dark throughout on 6 Sep. Kept only
+   because /not-found still carries the class, and because an OPAQUE surface is
+   occasionally wanted — a section that deliberately blocks the backdrop rather
+   than floating over it. That is the one thing it still does.
+   Do not add token overrides back here. If a value needs to differ on dark,
+   it is wrong in :root. */
+.section-dark { background: var(--color-dark); }
 .section-surface { background: var(--color-dark-surface); }
 
 .container {
@@ -1252,8 +1303,9 @@ section[id] {
               background 300ms ease;
   transform-origin: center;
 }
-/* dark lines when the nav has scrolled onto its light bar */
-.nav.scrolled .nav-hamburger-line { background: var(--color-ink); }
+/* The bar is dark glass now, so the lines stay light through every state.
+   Kept as an explicit rule because the hamburger also has an open state. */
+.nav.scrolled .nav-hamburger-line { background: var(--color-on-dark); }
 .nav.nav-menu-open .nav-hamburger-line { background: #ffffff; }
 .nav-hamburger-line.open:first-child {
   transform: translateY(3.75px) rotate(45deg);
@@ -1336,7 +1388,7 @@ section[id] {
   font-style: italic;
   transform: translateX(8px);
 }
-.nav-mobile-link:hover .nav-menu-num { color: var(--color-accent); }
+.nav-mobile-link:hover .nav-menu-num { color: var(--color-accent-text); }
 .nav-mobile-link:hover .nav-menu-arrow { opacity: 1; transform: translateX(0); }
 
 .nav-menu-meta {
@@ -1424,8 +1476,13 @@ footer {
   font-size: 1rem;
   font-weight: 400;
   color: var(--color-text-primary);
-  background: #ffffff;
-  border: 0.5px solid var(--color-border-mid);
+  /* Was #ffffff. --color-text-primary is now near-white, so a white field made
+     the form literally unreadable: white text in a white box. Dark glass field
+     instead, which also stops the form punching a bright hole in the page. */
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--color-border-mid);
   border-radius: 0;
   padding: 14px 16px;
   outline: none;
@@ -1436,20 +1493,23 @@ footer {
 .contact-input::placeholder { color: var(--color-text-muted); }
 .contact-input:focus {
   border-color: var(--color-text-primary);
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.09);
 }
 
-/* Select arrow — dark chevron for light bg */
+/* Select arrow — light chevron, since the field is now dark glass */
 .contact-select {
   appearance: none;
   -webkit-appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(0,0,0,0.35)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(247,244,239,0.45)' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
   background-repeat: no-repeat;
   background-position: right 14px center;
   padding-right: 40px;
   cursor: pointer;
 }
-.contact-select option { background: #ffffff; color: var(--color-text-primary); }
+/* Options render in the OS dropdown, outside the page, so they do NOT inherit
+   the field's glass. They need explicit colours or the OS paints white-on-white
+   on some platforms. Solid dark, not glass: this chrome is not ours to blur. */
+.contact-select option { background: #16131C; color: #F7F4EF; }
 
 /* Textarea */
 .contact-textarea {
@@ -1604,7 +1664,9 @@ footer {
   text-wrap: balance;
 }
 .prose p { margin: 0 0 24px; color: var(--color-text-secondary); text-wrap: pretty; }
-.prose a { color: var(--color-accent); text-decoration: underline; }
+/* accent-text, not accent: prose links are 16px, so WCAG treats them as body.
+   #E84420 is 4.06:1 on the lifted backdrop and fails; #FF6442 is 5.50:1. */
+.prose a { color: var(--color-accent-text); text-decoration: underline; }
 .prose a:hover { color: var(--color-accent-hover); }
 .prose ul, .prose ol { margin: 0 0 24px; padding-left: 24px; }
 .prose li { margin-bottom: 8px; color: var(--color-text-secondary); }
@@ -1748,37 +1810,14 @@ footer {
               border-color var(--duration-base) ease;
 }
 
-/* ============================================================
-   LIGHT SHEET — the middle chapters (About → WhyArthur → Blog)
-   ride on one continuous bone "paper sheet" floating over the
-   dark world. Crisp edges, large radius, dark canvas breathing
-   around it — no gradient dissolves (Arthur, July 2026: fades
-   read amateurish; Awwwards pattern is the confident cut —
-   see Montfort, Dropbox Brand, The Line Studio).
-
-   The wrapper takes these sections out of ParallaxFlow's
-   `main > section` query, so they keep the default light tokens
-   and their bone surface. The sheet drifts as ONE element in
-   ParallaxFlow (no seams possible).
-   ============================================================ */
-.light-sheet {
-  position: relative;
-  z-index: 1; /* above drifting transparent dark sections */
-  background: var(--color-paper);
-  border-radius: clamp(20px, 3vw, 44px);
-  margin-inline: clamp(10px, 1.4vw, 24px);
-  /* chapter breaks — pure dark world before and after the sheet */
-  margin-block: clamp(64px, 10vh, 140px);
-  overflow: clip;
-}
-/* Faint warm wash so the sheet feels lit, not flat */
-.light-sheet::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(90% 60% at 70% 12%, rgba(232, 68, 32, 0.035), transparent 70%);
-  pointer-events: none;
-}
+/* LIGHT SHEET — deleted 6 Sep 2026.
+   The bone "paper sheet" that carried About → WhyArthur → Blog over the dark
+   world. It was already dead: no component referenced .light-sheet, so it had
+   been shipping as unused bytes since the homepage rebuild on 15 Aug. Removed
+   rather than converted, because under THE ROOM there is no light register for
+   it to belong to. Its job — punctuating the scroll into chapters — now falls
+   to space and scale, per rule 5. If a chapter break is ever needed again as a
+   surface, it is glass over the backdrop, not bone. */
 
 /* ── BENTO MOSAIC — RESPONSIVE ────────────────────────────── */
 @media (max-width: 768px) {
@@ -1921,9 +1960,15 @@ footer {
 .svc-card {
   position: absolute; width: clamp(280px, 44vw, 620px); aspect-ratio: 16 / 9;
   overflow: hidden; background: var(--color-cream-surface);
-  /* softer shadow than the dark hero — a heavy drop on bone reads as dirt */
-  box-shadow: 0 30px 64px rgba(20, 18, 16, 0.22), 0 6px 18px rgba(20, 18, 16, 0.14);
-  outline: 1px solid rgba(20, 18, 16, 0.08); outline-offset: -1px;
+  /* Bone STAYS here: these cards are slide mockups, and under THE ROOM bone is
+     the colour of the work itself. What inverts is the framing. The old ink
+     drop shadow was tuned to sit on bone and reads as dirt on near-black, so
+     it is replaced by an outward glow: a lit surface in a dark room throws
+     light, it does not cast a shadow onto the room. Rule 1, "the light is the
+     frame". The rim is light at low alpha rather than ink, which was
+     invisible the moment the page went dark. */
+  box-shadow: 0 0 90px rgba(247, 244, 239, 0.10), 0 30px 70px rgba(0, 0, 0, 0.55);
+  outline: 1px solid rgba(247, 244, 239, 0.10); outline-offset: -1px;
 }
 .svc-card-1 { top: 2%;  left: 2%;  transform: rotateY(14deg) rotateX(3deg) rotateZ(-1.8deg) scale(0.82); opacity: 0.5;  filter: brightness(0.94); }
 .svc-card-2 { top: 20%; left: 13%; transform: rotateY(14deg) rotateX(2deg) rotateZ(-1.1deg) scale(0.91); opacity: 0.78; }
@@ -1942,7 +1987,9 @@ footer {
   .svc-hero-stage { height: auto; aspect-ratio: 1 / 0.76; perspective: 1200px; }
   .svc-card {
     width: 72%;
-    box-shadow: 0 16px 34px rgba(20, 18, 16, 0.2), 0 4px 12px rgba(20, 18, 16, 0.12);
+    /* Mobile counterpart to the desktop glow. Tighter radius because the card
+       is 72% wide here and a 60px bloom would wash into both margins. */
+    box-shadow: 0 0 44px rgba(247, 244, 239, 0.08), 0 14px 30px rgba(0, 0, 0, 0.5);
   }
   .svc-card-1 { top: 0;   left: 0;   transform: rotateY(7deg) rotateZ(-1.4deg); }
   .svc-card-2 { top: 21%; left: 14%; transform: rotateY(7deg) rotateZ(-0.9deg); }
@@ -2020,7 +2067,7 @@ footer {
   margin: 28px 0 0;
   line-height: 1.75;
   padding-left: clamp(16px, 1.6vw, 22px);
-  border-left: 2px solid var(--color-accent-on-light);
+  border-left: 2px solid var(--color-accent-text);
 }
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -2028,19 +2075,25 @@ footer {
    Sits directly under the service hero, because someone arriving from a
    commercial search needs to know who is arguing before they read the
    argument. Cream surface separates it from the bone page without becoming
-   a second hero. Accent-on-light for the stat labels (4.60:1 on bone).
+   a second hero. Accent-text for the stat labels (5.50:1 on the lifted base).
    ════════════════════════════════════════════════════════════════════ */
 .svc-proof {
-  background: var(--color-cream-surface);
-  border-top: 0.5px solid var(--color-border);
-  border-bottom: 0.5px solid var(--color-border);
+  /* Was a bone band. Now glass: it sits over the backdrop and both have to
+     stay visible, which is the whole test for whether glass is earned. */
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border-top: 1px solid var(--glass-border);
+  border-bottom: 1px solid var(--glass-border);
   padding: clamp(40px, 5vw, 68px) var(--section-pad-x);
 }
 .svc-proof-inner { max-width: 1100px; margin: 0 auto; }
 .svc-proof-eyebrow {
-  /* text-secondary, NOT text-muted: this band sits on --color-cream-surface
-     (#ECE7DF), where muted measures 4.48:1 and fails AA by 0.02. Secondary is
-     6.29:1 there. Muted is fine on --color-paper (4.89:1) and stays elsewhere. */
+  /* Kept at text-secondary. The original reason was a light-surface margin
+     call (muted was 4.48:1 on cream, failing AA by 0.02). That reason is gone,
+     but the setting is still right: this band is now glass over the field, so
+     what sits behind the text varies with scroll, and secondary has the
+     headroom to survive the bright end of it. */
   font-family: var(--font-body);
   font-size: 0.625rem;
   font-weight: 500;
@@ -2069,7 +2122,7 @@ footer {
   font-family: var(--font-display);
   font-size: clamp(1.0625rem, 1.6vw, 1.375rem);
   line-height: 1.2;
-  color: var(--color-accent-on-light);
+  color: var(--color-accent-text);
   margin: 0 0 6px;
 }
 .svc-proof-stat-detail {
@@ -2113,7 +2166,9 @@ footer {
   aspect-ratio: 16 / 10;
   overflow: hidden;
   margin-bottom: 18px;
-  background: var(--color-cream-surface);
+  /* Canvas, not bone: this only shows while the image decodes. A bone
+     rectangle flashing on a dark page is far more noticeable than a dark one. */
+  background: var(--color-canvas);
 }
 /* The only motion on the page, and it is a hover affordance, not decoration. */
 .svc-idx-media img { transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1); }
@@ -2124,7 +2179,7 @@ footer {
   font-size: 0.5625rem;
   font-weight: 500;
   letter-spacing: 0.16em;
-  color: var(--color-accent-on-light);
+  color: var(--color-accent-text);
   margin: 0 0 8px;
 }
 .svc-idx-name {
@@ -2139,7 +2194,7 @@ footer {
 .svc-idx-tag {
   font-family: var(--font-body);
   font-size: 0.875rem;
-  color: var(--color-accent-on-light);
+  color: var(--color-accent-text);
   margin: 0 0 12px;
 }
 .svc-idx-lead {
@@ -2165,18 +2220,24 @@ footer {
   border-top: 0.5px solid var(--color-border);
 }
 .svc-idx-arrow { color: var(--color-text-primary); }
-.svc-idx-card:hover .svc-idx-arrow { color: var(--color-accent-on-light); }
+.svc-idx-card:hover .svc-idx-arrow { color: var(--color-accent-text); }
 
 /* ════════════════════════════════════════════════════════════════════════
    HOMEPAGE V2 (/v2, Aug 2026) — light, ~6 screens, motion only where it
    carries meaning. Namespaced .v2- so it cannot collide with the current
    homepage while both exist.
    ════════════════════════════════════════════════════════════════════ */
-.v2 { background: var(--color-paper); color: var(--color-ink); }
+/* Transparent, not dark: every page now sits over the ONE fixed backdrop in
+   layout.tsx. Painting a background here would occlude it and the parallax
+   would have nothing to show through. Same for .ind below. */
+.v2 { background: transparent; color: var(--color-text-primary); }
 .v2-w { max-width: 1300px; margin: 0 auto; padding: 0 var(--section-pad-x); }
+/* 10px. Small, tracked, uppercase — WCAG counts this as body text, not large,
+   so it must use accent-text. The tracking makes it *look* airy, which is
+   exactly the trap: it is still 10px to a contrast checker. */
 .v2-eyebrow {
   font-family: var(--font-body); font-size: 0.625rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-on-light); margin: 0;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-text); margin: 0;
 }
 .v2-h2 {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2186,17 +2247,20 @@ footer {
 .v2-lede { font-family: var(--font-body); font-size: 0.9375rem; line-height: 1.7;
   color: var(--color-text-secondary); max-width: 42ch; margin: 0; }
 .v2-cta {
-  display: inline-flex; align-items: center; gap: 11px; background: var(--color-ink);
-  color: var(--color-paper); text-decoration: none; font-family: var(--font-body);
+  /* Inverted 6 Sep: was ink-on-bone, a dark button that vanished into a dark
+     page. Bone button, ink label — the CTA is the one place the work's own
+     colour is allowed to act as a surface, because it reads as a lit object. */
+  display: inline-flex; align-items: center; gap: 11px; background: var(--color-paper);
+  color: var(--color-ink); text-decoration: none; font-family: var(--font-body);
   font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
   padding: 18px 36px; transition: transform 450ms var(--ease-out, cubic-bezier(.16,1,.3,1)), background 450ms ease;
 }
-.v2-cta:hover { transform: translateY(-2px); background: var(--color-accent-on-light); }
+.v2-cta:hover { transform: translateY(-2px); background: var(--color-accent); color: #fff; }
 .v2-ghost {
-  display: inline-flex; align-items: center; gap: 9px; color: var(--color-ink);
+  display: inline-flex; align-items: center; gap: 9px; color: var(--color-on-dark);
   text-decoration: none; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
   letter-spacing: 0.14em; text-transform: uppercase; padding: 18px 2px;
-  border-bottom: 1px solid var(--color-ink);
+  border-bottom: 1px solid var(--color-on-dark);
 }
 
 /* ── hero ── */
@@ -2233,8 +2297,12 @@ footer {
    Transforms do not affect layout, so CLS stays 0. */
 .v2-card {
   position: absolute; width: clamp(250px, 38vw, 580px); aspect-ratio: 16 / 9; overflow: hidden;
+  /* #fff stays: these cards ARE the work, and bone/white is the colour of
+     the work under THE ROOM. The ink outline also stays, because it sits ON
+     the white card, not on the page. Only the shadow inverts — it used to
+     fall onto a bone page and now has to read as a lit slide in a dark room. */
   background: #fff; outline: 0.5px solid rgba(20,18,16,.1);
-  box-shadow: 0 40px 90px rgba(20,18,16,.26);
+  box-shadow: 0 0 110px rgba(247, 244, 239, 0.13), 0 40px 90px rgba(0, 0, 0, 0.6);
   transform: translateY(46px) scale(.9);
   transition: transform 1050ms cubic-bezier(.16,1,.3,1);
 }
@@ -2269,16 +2337,17 @@ footer {
 
 /* ── client roster ── */
 .v2-roster { padding: clamp(26px, 3.4vw, 44px) 0; overflow: hidden;
-  background: var(--color-cream-surface);
-  border-top: 0.5px solid var(--color-border); border-bottom: 0.5px solid var(--color-border); }
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-filter); -webkit-backdrop-filter: var(--glass-filter);
+  border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
 .v2-mq { display: flex; width: max-content; will-change: transform; }
 .v2-mq-item {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: clamp(1.7rem, 4.4vw, 3.4rem); color: var(--color-text-muted);
   padding: 0 clamp(18px, 2.4vw, 40px); white-space: nowrap; transition: color 400ms ease;
 }
-.v2-mq-item:hover { color: var(--color-accent-on-light); }
-.v2-mq-item i { font-style: normal; color: var(--color-accent-on-light);
+.v2-mq-item:hover { color: var(--color-accent-text); }
+.v2-mq-item i { font-style: normal; color: var(--color-accent-text);
   font-size: 0.5em; transform: translateY(-.35em); display: inline-block; margin-left: .6em; }
 
 /* ── proof ── */
@@ -2288,7 +2357,8 @@ footer {
 .v2-phead .v2-h2 { max-width: 13ch; }
 @media (max-width: 840px) { .v2-phead { grid-template-columns: 1fr; } }
 .v2-ba { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #111;
-  cursor: ew-resize; user-select: none; touch-action: none; box-shadow: 0 40px 90px rgba(20,18,16,.22); }
+  cursor: ew-resize; user-select: none; touch-action: none;
+  box-shadow: 0 0 100px rgba(247, 244, 239, 0.10), 0 40px 90px rgba(0, 0, 0, 0.6); }
 .v2-ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
 .v2-ba-after { clip-path: inset(0 0 0 var(--x, 50%)); }
 .v2-ba-handle { position: absolute; top: 0; bottom: 0; left: var(--x, 50%); width: 2px;
@@ -2317,7 +2387,7 @@ footer {
 .v2-seat { padding: 22px clamp(14px, 2vw, 28px) 22px 0; border-right: 0.5px solid var(--color-border); }
 .v2-seat:last-child { border-right: none; }
 .v2-seat i { font-style: normal; font-family: var(--font-body); font-size: .5625rem;
-  letter-spacing: .15em; text-transform: uppercase; color: var(--color-accent-on-light);
+  letter-spacing: .15em; text-transform: uppercase; color: var(--color-accent-text);
   display: block; margin-bottom: 9px; }
 .v2-seat b { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: 1.4rem; display: block; color: var(--color-text-primary); }
@@ -2332,7 +2402,7 @@ footer {
 .v2-wgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: clamp(16px, 2vw, 30px); margin-top: 26px; }
 .v2-wcard { text-decoration: none; display: block; }
-.v2-wshot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--color-cream-surface); }
+.v2-wshot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--color-canvas); }
 .v2-wshot img { opacity: 0; transition: opacity 180ms linear; }
 .v2-wshot img.is-on { opacity: 1; }
 .v2-wbar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; display: flex; gap: 2px; z-index: 2; }
@@ -2342,7 +2412,7 @@ footer {
   font-size: 1.2rem; margin: 13px 0 3px; color: var(--color-text-primary); }
 .v2-wcard span { font-family: var(--font-body); font-size: .75rem; color: var(--color-text-muted); }
 .v2-wcard em { font-style: normal; font-family: var(--font-body); font-size: .625rem;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-on-light);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-text);
   display: block; margin-top: 8px; opacity: 0; transform: translateY(4px);
   transition: opacity 400ms ease, transform 400ms ease; }
 .v2-wcard:hover em { opacity: 1; transform: none; }
@@ -2350,7 +2420,7 @@ footer {
 /* ── voices: the single dark section ── */
 .v2-voices { background: var(--color-void); color: var(--color-on-dark);
   padding: clamp(60px, 8vw, 120px) 0; margin-top: clamp(40px, 5vw, 72px); }
-.v2-voices .v2-eyebrow { color: var(--color-accent); }
+.v2-voices .v2-eyebrow { color: var(--color-accent-text); }  /* 10px — body size */
 .v2-bigq { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: clamp(1.7rem, 4vw, 3.1rem); line-height: 1.12; letter-spacing: -.02em;
   max-width: 24ch; margin: 20px 0 22px; }
@@ -2407,14 +2477,14 @@ footer {
    Same light system as /services. Signposts and sector landing pages, so
    no motion beyond a hover affordance.
    ════════════════════════════════════════════════════════════════════ */
-.ind { background: var(--color-paper); color: var(--color-ink); min-height: 100vh; }
+.ind { background: transparent; color: var(--color-text-primary); min-height: 100vh; }
 .ind-w { max-width: 1100px; margin: 0 auto; padding: 0 var(--section-pad-x); }
 .ind-eyebrow {
   font-family: var(--font-body); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-text-secondary); margin: 0 0 18px;
 }
 .ind-eyebrow a { color: inherit; text-decoration: none; }
-.ind-eyebrow a:hover { color: var(--color-accent-on-light); }
+.ind-eyebrow a:hover { color: var(--color-accent-text); }
 .ind-head { padding: calc(var(--nav-h, 80px) + clamp(48px, 7vw, 96px)) 0 clamp(28px, 4vw, 44px); }
 .ind-h1 {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2430,7 +2500,7 @@ footer {
 .ind-facts {
   font-family: var(--font-body); font-size: 0.875rem; line-height: 1.7;
   color: var(--color-text-primary); max-width: 62ch; margin: 26px 0 0;
-  padding-left: clamp(14px, 1.6vw, 20px); border-left: 2px solid var(--color-accent-on-light);
+  padding-left: clamp(14px, 1.6vw, 20px); border-left: 2px solid var(--color-accent-text);
 }
 .ind-body { padding: clamp(36px, 5vw, 64px) 0; }
 .ind-p {
@@ -2445,7 +2515,7 @@ footer {
 .ind-card { text-decoration: none; display: block; }
 .ind-shot {
   position: relative; aspect-ratio: 16/10; overflow: hidden;
-  background: var(--color-cream-surface); margin-bottom: 12px;
+  background: var(--color-canvas); margin-bottom: 12px;  /* decode placeholder */
 }
 .ind-shot img { transition: transform 600ms cubic-bezier(.16,1,.3,1); }
 .ind-card:hover .ind-shot img { transform: scale(1.03); }
@@ -2470,7 +2540,7 @@ footer {
   display: block; font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: 1.1875rem; color: var(--color-text-primary); margin-bottom: 4px;
 }
-.ind-svc span { font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-accent-on-light); }
+.ind-svc span { font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-accent-text); }
 @media (max-width: 760px) {
   .ind-svc { border-right: none; border-bottom: 0.5px solid var(--color-border); }
 }
@@ -2497,16 +2567,17 @@ footer {
 .post-svc {
   display: block; text-decoration: none;
   border: 0.5px solid var(--color-border-mid);
-  border-left: 2px solid var(--color-accent-on-light);
+  border-left: 2px solid var(--color-accent-text);
   padding: clamp(18px, 2.2vw, 26px) clamp(18px, 2.4vw, 28px);
-  background: var(--color-cream-surface);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-filter); -webkit-backdrop-filter: var(--glass-filter);
   transition: transform 450ms cubic-bezier(.16,1,.3,1), border-color 450ms ease;
 }
-.post-svc:hover { transform: translateX(4px); border-color: var(--color-accent-on-light); }
+.post-svc:hover { transform: translateX(4px); border-color: var(--color-accent-text); }
 .post-svc-eyebrow {
   display: block; font-family: var(--font-body); font-size: 0.5625rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--color-accent-on-light); margin-bottom: 10px;
+  color: var(--color-accent-text); margin-bottom: 10px;
 }
 .post-svc-name {
   display: block; font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2522,3 +2593,88 @@ footer {
    row so the primary axis still reads first. */
 .work-filters-sector { margin-top: 10px; opacity: 0.82; }
 .work-filters-sector .work-filter { font-size: 0.6875rem; }
+
+/* ════════════════════════════════════════════════════════════════════════
+   THE ROOM — the one backdrop, the grain, the glass
+   Locked 6 September 2026. Spec: ART-DIRECTION.md, "LOCKED: the visual
+   system". Implementation notes live in src/components/Backdrop.tsx.
+   These are values, not suggestions. Changing one changes the contrast
+   table, which was measured against #241E2E and not against pure void.
+   ════════════════════════════════════════════════════════════════════════ */
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+/* inset:-30% gives the planes slack to travel into. Without it the parallax
+   drags an edge into frame at the bottom of a long page. */
+.bd { position: absolute; inset: -30%; will-change: transform; }
+
+/* FAR — the colour. Five hues, five angles, sources off-frame. Each reaches
+   58 to 70% across so they overlap and mix instead of sitting in lanes. */
+.bd-far {
+  background:
+    linear-gradient(148deg, rgba(232,  68,  32, .34) 0%, rgba(15, 13, 20, 0) 62%),
+    linear-gradient( 21deg, rgba( 74, 124, 190, .38) 0%, rgba(15, 13, 20, 0) 66%),
+    linear-gradient(291deg, rgba(107,  47,  92, .34) 0%, rgba(15, 13, 20, 0) 60%),
+    linear-gradient(196deg, rgba( 30, 107, 107, .26) 0%, rgba(15, 13, 20, 0) 70%),
+    linear-gradient( 64deg, rgba(242, 166,  59, .18) 0%, rgba(15, 13, 20, 0) 58%),
+    var(--bd-base);
+  filter: blur(var(--bd-blur-far));
+}
+
+/* NEAR — highlights only. Cooler and brighter, shorter reach, moves faster. */
+.bd-near {
+  background:
+    linear-gradient(112deg, rgba(198, 216, 238, .16) 0%, rgba(15, 13, 20, 0) 46%),
+    linear-gradient(292deg, rgba(232, 110,  70, .14) 0%, rgba(15, 13, 20, 0) 44%),
+    linear-gradient( 12deg, rgba(140, 190, 200, .12) 0%, rgba(15, 13, 20, 0) 42%);
+  filter: blur(var(--bd-blur-near));
+}
+
+/* VIGNETTE — fixed, never parallaxed. Keeps the lifted base from flattening
+   the page. A vignette that moves reads as a spotlight following the reader. */
+.bd-vig {
+  background: radial-gradient(120% 90% at 50% 45%,
+    rgba(7, 6, 5, 0) 40%, rgba(7, 6, 5, .72) 100%);
+}
+
+/* Everything the reader is meant to look at sits above the field. */
+#main-content, .nav, .site-footer, footer { position: relative; z-index: 1; }
+
+/* GRAIN — fixed to the VIEWPORT, never scrolling with content. Film grain
+   belongs to the lens, not the scene: if it scrolls with the page the whole
+   thing reads as a texture overlay rather than a photograph. */
+.grain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 99;
+  opacity: .24;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
+}
+
+/* GLASS — the SOFT variant, Arthur's pick from four candidates.
+   Use ONLY where something sits over something else and both must stay
+   visible. Never floating on flat colour; that is the version that dates. */
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+.glass:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-lit); }
+
+/* Safari and Firefox without backdrop-filter get an opaque panel instead of a
+   transparent one. Without this the card is nearly invisible over the field. */
+@supports not (backdrop-filter: blur(2px)) {
+  .glass { background: rgba(28, 24, 34, .88); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bd { transform: none !important; }
+}

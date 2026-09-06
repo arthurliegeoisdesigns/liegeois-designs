@@ -38,7 +38,9 @@ export default function CaseStudyHero({
           width: '100%',
           height: 'clamp(380px, 72vh, 800px)',
           overflow: 'hidden',
-          background: 'var(--color-paper)',
+          // Placeholder while the hero image decodes. Was bone, which flashed
+          // a bright rectangle on a dark page. Canvas matches what surrounds it.
+          background: 'var(--color-canvas)',
         }}
       >
         <motion.div
@@ -64,7 +66,10 @@ export default function CaseStudyHero({
           style={{
             position: 'absolute',
             inset: 0,
-            background: 'linear-gradient(to bottom, rgba(10,9,9,0.15) 0%, transparent 40%, var(--color-paper) 100%)',
+            // Fades the hero into the page BELOW it. The comment always said
+            // "to dark" but the value was bone, because the page below used to be
+            // bone. Now it genuinely is dark, so the stop finally matches the name.
+            background: 'linear-gradient(to bottom, rgba(10,9,9,0.15) 0%, transparent 40%, var(--color-void) 100%)',
             pointerEvents: 'none',
           }}
         />

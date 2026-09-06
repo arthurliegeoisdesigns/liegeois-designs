@@ -107,7 +107,7 @@ function VideoPlayer({ src, poster, label }: { src: string; poster: string; labe
       muted
       playsInline
       preload="metadata"
-      style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: 'var(--color-paper)' }}
+      style={{ width: '100%', aspectRatio: '16/9', objectFit: 'cover', display: 'block', background: 'var(--color-canvas)' }}
     />
   )
 }
@@ -139,7 +139,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             left: 0,
             right: 0,
             height: '2px',
-            background: 'var(--color-accent-on-light)',
+            background: 'var(--color-accent-text)',
             transformOrigin: 'left center',
             scaleX: progressScaleX,
             zIndex: 200,
@@ -175,7 +175,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
           width: '6px',
           height: '6px',
           borderRadius: '50%',
-          background: 'var(--color-accent-on-light)',
+          background: 'var(--color-accent-text)',
           flexShrink: 0,
         }} />
         <span style={{

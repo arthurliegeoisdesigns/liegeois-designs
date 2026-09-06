@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function TermsOfUsePage() {
   return (
     <>
-      <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
+      <main style={{ background: 'transparent', minHeight: '100vh' }}>
         <article
           className="prose"
           style={{

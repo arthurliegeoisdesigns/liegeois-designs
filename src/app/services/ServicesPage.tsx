@@ -67,7 +67,7 @@ const COUNT_WORD = ['no', 'One', 'Two', 'Three', 'Four', 'Five', 'Six', 'Seven',
 export default function ServicesPage() {
   const ways = COUNT_WORD[servicePages.length] ?? String(servicePages.length)
   return (
-    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
+    <main style={{ background: 'transparent', minHeight: '100vh' }}>
       {/* ── header ── */}
       <section
         style={{

@@ -80,7 +80,7 @@ export default function WorkPageClient() {
   return (
     <main
       
-      style={{ background: 'var(--color-paper)', minHeight: '100vh' }}
+      style={{ background: 'transparent', minHeight: '100vh' }}
       onMouseMove={reduced ? undefined : onMove}
     >
       {/* Header */}

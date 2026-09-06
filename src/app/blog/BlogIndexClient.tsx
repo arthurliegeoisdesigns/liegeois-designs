@@ -64,7 +64,7 @@ export default function BlogIndexClient() {
   const filtered = activeTheme ? allPosts.filter((p) => p.theme === activeTheme) : null
 
   return (
-    <main  style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
+    <main  style={{ background: 'transparent', minHeight: '100vh' }}>
       <section
         className="section"
         style={{ paddingTop: 'calc(72px + clamp(40px, 6vw, 72px))' }}
@@ -162,7 +162,7 @@ export default function BlogIndexClient() {
                       </span>
                     )}
                     <span className="blog-ed-featured-body">
-                      <span className="eyebrow" style={{ color: 'var(--color-accent-on-light)' }}>
+                      <span className="eyebrow" style={{ color: 'var(--color-accent-text)' }}>
                         LATEST, {(featured.theme ? getThemeBySlug(featured.theme)?.label : undefined) ?? featured.tags[0]}
                       </span>
                       <span className="blog-ed-featured-title">{featured.title}</span>

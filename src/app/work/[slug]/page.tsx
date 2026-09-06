@@ -117,7 +117,7 @@ export default async function CaseStudyPage({
 
 
   return (
-    <main style={{ background: 'var(--color-paper)', minHeight: '100vh' }}>
+    <main style={{ background: 'transparent', minHeight: '100vh' }}>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(creativeWorkSchema) }}
