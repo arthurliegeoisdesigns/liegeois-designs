@@ -127,7 +127,13 @@ export default async function CaseStudyPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
-      {/* ── Animated case study experience — client-side only (ssr:false via wrapper) ── */}
+      {/* ── The case study itself. SERVER RENDERED, and the comment that used
+             to sit here said the opposite: "client-side only (ssr:false via
+             wrapper)". That wrapper was deleted on 17 Aug and the comment was
+             not, which is how a stale comment becomes a trap — it is the exact
+             claim someone would check before deciding whether Google can see
+             this page. It can. Do not reintroduce ssr:false here: it takes the
+             gallery and the before/after with it. ── */}
       <CaseStudyClient
         cs={cs}
         index={currentIndex}
