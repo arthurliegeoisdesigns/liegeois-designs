@@ -49,7 +49,12 @@
   --color-on-dark-muted:  #BDB7AE;   /* smoke */
   --color-on-dark-faint:  #A19A90;   /* ash — kept above WCAG AA contrast */
   --color-on-dark-border: rgba(255, 253, 248, 0.10);
-  --color-on-dark-hint:   rgba(255, 253, 248, 0.35);
+  /* Raised from 0.35 to 0.47 on 6 Sep. At 0.35 this measured 3.05:1 on void
+     and failed AA at every one of its three call sites — a pre-existing failure
+     the light-theme audit never covered, because it only ever audited bone.
+     0.47 is the first step that clears 4.5:1 against the LIFTED backdrop
+     (4.57:1), which is the worst surface it can land on. */
+  --color-on-dark-hint:   rgba(255, 253, 248, 0.47);
   --color-on-dark-ghost:  rgba(255, 253, 248, 0.15);
 
   /* ── The one chromatic voice — signal orange, used like a scalpel ── */
@@ -72,6 +77,10 @@
      to 14.2, which breaks the one-colour rule. Rejected for that reason. */
   --color-accent:       #E84420;   /* the signal: display, eyebrows over 18px, UI */
   --color-accent-text:  #FF6442;   /* accent at body size, safe on the lifted base */
+  /* For the handful of elements that are themselves BONE — the active work
+     filter chip, anything printed on a slide mock. Bone is the work, and the
+     work is still a light surface, so it still needs a dark accent. 5.08:1. */
+  --color-accent-on-bone: #C13414;
   --color-accent-hover: #FF7556;
   --color-neon:         #E84420;
   --color-neon-cyan:    #FF6442;
@@ -200,9 +209,12 @@
 :root { --font-display-weight: 200; }
 
 /* ── Text selection — the accent at work ── */
+/* Dark on accent, not light. #FFF8F3 on #E84420 is 3.78:1 and fails AA; void
+   is 5.09:1. Selection is small body text by definition, so it gets no
+   large-text exemption. */
 ::selection {
   background: var(--color-accent);
-  color: #FFF8F3;
+  color: var(--color-void);
 }
 
 /* ── World canvas v2 — a lit atmosphere (see WorldCanvas.tsx) ──
@@ -750,12 +762,20 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   margin-left: 3px;
 }
 .work-filter:hover { color: var(--color-text-primary); border-color: rgba(247, 244, 239, 0.30); }
+/* The fifth token/literal pair to invert into itself. This was bone text on an
+   ink chip; when text-primary went light it became bone on near-white, 1.03:1,
+   a chip with no readable label. Stated as an explicit pair now: the active
+   chip is a LIT object, so it takes the work's own colour and dark text.
+   void on bone is 18.45:1. */
 .work-filter.is-active {
-  color: var(--color-paper);
-  background: var(--color-text-primary);
-  border-color: var(--color-text-primary);
+  color: var(--color-void);
+  background: var(--color-on-dark);
+  border-color: var(--color-on-dark);
 }
-.work-filter.is-active sup { color: var(--color-accent-hover); }
+/* accent-on-bone, not accent-text: this sup sits on the bone chip, not on the
+   page, so it needs the DARK accent. #FF6442 would be 1.9:1 here. This is the
+   only surviving place on the site that needs an accent tuned for light. */
+.work-filter.is-active sup { color: var(--color-accent-on-bone); }
 
 .work-index { display: flex; flex-direction: column; }
 .work-index-row {
@@ -1377,7 +1397,9 @@ section[id] {
   margin-left: auto;
   font-family: var(--font-body);
   font-size: clamp(1.1rem, 2vw, 1.6rem);
-  color: var(--color-accent);
+  /* 17.6px at the small end, which is under the 24px large-text line, so this
+     is body text to a contrast checker even though it reads as an ornament. */
+  color: var(--color-accent-text);
   opacity: 0;
   transform: translateX(-10px);
   transition: opacity 250ms ease, transform 350ms var(--ease-out-expo);
@@ -2255,7 +2277,9 @@ footer {
   font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
   padding: 18px 36px; transition: transform 450ms var(--ease-out, cubic-bezier(.16,1,.3,1)), background 450ms ease;
 }
-.v2-cta:hover { transform: translateY(-2px); background: var(--color-accent); color: #fff; }
+/* void, not #fff: white on the accent is 3.98:1. Introduced and caught in the
+   same session — the hover swaps the fill to accent, so the label has to swap too. */
+.v2-cta:hover { transform: translateY(-2px); background: var(--color-accent); color: var(--color-void); }
 .v2-ghost {
   display: inline-flex; align-items: center; gap: 9px; color: var(--color-on-dark);
   text-decoration: none; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
@@ -2263,12 +2287,15 @@ footer {
   border-bottom: 1px solid var(--color-on-dark);
 }
 
-/* ── hero ── */
-.v2-hero {
-  display: grid; grid-template-columns: 1.04fr 0.96fr; gap: clamp(24px, 4vw, 72px);
-  align-items: center; min-height: 88vh; margin: 0 auto; max-width: 1440px;
-  padding: calc(var(--nav-h, 80px) + clamp(24px, 5vh, 60px)) var(--section-pad-x) clamp(40px, 6vh, 80px);
-}
+/* ── hero type. The deck that used to live here was removed on 6 Sep 2026
+   when Direction B made the before/after slider the hero; see .v2-phero at the
+   foot of this file. Deleted rather than commented out, because .light-sheet
+   sat here dead for three weeks and nobody noticed. The stack is recoverable:
+   .v2-hero / .v2-stage / .v2-tilt / .v2-card / .v2-c1-3 and their keyframes,
+   plus src/components/v2/HeroDeck.tsx, are all at commit 4f6649a.
+
+   The LCP note attached to the old h1 is kept below because it still governs
+   this element, even though the card it was competing with is gone. ── */
 /* LCP: this h1 must stay the LARGEST element in the mobile viewport.
    Measured 15 Aug 2026 at 412px: h1 34,319px² vs hero front card 40,694px².
    The card being larger made an IMAGE the LCP element, which can never beat
@@ -2284,57 +2311,6 @@ footer {
 .v2-bridge { font-family: var(--font-body); font-size: clamp(1.0625rem, 1.5vw, 1.3125rem);
   line-height: 1.62; color: var(--color-text-secondary); max-width: 50ch; margin: 0; }
 .v2-acts { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 32px; }
-.v2-stage { position: relative; height: min(66vh, 580px); perspective: 1700px; }
-.v2-tilt { position: absolute; inset: 0; transform-style: preserve-3d;
-  transition: transform 500ms cubic-bezier(.16,1,.3,1); }
-/* LCP: DO NOT ADD `opacity: 0` HERE.
-   Measured 15 Aug 2026 on the mobile homepage: the front card is the LARGEST
-   element in the viewport (40,694px², against 39,927 for the bridge paragraph
-   and 34,319 for the h1), so it IS the LCP element. Gating it behind hydration
-   with opacity:0 cost 2.2s — Lighthouse mobile went 91 -> 79 and LCP 2.0s ->
-   4.2s. The cards now paint at their FINAL opacity from first paint and only
-   TRANSFORM animates, which is exactly the fix already applied to the h1.
-   Transforms do not affect layout, so CLS stays 0. */
-.v2-card {
-  position: absolute; width: clamp(250px, 38vw, 580px); aspect-ratio: 16 / 9; overflow: hidden;
-  /* #fff stays: these cards ARE the work, and bone/white is the colour of
-     the work under THE ROOM. The ink outline also stays, because it sits ON
-     the white card, not on the page. Only the shadow inverts — it used to
-     fall onto a bone page and now has to read as a lit slide in a dark room. */
-  background: #fff; outline: 0.5px solid rgba(20,18,16,.1);
-  box-shadow: 0 0 110px rgba(247, 244, 239, 0.13), 0 40px 90px rgba(0, 0, 0, 0.6);
-  transform: translateY(46px) scale(.9);
-  transition: transform 1050ms cubic-bezier(.16,1,.3,1);
-}
-.v2-c1 { top: 1%;  left: 1%;  opacity: .5;  }
-.v2-c2 { top: 21%; left: 12%; opacity: .78; }
-.v2-c3 { top: 41%; left: 24%; opacity: 1;   }
-/* Faces angle INWARD, toward the headline. Positive rotateY turned them away
-   from the copy, which read as dismissive. */
-.v2-hero.is-ready .v2-c1 { transform: translateZ(-90px) rotateY(-15deg) rotateZ(2deg)   scale(.82); transition-delay: 300ms; }
-.v2-hero.is-ready .v2-c2 { transform: translateZ(-40px) rotateY(-15deg) rotateZ(1.1deg) scale(.91); transition-delay: 440ms; }
-.v2-hero.is-ready .v2-c3 { transform: translateZ(0)     rotateY(-14deg) rotateZ(.5deg);            transition-delay: 580ms; }
-/* Idle float starts only after the deal-in lands, on mismatched periods so the
-   three never sync up. */
-.v2-hero.is-settled .v2-c1 { animation: v2-f1 9s  ease-in-out 1.6s infinite; }
-.v2-hero.is-settled .v2-c2 { animation: v2-f2 11s ease-in-out 1.9s infinite; }
-.v2-hero.is-settled .v2-c3 { animation: v2-f3 8s  ease-in-out 1.4s infinite; }
-@keyframes v2-f1 { 0%,100% { transform: translateZ(-90px) rotateY(-15deg) rotateZ(2deg) scale(.82) translateY(0); }
-                   50%     { transform: translateZ(-90px) rotateY(-15deg) rotateZ(2deg) scale(.82) translateY(-9px); } }
-@keyframes v2-f2 { 0%,100% { transform: translateZ(-40px) rotateY(-15deg) rotateZ(1.1deg) scale(.91) translateY(0); }
-                   50%     { transform: translateZ(-40px) rotateY(-15deg) rotateZ(1.1deg) scale(.91) translateY(7px); } }
-@keyframes v2-f3 { 0%,100% { transform: translateZ(0) rotateY(-14deg) rotateZ(.5deg) translateY(0); }
-                   50%     { transform: translateZ(0) rotateY(-14deg) rotateZ(.5deg) translateY(-6px); } }
-@media (max-width: 940px) {
-  .v2-hero { grid-template-columns: 1fr; min-height: 0; }
-  .v2-stage { height: auto; aspect-ratio: 1 / .74; }
-  .v2-card { width: 68%; }
-  .v2-hero.is-ready .v2-c1 { transform: rotateY(-8deg) rotateZ(1.6deg) scale(.86); }
-  .v2-hero.is-ready .v2-c2 { transform: rotateY(-8deg) rotateZ(1deg)   scale(.93); }
-  .v2-hero.is-ready .v2-c3 { transform: rotateY(-7deg); }
-  .v2-hero.is-settled .v2-c1, .v2-hero.is-settled .v2-c2, .v2-hero.is-settled .v2-c3 { animation: none; }
-}
-
 /* ── client roster ── */
 .v2-roster { padding: clamp(26px, 3.4vw, 44px) 0; overflow: hidden;
   background: var(--glass-bg);
@@ -2455,9 +2431,8 @@ footer {
   color: var(--color-text-secondary); max-width: 46ch; margin: 0 auto 32px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .v2-card { transform: none !important; transition: none !important; }
-  .v2-hero.is-settled .v2-c1, .v2-hero.is-settled .v2-c2, .v2-hero.is-settled .v2-c3 { animation: none !important; }
-  .v2-tilt { transition: none !important; }
+  /* The .v2-card / .v2-c1-3 / .v2-tilt resets that lived here went with the
+     hero deck on 6 Sep. Only the work-shot hover remains on this page. */
   .v2-wshot img { transition: none; }
 }
 
@@ -2677,4 +2652,50 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
   .bd { transform: none !important; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   DIRECTION B — the proof is the hero. Chosen 6 September 2026.
+   The slider used to be section three. It is now the first thing on the
+   page, because it is the most persuasive thing on the site and it was
+   sitting below the fold behind a headline and a stack of mockups.
+   ════════════════════════════════════════════════════════════════════════ */
+.v2-phero {
+  padding: calc(var(--nav-h, 80px) + clamp(40px, 7vh, 88px)) 0 clamp(56px, 8vh, 104px);
+}
+/* Copy on the left, the case for it on the right, proof underneath both.
+   Asymmetric on purpose: an even split reads as a template. */
+.v2-phero .v2-phead {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: clamp(24px, 4vw, 72px);
+  align-items: end;
+  margin-bottom: clamp(28px, 4vw, 52px);
+}
+.v2-phero-side { display: flex; flex-direction: column; gap: 18px; }
+.v2-phero-side .v2-bridge { font-size: 0.9375rem; line-height: 1.7; max-width: 42ch; }
+.v2-phero-side .v2-acts { margin-top: 6px; }
+
+/* Rule 2: scale contrast should be uncomfortable. GAA runs roughly 120px
+   display against 8px tracked caps, and that ratio is the single biggest
+   reason it reads as designed rather than assembled. "Nothing was added." is
+   three words, so it can take the top of the range without wrapping badly.
+   Extralight at small sizes is invisible; extralight at enormous sizes is the
+   entire point of the face. */
+.v2-phero .v2-h1 {
+  font-size: clamp(3.2rem, 11vw, 9rem);
+  line-height: 0.92;
+  letter-spacing: -0.042em;
+  margin: 18px 0 0;
+  text-wrap: balance;
+}
+/* The eyebrow deliberately sits at the far end of that ratio. Almost too
+   small, which is what makes the display size register as a decision. */
+.v2-phero .v2-eyebrow { font-size: 0.5625rem; letter-spacing: 0.22em; }
+
+@media (max-width: 900px) {
+  .v2-phero .v2-phead { grid-template-columns: 1fr; align-items: start; }
+  /* The bridge is the one thing that can go below the fold on a phone without
+     costing anything: the slider above it is already making the argument. */
+  .v2-phero-side { gap: 14px; }
 }

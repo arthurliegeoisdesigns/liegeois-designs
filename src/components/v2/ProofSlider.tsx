@@ -28,9 +28,28 @@ function src(url: string, w: number) {
 }
 const srcSet = (url: string) => WIDTHS.map((w) => `${src(url, w)} ${w}w`).join(', ')
 
-type Props = { before: string; after: string; project: string; slide: string }
+type Props = {
+  before: string
+  after: string
+  project: string
+  slide: string
+  /**
+   * Set when the slider is ABOVE THE FOLD, which it is on the homepage since
+   * Direction B made it the hero on 6 Sep 2026.
+   *
+   * This is not a nicety. The loading strategy below was tuned for a slider
+   * sitting two screens down, where lazy was correct and eager cost 447 KB on
+   * the critical path. Promoting it to the hero inverts that: it is now almost
+   * certainly the LCP element, and lazy-loading your LCP image is the single
+   * most expensive mistake available here.
+   *
+   * Both frames get it. They are side by side under a clip-path, so the visitor
+   * sees both at once and either one arriving late shows as a torn slide.
+   */
+  priority?: boolean
+}
 
-export default function ProofSlider({ before, after, project, slide }: Props) {
+export default function ProofSlider({ before, after, project, slide, priority = false }: Props) {
   const box = useRef<HTMLDivElement>(null)
   const handle = useRef<HTMLDivElement>(null)
   const taken = useRef(false)
@@ -99,10 +118,16 @@ export default function ProofSlider({ before, after, project, slide }: Props) {
             pixel-identical, which the clip-path reveal depends on. */}
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img src={src(before, 1200)} srcSet={srcSet(before)} sizes={SIZES}
-             loading="lazy" decoding="async" alt={`${project}, original slide`} />
+             loading={priority ? 'eager' : 'lazy'}
+             fetchPriority={priority ? 'high' : 'auto'}
+             decoding={priority ? 'sync' : 'async'}
+             alt={`${project}, original slide`} />
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img className="v2-ba-after" src={src(after, 1200)} srcSet={srcSet(after)} sizes={SIZES}
-             loading="lazy" decoding="async" alt={`${project}, redesigned slide`} />
+             loading={priority ? 'eager' : 'lazy'}
+             fetchPriority={priority ? 'high' : 'auto'}
+             decoding={priority ? 'sync' : 'async'}
+             alt={`${project}, redesigned slide`} />
         <span className="v2-ba-tag is-l">Before</span>
         <span className="v2-ba-tag is-r">After</span>
         <div className="v2-ba-handle" ref={handle} />

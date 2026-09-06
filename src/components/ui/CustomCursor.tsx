@@ -8,7 +8,11 @@ import { useEffect, useRef, useState } from 'react'
  * Dot: 16px solid dark fill + white inner ring + soft dark outer ring via box-shadow.
  * Visible on any surface — light, dark, images, gradients.
  *
- * Default:  dark fill (#0A0A0A) · white 2.5px ring · dark 1px outer ring
+ * Default:  light fill (#F7F4EF) · dark 2.5px ring · light outer halo
+ * Inverted 6 Sep 2026 with THE ROOM. The old default was a dark dot for a bone
+ * page; on near-black it disappeared and left only its ring, which read as a
+ * hole rather than a cursor. Hover still inverts, so the two states stay
+ * distinguishable.
  * Hover:    fill inverts to white · dark inner ring · brighter white glow · ring expands to 56px
  *
  * Ring: 42px spring-lag follower
@@ -111,11 +115,11 @@ export default function CustomCursor() {
           width:    hovering ? '20px' : '16px',
           height:   hovering ? '20px' : '16px',
           borderRadius: '50%',
-          background: hovering ? '#ffffff' : '#0A0A0A',
+          background: hovering ? '#0A0A0A' : '#F7F4EF',
           // inner ring + outer halo, inverted on hover for universal legibility
           boxShadow: hovering
-            ? '0 0 0 2.5px #0A0A0A, 0 0 0 4.5px rgba(255,255,255,0.5)'
-            : '0 0 0 2.5px #ffffff, 0 0 0 4.5px rgba(0,0,0,0.25)',
+            ? '0 0 0 2.5px #F7F4EF, 0 0 0 4.5px rgba(0,0,0,0.45)'
+            : '0 0 0 2.5px #0A0A0A, 0 0 0 4.5px rgba(255,255,255,0.30)',
           pointerEvents: 'none',
           zIndex: 99999,
           opacity: visible ? 1 : 0,

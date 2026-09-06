@@ -250,7 +250,11 @@ export default function ContactPage() {
                         style={{
                           fontFamily: 'var(--font-body)',
                           fontSize: '0.8125rem',
-                          color: '#a3423a',
+                          // Was #a3423a, a muted brick tuned for the bone
+                          // form. On the dark canvas it measures 2.61:1 and an
+                          // error message is the last thing that should be hard
+                          // to read. #E06A5E is 4.92:1 and holds the same hue.
+                          color: '#E06A5E',
                           margin: '0 0 4px',
                         }}
                       >

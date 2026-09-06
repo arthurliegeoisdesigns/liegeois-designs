@@ -17,19 +17,27 @@ export default function Nav() {
   const reduced = useReducedMotion()
   const pathname = usePathname()
 
-  // NO route has a dark hero any more. /services lost its dark carousel and the
-  // homepage lost its dark journey, both on 15 Aug 2026. Leaving either in this
-  // list puts a white logo on a #F4F1EC background, i.e. invisible. Kept as a
-  // named constant rather than deleted so the intent survives if a dark hero
-  // ever comes back.
-  const isDarkTopPage = false
+  // This flipped on 6 Sep 2026, and the old comment is worth keeping in view
+  // because it is now exactly inverted:
+  //
+  //   "NO route has a dark hero any more [...] leaving either in this list puts
+  //    a white logo on a #F4F1EC background, i.e. invisible."
+  //
+  // Under THE ROOM, EVERY route has a dark top. There is no #F4F1EC page left
+  // to be invisible against. So the nav goes back to what it was built to do:
+  // transparent over the hero, dark glass once you have scrolled past it.
+  //
+  // Kept as a named constant, as before, so the intent stays legible.
+  const isDarkTopPage = true
 
   const [scrolled, setScrolled] = useState(!isDarkTopPage)
   const [menuOpen, setMenuOpen] = useState(false)
 
-  // The home branch here used to measure .jn-journey to know when the dark hero
-  // ended. That element no longer exists. With no dark-topped route left, the
-  // nav is simply always in its solid state.
+  // 40px is a plain scroll threshold rather than a measurement of where a
+  // particular hero ends. An earlier version measured .jn-journey; that element
+  // is long gone, and now that every route is dark-topped there is nothing
+  // route-specific left to measure. The bar just needs to stop being
+  // transparent once content is passing under it.
   useMotionValueEvent(scrollY, 'change', (y) => {
     setScrolled(isDarkTopPage ? y > 40 : true)
   })

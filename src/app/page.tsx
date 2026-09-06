@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import { links } from '@/lib/config'
 import { publishedPosts } from '@/content/blog-posts'
-import HeroDeck from '@/components/v2/HeroDeck'
 import ClientMarquee from '@/components/v2/ClientMarquee'
 import ProofSlider from '@/components/v2/ProofSlider'
 import WorkFlip from '@/components/v2/WorkFlip'
@@ -87,30 +86,58 @@ export default function Home() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
 
       <main className="v2">
-        <HeroDeck />
-        <ClientMarquee />
+        {/* ── THE HERO IS THE PROOF. Direction B, chosen 6 Sep 2026.
+            Previously the page opened with a headline and a stack of slide
+            mockups, and the before/after sat two screens down as section three.
+            Arthur picked proof before poetry: the most persuasive thing on the
+            site should not be below the fold, and a drag interaction people
+            never scroll to is a drag interaction nobody uses.
 
-        {/* ── the proof. The only real interaction on the page. ── */}
-        <section className="v2-proof" id="proof">
+            The old hero copy is not lost. The eyebrow keeps the positioning
+            line, which is also the page's strongest keyword signal, and the
+            credibility bridge moves into the right column so it still lands
+            above the fold. What went is the card stack, which was doing the
+            job the slider now does, better. It is in git if it is ever wanted:
+            src/components/v2/HeroDeck.tsx at 4f6649a. ── */}
+        <header className="v2-phero">
           <div className="v2-w">
             <div className="v2-phead">
               <div>
-                <p className="v2-eyebrow">The difference</p>
-                <h2 className="v2-h2">Same content. Different decision.</h2>
+                <p className="v2-eyebrow">Presentation design for founders and executives</p>
+                {/* LCP NOTE, INHERITED AND STILL TRUE: no opacity or mask
+                    animation on this element, ever. Clipped text is never
+                    painted, so Chrome will not score it. The slider is now
+                    almost certainly the LCP element instead, which is why it
+                    is passed priority. */}
+                <h1 className="v2-h1">Nothing was added.</h1>
               </div>
-              <p className="v2-lede">
-                Nothing was added. The argument was already in there, buried under
-                everything competing with it. Drag it yourself.
-              </p>
+              <div className="v2-phero-side">
+                <p className="v2-lede">
+                  The argument was already in the deck, buried under everything
+                  competing with it. Drag it yourself.
+                </p>
+                <p className="v2-bridge">
+                  I&rsquo;ve raised my own round, and I build the decks Fortune&nbsp;500s
+                  take into board rooms. Your investors are institutions. I speak
+                  both languages.
+                </p>
+                <div className="v2-acts">
+                  <a className="v2-cta" href={links.calendly}>Book a call</a>
+                  <Link className="v2-ghost" href="/work">See the work</Link>
+                </div>
+              </div>
             </div>
             <ProofSlider
+              priority
               before={`${BA}/MCS-J-J-9-before_buqd9f.jpg`}
               after={`${BA}/MCS-J-J-9-after_k5ft6j.jpg`}
               project="MCS Healthcare × Johnson &amp; Johnson"
               slide="Slide 9 of 14"
             />
           </div>
-        </section>
+        </header>
+
+        <ClientMarquee />
 
         {/* ── who you get ── */}
         <section className="v2-who" id="who">
