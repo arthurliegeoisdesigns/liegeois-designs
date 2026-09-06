@@ -270,17 +270,11 @@
   will-change: transform;
 }
 
-/* ── Film grain overlay (see Grain.tsx) ── */
-.grain-overlay {
-  position: fixed;
-  inset: 0;
-  z-index: 90;
-  pointer-events: none;
-  opacity: 0.055;
-  mix-blend-mode: soft-light;
-  background-repeat: repeat;
-  background-size: 240px 240px;
-}
+/* .grain-overlay removed 6 Sep 2026: Grain.tsx it referenced no longer exists,
+   so this had been dead for some time, and the name collided with the real
+   .grain that THE ROOM introduced. The live grain is defined at the foot of
+   this file: fixed to the viewport, opacity .24, no blend mode. soft-light was
+   the right choice against bone and does almost nothing against near-black. */
 
 /* ============================================================
    BASE

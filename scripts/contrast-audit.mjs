@@ -61,6 +61,26 @@ const EXEMPT = [
   },
 ]
 
+/**
+ * Light surfaces that legitimately set no text colour, because they never
+ * contain text. Keep this list short: "it has no text" is easy to assert and
+ * easy to be wrong about later, when someone drops a label inside.
+ */
+const EXEMPT_SURFACE = [
+  {
+    match: /\.nav-hamburger-line/,
+    reason:
+      'A 22x1.5px bar. Its background IS the graphic, not a surface behind text. ' +
+      'Contrast for the hamburger is governed by the bar against .nav.scrolled.',
+  },
+  {
+    match: /\.svc-card\b/,
+    reason:
+      'Image container for the services slide stack. next/image fills it edge ' +
+      'to edge; the bone only shows while the image decodes. No text child.',
+  },
+]
+
 // ── colour plumbing ────────────────────────────────────────────────────────
 const rootBlock = CSS.match(/:root\s*\{([\s\S]*?)\n\}/)[1]
 const TOKENS = Object.fromEntries(
@@ -145,12 +165,50 @@ for (const row of results) {
   ;(ex ? exempted : failures).push({ ...row, reason: ex?.reason })
 }
 
+/**
+ * SECOND PASS — the blind spot in the first one.
+ *
+ * The pass above only looks at rules that set a text colour. A rule that sets
+ * a LIGHT background and no colour is invisible to it: the text then comes
+ * from the cascade, the checker assumes the dark page surface, and light text
+ * on a light chip sails through as a pass.
+ *
+ * That is precisely the shape of the bugs this inversion produced
+ * (.btn-primary, .contact-input, .work-filter.is-active), so it gets its own
+ * check. The rule is blunt on purpose: if you paint a light surface, state the
+ * text colour in the same place. Pairing them is the whole lesson.
+ */
+const LIGHT = 0.25
+const unpaired = []
+const surfaceExempt = []
+for (const [, selRaw, body] of CSS.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
+  const sel = selRaw.split(/\s+/).join(' ').trim()
+  if (sel.startsWith('@') || sel.includes(':root')) continue
+  const bm = /background(?:-color)?\s*:\s*(#[0-9a-f]{3,6}|rgba?\([^)]*\)|var\(--[\w-]+\))\s*;/i.exec(body)
+  if (!bm) continue
+  const bg = parseColour(bm[1])
+  if (!bg || bg[3] < 0.5 || luminance(bg) <= LIGHT) continue
+  if (/(?<![-\w])color\s*:/.test(body)) continue // paired, already checked above
+  const ex = EXEMPT_SURFACE.find((e) => e.match.test(sel))
+  if (ex) { surfaceExempt.push({ sel, value: bm[1], reason: ex.reason }); continue }
+  unpaired.push({ sel, value: bm[1], lum: luminance(bg) })
+}
+
 const f = (n) => n.toFixed(2).padStart(5)
 console.log(`\nContrast audit — THE ROOM`)
 console.log(`Measured against the lifted backdrop #241E2E, not pure void.\n`)
 console.log(`  text-colour rules examined  ${results.length}`)
 console.log(`  documented exemptions       ${exempted.length}`)
+console.log(`  light surfaces, text-free   ${surfaceExempt.length}`)
+console.log(`  unpaired light surfaces     ${unpaired.length}`)
 console.log(`  failures                    ${failures.length}\n`)
+
+for (const u of unpaired) {
+  console.log(`  UNPAIRED  ${u.sel.slice(0, 58)}`)
+  console.log(`            paints ${u.value} (luminance ${u.lum.toFixed(2)}) but sets no colour.`)
+  console.log(`            State the text colour in the same rule, or the cascade will hand`)
+  console.log(`            it light text on a light surface the next time tokens move.\n`)
+}
 
 if (process.argv.includes('--all')) {
   for (const r of results.filter((x) => x.r >= x.need).sort((a, b) => a.r - b.r))
@@ -168,8 +226,11 @@ for (const x of failures.sort((a, b) => a.r - b.r)) {
   console.log(`       ${x.colour} on ${x.where}${x.size ? `, ${x.size}` : ''}\n`)
 }
 
-if (failures.length) {
-  console.log(`${failures.length} failure(s). Fix them, or add a measured exemption.\n`)
+if (failures.length || unpaired.length) {
+  const bits = []
+  if (failures.length) bits.push(`${failures.length} contrast failure(s)`)
+  if (unpaired.length) bits.push(`${unpaired.length} unpaired light surface(s)`)
+  console.log(`${bits.join(' and ')}. Fix them, or add a measured exemption.\n`)
   process.exit(1)
 }
 console.log(`No failures.\n`)

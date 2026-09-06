@@ -66,8 +66,13 @@ export default function Nav() {
       <nav className={`nav${scrolled ? ' scrolled' : ''}${menuOpen ? ' nav-menu-open' : ''}`}>
         <Link href="/" className="nav-logo" aria-label="Liégeois Designs, Home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
+          {/* White in BOTH states since 6 Sep. The dark variant existed only
+              for the scrolled bar back when it turned near-opaque white; that
+              bar is dark glass now, so swapping in a dark logo would have put
+              a black mark on a black bar. logo-liegeois-dark.svg is still in
+              public/images for the OG image and anywhere on a bone surface. */}
           <img
-            src={scrolled ? '/images/logo-liegeois-dark.svg' : '/images/logo-liegeois-white.svg'}
+            src="/images/logo-liegeois-white.svg"
             alt="Liégeois Designs"
             width={156}
             height={50}
