@@ -52,6 +52,32 @@ const steps = [
   },
 ]
 
+/**
+ * CAPACITY. Answers a question the site otherwise invites a prospect to answer
+ * for themselves.
+ *
+ * A studio of one, with named enterprise clients and a current engagement
+ * inside Apple, raises an obvious "does he actually have time for me". Left
+ * unanswered, a prospect guesses, and the guess is usually the unflattering
+ * one: either he is too busy, or he is quiet and hoping nobody notices.
+ *
+ * Framed as SELECTIVITY, never as availability. A limit that exists to protect
+ * the standard reads as a reason to book early. The same fact framed as
+ * openness reads as a vacancy. It is the identical calendar either way, so the
+ * framing is the entire decision.
+ *
+ * The second line is the load-bearing one: it converts an unstated risk
+ * ("what if he strings me along") into a stated policy. It also has to remain
+ * true, so it promises honesty on the call rather than a start date.
+ */
+const capacity = {
+  label: 'CAPACITY',
+  lines: [
+    'Two or three engagements at a time. No more. That is what keeps the work at the standard this portfolio sets.',
+    'Most projects start within two to three weeks of the first call. If the calendar is full, you hear it on that call rather than a month later.',
+  ],
+}
+
 const initialState: ContactFormState = { status: 'idle' }
 
 export default function ContactPage() {
@@ -322,6 +348,38 @@ export default function ContactPage() {
                     </div>
                   ))}
                 </div>
+              </div>
+
+              {/* Divider + Capacity. Sits directly after WHAT HAPPENS NEXT and
+                  before the booking CTA on purpose: it is the last objection
+                  standing between reading the process and booking the call. */}
+              <div style={{ borderTop: '0.5px solid var(--color-border)', paddingTop: '36px', marginBottom: '36px' }}>
+                <span
+                  style={{
+                    fontFamily: 'var(--font-body)',
+                    fontSize: '0.625rem',
+                    letterSpacing: '0.16em',
+                    color: 'var(--color-text-muted)',
+                    fontWeight: 400,
+                    textTransform: 'uppercase',
+                    display: 'block',
+                    marginBottom: '16px',
+                  }}
+                >
+                  {capacity.label}
+                </span>
+                {capacity.lines.map((line, i) => (
+                  <p
+                    key={i}
+                    className="type-body"
+                    style={{
+                      color: 'var(--color-text-secondary)',
+                      margin: i === capacity.lines.length - 1 ? 0 : '0 0 14px',
+                    }}
+                  >
+                    {line}
+                  </p>
+                ))}
               </div>
 
               {/* Divider */}
