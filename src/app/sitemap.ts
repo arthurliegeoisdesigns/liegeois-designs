@@ -20,10 +20,18 @@ const SERVICES_UPDATED = new Date('2026-07-19') // per-service pages added
 const SERVICE_SLUGS = servicePages.map((s) => s.slug)
 const INDUSTRIES_ADDED = new Date('2026-08-15')
 
+/* A lastmod in the future is not a date, it is a contradiction: the page
+   cannot have last changed at a time that has not happened. Google ignores
+   those entries, and enough of them reduces its trust in the whole file.
+   Posts are written ahead and carry a scheduled publishedAt, so on 7 Sep 2026
+   three of them were stamped 8, 15 and 22 Sep. Clamping at read time fixes it
+   permanently rather than one date at a time. */
+const notInTheFuture = (d: Date) => new Date(Math.min(d.getTime(), Date.now()))
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const blogRoutes = publishedPosts.map((post) => ({
     url: `${BASE}/blog/${post.slug}`,
-    lastModified: new Date(post.publishedAt),
+    lastModified: notInTheFuture(new Date(post.publishedAt)),
     changeFrequency: 'monthly' as const,
     priority: 0.6,
   }))

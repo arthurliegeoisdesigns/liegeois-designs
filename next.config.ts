@@ -86,9 +86,56 @@ const nextConfig: NextConfig = {
       // ── Retired blog posts (Arthur's curation, July 2026) → /blog ────────
       { source: '/blog/how-ai-makes-creative-direction-more-valuable', destination: '/blog', permanent: true },
       { source: '/blog/the-limits-of-perfection', destination: '/blog', permanent: true },
-      // ── Old Webflow blog imported items → /blog ──────────────────────────
-      { source: '/blog/imported-item-24',   destination: '/blog', permanent: true },
-      { source: '/blog/imported-item-30',   destination: '/blog', permanent: true },
+      // ── Old Webflow blog imported items ──────────────────────────────────
+      // These carry the whole blog's search history. Every one of them was
+      // indexed under /blog/imported-item-N, and several STILL are: on 7 Sep
+      // 2026 a live search returned imported-item-21, -5 and -14 rather than
+      // the clean slugs that replaced them.
+      //
+      // The rule here used to be a single wildcard sending all of them to
+      // /blog. That is why the replacement posts would not index. Google held
+      // the old URL, with its accumulated authority, pointing at a page whose
+      // content did not match, so it never transferred that authority to the
+      // new slug and left the new slug at "Discovered, currently not indexed"
+      // indefinitely. A redirect to the wrong destination is worse than no
+      // redirect, because it looks deliberate.
+      //
+      // Mapped one to one, from titles read off the live index 7 Sep 2026.
+      // ORDER MATTERS: Next takes the first match, so the wildcard stays last.
+      { source: '/blog/imported-item-3',  destination: '/blog/big-picture-vision-tiny-picture-doubts',      permanent: true },
+      { source: '/blog/imported-item-4',  destination: '/blog/breaking-projects-into-scenes-not-steps',     permanent: true },
+      { source: '/blog/imported-item-9',  destination: '/blog/designing-for-others-vs-designing-from-gut',  permanent: true },
+      { source: '/blog/imported-item-13', destination: '/blog/learning-to-speak-in-images',                 permanent: true },
+      { source: '/blog/imported-item-14', destination: '/blog/permission-slips-for-reinvention',            permanent: true },
+      { source: '/blog/imported-item-16', destination: '/blog/reinvention-after-breakdown',                 permanent: true },
+      { source: '/blog/imported-item-21', destination: '/blog/the-discipline-of-care',                      permanent: true },
+      { source: '/blog/imported-item-22', destination: '/blog/the-first-time-i-saw-my-life-as-a-design-brief', permanent: true },
+      { source: '/blog/imported-item-30', destination: '/blog/living-someone-else-story',                   permanent: true },
+
+      // Withdrawn on purpose. These point at slugs that proxy.ts serves as 410,
+      // so the chain reads 301 → 410: "this moved here, and that is gone."
+      // Deliberately NOT sent to /blog, which would claim they merely moved.
+      { source: '/blog/imported-item-5',  destination: '/blog/chaos-as-raw-material',                       permanent: true },
+      { source: '/blog/imported-item-20', destination: '/blog/the-day-i-fired-my-inner-impostor-boss',      permanent: true },
+
+      // Retired by Arthur's curation, or never published. No destination
+      // exists, so /blog is the honest answer rather than a guess.
+      //   11 = From Corporate Costume to Thin Creative Skin
+      //   12 = The Future of Creative Direction (AI)
+      //   17 = Stop Asking for a Logo. Start Building a Brand System.
+      //   23 = The Limits of Perfection
+      //   24 = The Moment I Made Things Undeniable
+      //   27 = The Power of Branding as Transformation
+      { source: '/blog/imported-item-11', destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-12', destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-17', destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-23', destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-24', destination: '/blog', permanent: true },
+      { source: '/blog/imported-item-27', destination: '/blog', permanent: true },
+
+      // Numbers not yet identified. /blog beats a 404 while they stay unknown.
+      // If one shows up in a GSC export, look up its title and give it a real
+      // destination above rather than leaving it to this line.
       { source: '/blog/imported-item-:id',  destination: '/blog', permanent: true },
       // ── Old Webflow portfolio category filter pages → /work ───────────────
       { source: '/portfolio/healthcare',    destination: '/work', permanent: true },
