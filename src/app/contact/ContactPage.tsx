@@ -73,7 +73,7 @@ const steps = [
 const capacity = {
   label: 'CAPACITY',
   lines: [
-    'Two or three engagements at a time. No more. That is what keeps the work at the standard this portfolio sets.',
+    'Two engagements at a time. No more. That is what keeps the work at the standard this portfolio sets.',
     'Most projects start within two to three weeks of the first call. If the calendar is full, you hear it on that call rather than a month later.',
   ],
 }
