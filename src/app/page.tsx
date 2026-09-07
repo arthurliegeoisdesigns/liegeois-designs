@@ -99,9 +99,12 @@ const SEATS = [
    - The number arrives at the moment it should: $??? becomes $82 billion.
      That is the studio's whole argument about timing, in one drag.
 
-   Note the two files are different sizes: 960x540 and 1920x1080. Same 16:9
-   and same framing, so the clip-path reveal is correct, but the BEFORE will
-   soften at full width. Re-export at 1920 or wider when convenient. */
+   Both frames are 1920x1080. The first BEFORE upload was 960x540, which would
+   have softened at full width; Arthur re-exported it the same day. The slider
+   depends on the two being pixel-identical in size and framing, because the
+   reveal is a clip-path over stacked images rather than a crossfade — a
+   mismatch reads as the slide jumping rather than changing. Verified: both
+   1920x1080, aspect 1.7778. */
 const BA = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_1600'
 
 export default function Home() {
@@ -162,7 +165,7 @@ export default function Home() {
             </div>
             <ProofSlider
               priority
-              before={`${BA}/v1788796880/noxx-before-01_hxuj2c.jpg`}
+              before={`${BA}/v1788797349/noxx-before-01.jpeg.001_y40fth.jpg`}
               after={`${BA}/v1788796912/noxx-after-01_bawda3.jpg`}
               project="NOXX Therapeutics"
               slide="NX-022-ISAC, Seed C"
