@@ -2887,8 +2887,19 @@ footer {
 /* VIGNETTE — fixed, never parallaxed. Pulls the corners down so the light
    reads as entering the frame rather than filling it. */
 .bd-vig {
+  /* WAS rgba(0,0,0,.74) at the outer stop, which removed 44% of the light at
+     the corners. That was correct when the field was a flat tint and the
+     vignette had to supply all the depth. It is wrong now: the field is a
+     composition that already carries its own falloff, and the corners are
+     where Arthur explicitly asked for light. Measured, the old value halved
+     the bottom-right corner, 0.0209 to 0.0106.
+
+     Kept at a token value rather than deleted: it still takes the very outer
+     edge off a bright field on an ultrawide display, where `cover` crops
+     differently and the source's own vignette runs out. Raise it only if that
+     actually happens. */
   background: radial-gradient(126% 96% at 46% 46%,
-    rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, .74) 100%);
+    rgba(0, 0, 0, 0) 62%, rgba(0, 0, 0, .16) 100%);
 }
 
 /* Everything the reader is meant to look at sits above the field. */

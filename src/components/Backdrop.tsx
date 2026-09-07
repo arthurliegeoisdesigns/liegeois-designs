@@ -42,20 +42,15 @@
 export default function Backdrop() {
   return (
     <div className="backdrop" aria-hidden="true">
-      {/* FAR — tints the black. Slowest, so it reads as distance. */}
+      {/* FAR — the field itself. Now the only thing in the stack. */}
       <div className="bd bd-far" data-depth="0.08" />
 
-      {/* THE SPHERE. Hard-edged, unblurred, and the reason the parallax is
-          legible at all: the first build moved a field with no edges in it, so
-          nothing appeared to move no matter what the rate was. Note this one
-          is NOT wrapped in .bd — it positions itself. */}
-      <div className="bd-orb" data-depth="0.24" />
-
-      {/* NEAR — faint highlights, fastest, so there are three depths. */}
-      <div className="bd bd-near" data-depth="0.52" />
-
       {/* VIGNETTE — does not move. A moving vignette reads as a spotlight
-          following the reader. */}
+          following the reader.
+
+          NEUTRALISED 7 Sep, see globals.css. It was removing 44% of the light
+          at the corners, which landed squarely on the two corner lifts Arthur
+          had asked for. */}
       <div className="bd bd-vig" />
     </div>
   )
