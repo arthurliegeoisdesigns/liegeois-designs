@@ -31,25 +31,21 @@ const CSS = readFileSync(new URL('../src/app/globals.css', import.meta.url), 'ut
 
 /* The surfaces text can actually land on. Worst case first.
  *
- * UPDATED 7 Sep 2026, second revision, and this is the part to keep honest.
- * The field was rebuilt again: pure black with the light entering from the
- * flanks, so the centre of frame stays dark by composition rather than by
- * dimming. An auditor carrying a stale surface is worse than none, because it
- * reports green against a page that does not exist. This has now been wrong
- * twice, so check it whenever the backdrop moves.
+ * UPDATED 7 Sep 2026, THIRD revision. Keep this honest: an auditor carrying a
+ * stale surface is worse than no auditor, because it reports green against a
+ * page that does not exist. It has been wrong twice already. Re-derive it
+ * whenever the backdrop changes.
  *
- * #0A192B is the composited centre of frame where the content column sits:
- * the key light's falloff at 50% width, plus the fill, plus the sphere's DARK
- * flank (it is offset left on purpose), plus the near layer.
- *
- * The sphere's LIT quadrant is far brighter, around #717E90, and nothing here
- * would survive on it. That is deliberate and it is a LAYOUT contract, not a
- * colour one: the sphere is pushed left so its lit face falls in the outer
- * margin. If content ever moves under it, this whole assumption breaks and the
- * number above is a lie.
+ * The field is now a baked mesh (scripts/build-mesh.py). #0F2A4A is the
+ * brightest pixel it reaches anywhere the TEXT COLUMN crosses, sampled
+ * directly from the generated image across x in 17-83% and the full height.
+ * The frame edges go brighter, up to about #1C5694, but nothing bare sits
+ * there: that is a layout contract, and the mesh script documents the ceiling
+ * it was tuned against.
  */
 const SURFACES = {
-  'centre of field': '#0A192B', // where the content column actually sits
+  'field, brightest under the column': '#0F2A4A',
+
   canvas: '#090909',
   void: '#000000',
 }
@@ -221,7 +217,7 @@ for (const [, selRaw, body] of CSS.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
 
 const f = (n) => n.toFixed(2).padStart(5)
 console.log(`\nContrast audit — THE ROOM`)
-console.log(`Measured against ${Object.values(SURFACES)[0]}, the centre of the field, not pure void.\n`)
+console.log(`Measured against ${Object.values(SURFACES)[0]}, the brightest point under the text column.\n`)
 console.log(`  text-colour rules examined  ${results.length}`)
 console.log(`  documented exemptions       ${exempted.length}`)
 console.log(`  light surfaces, text-free   ${surfaceExempt.length}`)
