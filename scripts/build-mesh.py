@@ -94,47 +94,77 @@ SEED = 20260907           # grain is deterministic, so rebuilds are identical
 
 
 # ── the lighting rig ─────────────────────────────────────────────────────────
-# Each entry is one light: position in fractions of the frame, radius, colour,
-# and intensity. They SUM. Overlaps go white; gaps stay black.
+# REVISED 7 Sep, third pass, against two references Arthur generated elsewhere.
 #
-# The rig is a stage wash from the left, which is what Arthur asked for and
-# what reference 5815 does: the beam enters at the left and pools centre-left,
-# rather than the field simply being brighter on one side.
+# WHAT THOSE CHANGED
+# Every version before this used radial lights, and every one of them read as
+# lamps in a dark room. Arthur's references are not lamps. They are DIAGONAL
+# RAKING BANDS: light crossing a surface at a shallow angle, so the iso-
+# luminance lines run lower-left to upper-right and the whole field reads as
+# one continuous sheet rather than as a set of sources. A structure tensor on
+# the reference puts the bands at roughly 8 degrees off horizontal.
 #
-#   x, y      centre, 0-1 across the frame
-#   rx, ry    radius, in fractions of frame width/height. Ellipses, because
-#             round lights read as bubbles and these need to read as wash.
-#   rgb       hue of the light at full power, 0-255 sRGB (converted to linear)
-#   power     peak contribution in linear light. Values above ~0.5 will blow to
-#             white where two lights overlap, which is intended for the key.
-#   soft      falloff exponent. Lower is softer and hazier. 2.0 is Gaussian.
+# That is a different primitive, not a different tuning, which is why no amount
+# of moving ellipses around ever got close.
+#
+# They are also far gentler than the poster references. Measured:
+#     bright version   median 0.134   p95 0.237   max 0.353   (2.6x range)
+#     dark version     median 0.017   p95 0.044   max 0.093
+# Both keep the top corners dark and the bottom brighter. There is no hot core
+# at all. Arthur has asked for the two corner lifts below on top of that.
+#
+# TWO KINDS OF LIGHT
+#
+#   kind="band"   an infinite stripe. Gaussian in the PERPENDICULAR distance
+#                 from a line, so it has no ends and no centre, which is what
+#                 stops it reading as a source. This is the primitive that
+#                 makes the field a sheet.
+#       ang       degrees from horizontal, positive = rising to the right
+#       pos       where the line sits, 0-1 across the perpendicular axis
+#       width     Gaussian sigma of the stripe, in frame widths
+#
+#   kind="spot"   an ellipse, as before. Now used ONLY for the corner lifts,
+#                 where a soft local bloom is exactly what is wanted.
+#       x, y, rx, ry, soft
+#
+# Both take rgb (the light's colour at full power) and power (peak contribution
+# in linear light). They SUM.
 LIGHTS = [
-    # KEY. A wash entering from off-frame left. Enormous and centred outside
-    # the frame, so what is visible is a SLICE of a much larger source. This is
-    # the single most important light and the reason the field reads as a stage
-    # rather than as a poster.
-    dict(x=-0.22, y=0.78, rx=0.76, ry=0.66, rgb=(78, 108, 236), power=1.35, soft=1.55),
+    # ── the sheet ────────────────────────────────────────────────────────────
+    # DEEP BLUE. The widest band and the body of the field. Sampled from the
+    # reference's most saturated pixels.
+    dict(kind="band", ang=20.0, pos=0.50, width=0.170, rgb=(34, 100, 214), power=0.50),
 
-    # CROSS. Cyan, upper-left of centre, overlapping the key across most of its
-    # area. Their overlap is the near-white core; neither is white alone.
-    dict(x=0.30, y=0.70, rx=0.54, ry=0.42, rgb=(126, 216, 238), power=0.92, soft=1.60),
+    # PALE STREAK. A narrower, lighter band riding just above the blue. This is
+    # the highlight that gives the sheet its fold; without it the blue is flat.
+    dict(kind="band", ang=20.0, pos=0.33, width=0.065, rgb=(158, 192, 240), power=0.26),
 
-    # SPILL. Cool violet reaching right, so the lit region does not stop dead
-    # at the middle of the frame. Very soft, very wide, low power.
-    dict(x=0.68, y=0.66, rx=0.56, ry=0.46, rgb=(104, 96, 220), power=0.30, soft=1.45),
+    # VERMILION. The warm band, crossing at a slightly different angle so the
+    # two are not parallel. Non-parallel bands are what make the field look
+    # woven rather than striped.
+    dict(kind="band", ang=13.0, pos=0.85, width=0.125, rgb=(236, 92, 44), power=0.44),
 
-    # WARM LOW. Amber from below. Wide enough to underlight the whole lower
-    # half, dim enough to stay atmosphere. This is the volume.
-    dict(x=0.34, y=1.04, rx=0.68, ry=0.40, rgb=(236, 152, 76), power=0.52, soft=1.50),
+    # WARM UNDERTONE. Very wide, very dim, low in the frame. Keeps the bottom
+    # from going cold between the vermilion and the blue.
+    dict(kind="band", ang=16.0, pos=0.03, width=0.130, rgb=(232, 90, 46), power=0.36),
 
-    # WARM TOUCH. Rose, lower-right, overlapping the amber so the warm half is
-    # not one flat colour. Still the smallest light in the rig.
-    dict(x=0.74, y=0.94, rx=0.42, ry=0.30, rgb=(228, 104, 122), power=0.34, soft=1.60),
+    # ── the corner lifts, per Arthur 7 Sep ───────────────────────────────────
+    # "more light coming from the left top corner and bottom right corner, but
+    # subtle and fully blended in".
+    #
+    # SUBTLE is the whole brief, so these are the two lowest-powered lights in
+    # the rig and both are larger than the frame. A corner lift that reads as a
+    # glow has failed; it should only be noticeable if you cover it up.
+    #
+    # They are also the two lights the LEGIBILITY numbers are most sensitive
+    # to, because the top-left is where the hero copy sits. If the build starts
+    # reporting the hero zone below 4.5:1, this is the first place to look.
+    dict(kind="spot", x=-0.04, y=-0.06, rx=0.78, ry=0.92, rgb=(152, 180, 228), power=0.115, soft=1.30),
+    dict(kind="spot", x=1.05, y=1.06, rx=0.80, ry=0.94, rgb=(238, 142, 96), power=0.105, soft=1.30),
 
-    # DEEP AMBIENT. Indigo, larger than the frame, very dim. Nothing is ever
-    # pure black. Every reference shares this; it is what makes the dark read
-    # as velvet rather than as a hole.
-    dict(x=0.42, y=0.52, rx=1.60, ry=1.60, rgb=(48, 42, 100), power=0.030, soft=1.10),
+    # DEEP AMBIENT. Nothing is ever pure black. Every reference shares this and
+    # it is what makes the dark read as velvet rather than as a hole.
+    dict(kind="spot", x=0.46, y=0.50, rx=1.70, ry=1.70, rgb=(34, 40, 78), power=0.020, soft=1.05),
 ]
 
 # Warm lights are capped so they read as amber shadow, never as an accent.
@@ -165,9 +195,9 @@ WARM_CEILING = 0.34
 # DIFFUSE keeps the core honest. BLOOM_SIGMA is the halo, added at BLOOM_GAIN
 # rather than averaged in, so it fills the gaps between lights without pulling
 # the lit areas down toward the mean.
-DIFFUSE      = 0.042
+DIFFUSE      = 0.055
 BLOOM_SIGMA  = 0.230
-BLOOM_GAIN   = 0.62
+BLOOM_GAIN   = 0.30
 
 # SHADOW CRUSH. The exposure curve, and the last piece of the puzzle.
 #
@@ -186,13 +216,13 @@ BLOOM_GAIN   = 0.62
 # variation BEHIND it to refract, and an even wash has none by definition.
 #
 # Higher crushes harder. Below about 1.4 the wash comes back.
-SHADOW_CRUSH = 1.95
+SHADOW_CRUSH = 1.62
 
 # Vignette. Reference 5815 measures 7.3x centre-to-edge, and that ratio is what
 # makes the lit region read as a beam rather than as a bright wall.
-VIG_CENTRE   = (0.36, 0.76)
-VIG_INNER    = 0.18    # untouched out to here
-VIG_STRENGTH = 0.82    # how far the corners fall
+VIG_CENTRE   = (0.46, 0.56)
+VIG_INNER    = 0.30    # untouched out to here
+VIG_STRENGTH = 0.50    # how far the corners fall
 VIG_CURVE    = 1.55
 
 # TOP HOLD-DOWN. A separate darkening across the top of the frame.
@@ -211,8 +241,8 @@ VIG_CURVE    = 1.55
 # still enters from the left, but low, and the top of the frame is held down.
 #
 # Fraction of frame height affected, and how hard.
-TOP_HOLD      = 0.62
-TOP_HOLD_AMT  = 0.86
+TOP_HOLD      = 0.44
+TOP_HOLD_AMT  = 0.74
 
 # Grain. References measure sigma 3.9 and 7.2 on an 8-bit channel.
 GRAIN_SIGMA  = 4.4
@@ -221,7 +251,7 @@ GRAIN_BLUR   = 0.6     # slight blur: pixel-perfect noise reads as sensor dirt
 # Exposure trim, applied in linear light before the transfer back to sRGB.
 # The one dial to reach for if the whole field wants to be brighter or darker
 # WITHOUT changing the composition. Prefer this to editing every power above.
-EXPOSURE = 1.0
+EXPOSURE = 1.28
 
 
 def srgb_to_linear(c):
@@ -308,10 +338,8 @@ def main():
         power = l["power"]
         if is_warm(l["rgb"]):
             power = min(power, WARM_CEILING)
-        rig.append((
-            l["x"], l["y"], l["rx"], l["ry"], l["soft"], power,
-            tuple(srgb_to_linear(v) for v in l["rgb"]),
-        ))
+        rig.append({**l, "power": power,
+                    "lin": np.array([srgb_to_linear(v) for v in l["rgb"]])})
 
     # ── composite, additively, in linear light ───────────────────────────────
     # Built at half size: the field carries no detail above this frequency, and
@@ -321,12 +349,29 @@ def main():
     fy = np.linspace(0.0, 1.0, ch)[:, None]
 
     acc = np.zeros((ch, cw, 3), dtype=np.float64)
-    for lx, ly, rx, ry, soft, power, colour in rig:
-        d2 = ((fx - lx) / rx) ** 2 + ((fy - ly) / ry) ** 2
-        # smooth falloff reaching exactly zero at the radius, so a light has no
-        # edge of its own; the exponent shapes haze against hotspot
-        f = np.clip(1.0 - d2, 0.0, None) ** soft
-        acc += f[..., None] * (np.array(colour) * power)[None, None, :]
+    # Aspect-corrected vertical axis, so a stated band angle is the angle you
+    # actually see rather than one skewed by the 960x600 frame.
+    ay = fy * (H / W)
+
+    for l in rig:
+        if l["kind"] == "band":
+            th = np.radians(l["ang"])
+            # Signed perpendicular distance from the band's line. No centre and
+            # no ends: this is what stops a band reading as a source.
+            #
+            # NORMALISED across the frame's actual perpendicular extent, which
+            # depends on the angle. Without this, pos does not mean what it
+            # says: the first version of this had the blue band peaking off
+            # frame at 0.53 strength while the vermilion sat at full power
+            # across the whole lower right, and the field came out maroon.
+            u = fx * np.sin(th) - ay * np.cos(th)
+            span = abs(np.sin(th)) + abs(np.cos(th)) * (H / W)
+            u = (u + abs(np.cos(th)) * (H / W)) / span   # 0 at one edge, 1 at the other
+            f = np.exp(-((u - l["pos"]) / l["width"]) ** 2)
+        else:
+            d2 = ((fx - l["x"]) / l["rx"]) ** 2 + ((fy - l["y"]) / l["ry"]) ** 2
+            f = np.clip(1.0 - d2, 0.0, None) ** l["soft"]
+        acc = acc + (f * l["power"])[..., None] * l["lin"][None, None, :]
 
     # ── diffusion ────────────────────────────────────────────────────────────
     # See DIFFUSE above. This is what makes it one field instead of six lights.
@@ -403,7 +448,26 @@ def report(mesh):
     print(f"  legible for #BDB7AE body text over {ok_secondary:.0%} of the field")
     print()
     print(f"  dark median (< 0.12):     {'yes' if med < 0.12 else 'NO — field is a plateau, not a beam'}")
-    print(f"  hot core (peak > 0.45):   {'yes' if mx > 0.45 else 'NO — nothing for cards to frost against'}")
+    # Replaced the old "hot core > 0.45" check on 7 Sep. That threshold came
+    # from the poster references, which peak at 1.000. Arthur's chosen
+    # references peak at 0.093 and 0.353, so a hot core is no longer the goal
+    # and the check was failing on a target we had deliberately moved away
+    # from. What still matters is whether a frosted card has anything behind it
+    # to refract, so measure THAT: the luminance ratio across a card-sized
+    # window, at the three places cards actually sit.
+    w, h = mesh.size
+    import numpy as _np
+    A = _np.asarray(mesh.convert("RGB"), dtype=float) / 255
+    A = _np.where(A <= 0.04045, A / 12.92, ((A + 0.055) / 1.055) ** 2.4)
+    Y = .2126 * A[..., 0] + .7152 * A[..., 1] + .0722 * A[..., 2]
+    ratios = []
+    for cy, cx in ((.24, .60), (.58, .16), (.46, .40)):
+        win = Y[int(cy * h):int((cy + .26) * h), int(cx * w):int((cx + .28) * w)]
+        ratios.append(win.max() / max(win.min(), 1e-4))
+    print(f"  frost variation across a card: "
+          f"{'  '.join(f'{r:.1f}x' for r in ratios)}")
+    print(f"  cards have something to refract (>2x):  "
+          f"{'yes' if min(ratios) > 2.0 else 'NO — the field is flat where the panels sit'}")
     print(f"  no pure black:            {'yes' if mn > 0.0015 else 'NO — raise the ambient light'}")
 
 
