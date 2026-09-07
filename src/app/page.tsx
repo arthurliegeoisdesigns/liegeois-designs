@@ -84,12 +84,24 @@ const SEATS = [
     body: 'Raised $110,000 on a deck I made myself.' },
 ]
 
-/* Philips, not MCS x Johnson & Johnson. Swapped 7 Sep 2026: the J&J slide 9
-   pair shows real client data and Arthur flagged it as confidential, so it can
-   not sit on the homepage. Philips 07 is the better argument anyway — the
-   before is a wall of roughly fifteen certification logos and the after is
-   three photographed columns, so the transformation is REMOVAL, which is
-   exactly what the headline above it claims. */
+/* NOXX Therapeutics, added 7 Sep 2026 and cleared by Arthur. It replaces the
+   Philips 07 pair, which replaced the MCS x Johnson & Johnson pair when that
+   turned out to be confidential. Philips keeps both of its pairs on its own
+   case study; nothing is lost by moving it off the hero.
+
+   Why NOXX earns the hero over Philips:
+   - The AFTER is dark. On the old bone site a white slide sat fine; on this
+     palette a dark cinematic frame belongs and a white one punches a hole.
+   - The BEFORE is genuinely bad rather than merely busy. Centred Arial on
+     white with a literal "$???" placeholder is the slide every founder
+     recognises from their own deck.
+   - "Seed C round" speaks directly to the audience the page is written for.
+   - The number arrives at the moment it should: $??? becomes $82 billion.
+     That is the studio's whole argument about timing, in one drag.
+
+   Note the two files are different sizes: 960x540 and 1920x1080. Same 16:9
+   and same framing, so the clip-path reveal is correct, but the BEFORE will
+   soften at full width. Re-export at 1920 or wider when convenient. */
 const BA = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_1600'
 
 export default function Home() {
@@ -150,10 +162,10 @@ export default function Home() {
             </div>
             <ProofSlider
               priority
-              before={`${BA}/v1788697490/philips-07-before_lkszxd.jpg`}
-              after={`${BA}/v1788697491/philips-07-after_efbciw.jpg`}
-              project="Philips Healthcare"
-              slide="Our key ESG commitments"
+              before={`${BA}/v1788796880/noxx-before-01_hxuj2c.jpg`}
+              after={`${BA}/v1788796912/noxx-after-01_bawda3.jpg`}
+              project="NOXX Therapeutics"
+              slide="NX-022-ISAC, Seed C"
             />
           </div>
         </header>

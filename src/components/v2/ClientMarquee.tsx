@@ -14,9 +14,25 @@ import { useEffect, useRef } from 'react'
  * prefers-reduced-motion.
  */
 
+/* CLIENTS. Not employers.
+ *
+ * FLAG, 7 Sep 2026: 'Apple' is still in this list and it should probably come
+ * out. The schema, the about-page prose and the hero were all corrected today
+ * to say plainly that Apple, Oracle and Smartbox are EMPLOYERS and that IBM,
+ * Ogilvy, Chevron and the rest are CLIENTS — because both ChatGPT and Gemini
+ * were returning Apple as a portfolio client and that is a credibility problem
+ * the moment a recruiter probes it.
+ *
+ * A client marquee with Apple in it contradicts all of that, in the most
+ * visible place on the site. Left in place pending Arthur's call rather than
+ * removed unilaterally: he may have done presentation work for Apple presenters
+ * during the 2011-2015 role, and the homepage does carry a "Presenter, Apple"
+ * testimonial. If that work was done AS AN EMPLOYEE it does not belong here.
+ */
 const NAMES = [
   'Chevron', 'IBM', 'Marriott', 'Philips', 'Google', 'Lilly', 'Ogilvy',
-  'RAPP', 'Bloomberg', 'Mastercard', 'Johnson & Johnson', 'Apple', 'Starz', 'Evolus', 'CDW',
+  'RAPP', 'Bloomberg', 'Mastercard', 'Johnson & Johnson', 'Apple', 'Starz',
+  'Evolus', 'CDW', 'NOXX Therapeutics',
 ]
 
 export default function ClientMarquee() {
