@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { links, SITE, PERSON_SAME_AS, ORG_ID, PERSON_ID } from '@/lib/config'
 import { publishedPosts } from '@/content/blog-posts'
+import { proofForDay } from '@/content/hero-proof'
 import ClientMarquee from '@/components/v2/ClientMarquee'
 import ProofSlider from '@/components/v2/ProofSlider'
 import WorkFlip from '@/components/v2/WorkFlip'
@@ -84,31 +85,20 @@ const SEATS = [
     body: 'Raised $110,000 on a deck I made myself.' },
 ]
 
-/* NOXX Therapeutics, added 7 Sep 2026 and cleared by Arthur. It replaces the
-   Philips 07 pair, which replaced the MCS x Johnson & Johnson pair when that
-   turned out to be confidential. Philips keeps both of its pairs on its own
-   case study; nothing is lost by moving it off the hero.
-
-   Why NOXX earns the hero over Philips:
-   - The AFTER is dark. On the old bone site a white slide sat fine; on this
-     palette a dark cinematic frame belongs and a white one punches a hole.
-   - The BEFORE is genuinely bad rather than merely busy. Centred Arial on
-     white with a literal "$???" placeholder is the slide every founder
-     recognises from their own deck.
-   - "Seed C round" speaks directly to the audience the page is written for.
-   - The number arrives at the moment it should: $??? becomes $82 billion.
-     That is the studio's whole argument about timing, in one drag.
-
-   Both frames are 1920x1080. The first BEFORE upload was 960x540, which would
-   have softened at full width; Arthur re-exported it the same day. The slider
-   depends on the two being pixel-identical in size and framing, because the
-   reveal is a clip-path over stacked images rather than a crossfade — a
-   mismatch reads as the slide jumping rather than changing. Verified: both
-   1920x1080, aspect 1.7778. */
-const BA = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_1600'
+/**
+ * The hero pair ROTATES DAILY. See src/content/hero-proof.ts for the list and
+ * the reasoning; the short version is that the choice happens on the server so
+ * the eager, fetchPriority=high preload still works, and it rotates by CLIENT
+ * so Philips having two pairs does not crowd out NOXX having one.
+ *
+ * revalidate is what makes "daily" real: without it this page is built once and
+ * the rotation would only advance when Arthur deploys.
+ */
+export const revalidate = 86_400   // one day, in seconds
 
 export default function Home() {
   const posts = publishedPosts.slice(0, 3)
+  const proof = proofForDay()
 
   return (
     <>
@@ -165,10 +155,10 @@ export default function Home() {
             </div>
             <ProofSlider
               priority
-              before={`${BA}/v1788797349/noxx-before-01.jpeg.001_y40fth.jpg`}
-              after={`${BA}/v1788796912/noxx-after-01_bawda3.jpg`}
-              project="NOXX Therapeutics"
-              slide="NX-022-ISAC, Seed C"
+              before={proof.before}
+              after={proof.after}
+              project={proof.client}
+              slide={proof.slide}
             />
           </div>
         </header>
