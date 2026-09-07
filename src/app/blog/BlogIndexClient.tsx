@@ -11,12 +11,11 @@ import { blogThemes, getThemeBySlug } from '@/content/blog-themes'
  * BlogIndexClient v2 — editorial front page (Phase 6).
  * One featured essay at poster scale, then two strands:
  *   The Craft   — presentation design, storytelling, AI
- *   Field Notes — the personal strand (reinvention, ADHD, fellow travelers)
+ *   Field Notes — the personal strand (reinvention, fellow travelers)
  * Theme chips filter into a flat editorial list. Dark, one-world aesthetic.
  */
 const FIELD_NOTES_THEMES = new Set([
   'breaking-free-from-the-script',
-  'adhd-as-a-creative-asset',
   'lessons-for-fellow-travelers',
 ])
 

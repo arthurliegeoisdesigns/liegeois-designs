@@ -198,7 +198,6 @@ export default async function BlogPostPage({
           'presentation-design-tips': { slug: 'executive-presentations', label: 'Executive presentation design' },
           'becoming-a-visual-storyteller': { slug: 'strategic-narrative', label: 'Strategic narrative' },
           'breaking-free-from-the-script': { slug: 'strategic-narrative', label: 'Strategic narrative' },
-          'adhd-as-a-creative-asset': { slug: 'strategic-narrative', label: 'Strategic narrative' },
           'lessons-for-fellow-travelers': { slug: 'pitch-deck-design', label: 'Pitch & investor deck design' },
           'ai-in-design': { slug: 'pitch-deck-design', label: 'Pitch & investor deck design' },
         }

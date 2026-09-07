@@ -46,7 +46,6 @@ const OVERRIDE: Record<string, string> = {
 
 /** Personal essays. Deliberately unsold. */
 const NO_SELL = new Set([
-  'adhd-as-a-creative-asset',
   'lessons-for-fellow-travelers',
   'breaking-free-from-the-script',
   'ai-in-design',
