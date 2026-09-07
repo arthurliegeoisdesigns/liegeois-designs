@@ -46,64 +46,51 @@ except ImportError:
 
 OUT = Path(__file__).resolve().parent.parent / "public" / "images" / "mesh-field.webp"
 
-# ── the mesh ─────────────────────────────────────────────────────────────────
-# These are GAA's own colours, sampled from the reference on a 6x5 grid, but
-# RE-COMPOSED. That distinction matters and is the one liberty taken here.
+# ── the field ────────────────────────────────────────────────────────────────
+# THE CONSTRAINT, and the mistake that shaped four earlier versions.
+# The backdrop is position:fixed and full-viewport, so it never scrolls past
+# anything: every bright region eventually has text over it. The brightest
+# point the TEXT COLUMN crosses is therefore a hard ceiling.
 #
-# The reference is a poster: a single mark in the middle, light across the top,
-# dark pooling low. A web page has text everywhere, and its content column is
-# centred. Copying the layout pixel for pixel would put 10px eyebrows and body
-# copy on the brightest band in the frame, where Cloud Grey measures 3.74:1 and
-# Mist Blue 1.97:1. Unusable.
+# That ceiling is set by the most demanding thing sitting BARE on the field,
+# and until 7 Sep that was 10px accent-orange eyebrows, which cap the surface
+# at 0.034 luminance. Soft Slate clears at 0.126. The orange labels alone were
+# costing nearly four times the available range, so every attempt to make the
+# field rich failed contrast, and every attempt to pass contrast came out flat.
+# Flat is also why the frosted cards read as opaque: frost needs texture behind
+# it to refract.
 #
-# So the palette, the softness and the asymmetry are the reference's. The
-# arrangement is composed for the medium: key light down the LEFT flank, a
-# cooler fill rising on the RIGHT, and a deep navy trough through the middle
-# three columns where the content actually sits. Same room, camera moved.
+# Resting labels moved to Soft Slate, orange kept for signals. The ceiling is
+# now 0.126, and this field is tuned to 0.10 under the column, leaving headroom.
 #
-# THE CEILING, and the constraint that drives this whole grid.
-# The field is position:fixed and full-viewport, so it does not scroll past
-# anything: every bright region will eventually have body text over it. That
-# means the brightest point the CONTENT COLUMN crosses is a hard ceiling, and
-# it is #213043 (luminance 0.028). Above that, 10px accent eyebrows drop under
-# 4.5:1. Measured, not guessed.
-#
-# Eight columns rather than six, so the edge light can fall off fast enough to
-# be bright at the frame edge and under the ceiling by 19% width. Columns 0 and
-# 7 are the outer margins and may go as bright as they like. Columns 1 to 6 are
-# under the column and must not exceed the ceiling after darkening.
-#
-# Left flank reads neutral slate, right flank reads blue and rises toward the
-# bottom right. Deliberately unequal: a balanced field reads as wallpaper.
-# ── the field, as a profile rather than a table of hex ──────────────────────
-# Hand-authoring a grid kept producing the same bug: the bright flank bled
-# inward past the edge of the content column. A profile makes the falloff an
-# explicit, tunable number instead of something to eyeball.
-#
-# THE CONSTRAINT. The field is position:fixed and full-viewport, so it never
-# scrolls past anything: every bright region eventually has body text over it.
-# The brightest point the TEXT COLUMN crosses is therefore a hard ceiling, and
-# it measures #213043 (luminance 0.028). Above that, 10px accent eyebrows drop
-# below 4.5:1. The column runs roughly 17% to 83% of viewport width, so the
-# light has to be spent in the outer sixth on each side.
-#
-# Left flank reads neutral slate, right flank reads blue and rises toward the
-# bottom. Deliberately unequal weights: a balanced field reads as wallpaper.
-TROUGH   = (0x06, 0x10, 0x19)   # the deep navy the middle settles into
-LEFT     = (0x34, 0x47, 0x60)   # slate, the key
-RIGHT    = (0x2A, 0x53, 0x81)   # blue, the fill
-EDGE     = 0.65                 # light reaches well inward, not a stripe at the frame
-FALLOFF  = 2.60                 # gentle: keeps ~1.9x gradation through the middle
+# COMPOSITION is the reference's, re-arranged for the medium. Their piece is a
+# poster with one mark in the middle; copying its layout puts body copy on the
+# brightest band. So: key light down the LEFT flank reading slate, a cooler
+# blue fill rising on the RIGHT, deep navy trough through the middle. The
+# flanks are deliberately unequal — a balanced field reads as wallpaper.
+TROUGH   = (0x05, 0x0D, 0x17)   # the deep navy the middle settles into
+LEFT     = (0x5E, 0x79, 0x9C)   # slate, the key
+RIGHT    = (0x28, 0x60, 0xAC)   # blue, the fill
+EDGE     = 0.66                 # light reaches inward, not a stripe at the frame
+FALLOFF  = 2.30                 # gentle, so the middle keeps real gradation
 
-# LEFT and RIGHT were swept, not chosen by eye. Two failure modes bracket this:
-# a steep falloff clears the ceiling but leaves a dead-flat middle with two
-# bright stripes at the frame edges, which is not velvet; a bright flank gives
-# a rich gradient but puts 10px accent eyebrows at 3.5:1 in the lower right.
-# Holding the gentle curve and DIMMING the flank colours instead keeps the
-# gradation and clears the ceiling: worst point under the column measures
-# 0.0264 against a 0.0284 limit, while the frame edge still reaches 0.072,
-# roughly 16x the trough.
-COLS, ROWS = 14, 7
+
+def field(t, v):
+    """t = 0..1 across, v = 0..1 down. Returns an RGB triple."""
+    l = max(0.0, 1.0 - t / EDGE) ** FALLOFF
+    r = max(0.0, 1.0 - (1.0 - t) / EDGE) ** FALLOFF
+    # key strongest high, fill strongest low, so they never balance
+    l *= 0.50 + 0.50 * (1.0 - v)
+    r *= 0.35 + 0.65 * v
+    out = []
+    for i in range(3):
+        c = TROUGH[i] + (LEFT[i] - TROUGH[i]) * l
+        c = c + (RIGHT[i] - c) * r
+        out.append(c)
+    return tuple(out)
+
+
+COLS, ROWS = 16, 9
 
 
 def field(t, v):
@@ -130,7 +117,7 @@ SCALE      = 1.00
 SAT_BOOST  = 1.10   # a nudge so the deep navies do not go grey
 HUE_PULL   = 0.30   # partial: enough to unify, not so much it flattens
 HUE_TARGET = 214 / 360
-FLOOR      = "#040A14"
+FLOOR      = "#040913"
 FLOOR_MIX  = 0.55
 
 # Output is deliberately small. At this softness there is nothing to resolve,

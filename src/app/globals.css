@@ -69,7 +69,11 @@
   /* ── Text on dark ── */
   --color-on-dark:        #E6EBEF;   /* Cloud Grey */
   --color-on-dark-muted:  #C3CDDA;   /* Soft Slate */
-  --color-on-dark-faint:  #9EADC2;   /* Mist Blue */
+  /* Was Mist Blue #9EADC2. Lifted 7 Sep when the field got its range back:
+     on the brightest point the text column crosses (#2C486C) Mist measures
+     4.09:1 and misses. This is the cost of a rich backdrop and it is the right
+     trade — the faint tier was tuned against a field that was flat. */
+  --color-on-dark-faint:  #B2BFD0;
   --color-on-dark-border: rgba(255, 253, 248, 0.10);
   /* 0.35 -> 0.47 on 6 Sep, then -> 0.50 on 7 Sep.
      At 0.35 this was 3.05:1 on void and failed at all three of its call sites,
@@ -77,11 +81,13 @@
      ever audited bone. 0.47 cleared the lifted backdrop it was measured
      against that day. The backdrop then changed, the worst surface became the
      sphere interior #292A37, and 0.47 fell back to 4.31:1. 0.50 is the first
-     step that clears 4.5 there (4.67:1).
-     Worth noting the pattern: this token has now failed twice, both times
-     because the surface underneath it moved rather than because the token was
-     wrong. That is what the auditor is for. */
-  --color-on-dark-hint:   rgba(255, 253, 248, 0.50);
+     step that clears 4.5 there (4.67:1). Then -> 0.75 on 7 Sep when the field
+     got its range back and the worst surface became #2C486C.
+     Worth noting the pattern: this token has now failed THREE times, every
+     time because the surface underneath it moved rather than because the token
+     was wrong. It is the most fragile value in the system, and it is the
+     clearest argument for the auditor existing at all. */
+  --color-on-dark-hint:   rgba(255, 253, 248, 0.75);
   --color-on-dark-ghost:  rgba(255, 253, 248, 0.15);
 
   /* ── The one chromatic voice — signal orange, used like a scalpel ── */
@@ -103,7 +109,35 @@
      #FF6B3D was the previous lifted value and also passes, but its hue drifts
      to 14.2, which breaks the one-colour rule. Rejected for that reason. */
   --color-accent:       #E84420;   /* the signal: display, eyebrows over 18px, UI */
-  --color-accent-text:  #FF6442;   /* accent at body size, safe on the lifted base */
+  --color-accent-text:  #FF6442;   /* accent at body size: HOVER and ACTIVE only */
+  /* Resting labels and eyebrows, added 7 Sep 2026 and the change that unlocked
+     the backdrop.
+     Every eyebrow on the site was accent orange at 9-11px. That one decision
+     capped the whole field: 10px #FF6442 needs a surface at or below 0.034
+     luminance to clear AA, where Soft Slate clears at 0.126. The orange labels
+     alone were costing nearly four times the available brightness range, which
+     is why four rounds of backdrop work kept coming out flat, and flat is also
+     why the frosted cards had nothing to refract and read as opaque panels.
+     Arthur, 7 Sep: "the backdrop is now almost plain", "no frosting effect,
+     and no texture in the background to show it", "the orange colour with that
+     particular card colour doesn't look premium." One cause, three symptoms.
+     The reference agrees: GAA never colours a label with their accent.
+     Orange is not gone. It moved to where it means something: the CTA fill,
+     the slider handle, the active work chip, and every hover and active state. */
+  --color-label:        #C3CDDA;   /* Soft Slate */
+
+  /* HOVER, and why it is not orange.
+     Small-text hovers all used the accent. On a field with real range, 10px
+     orange measures 3.18:1 at the brightest point the column crosses and
+     fails, and there is no orange that survives there without going pink.
+     Hovers now BRIGHTEN to Cloud Grey instead. That is a better affordance
+     regardless — it does not depend on colour perception, which WCAG 1.4.1
+     asks for — and it keeps the accent a scalpel rather than a highlighter,
+     which was Arthur's third complaint: orange everywhere stopped reading as
+     premium. Orange survives where it is a real signal and has the size or
+     the surface to carry it: the CTA fill, the before/after handle, the active
+     work chip, the rule down the left of a service callout, and the underline
+     under a prose link. */
   /* For the handful of elements that are themselves BONE — the active work
      filter chip, anything printed on a slide mock. Bone is the work, and the
      work is still a light surface, so it still needs a dark accent. 5.08:1. */
@@ -181,20 +215,18 @@
      What actually makes glass read is still the border and the inner top
      highlight, not the blur radius. Both are up, and the blur has roughly
      doubled so the sphere edge visibly distorts through a card that crosses it. */
-  /* THE FROSTING BUG, found 7 Sep after Arthur reported there was none.
-     It was not too little blur. It was too much TINT: the fill sat at .66 to
-     .78 alpha, near-opaque, so the blurred field behind was not visible
-     through the card and backdrop-filter had nothing to show. Frost you cannot
-     see through is just a panel.
-
-     Down to .26/.34, which is transparent enough that the mesh visibly bends
-     through the glass. Measured over the brightest field point a card can sit
-     on (#0F2A4A): the card surface lands at #0E2541, Cloud Grey 12.9:1,
-     accent-text 5.3:1. There was never a contrast reason for the opacity.
-     The light BORDER and the inner top highlight still do the structural work. */
-  --glass-bg:         linear-gradient(155deg, rgba(16, 26, 42, .26), rgba(6, 12, 24, .34));
-  --glass-bg-hover:   linear-gradient(155deg, rgba(22, 34, 54, .32), rgba(9, 16, 30, .40));
-  --glass-filter:     blur(30px) saturate(190%) brightness(1.16);
+  /* GLASS. Two things were wrong and they compounded.
+     First the tint was near-opaque (.66-.78), so the field behind was never
+     visible through it. Second, and worse, the tint was its OWN blue, so the
+     card imposed a colour instead of taking the field's — Arthur: "the cards
+     are a different blue colour, instead of using glassmorphism."
+     Real glass has almost no colour of its own. It darkens slightly, blurs
+     heavily and boosts saturation, so what you see is the field behind it,
+     softened. Hence a near-neutral tint at low alpha. It only works over a
+     TEXTURED field, which is the other half of this fix. */
+  --glass-bg:         linear-gradient(155deg, rgba(6, 9, 16, .18), rgba(2, 4, 9, .30));
+  --glass-bg-hover:   linear-gradient(155deg, rgba(10, 14, 22, .22), rgba(4, 7, 13, .34));
+  --glass-filter:     blur(26px) saturate(210%) brightness(1.04);
   --glass-border:     rgba(230, 235, 239, 0.20);
   --glass-border-lit: rgba(230, 235, 239, 0.38);
   --glass-shadow:     0 30px 70px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .32);
@@ -821,7 +853,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 }
 .work-filter sup {
   font-size: 0.5625rem;
-  color: var(--color-accent-text);
+  color: var(--color-label);
   margin-left: 3px;
 }
 .work-filter:hover { color: var(--color-text-primary); border-color: rgba(247, 244, 239, 0.30); }
@@ -881,14 +913,14 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 .work-index-row .work-index-row-arrow,
 .blog-ed-row-arrow {
   font-family: var(--font-body);
-  color: var(--color-accent-text);
+  color: var(--color-label);
   opacity: 0;
   transform: translateX(-8px);
   transition: opacity 250ms ease, transform 350ms var(--ease-out-expo);
 }
-.work-index-row:hover .work-index-num { color: var(--color-accent-text); }
+.work-index-row:hover .work-index-num { color: var(--color-text-primary); }
 .work-index-row:hover .work-index-client {
-  color: var(--color-accent-text);
+  color: var(--color-label);
   font-style: italic;
   transform: translateX(10px);
 }
@@ -925,7 +957,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   color: var(--color-text-primary);
   transition: color 250ms ease;
 }
-.blog-ed-featured:hover .blog-ed-featured-title { color: var(--color-accent-text); }
+.blog-ed-featured:hover .blog-ed-featured-title { color: var(--color-text-primary); }
 @media (max-width: 900px) {
   .blog-ed-featured { grid-template-columns: 1fr; }
 }
@@ -959,7 +991,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   color: var(--color-text-primary);
   transition: color 250ms ease;
 }
-.blog-ed-row:hover .blog-ed-row-title { color: var(--color-accent-text); }
+.blog-ed-row:hover .blog-ed-row-title { color: var(--color-text-primary); }
 .blog-ed-row-excerpt {
   font-family: var(--font-body);
   font-size: 0.875rem;
@@ -1078,7 +1110,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   text-decoration: none;
   border-bottom: 1px solid rgba(255, 253, 248, 0.25);
 }
-.pmode-email a:hover { color: var(--color-accent-text); border-color: var(--color-accent); }
+.pmode-email a:hover { color: var(--color-text-primary); border-color: var(--color-accent); }
 .pmode-work {
   position: relative;
   width: min(86vw, calc(78vh * 1.6));
@@ -1254,7 +1286,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   text-decoration: none;
   transition: color 350ms ease, font-style 0s;
 }
-.footer-email a:hover { color: var(--color-accent); font-style: italic; }
+.footer-email a:hover { color: var(--color-text-primary); font-style: italic; }
 @media (prefers-reduced-motion: reduce) {
   .footer-status-dot { animation: none; }
 }
@@ -1462,7 +1494,7 @@ section[id] {
   font-size: clamp(1.1rem, 2vw, 1.6rem);
   /* 17.6px at the small end, which is under the 24px large-text line, so this
      is body text to a contrast checker even though it reads as an ornament. */
-  color: var(--color-accent-text);
+  color: var(--color-label);
   opacity: 0;
   transform: translateX(-10px);
   transition: opacity 250ms ease, transform 350ms var(--ease-out-expo);
@@ -1473,7 +1505,7 @@ section[id] {
   font-style: italic;
   transform: translateX(8px);
 }
-.nav-mobile-link:hover .nav-menu-num { color: var(--color-accent-text); }
+.nav-mobile-link:hover .nav-menu-num { color: var(--color-text-primary); }
 .nav-mobile-link:hover .nav-menu-arrow { opacity: 1; transform: translateX(0); }
 
 .nav-menu-meta {
@@ -1751,8 +1783,9 @@ footer {
 .prose p { margin: 0 0 24px; color: var(--color-text-secondary); text-wrap: pretty; }
 /* accent-text, not accent: prose links are 16px, so WCAG treats them as body.
    #E84420 is 4.06:1 on the lifted backdrop and fails; #FF6442 is 5.50:1. */
-.prose a { color: var(--color-accent-text); text-decoration: underline; }
-.prose a:hover { color: var(--color-accent-hover); }
+.prose a { color: var(--color-text-primary); text-decoration: underline;
+  text-decoration-color: var(--color-accent); text-underline-offset: 3px; }
+.prose a:hover { color: var(--color-text-primary); }
 .prose ul, .prose ol { margin: 0 0 24px; padding-left: 24px; }
 .prose li { margin-bottom: 8px; color: var(--color-text-secondary); }
 .prose blockquote {
@@ -2203,7 +2236,7 @@ footer {
   font-family: var(--font-display);
   font-size: clamp(1.0625rem, 1.6vw, 1.375rem);
   line-height: 1.2;
-  color: var(--color-accent-text);
+  color: var(--color-label);
   margin: 0 0 6px;
 }
 .svc-proof-stat-detail {
@@ -2260,7 +2293,7 @@ footer {
   font-size: 0.5625rem;
   font-weight: 500;
   letter-spacing: 0.16em;
-  color: var(--color-accent-text);
+  color: var(--color-label);
   margin: 0 0 8px;
 }
 .svc-idx-name {
@@ -2275,7 +2308,7 @@ footer {
 .svc-idx-tag {
   font-family: var(--font-body);
   font-size: 0.875rem;
-  color: var(--color-accent-text);
+  color: var(--color-label);
   margin: 0 0 12px;
 }
 .svc-idx-lead {
@@ -2301,7 +2334,7 @@ footer {
   border-top: 0.5px solid var(--color-border);
 }
 .svc-idx-arrow { color: var(--color-text-primary); }
-.svc-idx-card:hover .svc-idx-arrow { color: var(--color-accent-text); }
+.svc-idx-card:hover .svc-idx-arrow { color: var(--color-text-primary); }
 
 /* ════════════════════════════════════════════════════════════════════════
    HOMEPAGE V2 (/v2, Aug 2026) — light, ~6 screens, motion only where it
@@ -2318,7 +2351,7 @@ footer {
    exactly the trap: it is still 10px to a contrast checker. */
 .v2-eyebrow {
   font-family: var(--font-body); font-size: 0.625rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-accent-text); margin: 0;
+  letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-label); margin: 0;
 }
 .v2-h2 {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2381,8 +2414,8 @@ footer {
   font-size: clamp(1.7rem, 4.4vw, 3.4rem); color: var(--color-text-muted);
   padding: 0 clamp(18px, 2.4vw, 40px); white-space: nowrap; transition: color 400ms ease;
 }
-.v2-mq-item:hover { color: var(--color-accent-text); }
-.v2-mq-item i { font-style: normal; color: var(--color-accent-text);
+.v2-mq-item:hover { color: var(--color-text-primary); }
+.v2-mq-item i { font-style: normal; color: var(--color-label);
   font-size: 0.5em; transform: translateY(-.35em); display: inline-block; margin-left: .6em; }
 
 /* ── proof ── */
@@ -2440,7 +2473,7 @@ footer {
 }
 .v2-seat:hover { transform: translateY(-4px); border-color: var(--glass-border-lit); }
 .v2-seat i { font-style: normal; font-family: var(--font-body); font-size: .5625rem;
-  letter-spacing: .15em; text-transform: uppercase; color: var(--color-accent-text);
+  letter-spacing: .15em; text-transform: uppercase; color: var(--color-label);
   display: block; margin-bottom: 9px; }
 .v2-seat b { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: 1.4rem; display: block; color: var(--color-text-primary); }
@@ -2465,7 +2498,7 @@ footer {
   font-size: 1.2rem; margin: 13px 0 3px; color: var(--color-text-primary); }
 .v2-wcard span { font-family: var(--font-body); font-size: .75rem; color: var(--color-text-muted); }
 .v2-wcard em { font-style: normal; font-family: var(--font-body); font-size: .625rem;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--color-accent-text);
+  letter-spacing: .14em; text-transform: uppercase; color: var(--color-label);
   display: block; margin-top: 8px; opacity: 0; transform: translateY(4px);
   transition: opacity 400ms ease, transform 400ms ease; }
 .v2-wcard:hover em { opacity: 1; transform: none; }
@@ -2473,7 +2506,7 @@ footer {
 /* ── voices: the single dark section ── */
 .v2-voices { background: var(--color-void); color: var(--color-on-dark);
   padding: clamp(60px, 8vw, 120px) 0; margin-top: clamp(40px, 5vw, 72px); }
-.v2-voices .v2-eyebrow { color: var(--color-accent-text); }  /* 10px — body size */
+.v2-voices .v2-eyebrow { color: var(--color-label); }  /* 10px — body size */
 .v2-bigq { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: clamp(1.7rem, 4vw, 3.1rem); line-height: 1.12; letter-spacing: -.02em;
   max-width: 24ch; margin: 20px 0 22px; }
@@ -2545,7 +2578,7 @@ footer {
   letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-text-secondary); margin: 0 0 18px;
 }
 .ind-eyebrow a { color: inherit; text-decoration: none; }
-.ind-eyebrow a:hover { color: var(--color-accent-text); }
+.ind-eyebrow a:hover { color: var(--color-text-primary); }
 .ind-head { padding: calc(var(--nav-h, 80px) + clamp(48px, 7vw, 96px)) 0 clamp(28px, 4vw, 44px); }
 .ind-h1 {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2601,7 +2634,7 @@ footer {
   display: block; font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: 1.1875rem; color: var(--color-text-primary); margin-bottom: 4px;
 }
-.ind-svc span { font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-accent-text); }
+.ind-svc span { font-family: var(--font-body); font-size: 0.8125rem; color: var(--color-label); }
 @media (max-width: 760px) {
   .ind-svc { border-right: none; border-bottom: 0.5px solid var(--color-border); }
 }
@@ -2635,11 +2668,11 @@ footer {
   border-radius: var(--radius-glass);
   transition: transform 450ms cubic-bezier(.16,1,.3,1), border-color 450ms ease;
 }
-.post-svc:hover { transform: translateX(4px); border-color: var(--color-accent-text); }
+.post-svc:hover { transform: translateX(4px); border-color: var(--color-text-primary); }
 .post-svc-eyebrow {
   display: block; font-family: var(--font-body); font-size: 0.5625rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--color-accent-text); margin-bottom: 10px;
+  color: var(--color-label); margin-bottom: 10px;
 }
 .post-svc-name {
   display: block; font-family: var(--font-display); font-weight: var(--font-display-weight, 400);

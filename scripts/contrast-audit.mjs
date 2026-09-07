@@ -44,7 +44,7 @@ const CSS = readFileSync(new URL('../src/app/globals.css', import.meta.url), 'ut
  * it was tuned against.
  */
 const SURFACES = {
-  'field, brightest under the column': '#0F2A4A',
+  'field, brightest under the column': '#2C486C',
 
   canvas: '#090909',
   void: '#000000',
