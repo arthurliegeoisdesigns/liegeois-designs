@@ -51,6 +51,12 @@ export default function Backdrop() {
           is NOT wrapped in .bd — it positions itself. */}
       <div className="bd-orb" data-depth="0.24" />
 
+      {/* SCRIM — fixed, no data-depth. Darkens the band the text column sits
+          in so the mesh above can be authored for contrast rather than for
+          legibility. It must not parallax: the content column does not move
+          horizontally, so neither can the thing protecting it. */}
+      <div className="bd-scrim" />
+
       {/* NEAR — faint highlights, fastest, so there are three depths. */}
       <div className="bd bd-near" data-depth="0.52" />
 

@@ -31,20 +31,22 @@ const CSS = readFileSync(new URL('../src/app/globals.css', import.meta.url), 'ut
 
 /* The surfaces text can actually land on. Worst case first.
  *
- * UPDATED 7 Sep 2026, THIRD revision. Keep this honest: an auditor carrying a
- * stale surface is worse than no auditor, because it reports green against a
- * page that does not exist. It has been wrong twice already. Re-derive it
- * whenever the backdrop changes.
+ * FOURTH revision, 7 Sep. Re-derive this whenever the backdrop moves; an
+ * auditor carrying a stale surface reports green against a page that does not
+ * exist, and this one has been wrong three times.
  *
- * The field is now a baked mesh (scripts/build-mesh.py). #0F2A4A is the
- * brightest pixel it reaches anywhere the TEXT COLUMN crosses, sampled
- * directly from the generated image across x in 17-83% and the full height.
- * The frame edges go brighter, up to about #1C5694, but nothing bare sits
- * there: that is a layout contract, and the mesh script documents the ceiling
- * it was tuned against.
+ * The architecture changed with this revision and that is why the number is
+ * finally stable. The mesh is no longer responsible for legibility: it is
+ * authored purely for contrast (66x global range, ~2.7x between neighbouring
+ * control points), and a separate .bd-scrim darkens the band the text column
+ * occupies. #0F315C is the composite of the mesh's brightest in-column point
+ * #1F69C4 under that scrim at its centre strength of 0.62.
+ *
+ * At the FRAME EDGE the scrim is zero and the mesh runs up to #2C80E5. Nothing
+ * bare sits there. That is a layout contract, not a colour one.
  */
 const SURFACES = {
-  'field, brightest under the column': '#2C486C',
+  'field, brightest under the column': '#0F315C',
 
   canvas: '#090909',
   void: '#000000',

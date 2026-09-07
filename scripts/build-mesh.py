@@ -47,58 +47,49 @@ except ImportError:
 OUT = Path(__file__).resolve().parent.parent / "public" / "images" / "mesh-field.webp"
 
 # ── the field ────────────────────────────────────────────────────────────────
-# THE CONSTRAINT, and the mistake that shaped four earlier versions.
-# The backdrop is position:fixed and full-viewport, so it never scrolls past
-# anything: every bright region eventually has text over it. The brightest
-# point the TEXT COLUMN crosses is therefore a hard ceiling.
+# AUTHORED GRID, not a smooth two-flank formula.
 #
-# That ceiling is set by the most demanding thing sitting BARE on the field,
-# and until 7 Sep that was 10px accent-orange eyebrows, which cap the surface
-# at 0.034 luminance. Soft Slate clears at 0.126. The orange labels alone were
-# costing nearly four times the available range, so every attempt to make the
-# field rich failed contrast, and every attempt to pass contrast came out flat.
-# Flat is also why the frosted cards read as opaque: frost needs texture behind
-# it to refract.
+# Five earlier versions used a profile: one light source per flank, falling off
+# gently to a trough. That is inherently low contrast. Neighbouring points can
+# only ever differ by a small step, so the whole field reads as one soft wash
+# no matter how far apart the extremes are. Arthur, every round: not enough
+# contrast. He was describing the METHOD, and I kept adjusting the numbers.
 #
-# Resting labels moved to Soft Slate, orange kept for signals. The ceiling is
-# now 0.126, and this field is tuned to 0.10 under the column, leaving headroom.
+# A real mesh gradient has control points at genuinely different values sitting
+# next to each other. That is where the contrast lives — in the LOCAL jump
+# between neighbours, not in the global range. The reference has #D9DDE1
+# adjacent to #88A6CA and #011227 two cells below. That is the thing to copy.
 #
-# COMPOSITION is the reference's, re-arranged for the medium. Their piece is a
-# poster with one mark in the middle; copying its layout puts body copy on the
-# brightest band. So: key light down the LEFT flank reading slate, a cooler
-# blue fill rising on the RIGHT, deep navy trough through the middle. The
-# flanks are deliberately unequal — a balanced field reads as wallpaper.
-TROUGH   = (0x05, 0x0D, 0x17)   # the deep navy the middle settles into
-LEFT     = (0x5E, 0x79, 0x9C)   # slate, the key
-RIGHT    = (0x28, 0x60, 0xAC)   # blue, the fill
-EDGE     = 0.66                 # light reaches inward, not a stripe at the frame
-FALLOFF  = 2.30                 # gentle, so the middle keeps real gradation
+# So: an explicit grid, drawn from the slate ramp plus GAA's Union and Signal
+# blues, arranged asymmetrically. Bright slate in the upper left, a blue rising
+# up the right flank, and a deep trough running down the middle where the text
+# column sits. Local contrast between adjacent cells is 1.5x to 3x.
+#
+# ON LEGIBILITY, and the mistake that shaped every earlier version.
+# The backdrop does NOT have to carry text contrast on its own. It was made to,
+# by me, silently: every round I capped the brightness so 10px text would clear
+# AA anywhere on the field, and every round that flattened it. The centre
+# columns below are dark BY AUTHORSHIP, which is how the reference solves it
+# too — their mark always sits in the darkest part of the frame. The edges are
+# then free to be as rich as they want, because nothing bare sits there.
+MESH = [
+    # left edge ....................... centre (text) ..................... right edge
+    ["#5C7896", "#40566D", "#22303F", "#141D28", "#0C1B2E", "#153A63", "#255FA5", "#3179C9"],
+    ["#4F6A86", "#324355", "#18222E", "#0C141C", "#0A1A30", "#1A4272", "#2A66B4", "#2571CF"],
+    ["#40566D", "#25313D", "#111923", "#070E16", "#081930", "#163A66", "#245AA2", "#2E6FBF"],
+    ["#324355", "#1B2634", "#0C121A", "#060D15", "#061527", "#102D52", "#1C4A87", "#2762B0"],
+    ["#25313D", "#141C26", "#080E15", "#060D15", "#051221", "#0C2646", "#17407A", "#2A68BC"],
+    ["#1B2634", "#0E141C", "#060D15", "#060D15", "#04101E", "#0A2340", "#1B4A88", "#3579CE"],
+]
 
-
-def field(t, v):
-    """t = 0..1 across, v = 0..1 down. Returns an RGB triple."""
-    l = max(0.0, 1.0 - t / EDGE) ** FALLOFF
-    r = max(0.0, 1.0 - (1.0 - t) / EDGE) ** FALLOFF
-    # key strongest high, fill strongest low, so they never balance
-    l *= 0.50 + 0.50 * (1.0 - v)
-    r *= 0.35 + 0.65 * v
-    out = []
-    for i in range(3):
-        c = TROUGH[i] + (LEFT[i] - TROUGH[i]) * l
-        c = c + (RIGHT[i] - c) * r
-        out.append(c)
-    return tuple(out)
-
-
-COLS, ROWS = 16, 9
 
 GAMMA      = 1.00   # identity: the profile already carries shipped values
 SCALE      = 1.00
-SAT_BOOST  = 1.10   # a nudge so the deep navies do not go grey
-HUE_PULL   = 0.30   # partial: enough to unify, not so much it flattens
+SAT_BOOST  = 1.00   # a nudge so the deep navies do not go grey
+HUE_PULL   = 0.00   # partial: enough to unify, not so much it flattens
 HUE_TARGET = 214 / 360
 FLOOR      = "#040913"
-FLOOR_MIX  = 0.55
+FLOOR_MIX  = 0.30
 
 # Output is deliberately small. At this softness there is nothing to resolve,
 # and the browser upscales it for free.
@@ -134,13 +125,12 @@ def lift(rgb):
 
 
 def main():
-    small = Image.new("RGB", (COLS, ROWS))
+    rows, cols = len(MESH), len(MESH[0])
+    small = Image.new("RGB", (cols, rows))
     px = small.load()
-    for r in range(ROWS):
-        for c in range(COLS):
-            t = c / (COLS - 1)
-            v = r / (ROWS - 1)
-            val = lift(darken(field(t, v)))
+    for r, row in enumerate(MESH):
+        for c, hx in enumerate(row):
+            val = lift(darken(hex_to_rgb(hx)))
             px[c, r] = tuple(max(0, min(255, round(x))) for x in val)
 
     # THIS is the mesh: bicubic interpolation between the control points.
