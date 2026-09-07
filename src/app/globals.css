@@ -49,12 +49,17 @@
   --color-on-dark-muted:  #BDB7AE;   /* smoke */
   --color-on-dark-faint:  #A19A90;   /* ash — kept above WCAG AA contrast */
   --color-on-dark-border: rgba(255, 253, 248, 0.10);
-  /* Raised from 0.35 to 0.47 on 6 Sep. At 0.35 this measured 3.05:1 on void
-     and failed AA at every one of its three call sites — a pre-existing failure
-     the light-theme audit never covered, because it only ever audited bone.
-     0.47 is the first step that clears 4.5:1 against the LIFTED backdrop
-     (4.57:1), which is the worst surface it can land on. */
-  --color-on-dark-hint:   rgba(255, 253, 248, 0.47);
+  /* 0.35 -> 0.47 on 6 Sep, then -> 0.50 on 7 Sep.
+     At 0.35 this was 3.05:1 on void and failed at all three of its call sites,
+     a pre-existing failure the light-theme audit never covered because it only
+     ever audited bone. 0.47 cleared the lifted backdrop it was measured
+     against that day. The backdrop then changed, the worst surface became the
+     sphere interior #292A37, and 0.47 fell back to 4.31:1. 0.50 is the first
+     step that clears 4.5 there (4.67:1).
+     Worth noting the pattern: this token has now failed twice, both times
+     because the surface underneath it moved rather than because the token was
+     wrong. That is what the auditor is for. */
+  --color-on-dark-hint:   rgba(255, 253, 248, 0.50);
   --color-on-dark-ghost:  rgba(255, 253, 248, 0.15);
 
   /* ── The one chromatic voice — signal orange, used like a scalpel ── */
@@ -145,12 +150,36 @@
      Glass is only for something sitting OVER something else where both must
      stay visible: a card over the backdrop, a caption over an image, nav over
      a page. Never floating on flat colour — that is the version that dates. */
-  --glass-bg:         linear-gradient(150deg, rgba(255,255,255,.07), rgba(255,255,255,.015));
-  --glass-bg-hover:   linear-gradient(150deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
-  --glass-filter:     blur(14px) saturate(150%) brightness(1.08);
-  --glass-border:     rgba(247, 244, 239, 0.14);
-  --glass-border-lit: rgba(247, 244, 239, 0.30);
-  --glass-shadow:     0 26px 60px rgba(0, 0, 0, .5), inset 0 1px 0 rgba(255, 255, 255, .24);
+  /* STRENGTHENED 7 Sep. The SOFT setting (blur 14px / saturate 150% /
+     brightness 1.08) was chosen on 6 Sep from four candidates, judged against
+     a bright lifted backdrop. On the near-black field it reads as a grey box
+     rather than a surface, which is what Arthur reported. Frost needs
+     something to bend; with less light behind it, it has to bend harder.
+
+     What actually makes glass read is still the border and the inner top
+     highlight, not the blur radius. Both are up, and the blur has roughly
+     doubled so the sphere edge visibly distorts through a card that crosses it. */
+  /* SMOKED, not milky. This was the actual reason the cards read as "grey
+     boxes": a white overlay LIGHTENS whatever is behind it, so on a dark site
+     every card became a pale rectangle with no depth, and it pushed text
+     surfaces toward failing. Tinting DARK is what smoked glass does. Measured
+     over the sphere's lit flank, a 72% dark tint puts the card surface at
+     #191726: body 16:1, labels 6.3:1, accent-text 6.0:1. Comfortable, and it
+     finally looks like a pane rather than a wash.
+     The light BORDER and the inner top highlight still do the real work. */
+  --glass-bg:         linear-gradient(155deg, rgba(24,21,38,.66), rgba(9,8,16,.76));
+  --glass-bg-hover:   linear-gradient(155deg, rgba(30,26,46,.70), rgba(12,10,20,.78));
+  --glass-filter:     blur(30px) saturate(190%) brightness(1.16);
+  --glass-border:     rgba(247, 244, 239, 0.18);
+  --glass-border-lit: rgba(247, 244, 239, 0.34);
+  --glass-shadow:     0 30px 70px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .32);
+  /* Rounded on glass ONLY, Arthur's call 7 Sep. The zero-radius rule still
+     holds everywhere else, and it holds where it means something: the WORK is
+     never rounded. Chrome that floats over the backdrop can be, because that
+     is most of why GAA's cards read as stacked physical objects instead of
+     regions of a page. Full-bleed bands stay square — a rounded band is just a
+     rectangle with soft corners. */
+  --radius-glass: 22px;
 
   /* ── The backdrop: ONE field, directional light ──
      Radial gradients were rejected on 6 Sep: a radial always has a centre, so
@@ -159,9 +188,24 @@
      backdrop light is angled linear gradients with the source off-frame.
      The base is lifted off pure void (#12101A → #0A0908); a backdrop at the
      same value as the content reads as absence, not atmosphere. */
-  --bd-base:   linear-gradient(180deg, #12101A 0%, #0D0B10 55%, #0A0908 100%);
-  --bd-blur-far:  84px;
-  --bd-blur-near: 64px;
+  /* REVISED 7 Sep 2026 after Arthur saw the first build.
+     Was linear-gradient(180deg, #12101A ...), a LIFTED base. Two problems he
+     named: it read "slightly too bright" and not premium, and "the gradient
+     seems to be vertical at the bottom, which looks awkward" — that vertical
+     stop is exactly what he was seeing.
+
+     The reference he keeps pointing at (GAA's orb) works for a reason the
+     earlier rounds missed: their orb has a HARD EDGE against pitch black. It
+     is a shape, not a glow. That is the opposite of the diffuse radial fields
+     rejected in round four, which had no edge and so read as fog. A defined
+     edge also gives parallax something to track, which is why the motion was
+     invisible before: there was nothing in the field to see move.
+
+     So: near-black base, colour carried by soft angled light, and one crisp
+     sphere on top doing the shape and the volume. */
+  --bd-base:   #050404;
+  --bd-blur-far:  96px;
+  --bd-blur-near: 72px;
 }
 
 /* ============================================================
@@ -1499,7 +1543,7 @@ footer {
   backdrop-filter: var(--glass-filter);
   -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--color-border-mid);
-  border-radius: 0;
+  border-radius: 10px;   /* not --radius-glass: 22px on a 48px field is a pill */
   padding: 14px 16px;
   outline: none;
   transition: border-color 200ms ease, background 200ms ease;
@@ -1819,12 +1863,9 @@ footer {
 }
 
 /* ── Glass card — achromatic, no blur ── */
-.glass-card {
-  background: var(--glass-bg);
-  border: 0.5px solid var(--glass-border);
-  transition: background var(--duration-base) ease,
-              border-color var(--duration-base) ease;
-}
+/* .glass-card removed 7 Sep 2026: no component referenced it, and it was a
+   weaker duplicate of .glass (no backdrop-filter, no shadow, hairline border).
+   Two names for one idea, one of them dead and wrong. Use .glass. */
 
 /* LIGHT SHEET — deleted 6 Sep 2026.
    The bone "paper sheet" that carried About → WhyArthur → Blog over the dark
@@ -1868,7 +1909,6 @@ footer {
   .hero-panel,
   .hero-orb { display: none !important; }
   .hero-scanline::after { animation: none; display: none; }
-  .glass-card { backdrop-filter: none; -webkit-backdrop-filter: none; }
 }
 
 /* ============================================================
@@ -2352,10 +2392,28 @@ footer {
 .v2-solo { font-family: var(--font-body); font-size: clamp(1rem, 1.35vw, 1.1875rem);
   line-height: 1.7; color: var(--color-text-secondary); max-width: 58ch;
   margin: 0 0 clamp(28px, 4vw, 46px); }
-.v2-seats { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px), 1fr));
+.v2-seats { display: grid; gap: clamp(12px, 1.4vw, 20px);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px), 1fr));
   border-top: 0.5px solid var(--color-border-mid); }
-.v2-seat { padding: 22px clamp(14px, 2vw, 28px) 22px 0; border-right: 0.5px solid var(--color-border); }
-.v2-seat:last-child { border-right: none; }
+/* Were four columns separated by hairline rules. Now four glass cards, which
+   is what Arthur asked for after the GAA bento: "look at the way they overlay
+   the various rounded cards on top of the gradient backdrop, and how they
+   encapsulate the different levels of information".
+
+   A divider says these things are adjacent. A card says each one is a separate
+   object sitting on the field, and that is the read that makes the parallax
+   behind them do any work. */
+.v2-seat {
+  padding: clamp(20px, 2.2vw, 28px);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-glass);
+  box-shadow: var(--glass-shadow);
+  transition: transform 600ms cubic-bezier(.16,1,.3,1), border-color 600ms ease;
+}
+.v2-seat:hover { transform: translateY(-4px); border-color: var(--glass-border-lit); }
 .v2-seat i { font-style: normal; font-family: var(--font-body); font-size: .5625rem;
   letter-spacing: .15em; text-transform: uppercase; color: var(--color-accent-text);
   display: block; margin-bottom: 9px; }
@@ -2397,6 +2455,15 @@ footer {
 .v2-bigq em { font-style: italic; }
 .v2-attr { font-family: var(--font-body); font-size: .6875rem; letter-spacing: .16em;
   text-transform: uppercase; color: var(--color-on-dark-faint); margin: 0; }
+.v2-qgrid > div {
+  padding: clamp(20px, 2.2vw, 28px);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-glass);
+  box-shadow: var(--glass-shadow);
+}
 .v2-qgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
   gap: clamp(20px, 3vw, 48px); margin-top: clamp(34px, 4.4vw, 60px);
   padding-top: clamp(24px, 3vw, 40px); border-top: 0.5px solid rgba(247,244,239,.14); }
@@ -2540,6 +2607,7 @@ footer {
   padding: clamp(18px, 2.2vw, 26px) clamp(18px, 2.4vw, 28px);
   background: var(--glass-bg);
   backdrop-filter: var(--glass-filter); -webkit-backdrop-filter: var(--glass-filter);
+  border-radius: var(--radius-glass);
   transition: transform 450ms cubic-bezier(.16,1,.3,1), border-color 450ms ease;
 }
 .post-svc:hover { transform: translateX(4px); border-color: var(--color-accent-text); }
@@ -2582,33 +2650,91 @@ footer {
    drags an edge into frame at the bottom of a long page. */
 .bd { position: absolute; inset: -30%; will-change: transform; }
 
-/* FAR — the colour. Five hues, five angles, sources off-frame. Each reaches
-   58 to 70% across so they overlap and mix instead of sitting in lanes. */
+/* FAR — the colour, and nothing else. Angled linear gradients with the source
+   off-frame, as locked on 6 Sep: a radial always has a centre and reads as a
+   ball. Opacities are DOWN from that spec and the vertical base stop is gone,
+   because the field is no longer doing the shape work. The sphere below does
+   that now, so this only has to tint the black. */
 .bd-far {
   background:
-    linear-gradient(148deg, rgba(232,  68,  32, .34) 0%, rgba(15, 13, 20, 0) 62%),
-    linear-gradient( 21deg, rgba( 74, 124, 190, .38) 0%, rgba(15, 13, 20, 0) 66%),
-    linear-gradient(291deg, rgba(107,  47,  92, .34) 0%, rgba(15, 13, 20, 0) 60%),
-    linear-gradient(196deg, rgba( 30, 107, 107, .26) 0%, rgba(15, 13, 20, 0) 70%),
-    linear-gradient( 64deg, rgba(242, 166,  59, .18) 0%, rgba(15, 13, 20, 0) 58%),
+    linear-gradient(148deg, rgba(232,  68,  32, .22) 0%, rgba(5, 4, 4, 0) 58%),
+    linear-gradient( 21deg, rgba( 74, 124, 190, .26) 0%, rgba(5, 4, 4, 0) 62%),
+    linear-gradient(291deg, rgba(107,  47,  92, .24) 0%, rgba(5, 4, 4, 0) 56%),
+    linear-gradient(196deg, rgba( 30, 107, 107, .16) 0%, rgba(5, 4, 4, 0) 66%),
     var(--bd-base);
   filter: blur(var(--bd-blur-far));
 }
 
-/* NEAR — highlights only. Cooler and brighter, shorter reach, moves faster. */
+/* THE SPHERE — the whole point of this revision.
+   NO filter: blur() on this element. Blur is what killed every earlier attempt:
+   it dissolves the edge, and a circle without an edge is fog. The gradient
+   inside is smooth and the border-radius cuts it hard.
+
+   GEOMETRY, and the version before this got it wrong.
+   The first attempt was 168vmax tall anchored by bottom:12%, which on a
+   1920x1080 screen is a 3226px disc with its arc at y=950. Only its lowest
+   29% was ever on screen, and the rim light was placed at 14% from the top:
+   entirely off screen. It would have rendered as a near-invisible dark arc.
+   Sized against viewport HEIGHT now, and positioned so the arc lands at 88vh
+   at any aspect ratio, with a vw cap so it stays curved on a phone.
+
+   BRIGHTNESS, measured not guessed.
+   The body has to stay dark, because text sits on it. At the previous body
+   value (#1B1726) plus the near layer, 11px label text measured 3.97:1 and
+   failed AA, and NO rim alpha fixed that because the disc itself was the
+   problem. The body's lightest stop is now #12101C, which puts the interior at
+   #292A37: labels 5.08:1, accent-text 4.82:1.
+
+   The drama moved to where nothing has to be legible: a thin bright ANNULUS at
+   the circumference, which can be strong because it is a two-percent-wide arc
+   with no text on it. That is also what the reference actually does — GAA's
+   orb is near-black across its face with the light on the edge. */
+.bd-orb {
+  --orb: min(150vh, 210vw);
+  position: absolute;
+  width:  var(--orb);
+  height: var(--orb);
+  left: 50%;
+  margin-left: calc(var(--orb) / -2);
+  /* arc crosses at 88vh whatever the viewport */
+  top: calc(88vh - var(--orb));
+  border-radius: 50%;
+  background:
+    /* 1. TERMINATOR, on top. Kills the rim on the unlit flank and shades the
+          body away from the light. Listed first, so it paints last. */
+    linear-gradient(128deg,
+      rgba(5, 4, 9, 0) 0%, rgba(5, 4, 9, .45) 38%, rgba(5, 4, 9, .92) 68%),
+    /* 2. RIM. A narrow annulus hugging the circumference. Bright, because it
+          is an edge and carries no text. */
+    radial-gradient(circle at 50% 50%,
+      rgba(206, 222, 240, 0) 0 76%,
+      rgba(206, 222, 240, .55) 88%,
+      rgba(206, 222, 240, 0) 97%),
+    /* 3. The warm side. His accent, kept faint: the technique is borrowed from
+          GAA, the palette is not. */
+    radial-gradient(54% 54% at 76% 72%,
+      rgba(232, 68, 32, .16) 0%, rgba(232, 68, 32, 0) 55%),
+    /* 4. BODY. Dark on purpose. See the note above. */
+    linear-gradient(152deg, #12101C 0%, #0C0A16 46%, #07060F 100%);
+  /* Outer glow stops the edge looking cut out with scissors. */
+  box-shadow: 0 0 220px rgba(120, 150, 200, .10);
+  will-change: transform;
+}
+
+/* NEAR — a few faint highlights that travel faster than the sphere, so there
+   are three distinct depths rather than two. */
 .bd-near {
   background:
-    linear-gradient(112deg, rgba(198, 216, 238, .16) 0%, rgba(15, 13, 20, 0) 46%),
-    linear-gradient(292deg, rgba(232, 110,  70, .14) 0%, rgba(15, 13, 20, 0) 44%),
-    linear-gradient( 12deg, rgba(140, 190, 200, .12) 0%, rgba(15, 13, 20, 0) 42%);
+    linear-gradient(112deg, rgba(198, 216, 238, .13) 0%, rgba(5, 4, 4, 0) 42%),
+    linear-gradient(292deg, rgba(232, 110,  70, .11) 0%, rgba(5, 4, 4, 0) 40%);
   filter: blur(var(--bd-blur-near));
 }
 
-/* VIGNETTE — fixed, never parallaxed. Keeps the lifted base from flattening
-   the page. A vignette that moves reads as a spotlight following the reader. */
+/* VIGNETTE — fixed, never parallaxed. Deeper than before: with a lit sphere
+   in frame the corners have to fall away harder or the whole thing floats. */
 .bd-vig {
-  background: radial-gradient(120% 90% at 50% 45%,
-    rgba(7, 6, 5, 0) 40%, rgba(7, 6, 5, .72) 100%);
+  background: radial-gradient(120% 92% at 50% 42%,
+    rgba(0, 0, 0, 0) 34%, rgba(0, 0, 0, .82) 100%);
 }
 
 /* Everything the reader is meant to look at sits above the field. */
@@ -2634,6 +2760,7 @@ footer {
   backdrop-filter: var(--glass-filter);
   -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--glass-border);
+  border-radius: var(--radius-glass);
   box-shadow: var(--glass-shadow);
 }
 .glass:hover { background: var(--glass-bg-hover); border-color: var(--glass-border-lit); }
@@ -2641,11 +2768,11 @@ footer {
 /* Safari and Firefox without backdrop-filter get an opaque panel instead of a
    transparent one. Without this the card is nearly invisible over the field. */
 @supports not (backdrop-filter: blur(2px)) {
-  .glass { background: rgba(28, 24, 34, .88); }
+  .glass { background: rgba(16, 14, 26, .93); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .bd { transform: none !important; }
+  .bd, .bd-orb { transform: none !important; }
 }
 
 /* ════════════════════════════════════════════════════════════════════════
@@ -2678,10 +2805,25 @@ footer {
    entire point of the face. */
 .v2-phero .v2-h1 {
   font-size: clamp(3.2rem, 11vw, 9rem);
-  line-height: 0.92;
+  /* 0.92 -> 1.02. Arthur kept the size and asked for "a little more space
+     between the lines". At this scale 0.92 puts descenders into the cap
+     heights below them: on a phone "Nothing was added." breaks to three lines
+     and the g of "Nothing" collides with the line under it. Tight leading is
+     right for display type at 40px and wrong at 144px, because the leading
+     gap scales with the font while the optical need for it does not. */
+  line-height: 1.02;
   letter-spacing: -0.042em;
   margin: 18px 0 0;
   text-wrap: balance;
+}
+
+/* The slider is smaller. It was full container width, which at 1280px made a
+   720px-tall 16:9 image that pushed the headline and every CTA off a laptop
+   screen. Capped and centred: still the hero, no longer the entire fold. */
+.v2-phero .v2-ba,
+.v2-phero .v2-ba-foot {
+  max-width: min(880px, 100%);
+  margin-inline: auto;
 }
 /* The eyebrow deliberately sits at the far end of that ratio. Almost too
    small, which is what makes the display size register as a decision. */

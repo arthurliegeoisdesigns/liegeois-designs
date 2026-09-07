@@ -12,11 +12,11 @@
  * would guarantee it rots again, so it lives here instead.
  *
  * THE ONE THING THAT MATTERS MOST
- * Ratios are measured against #241E2E, the brightest plausible point of the
- * backdrop field, NOT against --color-void. The backdrop base is lifted off
- * pure black (#12101A falling to #0A0908) plus five overlapping gradients.
- * Anything validated against void alone reads about a full point optimistic,
- * which is exactly how you ship a failure that looks fine in a swatch.
+ * Ratios are measured against the brightest surface bare text can actually
+ * land on, NOT against --color-void. Anything validated against void alone
+ * reads roughly a full point optimistic, which is exactly how you ship a
+ * failure that looks fine in a swatch. See SURFACES below for what that value
+ * is today and why; it changes whenever the backdrop does, and it must.
  *
  * WHAT IT CANNOT SEE
  * It is a static reader, not a browser. It does not resolve the cascade, so it
@@ -29,9 +29,22 @@ import { readFileSync } from 'node:fs'
 
 const CSS = readFileSync(new URL('../src/app/globals.css', import.meta.url), 'utf8')
 
-/* The surfaces text can actually land on. Worst case first. */
+/* The surfaces text can actually land on. Worst case first.
+ *
+ * UPDATED 7 Sep 2026 and this is the part to keep honest. The backdrop was
+ * rebuilt from a lifted diffuse field to a near-black base with one hard-edged
+ * sphere, so the old worst case of #241E2E no longer describes anything on the
+ * site. An auditor carrying a stale surface is worse than no auditor: it
+ * reports green against a page that does not exist.
+ *
+ * #292A37 is the sphere's interior at its lightest: body stop #12101C with the
+ * near layer composited at 13%. That is the brightest place bare text can
+ * land. The rim annulus is brighter still, but it is a two-percent-wide arc at
+ * the circumference with nothing on it, so it is deliberately not the number
+ * used here — if content ever gets placed on the rim, this assumption breaks.
+ */
 const SURFACES = {
-  'lifted backdrop': '#241E2E', // brightest plausible point of the field
+  'sphere interior': '#292A37', // brightest surface bare text can sit on
   canvas: '#0A0908',
   void: '#070605',
 }
@@ -45,19 +58,22 @@ const EXEMPT = [
     match: /\.work-filter\.is-active sup/,
     reason:
       'Sits on the bone chip set by .work-filter.is-active, not on the page. ' +
-      '#C13414 on #F7F4EF is 5.08:1. The reader does not resolve inherited backgrounds.',
+      '#C13414 on #F7F4EF is 5.08:1, unaffected by the backdrop change. The ' +
+      'reader does not resolve inherited backgrounds.',
   },
   {
     match: /\.footer-email a:hover/,
     reason:
       'font-size clamp(1.9rem, 5.5vw, 4.5rem) = 30px minimum, declared on ' +
-      '.footer-email. Large text, so the threshold is 3.0 and 4.06:1 passes.',
+      '.footer-email. Large text, so the threshold is 3.0, and it measures ' +
+      '3.57:1 on the sphere interior. Was 4.06:1 against the old lifted field.',
   },
   {
     match: /\.nav-menu-label/,
     reason:
       'font-size clamp(2.5rem, 6.5vw, 5.5rem) = 40px minimum, declared on ' +
-      '.nav-menu-label. Large text: 4.06:1 against a 3.0 threshold.',
+      '.nav-menu-label. Large text: 3.57:1 on the sphere interior, against a 3.0 ' +
+      'threshold. Was 4.06:1 on the old lifted field.',
   },
 ]
 
@@ -196,7 +212,7 @@ for (const [, selRaw, body] of CSS.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
 
 const f = (n) => n.toFixed(2).padStart(5)
 console.log(`\nContrast audit — THE ROOM`)
-console.log(`Measured against the lifted backdrop #241E2E, not pure void.\n`)
+console.log(`Measured against ${Object.values(SURFACES)[0]}, the sphere interior, not pure void.\n`)
 console.log(`  text-colour rules examined  ${results.length}`)
 console.log(`  documented exemptions       ${exempted.length}`)
 console.log(`  light surfaces, text-free   ${surfaceExempt.length}`)

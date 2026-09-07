@@ -84,7 +84,13 @@ const SEATS = [
     body: 'Raised $110,000 on a deck I made myself.' },
 ]
 
-const BA = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_1600/v1782822011'
+/* Philips, not MCS x Johnson & Johnson. Swapped 7 Sep 2026: the J&J slide 9
+   pair shows real client data and Arthur flagged it as confidential, so it can
+   not sit on the homepage. Philips 07 is the better argument anyway — the
+   before is a wall of roughly fifteen certification logos and the after is
+   three photographed columns, so the transformation is REMOVAL, which is
+   exactly what the headline above it claims. */
+const BA = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_1600'
 
 export default function Home() {
   const posts = publishedPosts.slice(0, 3)
@@ -144,10 +150,10 @@ export default function Home() {
             </div>
             <ProofSlider
               priority
-              before={`${BA}/MCS-J-J-9-before_buqd9f.jpg`}
-              after={`${BA}/MCS-J-J-9-after_k5ft6j.jpg`}
-              project="MCS Healthcare × Johnson &amp; Johnson"
-              slide="Slide 9 of 14"
+              before={`${BA}/v1788697490/philips-07-before_lkszxd.jpg`}
+              after={`${BA}/v1788697491/philips-07-after_efbciw.jpg`}
+              project="Philips Healthcare"
+              slide="Our key ESG commitments"
             />
           </div>
         </header>

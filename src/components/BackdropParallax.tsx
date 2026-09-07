@@ -29,8 +29,10 @@ export default function BackdropParallax() {
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
     if (reduced.matches) return
 
+    // Any [data-depth] inside .backdrop, not just .bd — the sphere positions
+    // itself and does not carry .bd, and scoping to .bd silently dropped it.
     const planes = Array.from(
-      document.querySelectorAll<HTMLElement>('.backdrop .bd[data-depth]')
+      document.querySelectorAll<HTMLElement>('.backdrop [data-depth]')
     ).map((el) => ({ el, depth: parseFloat(el.dataset.depth || '0') }))
 
     if (!planes.length) return
@@ -44,6 +46,11 @@ export default function BackdropParallax() {
       }
       ticking = false
     }
+    // Rates were 0.10 / 0.26 and Arthur reported the motion as barely visible.
+    // Raising them was only half the fix: the real problem was that the field
+    // had no edges, so there was nothing to perceive moving. With a hard-edged
+    // sphere in the stack, 0.08 / 0.24 / 0.52 reads clearly. If it ever feels
+    // like too much, lower the SPHERE first — it is the one you actually see.
 
     const onScroll = () => {
       if (ticking) return

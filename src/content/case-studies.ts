@@ -167,23 +167,14 @@ export const caseStudies: CaseStudy[] = [
     ],
     featured: true,
     order: 6,
-    beforeAfter: [
-      {
-        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-5-before_jbqp40.jpg',
-        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-5-after_ky2oip.jpg',
-        label: 'Slide 5',
-      },
-      {
-        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-8-before_upi9id.jpg',
-        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-8-after_zy2ri3.jpg',
-        label: 'Slide 8',
-      },
-      {
-        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-9-before_buqd9f.jpg',
-        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/v1782822011/MCS-J-J-9-after_k5ft6j.jpg',
-        label: 'Slide 9',
-      },
-    ],
+    /* The three before/after pairs (slides 5, 8 and 9) were removed on
+       7 Sep 2026. Arthur flagged the slide 9 data as confidential; slides 5
+       and 8 came out with it because they are from the same deck and there is
+       no way from here to tell which of them carry client data. Restoring any
+       of them is one block of JSON — see git 051d52d — but that is a decision
+       for someone who has read the MCS MSA, not a design call.
+
+       The gallery images below are unaffected and stay. */
   },
 
   // ── PORTFOLIO (full /work page) ───────────────────────────────────────────

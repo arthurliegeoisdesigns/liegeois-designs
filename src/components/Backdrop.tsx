@@ -42,14 +42,20 @@
 export default function Backdrop() {
   return (
     <div className="backdrop" aria-hidden="true">
-      {/* FAR — carries the colour. Five hues, five angles, each reaching 58 to
-          70% across the frame so they overlap and mix rather than sitting in
-          lanes. Parallax rate 0.10. */}
-      <div className="bd bd-far" data-depth="0.10" />
-      {/* NEAR — highlights only. Cooler, brighter, shorter reach. Rate 0.26. */}
-      <div className="bd bd-near" data-depth="0.26" />
-      {/* VIGNETTE — does not move at all. Without it the lifted base flattens
-          the page, because the corners stay as bright as the centre. */}
+      {/* FAR — tints the black. Slowest, so it reads as distance. */}
+      <div className="bd bd-far" data-depth="0.08" />
+
+      {/* THE SPHERE. Hard-edged, unblurred, and the reason the parallax is
+          legible at all: the first build moved a field with no edges in it, so
+          nothing appeared to move no matter what the rate was. Note this one
+          is NOT wrapped in .bd — it positions itself. */}
+      <div className="bd-orb" data-depth="0.24" />
+
+      {/* NEAR — faint highlights, fastest, so there are three depths. */}
+      <div className="bd bd-near" data-depth="0.52" />
+
+      {/* VIGNETTE — does not move. A moving vignette reads as a spotlight
+          following the reader. */}
       <div className="bd bd-vig" />
     </div>
   )
