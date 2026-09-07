@@ -31,22 +31,27 @@ const CSS = readFileSync(new URL('../src/app/globals.css', import.meta.url), 'ut
 
 /* The surfaces text can actually land on. Worst case first.
  *
- * FOURTH revision, 7 Sep. Re-derive this whenever the backdrop moves; an
- * auditor carrying a stale surface reports green against a page that does not
- * exist, and this one has been wrong three times.
+ * FIFTH revision, and the architecture behind it finally settled, which is why
+ * this should now stop moving.
  *
- * The architecture changed with this revision and that is why the number is
- * finally stable. The mesh is no longer responsible for legibility: it is
- * authored purely for contrast (66x global range, ~2.7x between neighbouring
- * control points), and a separate .bd-scrim darkens the band the text column
- * occupies. #0F315C is the composite of the mesh's brightest in-column point
- * #1F69C4 under that scrim at its centre strength of 0.62.
+ * The mesh runs at FULL STRENGTH everywhere: GAA's own composition sampled on
+ * a 10x7 grid and remapped onto the slate ramp, 64x luminance range, no scrim
+ * and no dimming. Nothing in the backdrop is holding text up any more.
  *
- * At the FRAME EDGE the scrim is zero and the mesh runs up to #2C80E5. Nothing
- * bare sits there. That is a layout contract, not a colour one.
+ * Text sits on glass instead. #3B4651 is a slate-10 panel at 0.76 composited
+ * over the BRIGHTEST point of the mesh, which is the worst case a card can
+ * land on. That panel still varies 2.9x between the light and dark ends of the
+ * frame, and that variation is the frosted effect: a scrim strong enough to
+ * protect bare text compressed it to about 1.3x and killed the frosting, which
+ * is why there is no scrim.
+ *
+ * THE STANDING CONTRACT: bare small text does not sit on the field. If a
+ * component puts 10px copy directly on the backdrop it will fail here, and the
+ * fix is a panel, not a darker mesh. Six rounds were lost to reaching for the
+ * mesh first.
  */
 const SURFACES = {
-  'field, brightest under the column': '#0F315C',
+  'glass panel over the brightest mesh': '#3B4651',
 
   canvas: '#090909',
   void: '#000000',

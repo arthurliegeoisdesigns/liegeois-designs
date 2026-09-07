@@ -281,20 +281,21 @@
      cards a surface of their own, so they no longer depend on the backdrop to
      look like objects. */
   --glass-bg:         linear-gradient(155deg,
-                        rgba(37, 49, 61, .62), rgba(24, 31, 39, .74));
+                        rgba(37, 49, 61, .74), rgba(37, 49, 61, .78));
   --glass-bg-hover:   linear-gradient(155deg,
-                        rgba(50, 67, 85, .66), rgba(37, 49, 61, .76));
+                        rgba(50, 67, 85, .76), rgba(50, 67, 85, .80));
   --glass-filter:     blur(24px) saturate(180%) brightness(1.02);
   --glass-border:     rgba(155, 167, 182, 0.30);   /* slate-70 */
   --glass-border-lit: rgba(180, 188, 198, 0.48);   /* slate-80 */
   --glass-shadow:     0 30px 70px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .32);
-  /* Rounded on glass ONLY, Arthur's call 7 Sep. The zero-radius rule still
-     holds everywhere else, and it holds where it means something: the WORK is
-     never rounded. Chrome that floats over the backdrop can be, because that
-     is most of why GAA's cards read as stacked physical objects instead of
-     regions of a page. Full-bleed bands stay square — a rounded band is just a
-     rectangle with soft corners. */
-  --radius-glass: 22px;
+  /* REVERTED 7 Sep, later the same day. The radius was introduced that
+     morning on Arthur's call, then withdrawn: "forget the radius on cards,
+     let's revert back to them with a square angle."
+     Zero-radius is back to being absolute, which is what the design system
+     said in the first place. Kept as a token set to 0 rather than deleted, so
+     that every glass rule still reads as deliberately square rather than as
+     having simply forgotten to set one. */
+  --radius-glass: 0px;
 
   /* ── The backdrop: ONE field, directional light ──
      Radial gradients were rejected on 6 Sep: a radial always has a centre, so
@@ -1660,7 +1661,7 @@ footer {
   backdrop-filter: var(--glass-filter);
   -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--color-border-mid);
-  border-radius: 10px;   /* not --radius-glass: 22px on a 48px field is a pill */
+  border-radius: 0;      /* square, like everything else */
   padding: 14px 16px;
   outline: none;
   transition: border-color 200ms ease, background 200ms ease;
@@ -2855,33 +2856,25 @@ footer {
   will-change: transform;
 }
 
-/* THE SCRIM — and the decoupling that should have happened five rounds ago.
-   This is the layer that lets the mesh be as rich as it wants.
+/* THE SCRIM IS GONE, and this is the decision that finally resolves it.
+   It was added an hour ago to let the mesh be rich while keeping bare text
+   legible. Measured, it does not work: at the strength bare text needs, it
+   compresses the field behind a card from 22x variation down to about 1.3x,
+   which destroys the very texture the frost exists to refract. It was the same
+   trap as dimming the mesh, in a new place.
 
-   Every previous version made ONE layer do two jobs: look beautiful, and keep
-   10px text legible everywhere. Those pull in opposite directions, so each
-   round I quietly capped the mesh brightness to pass contrast and each round
-   Arthur correctly said it had no contrast. I was adjusting numbers when the
-   problem was that the two concerns were welded together.
+   The truth I kept working around: you cannot have a bright textured field AND
+   bare small text sitting directly on it. One or the other.
 
-   They are separate now. The mesh is authored for contrast alone, and this
-   darkens the band the text column occupies. At the frame edge the scrim is
-   zero, so the mesh shows at full strength; at the centre it reaches 0.62,
-   which takes the brightest in-column point from #1F69C4 to #0F315C — slate-95
-   at 10.7:1 with the blue still clearly reading through.
+   The reference chose the field. Their poster carries a single mark; their
+   bento puts every word on a card. So text goes on glass, the mesh runs at
+   full strength everywhere, and the frosting is finally visible because there
+   is 64x of range behind it to bend.
 
-   Fixed, never parallaxed: it has to stay aligned with the content column,
-   which does not move horizontally. Offset slightly left of centre to match
-   the composition rather than sitting dead middle. */
-.bd-scrim {
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(80% 116% at 46% 50%,
-    rgba(4, 11, 23, .62) 0%,
-    rgba(4, 11, 23, .55) 34%,
-    rgba(4, 11, 23, .30) 60%,
-    rgba(4, 11, 23, 0)   84%);
-}
+   Measured: a slate-10 panel at 0.76 over the brightest point of the mesh
+   gives slate-95 at 7.9:1, slate-80 at 5.0:1 and the eyebrow at 4.8:1, while
+   the panel still varies 2.9x from the light end of the frame to the dark.
+   That variation IS the frosted effect. */
 
 /* NEAR — the fastest layer. Two faint highlights, no colour of their own. */
 .bd-near {
@@ -2997,4 +2990,27 @@ footer {
   /* The bridge is the one thing that can go below the fold on a phone without
      costing anything: the slider above it is already making the argument. */
   .v2-phero-side { gap: 14px; }
+}
+
+
+/* ── HERO COPY ON GLASS ──────────────────────────────────────────────────
+   The hero is the one place bare text sat on the brightest part of the field.
+   It goes on a panel, which is how the reference handles every word it sets
+   over a gradient. The panel is what makes the frosting legible as an effect:
+   the mesh has 64x of range behind it, so the blur has something to bend.
+
+   Deliberately NOT a hard-edged card. It fades at the bottom so the slider
+   below reads as continuous with it rather than as a second box. */
+.v2-phero .v2-phead {
+  position: relative;
+  padding: clamp(26px, 3vw, 44px);
+  border-radius: var(--radius-glass);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-filter);
+  -webkit-backdrop-filter: var(--glass-filter);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+@supports not (backdrop-filter: blur(2px)) {
+  .v2-phero .v2-phead { background: rgba(37, 49, 61, .93); }
 }
