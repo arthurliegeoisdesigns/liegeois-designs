@@ -155,7 +155,30 @@ const nextConfig: NextConfig = {
       //  /services/<slug> — redirects run BEFORE the filesystem in Next,
       //  so the catch-all would have clobbered them. Old Webflow slugs
       //  carry a 5-char hash suffix; match those specifically.)
+      //
+      // THE SAME FAULT AS THE BLOG WILDCARD, FOUND 7 Sep 2026.
+      // A live search on that date showed the ONLY /services/* URLs Google has
+      // indexed are the two old Webflow ones below. None of the five real
+      // service pages appears, and GSC reports all five as never crawled
+      // (last crawled 1969-12-31, which is epoch zero).
+      //
+      // Sending an indexed old URL to the /services INDEX tells Google the
+      // specific page it knew about became a generic hub. The authority stops
+      // there instead of reaching the page that replaced it, which is why
+      // /services/strategic-narrative and its four siblings have no standing
+      // of their own and never got fetched.
+      //
+      // So: map to the real successor where one exists.
+      { source: '/services/visual-storytelling-strategic-consulting-4c699', destination: '/services/strategic-narrative', permanent: true },
+      //
+      // No successor. Brand identity is not a service Arthur sells now, so
+      // /services is the honest destination rather than pointing a
+      // "Brand Identity Design Services" URL at a presentation-design page
+      // and hoping Google reads it as equivalent. It will not.
       { source: '/services/brand-strategy-f19ea', destination: '/services', permanent: true },
+      //
+      // Fallback for any other Webflow service slug. Stays LAST: Next takes
+      // the first match, so a specific rule above always wins.
       { source: '/services/:slug(.*\\-[0-9a-f]{5})', destination: '/services', permanent: true },
     ]
   },
