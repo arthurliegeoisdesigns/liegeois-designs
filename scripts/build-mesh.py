@@ -92,26 +92,6 @@ def field(t, v):
 
 COLS, ROWS = 16, 9
 
-
-def field(t, v):
-    """t = 0..1 across, v = 0..1 down. Returns an RGB triple."""
-    # each flank fades to nothing by EDGE, raised to FALLOFF so it drops fast
-    l = max(0.0, 1.0 - t / EDGE) ** FALLOFF
-    r = max(0.0, 1.0 - (1.0 - t) / EDGE) ** FALLOFF
-
-    # vertical shaping. The key is strongest high, the fill strongest low, so
-    # the two never balance at any height.
-    l *= 0.55 + 0.45 * (1.0 - v)
-    r *= 0.42 + 0.58 * v
-
-    out = []
-    for i in range(3):
-        c = TROUGH[i] + (LEFT[i] - TROUGH[i]) * l
-        c = c + (RIGHT[i] - c) * r
-        out.append(c)
-    return tuple(out)
-
-
 GAMMA      = 1.00   # identity: the profile already carries shipped values
 SCALE      = 1.00
 SAT_BOOST  = 1.10   # a nudge so the deep navies do not go grey
