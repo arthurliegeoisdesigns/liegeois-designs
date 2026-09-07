@@ -120,6 +120,35 @@ export const caseStudies: CaseStudy[] = [
     outcome: `• The deck gave Echo Society a premium-grade tool to pitch vision-first while still meeting the expectations of serious investors. 
 • It was well-received across multiple investor meetings and became the basis for partner conversations and team recruitment. 
 • More than just a deck, it helped shape the company’s investor-facing identity and set a high bar for storytelling going forward.`,
+    /* Four pairs, shot by Arthur and uploaded 7 Sep 2026. Ordered by how
+       loudly the transformation reads, not by slide number: 02 and 04 lead
+       because their BEFORE is a slide anyone recognises from their own deck,
+       which is what makes a drag worth doing.
+
+       Pairs 02 and 04 also run in the homepage rotation. See
+       src/content/hero-proof.ts. */
+    beforeAfter: [
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798301/echo-before-02_wndz6w.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798298/echo-after-02_g86i1x.jpg',
+        label:  'Harriette was not amused',
+      },
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798302/echo-before-04_snoiap.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798299/echo-after-04_k3d8vn.jpg',
+        label:  'One person\u2019s trash',
+      },
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798569/echo-before-01_h9rgof.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798303/echo-after-01_lnwtri.jpg',
+        label:  'Title',
+      },
+      {
+        before: 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798300/echo-before-03_tur28l.jpg',
+        after:  'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_2000/v1788798304/echo-after-03_niqugk.jpg',
+        label:  'A fundamental shift',
+      },
+    ],
   },
 
   {

@@ -53,6 +53,11 @@ const CL = 'https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto,w_16
  * NOT HERE, deliberately:
  *   MCS x Johnson & Johnson — three pairs, withdrawn 7 Sep as confidential.
  *     Do not restore without a contract check. See git 051d52d.
+ *   Echo Society 01 and 03 — both good, both on the case study, neither on the
+ *     homepage. 01 is a title-slide restyle, which reads as a rebrand rather
+ *     than as a deck being fixed. 03's after is busy enough that it needs the
+ *     surrounding narrative to make sense, and the hero has four seconds.
+ *     Eligibility here is a higher bar than "it is good work".
  */
 export const HERO_PROOF: ProofClient[] = [
   {
@@ -62,6 +67,21 @@ export const HERO_PROOF: ProofClient[] = [
         before: `${CL}/v1788797349/noxx-before-01.jpeg.001_y40fth.jpg`,
         after: `${CL}/v1788796912/noxx-after-01_bawda3.jpg`,
         slide: 'NX-022-ISAC, Seed C',
+      },
+    ],
+  },
+  {
+    client: 'Echo Society',
+    pairs: [
+      {
+        before: `${CL}/v1788798301/echo-before-02_wndz6w.jpg`,
+        after: `${CL}/v1788798298/echo-after-02_g86i1x.jpg`,
+        slide: 'Harriette was not amused',
+      },
+      {
+        before: `${CL}/v1788798302/echo-before-04_snoiap.jpg`,
+        after: `${CL}/v1788798299/echo-after-04_k3d8vn.jpg`,
+        slide: 'One person\u2019s trash',
       },
     ],
   },
@@ -82,8 +102,17 @@ export const HERO_PROOF: ProofClient[] = [
   },
 ]
 
-/** Chosen so HERO_PROOF[0] leads on 7 Sep 2026, the day the rotation shipped. */
-const ROTATION_PHASE = 1
+/**
+ * Offset so HERO_PROOF[0] leads today rather than in two days' time.
+ *
+ * FRAGILE BY NATURE, and worth knowing: the right value depends on the NUMBER
+ * of clients, because the cycle is `day % clients.length`. It was 1 when there
+ * were two clients; adding Echo Society made three and the same value started
+ * the cycle on Echo instead. Re-check this whenever a client is added or
+ * removed, or accept whichever entry happens to lead — nothing breaks either
+ * way, it only decides which day is which.
+ */
+const ROTATION_PHASE = 0
 
 /** Days since the Unix epoch, in UTC. The rotation key. */
 export function dayIndex(now: Date = new Date()): number {
