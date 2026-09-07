@@ -23,31 +23,53 @@
      Measured, not guessed. Re-check if the body face ever changes. */
   --word-space-body: 0.045em;
 
-  /* ── Warm palette — near-black + bone + one electric accent ── */
-  --color-canvas:    #0A0908;   /* warm near-black — base dark canvas */
+  /* ── PALETTE, revised 7 September 2026 ──
+     Moved from a warm near-black family to GAA Studios' cool neutrals, at
+     Arthur's request after seeing the first dark build. The accent does NOT
+     move: #E84420 stays the single signal colour, and on deep blue it reads
+     hotter than it ever did on bone, because the pairing is complementary
+     rather than analogous. His mark, favicon and every case study thumbnail
+     carry that orange, so handing it over would have broken more than it fixed.
+
+     Their neutrals, verbatim from the palette sheet:
+       Absolute Black 000000   Deep Carbon  090909   Graphite Blue 292E35
+       Steel Navy     3D4B5C   Mist Blue    9EADC2   Soft Slate    C3CDDA
+       Cloud Grey     E6EBEF
+     Their accents, used here for ATMOSPHERE only, never for signal:
+       Abyss Navy     001126   Union Blue   255FA5   Signal Blue   2571CF */
+  --color-canvas:    #090909;   /* Deep Carbon */
   /* Bone is no longer a page background. THE ROOM, 6 Sep 2026: the site is the
      room and the work is the light source, so bone is now only the colour of
      the work itself — slides, documents, the lit surface. If you are reaching
      for --color-paper to fill a section, that is the old system talking. */
   --color-paper:     #F4F1EC;   /* bone — the work, never the page */
   --color-ink:       #141210;   /* text ON the work, e.g. inside a slide mock */
-  --color-fog:       #E8E3DB;   /* subtle surface / light borders */
-  --color-smoke:     #BDB7AE;   /* secondary text on dark */
-  --color-ash:       #8B857C;   /* muted text, metadata */
-  --color-charcoal:  #262320;   /* dark secondary surface */
-  --color-void:      #070605;   /* deepest black */
+  --color-fog:       #E6EBEF;   /* Cloud Grey */
+  --color-smoke:     #C3CDDA;   /* Soft Slate */
+  --color-ash:       #9EADC2;   /* Mist Blue */
+  --color-charcoal:  #292E35;   /* Graphite Blue */
+  --color-void:      #000000;   /* Absolute Black. Pure, not near-black: every
+                                   reference puts the light against true black
+                                   and that contrast is what makes it read. */
+  /* Atmosphere only. These never carry meaning, and nothing is ever coloured
+     with them to indicate state — that is the accent's job and only the
+     accent's. */
+  --color-abyss:     #001126;
+  --color-union:     #255FA5;
+  --color-signal:    #2571CF;
+  --color-steel:     #3D4B5C;
 
   /* ── Aliases for backward compat ── */
   --color-dark:            var(--color-canvas);
-  --color-dark-surface:    #12100E;
-  --color-dark-elevated:   #1A1714;
+  --color-dark-surface:    #0E1218;
+  --color-dark-elevated:   #16202E;
   --color-dark-border:     rgba(255, 253, 248, 0.08);
   --color-dark-border-mid: rgba(255, 253, 248, 0.16);
 
   /* ── Text on dark ── */
-  --color-on-dark:        #F7F4EF;
-  --color-on-dark-muted:  #BDB7AE;   /* smoke */
-  --color-on-dark-faint:  #A19A90;   /* ash — kept above WCAG AA contrast */
+  --color-on-dark:        #E6EBEF;   /* Cloud Grey */
+  --color-on-dark-muted:  #C3CDDA;   /* Soft Slate */
+  --color-on-dark-faint:  #9EADC2;   /* Mist Blue */
   --color-on-dark-border: rgba(255, 253, 248, 0.10);
   /* 0.35 -> 0.47 on 6 Sep, then -> 0.50 on 7 Sep.
      At 0.35 this was 3.05:1 on void and failed at all three of its call sites,
@@ -170,8 +192,8 @@
   --glass-bg:         linear-gradient(155deg, rgba(24,21,38,.66), rgba(9,8,16,.76));
   --glass-bg-hover:   linear-gradient(155deg, rgba(30,26,46,.70), rgba(12,10,20,.78));
   --glass-filter:     blur(30px) saturate(190%) brightness(1.16);
-  --glass-border:     rgba(247, 244, 239, 0.18);
-  --glass-border-lit: rgba(247, 244, 239, 0.34);
+  --glass-border:     rgba(230, 235, 239, 0.20);
+  --glass-border-lit: rgba(230, 235, 239, 0.38);
   --glass-shadow:     0 30px 70px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .32);
   /* Rounded on glass ONLY, Arthur's call 7 Sep. The zero-radius rule still
      holds everywhere else, and it holds where it means something: the WORK is
@@ -203,7 +225,7 @@
 
      So: near-black base, colour carried by soft angled light, and one crisp
      sphere on top doing the shape and the volume. */
-  --bd-base:   #050404;
+  --bd-base:   #000000;
   --bd-blur-far:  96px;
   --bd-blur-near: 72px;
 }
@@ -1150,10 +1172,10 @@ html.is-first-load .page-transition-wrapper { animation: none; }
      finding still stands: secondary text on a dark canvas reads too dim at
      mobile sizes, where the screen is small, bright and often outdoors. */
   :root {
-    --color-text-secondary: #D8D3CB;
-    --color-text-muted: #C6C0B6;
-    --color-on-dark-muted: #D0CAC1;
-    --color-on-dark-faint: #B3ACA2;
+    --color-text-secondary: #D5DCE5;
+    --color-text-muted: #C3CDDA;
+    --color-on-dark-muted: #D5DCE5;
+    --color-on-dark-faint: #B2BFD0;
   }
 
   /* Services page panels: title stays in view, content scrolls,
@@ -2650,91 +2672,124 @@ footer {
    drags an edge into frame at the bottom of a long page. */
 .bd { position: absolute; inset: -30%; will-change: transform; }
 
-/* FAR — the colour, and nothing else. Angled linear gradients with the source
-   off-frame, as locked on 6 Sep: a radial always has a centre and reads as a
-   ball. Opacities are DOWN from that spec and the vertical base stop is gone,
-   because the field is no longer doing the shape work. The sphere below does
-   that now, so this only has to tint the black. */
+/* ════════════════════════════════════════════════════════════════════
+   THE FIELD — stage lighting. Third attempt, and the one that follows the
+   reference instead of arguing with it.
+
+   WHAT THE PREVIOUS TWO GOT WRONG
+   v1 was a diffuse lifted field: too bright, no edges, parallax invisible.
+   v2 over-corrected. I flattened the sphere to near-black so small text could
+   sit anywhere on it, which stripped out the glassmorphism that made it worth
+   looking at. Arthur: "you simply took away everything that was interesting
+   in the orb."
+
+   THE THING BOTH ATTEMPTS MISSED
+   Look at where the logo sits in every one of their pieces: dead centre, in
+   the DARKEST part of the frame, with the light thrown out to the wings. They
+   never dim the field to make type legible. They place the light so the middle
+   stays dark, and put the content there. That is stage lighting, a spot from
+   the wing and the boards dark, and it IS the legibility mechanism rather than
+   a compromise against it.
+
+   So: pure black, light entering from the EDGES only, and a centre that stays
+   near-black on its own. No artificial scrim, because the composition is the
+   scrim.
+
+   ASYMMETRY IS LOAD-BEARING. Arthur asked for it and the references are
+   emphatic: light from one flank, never balanced. Two sources of unequal
+   weight at unequal heights. A symmetrical field reads as a backdrop; an
+   asymmetrical one reads as a room with a light in it.
+
+   ON RADIAL GRADIENTS. Rejected in round four for reading as orbs. They are
+   back, and that objection still holds where it applied: a radial at small
+   scale with a visible centre reads as a ball. Here the centres sit OFF-FRAME,
+   so what shows is the falloff and not the source, which is how a real light
+   behaves.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* KEY LIGHT — left flank, high. The strongest thing in frame. */
 .bd-far {
   background:
-    linear-gradient(148deg, rgba(232,  68,  32, .22) 0%, rgba(5, 4, 4, 0) 58%),
-    linear-gradient( 21deg, rgba( 74, 124, 190, .26) 0%, rgba(5, 4, 4, 0) 62%),
-    linear-gradient(291deg, rgba(107,  47,  92, .24) 0%, rgba(5, 4, 4, 0) 56%),
-    linear-gradient(196deg, rgba( 30, 107, 107, .16) 0%, rgba(5, 4, 4, 0) 66%),
+    radial-gradient(78% 92% at -14% 26%,
+      rgba(195, 205, 218, .58) 0%,
+      rgba(158, 173, 194, .30) 26%,
+      rgba(61,  75,  92, .14) 48%,
+      rgba(0, 0, 0, 0) 68%),
+    /* FILL — right flank, lower, cooler, deliberately weaker than the key.
+       Equal weights would centre the composition and kill it. */
+    radial-gradient(66% 80% at 112% 68%,
+      rgba(37, 113, 207, .40) 0%,
+      rgba(37,  95, 165, .20) 30%,
+      rgba(0, 17, 38, .10) 52%,
+      rgba(0, 0, 0, 0) 72%),
+    /* BOUNCE — a low warm note off the bottom right, the accent hue at a
+       fraction of strength. Ties the atmosphere to the brand without ever
+       competing with the accent as a signal. */
+    radial-gradient(52% 44% at 88% 104%,
+      rgba(232, 68, 32, .13) 0%, rgba(0, 0, 0, 0) 62%),
     var(--bd-base);
   filter: blur(var(--bd-blur-far));
 }
 
-/* THE SPHERE — the whole point of this revision.
-   NO filter: blur() on this element. Blur is what killed every earlier attempt:
-   it dissolves the edge, and a circle without an edge is fog. The gradient
-   inside is smooth and the border-radius cuts it hard.
+/* THE SPHERE — glassmorphism restored.
+   v2 stripped this to a dark disc with a hairline rim, which is what Arthur
+   objected to. What makes the reference read as GLASS and not as a circle:
 
-   GEOMETRY, and the version before this got it wrong.
-   The first attempt was 168vmax tall anchored by bottom:12%, which on a
-   1920x1080 screen is a 3226px disc with its arc at y=950. Only its lowest
-   29% was ever on screen, and the rim light was placed at 14% from the top:
-   entirely off screen. It would have rendered as a near-invisible dark arc.
-   Sized against viewport HEIGHT now, and positioned so the arc lands at 88vh
-   at any aspect ratio, with a vw cap so it stays curved on a phone.
+     1. A broad internal luminance gradient, bright at the upper left. Not a
+        thin annulus: the light falls across a whole quadrant of the face.
+     2. A soft specular rim following the lit arc, brighter than the face, and
+        blurred rather than hairline.
+     3. An inner shadow at the far limb, so the body has volume instead of
+        reading as a flat fill.
+     4. A crisp silhouette against true black. Still no filter: blur() on this
+        element. That was always right, and it is why the parallax reads.
 
-   BRIGHTNESS, measured not guessed.
-   The body has to stay dark, because text sits on it. At the previous body
-   value (#1B1726) plus the near layer, 11px label text measured 3.97:1 and
-   failed AA, and NO rim alpha fixed that because the disc itself was the
-   problem. The body's lightest stop is now #12101C, which puts the interior at
-   #292A37: labels 5.08:1, accent-text 4.82:1.
-
-   The drama moved to where nothing has to be legible: a thin bright ANNULUS at
-   the circumference, which can be strong because it is a two-percent-wide arc
-   with no text on it. That is also what the reference actually does — GAA's
-   orb is near-black across its face with the light on the edge. */
+   It sits OFF CENTRE, up and to the left, so the lit quadrant falls in the
+   outer margin rather than under the content column. */
 .bd-orb {
-  --orb: min(150vh, 210vw);
+  --orb: min(132vh, 168vw);
   position: absolute;
   width:  var(--orb);
   height: var(--orb);
   left: 50%;
-  margin-left: calc(var(--orb) / -2);
-  /* arc crosses at 88vh whatever the viewport */
-  top: calc(88vh - var(--orb));
+  margin-left: calc(var(--orb) * -0.62);
+  top: calc(78vh - var(--orb));
   border-radius: 50%;
   background:
-    /* 1. TERMINATOR, on top. Kills the rim on the unlit flank and shades the
-          body away from the light. Listed first, so it paints last. */
-    linear-gradient(128deg,
-      rgba(5, 4, 9, 0) 0%, rgba(5, 4, 9, .45) 38%, rgba(5, 4, 9, .92) 68%),
-    /* 2. RIM. A narrow annulus hugging the circumference. Bright, because it
-          is an edge and carries no text. */
+    /* 3. far-limb shading, painted on top */
+    radial-gradient(112% 112% at 26% 20%,
+      rgba(0, 0, 0, 0) 40%, rgba(0, 0, 0, .55) 82%, rgba(0, 0, 0, .78) 100%),
+    /* 2. specular rim, soft, following the lit arc */
     radial-gradient(circle at 50% 50%,
-      rgba(206, 222, 240, 0) 0 76%,
-      rgba(206, 222, 240, .55) 88%,
-      rgba(206, 222, 240, 0) 97%),
-    /* 3. The warm side. His accent, kept faint: the technique is borrowed from
-          GAA, the palette is not. */
-    radial-gradient(54% 54% at 76% 72%,
-      rgba(232, 68, 32, .16) 0%, rgba(232, 68, 32, 0) 55%),
-    /* 4. BODY. Dark on purpose. See the note above. */
-    linear-gradient(152deg, #12101C 0%, #0C0A16 46%, #07060F 100%);
-  /* Outer glow stops the edge looking cut out with scissors. */
-  box-shadow: 0 0 220px rgba(120, 150, 200, .10);
+      rgba(214, 227, 242, 0) 0 72%,
+      rgba(214, 227, 242, .42) 87%,
+      rgba(214, 227, 242, .10) 95%,
+      rgba(214, 227, 242, 0) 100%),
+    /* 1. the light across the face. Broad. This is the part v2 removed. */
+    radial-gradient(78% 78% at 22% 18%,
+      rgba(195, 205, 218, .50) 0%,
+      rgba(126, 147, 180, .26) 34%,
+      rgba(61,  75,  92, .10) 58%,
+      rgba(0, 0, 0, 0) 78%),
+    /* body */
+    linear-gradient(148deg, #16273D 0%, #0A1729 38%, #001126 66%, #00060F 100%);
+  box-shadow: 0 0 240px rgba(37, 113, 207, .16);
   will-change: transform;
 }
 
-/* NEAR — a few faint highlights that travel faster than the sphere, so there
-   are three distinct depths rather than two. */
+/* NEAR — the fastest layer. Two faint highlights, no colour of their own. */
 .bd-near {
   background:
-    linear-gradient(112deg, rgba(198, 216, 238, .13) 0%, rgba(5, 4, 4, 0) 42%),
-    linear-gradient(292deg, rgba(232, 110,  70, .11) 0%, rgba(5, 4, 4, 0) 40%);
+    linear-gradient(112deg, rgba(214, 227, 242, .10) 0%, rgba(0, 0, 0, 0) 38%),
+    linear-gradient(292deg, rgba(37, 113, 207, .10) 0%, rgba(0, 0, 0, 0) 36%);
   filter: blur(var(--bd-blur-near));
 }
 
-/* VIGNETTE — fixed, never parallaxed. Deeper than before: with a lit sphere
-   in frame the corners have to fall away harder or the whole thing floats. */
+/* VIGNETTE — fixed, never parallaxed. Pulls the corners down so the light
+   reads as entering the frame rather than filling it. */
 .bd-vig {
-  background: radial-gradient(120% 92% at 50% 42%,
-    rgba(0, 0, 0, 0) 34%, rgba(0, 0, 0, .82) 100%);
+  background: radial-gradient(126% 96% at 46% 46%,
+    rgba(0, 0, 0, 0) 28%, rgba(0, 0, 0, .74) 100%);
 }
 
 /* Everything the reader is meant to look at sits above the field. */

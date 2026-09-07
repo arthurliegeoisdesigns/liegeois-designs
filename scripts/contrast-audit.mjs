@@ -31,22 +31,27 @@ const CSS = readFileSync(new URL('../src/app/globals.css', import.meta.url), 'ut
 
 /* The surfaces text can actually land on. Worst case first.
  *
- * UPDATED 7 Sep 2026 and this is the part to keep honest. The backdrop was
- * rebuilt from a lifted diffuse field to a near-black base with one hard-edged
- * sphere, so the old worst case of #241E2E no longer describes anything on the
- * site. An auditor carrying a stale surface is worse than no auditor: it
- * reports green against a page that does not exist.
+ * UPDATED 7 Sep 2026, second revision, and this is the part to keep honest.
+ * The field was rebuilt again: pure black with the light entering from the
+ * flanks, so the centre of frame stays dark by composition rather than by
+ * dimming. An auditor carrying a stale surface is worse than none, because it
+ * reports green against a page that does not exist. This has now been wrong
+ * twice, so check it whenever the backdrop moves.
  *
- * #292A37 is the sphere's interior at its lightest: body stop #12101C with the
- * near layer composited at 13%. That is the brightest place bare text can
- * land. The rim annulus is brighter still, but it is a two-percent-wide arc at
- * the circumference with nothing on it, so it is deliberately not the number
- * used here — if content ever gets placed on the rim, this assumption breaks.
+ * #0A192B is the composited centre of frame where the content column sits:
+ * the key light's falloff at 50% width, plus the fill, plus the sphere's DARK
+ * flank (it is offset left on purpose), plus the near layer.
+ *
+ * The sphere's LIT quadrant is far brighter, around #717E90, and nothing here
+ * would survive on it. That is deliberate and it is a LAYOUT contract, not a
+ * colour one: the sphere is pushed left so its lit face falls in the outer
+ * margin. If content ever moves under it, this whole assumption breaks and the
+ * number above is a lie.
  */
 const SURFACES = {
-  'sphere interior': '#292A37', // brightest surface bare text can sit on
-  canvas: '#0A0908',
-  void: '#070605',
+  'centre of field': '#0A192B', // where the content column actually sits
+  canvas: '#090909',
+  void: '#000000',
 }
 
 /**
@@ -58,22 +63,26 @@ const EXEMPT = [
     match: /\.work-filter\.is-active sup/,
     reason:
       'Sits on the bone chip set by .work-filter.is-active, not on the page. ' +
-      '#C13414 on #F7F4EF is 5.08:1, unaffected by the backdrop change. The ' +
-      'reader does not resolve inherited backgrounds.',
+      'The chip is bone, so this needs the DARK accent and gets it: #C13414 on ' +
+      '#F7F4EF is 5.08:1, and unlike the others that number is stable because ' +
+      'neither colour depends on the backdrop. The reader does not resolve ' +
+      'inherited backgrounds, which is the only reason it flags at all.',
   },
   {
     match: /\.footer-email a:hover/,
     reason:
       'font-size clamp(1.9rem, 5.5vw, 4.5rem) = 30px minimum, declared on ' +
-      '.footer-email. Large text, so the threshold is 3.0, and it measures ' +
-      '3.57:1 on the sphere interior. Was 4.06:1 against the old lifted field.',
+      '.footer-email, so WCAG treats it as large text and the threshold is 3.0 ' +
+      'rather than 4.5. The reader cannot see a font-size in a sibling rule. ' +
+      'Deliberately states no ratio: this reason has been rewritten twice ' +
+      'already because the field moved under it. The SIZE is the argument.',
   },
   {
     match: /\.nav-menu-label/,
     reason:
       'font-size clamp(2.5rem, 6.5vw, 5.5rem) = 40px minimum, declared on ' +
-      '.nav-menu-label. Large text: 3.57:1 on the sphere interior, against a 3.0 ' +
-      'threshold. Was 4.06:1 on the old lifted field.',
+      '.nav-menu-label, so the threshold is 3.0 rather than 4.5. Same reasoning ' +
+      'as .footer-email above, and same warning: no ratio quoted on purpose.',
   },
 ]
 
@@ -212,7 +221,7 @@ for (const [, selRaw, body] of CSS.matchAll(/([^{}]+)\{([^{}]*)\}/g)) {
 
 const f = (n) => n.toFixed(2).padStart(5)
 console.log(`\nContrast audit — THE ROOM`)
-console.log(`Measured against ${Object.values(SURFACES)[0]}, the sphere interior, not pure void.\n`)
+console.log(`Measured against ${Object.values(SURFACES)[0]}, the centre of the field, not pure void.\n`)
 console.log(`  text-colour rules examined  ${results.length}`)
 console.log(`  documented exemptions       ${exempted.length}`)
 console.log(`  light surfaces, text-free   ${surfaceExempt.length}`)
