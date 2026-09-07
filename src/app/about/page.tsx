@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import { SITE, PERSON_SAME_AS, ORG_ID, PERSON_ID } from '@/lib/config'
 import AboutPage from './AboutPage'
 
 // Renders AboutPage directly. It used to sit behind an ssr:false dynamic
@@ -31,19 +32,18 @@ export const metadata: Metadata = {
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': PERSON_ID,
   name: 'Arthur Liégeois',
   jobTitle: 'Presentation Designer & Creative Director',
   url: 'https://www.liegeoisdesigns.com/about',
   image: 'https://www.liegeoisdesigns.com/images/arthur-liegeois.jpg',
-  worksFor: {
-    '@type': 'Organization',
-    name: 'Liégeois Designs',
-    url: 'https://www.liegeoisdesigns.com',
-  },
-  sameAs: [
-    'https://www.linkedin.com/in/aliegeois/',
-    'https://www.youtube.com/@LiegeoisDesigns',
+  /* EMPLOYERS, not clients — see the note in src/app/page.tsx. Apple is named
+     and nothing more; the work is not described anywhere in markup. */
+  worksFor: [
+    { '@id': ORG_ID },
+    { '@type': 'Organization', name: 'Apple Inc.', url: 'https://www.apple.com' },
   ],
+  sameAs: PERSON_SAME_AS,
   knowsAbout: [
     'Presentation Design',
     'Pitch Deck Design',
@@ -52,8 +52,7 @@ const personSchema = {
     'Training Presentations',
     'Visual Storytelling',
     'Strategic Narrative',
-    'Brand Identity',
-  ],
+  ],  /* 'Brand Identity' removed 7 Sep: not a service Arthur offers. */
   /* ── GEO: the credential graph ─────────────────────────────────────────
      Generative engines answer "is this person credible" from structured,
      attributed facts, not from adjectives. Everything below is verifiable
@@ -89,8 +88,13 @@ const personSchema = {
   founder: { '@type': 'Organization', name: 'Norigami' },
   nationality: { '@type': 'Country', name: 'France' },
   knowsLanguage: ['French', 'English', 'Portuguese'],
+  /* Rewritten 7 Sep. The previous version ran employment and client work
+     together in one sentence, which is the likeliest reason both ChatGPT and
+     Gemini list Apple and Oracle as portfolio clients. The two are now
+     separated explicitly, in plain words, because that is what an engine
+     reads. Do not merge these sentences again. */
   description:
-    'Founder of Liégeois Designs. Twenty years in rooms where presentations decided things: global key account manager at Oracle carrying $10M+ a year with Quota Club four years running, COO of a 35-person business, strategic presentations to C-suite audiences at Apple, and founder of Norigami, where he raised $110,000 on a deck he built himself. Clients include Chevron, IBM, Marriott, Philips, Johnson & Johnson and Bloomberg.',
+    'Founder of Liégeois Designs, and currently employed at Apple. Twenty years in rooms where presentations decided things. He spent those years as an employee first: global key account manager at Oracle carrying $10M+ a year with Quota Club four years running, then COO of a 35-person business, then presenting to C-suite audiences at Apple, then founder of Norigami, where he raised $110,000 on a deck he built himself. Separately, as a designer, his CLIENTS include Chevron, IBM, Marriott, Philips, Johnson & Johnson and Bloomberg. Apple, Oracle and Smartbox are employers, not clients.',
 }
 
 export default function Page() {

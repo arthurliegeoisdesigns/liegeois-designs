@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { links } from '@/lib/config'
+import { links, SITE, PERSON_SAME_AS, ORG_ID, PERSON_ID } from '@/lib/config'
 import { publishedPosts } from '@/content/blog-posts'
 import ClientMarquee from '@/components/v2/ClientMarquee'
 import ProofSlider from '@/components/v2/ProofSlider'
@@ -19,50 +19,59 @@ import WorkFlip from '@/components/v2/WorkFlip'
  * do. It also argued against its own thesis, since a studio selling streamlined
  * narrative should not ship a scroll epic.
  *
- * Now ~6 screens, light, six sections, and everything that moves has a job.
+ * Now ~6 screens, six sections, and everything that moves has a job.
  *
- * Server component. Four client islands only: HeroDeck (cursor tilt),
- * ClientMarquee (scroll velocity), ProofSlider (drag), WorkFlip (hover).
- * Every word a crawler needs is server-rendered.
+ * UPDATED 6-7 Sep 2026. Two things above are no longer true and are corrected
+ * rather than deleted, because the old text is what someone would rely on:
+ *   "light"  — the site is dark throughout under THE ROOM.
+ *   "HeroDeck" — removed. Direction B made ProofSlider the hero, so the deck
+ *                that used to open the page is gone (git: 4f6649a).
+ *
+ * Server component. THREE client islands: ClientMarquee (scroll velocity),
+ * ProofSlider (drag), WorkFlip (hover). Every word a crawler needs is
+ * server-rendered, and none of them is dynamic({ssr:false}).
  */
 
 const personSchema = {
   '@context': 'https://schema.org',
   '@type': 'Person',
+  '@id': PERSON_ID,
   name: 'Arthur Liégeois',
   jobTitle: 'Presentation Designer & Strategic Storyteller',
-  url: 'https://www.liegeoisdesigns.com',
-  image: 'https://www.liegeoisdesigns.com/images/arthur-liegeois.jpg',
-  sameAs: ['https://www.linkedin.com/in/aliegeois/', 'https://www.youtube.com/@LiegeoisDesigns'],
+  url: SITE,
+  image: `${SITE}/images/arthur-liegeois.jpg`,
+  // Person, not organisation. The company LinkedIn and the YouTube channel
+  // identify the STUDIO and live on the Organization in layout.tsx. Pointing
+  // both entities at both sets tells an engine they are the same thing.
+  sameAs: PERSON_SAME_AS,
   knowsAbout: [
     'Pitch Deck Design', 'Executive Presentations', 'Investor Decks',
     'Visual Storytelling', 'Strategic Narrative', 'Presentation Design', 'Sales Decks',
   ],
-  worksFor: { '@type': 'Organization', name: 'Liégeois Designs', url: 'https://www.liegeoisdesigns.com' },
+  /**
+   * EMPLOYERS, not clients. Both ChatGPT and Gemini currently list Apple and
+   * Oracle among the portfolio, which is a credibility risk the moment a
+   * recruiter or prospect probes it. worksFor is the unambiguous signal, and
+   * an array is valid: Arthur runs the studio and holds the Apple role
+   * concurrently.
+   *
+   * Apple is NAMED and nothing more. No jobTitle, no description, no work.
+   * Arthur confirmed on 7 Sep that naming is cleared; describing the work is
+   * not, and that line does not move without him.
+   *
+   * Client work stays where it belongs, in the case study schema.
+   */
+  worksFor: [
+    { '@id': ORG_ID },
+    { '@type': 'Organization', name: 'Apple Inc.', url: 'https://www.apple.com' },
+  ],
 }
 
-const businessSchema = {
-  '@context': 'https://schema.org',
-  '@type': 'ProfessionalService',
-  name: 'Liégeois Designs',
-  description:
-    'Pitch deck design, executive presentations, and strategic narrative for founders and executives across North America.',
-  url: 'https://www.liegeoisdesigns.com',
-  founder: { '@type': 'Person', name: 'Arthur Liégeois' },
-  areaServed: ['United States', 'Canada'],
-  priceRange: '$$$$',
-  hasOfferCatalog: {
-    '@type': 'OfferCatalog',
-    name: 'Presentation Design Services',
-    itemListElement: [
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pitch & Investor Decks', description: 'Narrative-driven pitch decks for founders raising capital.' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Executive Presentations', description: 'Board decks, all-hands, and keynote presentations for C-suite.' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Sales & Agency Decks', description: 'Proposals and capabilities decks that close deals without a follow-up.' } },
-      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Strategic Narrative', description: 'Deep-dive engagement fixing story architecture before visual execution.' } },
-    ],
-  },
-  sameAs: ['https://www.linkedin.com/in/aliegeois/', 'https://www.youtube.com/@LiegeoisDesigns'],
-}
+/* businessSchema was a SECOND ProfessionalService for the same studio,
+   declared here as well as in layout.tsx and disagreeing with it on
+   areaServed. Removed 7 Sep; its unique fields (hasOfferCatalog, priceRange)
+   moved into the layout node, which now carries a stable @id. One
+   organisation, declared once. */
 
 const SEATS = [
   { seat: 'The one pitching', org: 'Oracle', years: '2001 – 2006',
@@ -83,7 +92,6 @@ export default function Home() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(businessSchema) }} />
 
       <main className="v2">
         {/* ── THE HERO IS THE PROOF. Direction B, chosen 6 Sep 2026.

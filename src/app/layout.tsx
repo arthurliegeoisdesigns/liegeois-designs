@@ -6,6 +6,7 @@ import Footer from '@/components/Footer'
 import SmoothScrollProvider from '@/components/providers/SmoothScrollProvider'
 import ClientOnlyLayer from '@/components/providers/ClientOnlyLayer'
 import PresentationMode from '@/components/ui/PresentationMode'
+import { SITE, ORG_ID, PERSON_ID, ORG_SAME_AS, ORG_LOGO, SERVICES } from '@/lib/config'
 import Backdrop from '@/components/Backdrop'
 import BackdropParallax from '@/components/BackdropParallax'
 
@@ -39,36 +40,59 @@ export const metadata: Metadata = {
   },
 }
 
+/**
+ * Organisation schema, sitewide. The Person lives in page.tsx and
+ * about/page.tsx; keep the two entities distinct. See src/lib/config.ts for
+ * why sameAs differs between them.
+ */
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'ProfessionalService',
+  /* Stable @id. Without it every page minted a fresh anonymous organisation
+     node, so an engine crawling the site saw many similar organisations rather
+     than one. That is the same failure mode as the inconsistent sameAs, and it
+     matters here because Gemini already resolves "Liégeois Designs" to an
+     unrelated interior design firm in Naples, Florida. */
+  '@id': ORG_ID,
   name: 'Liégeois Designs',
-  url: 'https://www.liegeoisdesigns.com',
-  logo: 'https://www.liegeoisdesigns.com/images/logos/liegeois-designs-logo.png',
+  url: SITE,
+  // Was a hardcoded path to a file that does not exist in this repo, so every
+  // crawl fetched a 404 for the knowledge-panel logo. Now the real asset.
+  logo: ORG_LOGO,
   description:
-    'Boutique visual storytelling studio specializing in presentation design, pitch decks, and brand identity for companies that refuse to blend in.',
-  founder: {
-    '@type': 'Person',
-    name: 'Arthur Liegeois',
-    jobTitle: 'Creative Director',
+    'Boutique visual storytelling studio specializing in presentation design, pitch decks, and executive keynotes for companies that refuse to blend in.',
+  /* A reference, not a copy. The Person is declared in full on the homepage
+     and the about page; repeating a partial copy here would be a third node
+     claiming to be Arthur. */
+  founder: { '@id': PERSON_ID },
+  /* Was 'Worldwide' here and ['United States','Canada'] in page.tsx: the same
+     organisation described twice, disagreeing. Consolidated to the specific
+     claim, which is what the site copy actually says. */
+  areaServed: ['United States', 'Canada'],
+  // Was advertising Brand Identity and Creative Direction, neither of which is
+  // a service Arthur offers. Now driven by the single SERVICES list.
+  serviceType: [...SERVICES],
+  sameAs: ORG_SAME_AS,
+  priceRange: '$$$$',
+  /* Moved here from page.tsx along with priceRange when the duplicate
+     ProfessionalService was removed. Sitewide is the right scope: the offer
+     catalogue describes the studio, not the homepage. */
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Presentation Design Services',
+    itemListElement: [
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Pitch & Investor Decks', description: 'Narrative-driven pitch decks for founders raising capital.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Executive Presentations', description: 'Board decks, all-hands, and keynote presentations for C-suite.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Sales & Agency Decks', description: 'Proposals and capabilities decks that close deals without a follow-up.' } },
+      { '@type': 'Offer', itemOffered: { '@type': 'Service', name: 'Strategic Narrative', description: 'Deep-dive engagement fixing story architecture before visual execution.' } },
+    ],
   },
-  areaServed: 'Worldwide',
-  serviceType: [
-    'Presentation Design',
-    'Pitch Deck Design',
-    'Brand Identity',
-    'Creative Direction',
-    'Visual Storytelling',
-  ],
-  sameAs: [
-    'https://www.linkedin.com/in/aliegeois/',
-  ],
   email: 'hello@liegeoisdesigns.com',
   contactPoint: {
     '@type': 'ContactPoint',
     contactType: 'customer service',
     email: 'hello@liegeoisdesigns.com',
-    url: 'https://www.liegeoisdesigns.com/contact',
+    url: `${SITE}/contact`,
   },
 }
 
