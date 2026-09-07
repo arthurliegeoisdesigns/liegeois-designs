@@ -161,23 +161,30 @@ def lift(rgb):
 
 
 def main():
-    rows, cols = len(GAA_L), len(GAA_L[0])
-    flat = [v for row in GAA_L for v in row]
+    # FLIPPED VERTICALLY. Their poster has light across the top because a
+    # poster has one mark in the middle. A page has its headline at the top, so
+    # the composition is mirrored: the dark region lands under the hero copy,
+    # and the glow sits low and right, behind the slider. Same picture, same
+    # light, upside down.
+    L_GRID = GAA_L[::-1]
+    B_GRID = GAA_BLUE[::-1]
+    rows, cols = len(L_GRID), len(L_GRID[0])
+    flat = [v for row in L_GRID for v in row]
     lo_in, hi_in = min(flat), max(flat)
 
     small = Image.new("RGB", (cols, rows))
     px = small.load()
     for r in range(rows):
         for c in range(cols):
-            t = (GAA_L[r][c] - lo_in) / (hi_in - lo_in)
+            t = (L_GRID[r][c] - lo_in) / (hi_in - lo_in)
             L = L_OUT_LOW + (L_OUT_HIGH - L_OUT_LOW) * t
             # the ramp's own chroma at this lightness: a gentle bell, so the
             # deepest step does not go purple and the lightest does not go cyan
             k = max(0.25, 1.0 - abs(t - 0.45) / 0.55) * 1.35
             a, b = -1.5 * k, -14.0 * k
             # their blue flank, carried across as ours
-            b -= BLUE_PUSH * GAA_BLUE[r][c] * (0.35 + 0.65 * t)
-            a -= 3.0 * GAA_BLUE[r][c]
+            b -= BLUE_PUSH * B_GRID[r][c] * (0.35 + 0.65 * t)
+            a -= 3.0 * B_GRID[r][c]
             px[c, r] = tuple(max(0, min(255, round(v))) for v in lift(lab_to_rgb((L, a, b))))
 
     # THIS is the mesh: bicubic interpolation between the control points.

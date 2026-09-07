@@ -2993,24 +2993,22 @@ footer {
 }
 
 
-/* ── HERO COPY ON GLASS ──────────────────────────────────────────────────
-   The hero is the one place bare text sat on the brightest part of the field.
-   It goes on a panel, which is how the reference handles every word it sets
-   over a gradient. The panel is what makes the frosting legible as an effect:
-   the mesh has 64x of range behind it, so the blur has something to bend.
+/* ── HERO: BARE ON THE FIELD ─────────────────────────────────────────────
+   A glass panel went here for about ten minutes and came straight back out.
+   Arthur: "the hero SHOULDN'T be on glass."
 
-   Deliberately NOT a hard-edged card. It fades at the bottom so the slider
-   below reads as continuous with it rather than as a second box. */
-.v2-phero .v2-phead {
-  position: relative;
-  padding: clamp(26px, 3vw, 44px);
-  border-radius: var(--radius-glass);
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
-  border: 1px solid var(--glass-border);
-  box-shadow: var(--glass-shadow);
-}
-@supports not (backdrop-filter: blur(2px)) {
-  .v2-phero .v2-phead { background: rgba(37, 49, 61, .93); }
-}
+   He is right and it is the better instinct. The whole effect in the reference
+   is the mark sitting DIRECTLY on the gradient; putting a pane over it is
+   exactly the move that makes it look like a template. Glass is for cards
+   further down, where content genuinely needs a surface of its own.
+
+   What makes it work without one: the mesh is flipped vertically, so the dark
+   region lands under the hero copy and the glow sits low and right, behind and
+   around the slider. Measured over the copy zone (left 65%, top 45% of the
+   frame) the worst surface is #294761 — h1 at 7.9:1, the lede at 5.1:1, the
+   eyebrow at 4.8:1, all bare.
+
+   CONSTRAINT THIS CREATES: hero copy has to stay in the upper left. Push it
+   down past ~50% of the frame or across to the right and it moves onto the
+   glow, where the lede drops to 3.75:1. That is a layout contract, and it is
+   the price of having the copy bare on the field rather than on a panel. */
