@@ -165,6 +165,37 @@ export default function RootLayout({
               "}catch(e){}})();",
           }}
         />
+        {/* ANALYTICS OPT-OUT — must be a BLOCKING inline script, and must run
+            before the GTM loader below reads window.__gaOptOut.
+
+            WHY THIS EXISTS INSTEAD OF A GA4 IP FILTER
+            Roughly 18% of the property's users were Arthur visiting his own
+            site. The obvious fix is GA4's internal-traffic IP filter, and on
+            7 Sep 2026 it turned out to be unusable here: his IP reads as
+            146.75.245.37, which is Fastly, which is one of Apple's iCloud
+            Private Relay egress partners. So the address is not his, it
+            rotates, and it is SHARED with every other Private Relay user
+            routed through that egress.
+
+            Filtering on it would have been worse than doing nothing: it would
+            not reliably catch him, and it would silently discard real visitors
+            who happen to share the egress. GA4 data filters DELETE rather than
+            hide, so that loss is permanent and invisible.
+
+            This is per-device and per-browser, which is the right granularity
+            for one person, and it does not care about IP at all. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              "(function(){try{" +
+              "var k='ld-ga-optout',p=new URLSearchParams(location.search);" +
+              "if(p.has('ga-optout')){" +
+                "p.get('ga-optout')==='0'?localStorage.removeItem(k)" +
+                ":localStorage.setItem(k,'1');}" +
+              "window.__gaOptOut=localStorage.getItem(k)==='1';" +
+              "}catch(e){window.__gaOptOut=false;}})();",
+          }}
+        />
       </head>
       <body>
         {/* Google Tag Manager — noscript fallback */}
@@ -198,11 +229,14 @@ export default function RootLayout({
           id="gtm"
           strategy="lazyOnload"
           dangerouslySetInnerHTML={{
-            __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            // Gated on the opt-out flag set by the blocking script in <head>.
+            // If it is set, GTM is never injected at all — not loaded and
+            // suppressed, simply not loaded.
+            __html: `if(!window.__gaOptOut){(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
 new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
 j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','${GTM_ID}');`,
+})(window,document,'script','dataLayer','${GTM_ID}');}`,
           }}
         />
       </body>
