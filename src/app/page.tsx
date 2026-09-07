@@ -124,10 +124,17 @@ export default function Home() {
                   The argument was already in the deck, buried under everything
                   competing with it. Drag it yourself.
                 </p>
+                {/* Arthur's own drafted wording, 7 Sep. Trimmed to the first two
+                    sentences: his draft closed with "Most designers get handed a
+                    pile of slides. I rebuild the story first, then design it.",
+                    which is the same argument the h1 and the slider directly
+                    above are already making. Those two sentences moved to the
+                    about page, where they have room to land instead of
+                    competing. Apple is named; the work is not shown. */}
                 <p className="v2-bridge">
-                  I&rsquo;ve raised my own round, and I build the decks Fortune&nbsp;500s
-                  take into board rooms. Your investors are institutions. I speak
-                  both languages.
+                  I write executive keynotes inside Apple&rsquo;s engineering
+                  organization. Before that I sold for Oracle, ran a company, and
+                  raised $110,000 on a deck I built myself.
                 </p>
                 <div className="v2-acts">
                   <a className="v2-cta" href={links.calendly}>Book a call</a>

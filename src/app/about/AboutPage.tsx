@@ -129,6 +129,21 @@ export default function AboutPage() {
                 learn the stakes. I learned the stakes first, for two decades, and it is
                 why I cannot leave a weak narrative alone.
               </p>
+              {/* The current role. Present tense, and placed after the chronology
+                  rather than inside it, because the paragraph above about Paris
+                  is a different Apple a decade earlier and the two would read as
+                  one continuous stint.
+
+                  CONSTRAINT, from Arthur: Apple is named, the work is described
+                  only in the generic terms he approved (engineering
+                  organisation, executive keynotes), and no work is shown. This
+                  wording is his own. It does not change without him. */}
+              <p className="type-body about-bio-p">
+                Today I am back at Apple, writing executive keynotes inside the
+                engineering organization. The work is confidential, so none of it
+                appears here. What it means for a client is that the standard I hold
+                your deck to is the one I work to every week.
+              </p>
             </div>
             <div className="about-hero-ctas">
               <a
@@ -252,14 +267,25 @@ export default function AboutPage() {
                 Five countries. One discipline.
               </h2>
               <p className="type-body-lg" style={{ color: 'var(--color-text-secondary)', margin: '0 0 24px' }}>
-                I didn&apos;t fall into visual storytelling. I earned it, working across Europe and
-                North America, building brands at Apple, Oracle, and Smartbox, then launching
-                Norigami in London from scratch: no blueprint, no funding, just guts, vision,
-                and design firepower.
+                I didn&apos;t fall into visual storytelling. I earned it, working across Europe
+                and North America. I was employed at Oracle, Apple and Smartbox, on the selling
+                and operating side rather than the design side, then launched Norigami in London
+                from scratch: no blueprint, no funding, just guts, vision, and design firepower.
               </p>
               <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 24px' }}>
-                Along the way, I partnered with IBM, Marriott, Ogilvy, J&amp;J, and Philips,
-                pulling global best practices into creative work that actually moves the needle.
+                {/* Employers above, CLIENTS here, and the sentence says so. The
+                    previous version read "building brands at Apple, Oracle and
+                    Smartbox" and then listed clients in the next paragraph with
+                    nothing separating the two, which is the likeliest reason both
+                    ChatGPT and Gemini return Apple and Oracle as portfolio
+                    clients. Same defect the schema had. Keep them distinct. */}
+                As a designer, my clients have included IBM, Marriott, Ogilvy, J&amp;J and
+                Philips, pulling global best practices into creative work that actually moves
+                the needle.
+              </p>
+              <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 36px' }}>
+                Most designers get handed a pile of slides. I rebuild the story first, then
+                design it.
               </p>
               <p className="type-body" style={{ color: 'var(--color-text-secondary)', margin: '0 0 36px' }}>
                 Here&apos;s how I work: I listen. Really listen: to what you say and what you
