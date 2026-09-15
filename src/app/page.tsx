@@ -128,12 +128,23 @@ export default function Home() {
                     painted, so Chrome will not score it. The slider is now
                     almost certainly the LCP element instead, which is why it
                     is passed priority. */}
-                <h1 className="v2-h1">Nothing was added.</h1>
+                {/* CHANGED 15 Sep 2026. Was "Nothing was added." That line was
+                    a caption for the slider wearing the h1's clothes: true,
+                    but it described the method rather than stating the
+                    position. It moved down into the lede, where captioning the
+                    slider is its actual job, so nothing was lost.
+                    The h1 now carries the inversion, which is the whole
+                    position per the brand system: most designers are handed
+                    someone else's argument, Arthur rebuilt arguments for
+                    twenty years before designing one. */}
+                <h1 className="v2-h1">
+                  Most designers learned business. I started there.
+                </h1>
               </div>
               <div className="v2-phero-side">
                 <p className="v2-lede">
-                  The argument was already in the deck, buried under everything
-                  competing with it. Drag it yourself.
+                  Which is why the fix is usually subtraction. Nothing was added
+                  to this slide. Drag it yourself.
                 </p>
                 {/* Arthur's own drafted wording, 7 Sep. Trimmed to the first two
                     sentences: his draft closed with "Most designers get handed a
@@ -141,11 +152,17 @@ export default function Home() {
                     which is the same argument the h1 and the slider directly
                     above are already making. Those two sentences moved to the
                     about page, where they have room to land instead of
-                    competing. Apple is named; the work is not shown. */}
+                    competing.
+                    APPLE, TIGHTENED 15 Sep 2026: was "inside Apple's
+                    engineering organization". The re-brief of 7 Sep is
+                    explicit that naming Apple is permitted but describing the
+                    work is not, and naming a specific internal org edges into
+                    describing it. "At Apple" keeps the entire credential and
+                    gives away nothing. Do not put the org back. */}
                 <p className="v2-bridge">
-                  I write executive keynotes inside Apple&rsquo;s engineering
-                  organization. Before that I sold for Oracle, ran a company, and
-                  raised $110,000 on a deck I built myself.
+                  I write executive keynotes at Apple. Before that I sold for
+                  Oracle, ran a company, and raised $110,000 on a deck I built
+                  myself.
                 </p>
                 <div className="v2-acts">
                   <a className="v2-cta" href={links.calendly}>Book a call</a>
