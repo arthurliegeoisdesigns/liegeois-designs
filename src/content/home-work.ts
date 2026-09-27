@@ -13,7 +13,7 @@ export type WorkLite = {
   image: string
 }
 
-export const TOTAL_PROJECTS = 36
+export const TOTAL_PROJECTS = 33
 
 export const featuredWork: WorkLite[] = [
   {
@@ -47,14 +47,6 @@ export const featuredWork: WorkLite[] = [
     "format": "Pitch & Investor Deck",
     "year": 2024,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/spaceship-01.jpg"
-  },
-  {
-    "slug": "mcs-healthcare-jandj",
-    "client": "MCS Healthcare × J&J",
-    "project": "Internal Achievements Presentation",
-    "format": "Sales & Agency Deck",
-    "year": 2024,
-    "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/mcs-jj-01.jpg"
   }
 ]
 
@@ -91,14 +83,6 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
     "format": "Pitch & Investor Deck",
     "year": 2024,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/spaceship-01.jpg"
-  },
-  {
-    "slug": "mcs-healthcare-jandj",
-    "client": "MCS Healthcare × J&J",
-    "project": "Internal Achievements Presentation",
-    "format": "Sales & Agency Deck",
-    "year": 2024,
-    "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/mcs-jj-01.jpg"
   },
   {
     "slug": "philips-healthcare",
@@ -189,22 +173,6 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-the-special-event-company-capabilities-deck-61be5a"
   },
   {
-    "slug": "sunrise-cellars",
-    "client": "Sunrise Cellars",
-    "project": "Rebranding Old Wine Stores to Become a Future-proof high-end, One-Stop Shop for Wine Lovers",
-    "format": "Strategic Narrative",
-    "year": 2025,
-    "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/sunrise-cellars-storefront-2-adac1d"
-  },
-  {
-    "slug": "adm-prod-tgi-fridays-campaign",
-    "client": "TGI Fridays Franchisor, LLC",
-    "project": "Designing Impactful Visuals for a Food Franchisor's Keynote Event",
-    "format": "Training Presentation",
-    "year": 2023,
-    "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/adm-prod-tgif-img-1-8f65e6"
-  },
-  {
     "slug": "norigami-brand",
     "client": "Norigami",
     "project": "Designing a Full Food Startup Brand that Looks just like an Established Company",
@@ -216,7 +184,7 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
     "slug": "foodspace-lunch-learn-robotics",
     "client": "FoodSpace",
     "project": "Designing a Lunch & Learn Keynote for Architects: How Technology will change to ",
-    "format": "Training Presentation",
+    "format": "Conference Keynote",
     "year": 2021,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/foodspace-201-1-6d6fea"
   },
@@ -264,7 +232,7 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
     "slug": "project-be-project-wellness-keynote",
     "client": "Project Be",
     "project": "Designing an Engaging, Fully Animated, Digital Wellness Keynote",
-    "format": "Training Presentation",
+    "format": "Conference Keynote",
     "year": 2023,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-projectbe-digital-wellness-conference-0002-2291f7"
   },
@@ -296,7 +264,7 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
     "slug": "ibm-quantum-summit-2022-cn3q3",
     "client": "IBM Quantum",
     "project": "IBM Quantum Summit 2022 Keynote",
-    "format": "Training Presentation",
+    "format": "Conference Keynote",
     "year": 2022,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-ibm-quantum-summit-0001-1ddb8b"
   },
@@ -336,7 +304,7 @@ export const workLiteBySlug: Record<string, WorkLite> = Object.fromEntries(
     "slug": "adm-productions-emd-1-c6815",
     "client": "EMD Group Serono",
     "project": "EMD Serono Group 2024 MA&PS Summit",
-    "format": "Training Presentation",
+    "format": "Conference Keynote",
     "year": 2023,
     "image": "https://res.cloudinary.com/dryyhpqew/image/upload/f_auto,q_auto/liegeois-designs/webflow/portfolio-slides-adm-productions-emd-0010-c7d828"
   },

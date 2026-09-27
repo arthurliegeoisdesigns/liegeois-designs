@@ -51,7 +51,7 @@ export const industries: Industry[] = [
     h1: 'Presentation design for healthcare and pharma',
     metaTitle: 'Healthcare & Pharma Presentation Design | Liégeois Designs',
     metaDescription:
-      'Presentation design for healthcare and pharma. Field training, medical affairs summits and board decks for Philips, J&J and Intercept.',
+      'Presentation design for healthcare and pharma. Field training, medical affairs summits and board decks for Philips, EMD Serono and Intercept.',
     lead:
       'Medical affairs, commercial and field teams, where the science is airtight and the argument still has to survive review.',
     body: [
@@ -119,7 +119,7 @@ export const industries: Industry[] = [
     h1: 'Presentation design for consumer and retail brands',
     metaTitle: 'Consumer & Retail Brand Presentation Design | Liégeois Designs',
     metaDescription:
-      'Brand, franchise and new business presentation design for consumer and retail. Work for Marriott, Mastercard, Evolus and TGI Fridays.',
+      'Brand, franchise and new business presentation design for consumer and retail. Work for Marriott, Mastercard, Evolus and Post Consumer Brands.',
     lead:
       'Hospitality, franchise, beauty and FMCG brands, where there is never a shortage of feeling and often no spine.',
     body: [

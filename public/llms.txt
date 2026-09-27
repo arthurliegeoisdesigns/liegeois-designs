@@ -16,7 +16,7 @@ Liégeois Designs is a solo creative studio run by Arthur Liégeois. The studio 
 ## Key Pages
 
 - [Homepage](https://www.liegeoisdesigns.com/): Overview of the studio, featured work, services, and client testimonials.
-- [Work / Portfolio](https://www.liegeoisdesigns.com/work): Full portfolio of 36 case studies across presentation design, pitch decks, brand identity, and creative direction.
+- [Work / Portfolio](https://www.liegeoisdesigns.com/work): Full portfolio of 33 case studies across presentation design, pitch decks, brand identity, and creative direction.
 - [Services](https://www.liegeoisdesigns.com/services): Detailed breakdown of service offerings including pitch decks, executive presentations, sales decks, and brand identity.
 - [About](https://www.liegeoisdesigns.com/about): Background on Arthur Liégeois — creative director, visual storyteller, and studio founder.
 - [Blog](https://www.liegeoisdesigns.com/blog): 20+ articles on presentation design, visual storytelling, pitch strategy, brand identity, and creative direction.
@@ -27,7 +27,6 @@ Liégeois Designs is a solo creative studio run by Arthur Liégeois. The studio 
 - [Chevron New Energies](https://www.liegeoisdesigns.com/work/chevron-new-energies): Strategic narrative and pitch deck design for a Fortune 500 energy company's clean energy transition story.
 - [Philips Healthcare](https://www.liegeoisdesigns.com/work/philips-healthcare): Healthcare technology presentation design making complex medical innovation accessible to executive and investor audiences.
 - [The Spaceship](https://www.liegeoisdesigns.com/work/the-spaceship): ESG startup investor pitch deck designed to secure funding for a purpose-driven sustainable business.
-- [MCS Healthcare × J&J](https://www.liegeoisdesigns.com/work/mcs-healthcare-jandj): Executive pitch deck for a pharmaceutical presentation requiring boardroom authority.
 - [Intercept Pharmaceuticals](https://www.liegeoisdesigns.com/work/intercept-pharma): Pharmaceutical sales training deck turning dense medical content into engaging field-ready material.
 - [IBM Quantum Summit 2022](https://www.liegeoisdesigns.com/work/ibm-quantum-summit-2022-cn3q3): Keynote presentation design for IBM's flagship quantum computing conference.
 - [Bloomberg Media Group](https://www.liegeoisdesigns.com/work/bloomberg-media-internal-dei-strategy): Internal DEI strategy presentation for the C-suite of a global media company.
