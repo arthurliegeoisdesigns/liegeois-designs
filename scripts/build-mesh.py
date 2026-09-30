@@ -38,6 +38,7 @@ HOW IT WORKS
 """
 from pathlib import Path
 import colorsys
+import math
 
 try:
     from PIL import Image
@@ -160,38 +161,102 @@ def lift(rgb):
     )
 
 
+# ── PALETTE v2, 30 Sep 2026 ──────────────────────────────────────────────────
+# Arthur, after seeing the preview: the field "doesn't look premium", the colour
+# choice "is not great" and it "could be more textured".
+#
+# WHY THE OLD ONE READ CHEAP
+# It ran L* 4 to 56 in a slate-blue ramp. The upper half of that range is
+# mid-grey-blue, which is the default colour of corporate software, and it is
+# also why the bottom of the page looked washed. Premium dark fields do the
+# opposite: they stay DARK (top of range around L* 30) and spend their budget
+# on saturation, so the light reads as coloured light and not as grey haze.
+#
+# WHAT THIS DOES
+# 1. Same composition as before (GAA_L, flipped): dark under the hero copy,
+#    light low and right behind the slider. Only the values change.
+# 2. Brightness is remapped into L* 3 to 30, and colour comes from a ramp:
+#    ink -> midnight -> indigo -> violet. No grey anywhere.
+# 3. One warm ember, low right, weighted by brightness so it only shows where
+#    the field is already lit. Copper, not the brand orange: the accent
+#    (#E84420) has to stay the loudest thing on the page.
+# 4. SILK. Slow diagonal ribbons folded into the luminance, strongest where the
+#    field is lit and absent where it is dark, so type over the hero stays
+#    clean. This is the texture. It is baked, so it costs nothing at runtime.
+RAMP = [  # (t, hex)
+    (0.00, "#05060D"),
+    (0.28, "#0B0F2C"),
+    (0.55, "#161B58"),
+    (0.80, "#242C7E"),
+    (1.00, "#3440A0"),
+]
+EMBER = "#B24A2C"       # copper
+EMBER_MAX = 0.62        # never more than this fraction of the way to copper
+PLUM = "#4A2466"
+L_LO, L_HI = 0.0, 1.0
+SILK_AMP = 0.34         # ribbon depth, as a fraction of local brightness
+SILK_ANGLE = math.radians(-32)
+
+
+def _ramp(t):
+    t = max(0.0, min(1.0, t))
+    for (t0, c0), (t1, c1) in zip(RAMP, RAMP[1:]):
+        if t <= t1:
+            k = (t - t0) / (t1 - t0)
+            a, b = hex_to_rgb(c0), hex_to_rgb(c1)
+            return tuple(a[j] + (b[j] - a[j]) * k for j in range(3))
+    return hex_to_rgb(RAMP[-1][1])
+
+
+def _smooth(x):
+    x = max(0.0, min(1.0, x))
+    return x * x * (3 - 2 * x)
+
+
 def main():
-    # FLIPPED VERTICALLY. Their poster has light across the top because a
-    # poster has one mark in the middle. A page has its headline at the top, so
-    # the composition is mirrored: the dark region lands under the hero copy,
-    # and the glow sits low and right, behind the slider. Same picture, same
-    # light, upside down.
     L_GRID = GAA_L[::-1]
-    B_GRID = GAA_BLUE[::-1]
     rows, cols = len(L_GRID), len(L_GRID[0])
     flat = [v for row in L_GRID for v in row]
     lo_in, hi_in = min(flat), max(flat)
 
     small = Image.new("RGB", (cols, rows))
     px = small.load()
+    ember, plum = hex_to_rgb(EMBER), hex_to_rgb(PLUM)
     for r in range(rows):
         for c in range(cols):
             t = (L_GRID[r][c] - lo_in) / (hi_in - lo_in)
-            L = L_OUT_LOW + (L_OUT_HIGH - L_OUT_LOW) * t
-            # the ramp's own chroma at this lightness: a gentle bell, so the
-            # deepest step does not go purple and the lightest does not go cyan
-            k = max(0.25, 1.0 - abs(t - 0.45) / 0.55) * 1.35
-            a, b = -1.5 * k, -14.0 * k
-            # their blue flank, carried across as ours
-            b -= BLUE_PUSH * B_GRID[r][c] * (0.35 + 0.65 * t)
-            a -= 3.0 * B_GRID[r][c]
-            px[c, r] = tuple(max(0, min(255, round(v))) for v in lift(lab_to_rgb((L, a, b))))
+            t = t ** 1.15                       # keep the dark region dark
+            x, y = c / (cols - 1), r / (rows - 1)
+            base = _ramp(t)
+            # plum drifts in through the middle of the lit side
+            pw = 0.2 * t * _smooth((x - 0.35) / 0.4) * (1 - _smooth((y - 0.75) / 0.25))
+            base = tuple(base[j] * (1 - pw) + plum[j] * pw for j in range(3))
+            # copper ember, bottom right only, only where already lit
+            ew = EMBER_MAX * (t ** 1.1) * _smooth((x - 0.45) / 0.55) * _smooth((y - 0.35) / 0.65)
+            base = tuple(base[j] * (1 - ew) + ember[j] * ew for j in range(3))
+            px[c, r] = tuple(max(0, min(255, round(v))) for v in base)
 
-    # THIS is the mesh: bicubic interpolation between the control points.
     mesh = small.resize((W, H), Image.BICUBIC)
 
+    # SILK
+    src = list(mesh.getdata())
+    out = []
+    ca, sa = math.cos(SILK_ANGLE), math.sin(SILK_ANGLE)
+    peak = max(max(p) for p in src) or 1
+    for i, (r, g, b) in enumerate(src):
+        x, y = (i % W) / W, (i // W) / H
+        u = x * ca * 1.6 + y * sa * 1.6
+        v = x * -sa + y * ca
+        fold = math.sin(2 * math.pi * (u * 1.5 + 0.30 * math.sin(2 * math.pi * v * 0.8)))
+        fine = math.sin(2 * math.pi * (u * 4.0 + 0.55 * math.sin(2 * math.pi * v * 1.7 + 1.3)))
+        ribbon = 0.75 * fold + 0.25 * fine
+        env = (max(r, g, b) / peak) ** 1.1
+        m = 1.0 + SILK_AMP * ribbon * env
+        out.append((min(255, int(r * m + .5)), min(255, int(g * m + .5)), min(255, int(b * m + .5))))
+    mesh.putdata(out)
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
-    mesh.save(OUT, "WEBP", quality=92, method=6)
+    mesh.save(OUT, "WEBP", quality=90, method=6)
 
     def lum(c):
         def f(v):
@@ -206,7 +271,7 @@ def main():
           f"{W}x{H}  {OUT.stat().st_size / 1024:.1f} KB")
     print(f"  darkest  #{lo[0]:02X}{lo[1]:02X}{lo[2]:02X}  luminance {lum(lo):.4f}")
     print(f"  lightest #{hi[0]:02X}{hi[1]:02X}{hi[2]:02X}  luminance {lum(hi):.4f}")
-    print(f"  no pure black: {'yes' if lum(lo) > 0.001 else 'NO — raise FLOOR_MIX'}")
+    print(f"  no pure black: {'yes' if lum(lo) > 0.001 else 'NO, raise the first RAMP stop'}")
 
 
 if __name__ == "__main__":

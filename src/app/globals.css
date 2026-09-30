@@ -289,10 +289,10 @@
                         rgba(255, 255, 255, .16), rgba(255, 255, 255, 0) 55%);
   --glass-bg:         var(--glass-sheen),
                       linear-gradient(155deg,
-                        rgba(37, 49, 61, .70), rgba(37, 49, 61, .76));
+                        rgba(28, 31, 52, .70), rgba(28, 31, 52, .76));
   --glass-bg-hover:   var(--glass-sheen),
                       linear-gradient(155deg,
-                        rgba(50, 67, 85, .72), rgba(50, 67, 85, .78));
+                        rgba(40, 44, 72, .72), rgba(40, 44, 72, .78));
   --glass-filter:     blur(26px) saturate(190%) brightness(1.04);
   --glass-border:     rgba(155, 167, 182, 0.30);   /* slate-70 */
   --glass-border-lit: rgba(180, 188, 198, 0.48);   /* slate-80 */
@@ -308,7 +308,7 @@
      said in the first place. Kept as a token set to 0 rather than deleted, so
      that every glass rule still reads as deliberately square rather than as
      having simply forgotten to set one. */
-  --radius-glass: 0px;
+  --radius-glass: 16px;   /* 30 Sep: Arthur, after seeing square cards in Safari and on iPhone: "the squared rectangles look harsh". 16px, not Apple's 20+, so it stays editorial. */
 
   /* ── The backdrop: ONE field, directional light ──
      Radial gradients were rejected on 6 Sep: a radial always has a centre, so
@@ -2505,7 +2505,7 @@ footer {
   align-items: end; margin-bottom: clamp(24px, 3vw, 40px); }
 .v2-phead .v2-h2 { max-width: 13ch; }
 @media (max-width: 840px) { .v2-phead { grid-template-columns: 1fr; } }
-.v2-ba { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #111;
+.v2-ba { position: relative; width: 100%; aspect-ratio: 16/9; overflow: hidden; background: #111; border-radius: var(--radius-glass);
   cursor: ew-resize; user-select: none; touch-action: none;
   box-shadow: 0 0 100px rgba(247, 244, 239, 0.10), 0 40px 90px rgba(0, 0, 0, 0.6); }
 .v2-ba img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; pointer-events: none; }
@@ -2557,7 +2557,7 @@ footer {
   display: block; margin-bottom: 9px; }
 .v2-seat b { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: 1.4rem; display: block; color: var(--color-text-primary); }
-.v2-seat u { text-decoration: none; font-family: var(--font-body); font-size: .625rem;
+.v2-seat u { text-decoration: none; font-family: var(--font-body); font-size: .6875rem;
   letter-spacing: .1em; color: var(--color-text-muted); display: block; margin: 2px 0 9px; }
 .v2-seat p { font-family: var(--font-body); font-size: .875rem; line-height: 1.6;
   color: var(--color-text-secondary); margin: 0; }
@@ -2568,7 +2568,7 @@ footer {
 .v2-wgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
   gap: clamp(16px, 2vw, 30px); margin-top: 26px; }
 .v2-wcard { text-decoration: none; display: block; }
-.v2-wshot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--slate-05); }
+.v2-wshot { position: relative; aspect-ratio: 16/10; overflow: hidden; background: var(--slate-05); border-radius: 12px; }
 .v2-wshot img { opacity: 0; transition: opacity 180ms linear; }
 .v2-wshot img.is-on { opacity: 1; }
 .v2-wbar { position: absolute; left: 0; right: 0; bottom: 0; height: 2px; display: flex; gap: 2px; z-index: 2; }
@@ -2577,14 +2577,14 @@ footer {
 .v2-wcard h3 { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: 1.2rem; margin: 13px 0 3px; color: var(--color-text-primary); }
 .v2-wcard span { font-family: var(--font-body); font-size: .75rem; color: var(--color-text-muted); }
-.v2-wcard em { font-style: normal; font-family: var(--font-body); font-size: .625rem;
+.v2-wcard em { font-style: normal; font-family: var(--font-body); font-size: .6875rem;
   letter-spacing: .14em; text-transform: uppercase; color: var(--color-label);
   display: block; margin-top: 8px; opacity: 0; transform: translateY(4px);
   transition: opacity 400ms ease, transform 400ms ease; }
 .v2-wcard:hover em { opacity: 1; transform: none; }
 
 /* ── voices: the single dark section ── */
-.v2-voices { background: var(--slate-05); color: var(--color-on-dark);
+.v2-voices { background: #0A0C1A; color: var(--color-on-dark);
   padding: clamp(60px, 8vw, 120px) 0; margin-top: clamp(40px, 5vw, 72px); }
 .v2-voices .v2-eyebrow { color: var(--color-label); }  /* 10px — body size */
 .v2-bigq { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2841,7 +2841,7 @@ footer {
    full-viewport fixed layer costs real frames. Any WebP banding is handled by
    the grain overlay, which dithers it. */
 .bd-far {
-  background: url('/images/mesh-field.webp') center / cover no-repeat, #050E1B;
+  background: url('/images/mesh-field.webp') center / cover no-repeat, #05060D;
 }
 
 /* THE SPHERE — now a LENS over the mesh rather than a disc in front of it.
@@ -2864,10 +2864,10 @@ footer {
   border-radius: 50%;
   background:
     radial-gradient(circle at 50% 50%,
-      rgba(214, 227, 242, 0) 0 74%,
-      rgba(214, 227, 242, .17) 88%,
-      rgba(214, 227, 242, .04) 95%,
-      rgba(214, 227, 242, 0) 100%),
+      rgba(200, 196, 236, 0) 0 74%,
+      rgba(200, 196, 236, .17) 88%,
+      rgba(200, 196, 236, .04) 95%,
+      rgba(200, 196, 236, 0) 100%),
     radial-gradient(72% 72% at 24% 20%,
       rgba(195, 205, 218, .10) 0%, rgba(0, 0, 0, 0) 70%);
   will-change: transform;
@@ -2896,8 +2896,8 @@ footer {
 /* NEAR — the fastest layer. Two faint highlights, no colour of their own. */
 .bd-near {
   background:
-    linear-gradient(112deg, rgba(214, 227, 242, .10) 0%, rgba(0, 0, 0, 0) 38%),
-    linear-gradient(292deg, rgba(37, 113, 207, .10) 0%, rgba(0, 0, 0, 0) 36%);
+    linear-gradient(112deg, rgba(200, 196, 240, .08) 0%, rgba(0, 0, 0, 0) 38%),
+    linear-gradient(292deg, rgba(196, 92, 58, .08) 0%, rgba(0, 0, 0, 0) 36%);
   filter: blur(var(--bd-blur-near));
 }
 
@@ -3041,8 +3041,8 @@ footer {
 @media (prefers-reduced-transparency: reduce) {
   :root {
     --glass-filter: none;
-    --glass-bg: linear-gradient(rgba(28, 38, 49, .97), rgba(28, 38, 49, .97));
-    --glass-bg-hover: linear-gradient(rgba(38, 51, 66, .98), rgba(38, 51, 66, .98));
+    --glass-bg: linear-gradient(rgba(22, 25, 42, .97), rgba(22, 25, 42, .97));
+    --glass-bg-hover: linear-gradient(rgba(32, 36, 58, .98), rgba(32, 36, 58, .98));
   }
   .nav.scrolled { background: rgb(14, 12, 18); backdrop-filter: none;}
   .nav.scrolled::after { display: none; }
@@ -3051,8 +3051,8 @@ footer {
 @media (prefers-contrast: more) {
   :root {
     --glass-filter: none;
-    --glass-bg: linear-gradient(rgba(20, 28, 37, .98), rgba(20, 28, 37, .98));
-    --glass-bg-hover: linear-gradient(rgba(30, 41, 54, .99), rgba(30, 41, 54, .99));
+    --glass-bg: linear-gradient(rgba(16, 18, 32, .98), rgba(16, 18, 32, .98));
+    --glass-bg-hover: linear-gradient(rgba(26, 29, 48, .99), rgba(26, 29, 48, .99));
     --glass-border: rgba(255, 255, 255, .7);
     --glass-border-lit: rgba(255, 255, 255, .95);
   }
