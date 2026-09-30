@@ -171,7 +171,7 @@ export default function CustomCursor() {
         <span
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.625rem',
+            fontSize: '0.6875rem',
             fontWeight: 500,
             letterSpacing: '0.14em',
             textTransform: 'uppercase',

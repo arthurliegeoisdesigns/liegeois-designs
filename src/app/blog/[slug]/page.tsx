@@ -139,7 +139,7 @@ export default async function BlogPostPage({
                 key={tag}
                 style={{
                   fontFamily: 'var(--font-body)',
-                  fontSize: '0.625rem',
+                  fontSize: '0.6875rem',
                   fontWeight: 400,
                   letterSpacing: '0.06em',
                   padding: '4px 10px',

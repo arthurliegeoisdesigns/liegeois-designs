@@ -54,7 +54,7 @@ function NarrativeBlock({
     >
       <p style={{
         fontFamily: 'var(--font-body)',
-        fontSize: '0.625rem',
+        fontSize: '0.6875rem',
         fontWeight: 400,
         letterSpacing: '0.14em',
         textTransform: 'uppercase',
@@ -217,7 +217,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             {[cs.format, cs.industry, String(cs.year), ...(cs.tool ? [cs.tool] : [])].map((tag, i) => (
               <span key={i} style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.625rem',
+                fontSize: '0.6875rem',
                 fontWeight: 500,
                 letterSpacing: '0.14em',
                 textTransform: 'uppercase',
@@ -300,7 +300,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             <div style={{ maxWidth: '960px', margin: '0 auto' }}>
               <p style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.5625rem',
+                fontSize: '0.6875rem',
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
                 color: 'var(--color-text-muted)',
@@ -333,7 +333,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
             <motion.p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.5625rem',
+                fontSize: '0.6875rem',
                 letterSpacing: '0.16em',
                 textTransform: 'uppercase',
                 color: 'var(--color-text-muted)',
@@ -370,7 +370,7 @@ export default function CaseStudyClient({ cs, index, total, prev, next }: Props)
       >
         <p style={{
           fontFamily: 'var(--font-body)',
-          fontSize: '0.5625rem',
+          fontSize: '0.6875rem',
           letterSpacing: '0.18em',
           textTransform: 'uppercase',
           color: 'var(--color-text-muted)',

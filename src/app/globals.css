@@ -280,14 +280,27 @@
      The reason this finally works is not the glass. It is that the ramp gave
      cards a surface of their own, so they no longer depend on the backdrop to
      look like objects. */
-  --glass-bg:         linear-gradient(155deg,
-                        rgba(37, 49, 61, .74), rgba(37, 49, 61, .78));
-  --glass-bg-hover:   linear-gradient(155deg,
-                        rgba(50, 67, 85, .76), rgba(50, 67, 85, .80));
-  --glass-filter:     blur(24px) saturate(180%) brightness(1.02);
+  /* LIQUID GLASS, 30 Sep 2026. The ramp tint stays (it is what makes a card an
+     object). Added on top: a specular sheen pooling at the top-left where the
+     light source sits, and a rim that catches light on all four edges. Corners
+     stay square by Arthur's 7 Sep call; the liquid read comes from the light,
+     not the radius. */
+  --glass-sheen:      radial-gradient(120% 90% at 0% 0%,
+                        rgba(255, 255, 255, .16), rgba(255, 255, 255, 0) 55%);
+  --glass-bg:         var(--glass-sheen),
+                      linear-gradient(155deg,
+                        rgba(37, 49, 61, .70), rgba(37, 49, 61, .76));
+  --glass-bg-hover:   var(--glass-sheen),
+                      linear-gradient(155deg,
+                        rgba(50, 67, 85, .72), rgba(50, 67, 85, .78));
+  --glass-filter:     blur(26px) saturate(190%) brightness(1.04);
   --glass-border:     rgba(155, 167, 182, 0.30);   /* slate-70 */
   --glass-border-lit: rgba(180, 188, 198, 0.48);   /* slate-80 */
-  --glass-shadow:     0 30px 70px rgba(0, 0, 0, .58), inset 0 1px 0 rgba(255, 255, 255, .32);
+  --glass-shadow:     0 30px 70px rgba(0, 0, 0, .58),
+                      inset 0 1px 0 rgba(255, 255, 255, .42),
+                      inset 0 -1px 0 rgba(255, 255, 255, .10),
+                      inset 1px 0 0 rgba(255, 255, 255, .08),
+                      inset 0 0 28px rgba(255, 255, 255, .05);
   /* REVERTED 7 Sep, later the same day. The radius was introduced that
      morning on Arthur's call, then withdrawn: "forget the radius on cards,
      let's revert back to them with a square angle."
@@ -543,7 +556,7 @@ html { overflow-x: clip; background: var(--color-void); }
      Applies to 12 surfaces, so this was a site-wide typographic bug, not
      a services-page one. Do not take this below 1.0 again. */
   line-height: 1.05;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.022em;   /* tighter as it grows; was -0.015em */
   text-wrap: balance;
 }
 /* Force hero h1 to one line on tablet+ */
@@ -556,7 +569,7 @@ html { overflow-x: clip; background: var(--color-void); }
   font-size: clamp(2.5rem, 6vw, 4.25rem);
   font-weight: var(--font-display-weight, 400);
   line-height: 1.02;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
   text-wrap: balance;
 }
 
@@ -565,7 +578,7 @@ html { overflow-x: clip; background: var(--color-void); }
   font-size: clamp(1.75rem, 3.75vw, 3rem);
   font-weight: var(--font-display-weight, 400);
   line-height: 1.08;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
   text-wrap: balance;
 }
 
@@ -583,7 +596,7 @@ html { overflow-x: clip; background: var(--color-void); }
   font-size: clamp(0.9375rem, 1.5vw, 1.125rem);
   font-weight: 400;
   line-height: 1.75;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-wrap: pretty;
   word-spacing: var(--word-space-body);
 }
@@ -593,7 +606,7 @@ html { overflow-x: clip; background: var(--color-void); }
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.7;
-  letter-spacing: 0.01em;
+  letter-spacing: 0;
   text-wrap: pretty;
   word-spacing: var(--word-space-body);
 }
@@ -608,7 +621,7 @@ html { overflow-x: clip; background: var(--color-void); }
 
 .type-label {
   font-family: var(--font-body);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1;
   letter-spacing: 0.18em;
@@ -691,7 +704,7 @@ html { overflow-x: clip; background: var(--color-void); }
 
 .eyebrow {
   font-family: var(--font-body);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 400;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -729,10 +742,21 @@ html { overflow-x: clip; background: var(--color-void); }
    Slightly stronger blur than the .glass default (20px vs 14px) because the
    nav sits over MOVING content and needs to hold its own edge. */
 .nav.scrolled {
-  background: rgba(14, 12, 18, 0.72);
-  backdrop-filter: blur(20px) saturate(150%) brightness(1.06);
-  -webkit-backdrop-filter: blur(20px) saturate(150%) brightness(1.06);
-  border-bottom: 1px solid var(--glass-border);
+  background: rgba(14, 12, 18, 0.62);
+  backdrop-filter: blur(26px) saturate(190%) brightness(1.06);
+  /* Apple scroll-edge effect: no 1px divider. A specular hairline on the
+     bottom edge plus a soft fade into the content below. */
+  border-bottom: 0;
+  box-shadow: inset 0 -1px 0 rgba(255, 255, 255, 0.10),
+              inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+.nav.scrolled::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; top: 100%;
+  height: 28px;
+  background: linear-gradient(rgba(14, 12, 18, 0.34), rgba(14, 12, 18, 0));
+  pointer-events: none;
 }
 .nav-logo {
   display: flex;
@@ -911,7 +935,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   transition: color 250ms ease, border-color 250ms ease, background 250ms ease;
 }
 .work-filter sup {
-  font-size: 0.5625rem;
+  font-size: 0.6875rem;
   color: var(--color-label);
   margin-left: 3px;
 }
@@ -1064,7 +1088,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   gap: 4px;
   align-items: flex-end;
   font-family: var(--font-body);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-muted);
@@ -1077,7 +1101,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   border: 0.5px solid rgba(247, 244, 239, 0.22);
   border-radius: 9999px;
   font-family: var(--font-body);
-  font-size: 0.5625rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--color-text-secondary);
@@ -1134,7 +1158,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 }
 .pmode-eyebrow {
   font-family: var(--font-body);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -1200,7 +1224,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   display: flex;
   gap: 24px;
   font-family: var(--font-body);
-  font-size: 0.5625rem;
+  font-size: 0.6875rem;
   letter-spacing: 0.18em;
   color: var(--color-on-dark-hint);
   pointer-events: none;
@@ -1494,7 +1518,6 @@ section[id] {
 .nav.nav-menu-open {
   background: transparent;
   backdrop-filter: none;
-  -webkit-backdrop-filter: none;
 }
 
 /* Full-screen overlay */
@@ -1659,7 +1682,6 @@ footer {
      instead, which also stops the form punching a bright hole in the page. */
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--color-border-mid);
   border-radius: 0;      /* square, like everything else */
   padding: 14px 16px;
@@ -2214,7 +2236,7 @@ footer {
    ════════════════════════════════════════════════════════════════════ */
 .htw-eyebrow {
   font-family: var(--font-body);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2257,7 +2279,6 @@ footer {
      stay visible, which is the whole test for whether glass is earned. */
   background: var(--glass-bg);
   backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
   border-top: 1px solid var(--glass-border);
   border-bottom: 1px solid var(--glass-border);
   padding: clamp(40px, 5vw, 68px) var(--section-pad-x);
@@ -2270,7 +2291,7 @@ footer {
      what sits behind the text varies with scroll, and secondary has the
      headroom to survive the bright end of it. */
   font-family: var(--font-body);
-  font-size: 0.625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   text-transform: uppercase;
@@ -2351,7 +2372,7 @@ footer {
 
 .svc-idx-num {
   font-family: var(--font-body);
-  font-size: 0.5625rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.16em;
   color: var(--color-label);
@@ -2411,7 +2432,7 @@ footer {
    so it must use accent-text. The tracking makes it *look* airy, which is
    exactly the trap: it is still 10px to a contrast checker. */
 .v2-eyebrow {
-  font-family: var(--font-body); font-size: 0.625rem; font-weight: 500;
+  font-family: var(--font-body); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-label); margin: 0;
 }
 .v2-h2 {
@@ -2467,8 +2488,7 @@ footer {
 /* ── client roster ── */
 .v2-roster { padding: clamp(26px, 3.4vw, 44px) 0; overflow: hidden;
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-filter); -webkit-backdrop-filter: var(--glass-filter);
-  border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
+  backdrop-filter: var(--glass-filter);  border-top: 1px solid var(--glass-border); border-bottom: 1px solid var(--glass-border); }
 .v2-mq { display: flex; width: max-content; will-change: transform; }
 .v2-mq-item {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2497,8 +2517,8 @@ footer {
   background: var(--color-accent); box-shadow: 0 6px 24px rgba(0,0,0,.34); }
 .v2-ba-handle::before { content: '\27E8 \27E9'; position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%); z-index: 2; color: #fff; font-size: .72rem; letter-spacing: .06em; }
-.v2-ba-tag { position: absolute; top: 16px; font-family: var(--font-body); font-size: .5625rem;
-  letter-spacing: .16em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.6);
+.v2-ba-tag { position: absolute; bottom: 16px; backdrop-filter: blur(14px) saturate(170%);box-shadow: inset 0 1px 0 rgba(255,255,255,.28); font-family: var(--font-body); font-size: .6875rem;
+  letter-spacing: .16em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.42);
   padding: 7px 12px; pointer-events: none; }
 .v2-ba-tag.is-l { left: 16px; } .v2-ba-tag.is-r { right: 16px; }
 .v2-ba-foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
@@ -2526,14 +2546,13 @@ footer {
   padding: clamp(20px, 2.2vw, 28px);
   background: var(--glass-bg);
   backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-glass);
   box-shadow: var(--glass-shadow);
   transition: transform 600ms cubic-bezier(.16,1,.3,1), border-color 600ms ease;
 }
 .v2-seat:hover { transform: translateY(-4px); border-color: var(--glass-border-lit); }
-.v2-seat i { font-style: normal; font-family: var(--font-body); font-size: .5625rem;
+.v2-seat i { font-style: normal; font-family: var(--font-body); font-size: .6875rem;
   letter-spacing: .15em; text-transform: uppercase; color: var(--color-label);
   display: block; margin-bottom: 9px; }
 .v2-seat b { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2578,7 +2597,6 @@ footer {
   padding: clamp(20px, 2.2vw, 28px);
   background: var(--glass-bg);
   backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-glass);
   box-shadow: var(--glass-shadow);
@@ -2725,13 +2743,12 @@ footer {
   border-left: 2px solid var(--color-accent-text);
   padding: clamp(18px, 2.2vw, 26px) clamp(18px, 2.4vw, 28px);
   background: var(--glass-bg);
-  backdrop-filter: var(--glass-filter); -webkit-backdrop-filter: var(--glass-filter);
-  border-radius: var(--radius-glass);
+  backdrop-filter: var(--glass-filter);  border-radius: var(--radius-glass);
   transition: transform 450ms cubic-bezier(.16,1,.3,1), border-color 450ms ease;
 }
 .post-svc:hover { transform: translateX(4px); border-color: var(--color-text-primary); }
 .post-svc-eyebrow {
-  display: block; font-family: var(--font-body); font-size: 0.5625rem; font-weight: 500;
+  display: block; font-family: var(--font-body); font-size: 0.6875rem; font-weight: 500;
   letter-spacing: 0.16em; text-transform: uppercase;
   color: var(--color-label); margin-bottom: 10px;
 }
@@ -2892,7 +2909,10 @@ footer {
 }
 
 /* Everything the reader is meant to look at sits above the field. */
-#main-content, .nav, .site-footer, footer { position: relative; z-index: 1; }
+#main-content, .site-footer, footer { position: relative; z-index: 1; }
+/* .nav was in this list until 30 Sep 2026. It is position:fixed at its own rule
+   and z-index 100/110; listing it here silently made it relative, so the nav
+   scrolled away and its scrolled-state glass never showed. */
 
 /* GRAIN — fixed to the VIEWPORT, never scrolling with content. Film grain
    belongs to the lens, not the scene: if it scrolls with the page the whole
@@ -2912,7 +2932,6 @@ footer {
 .glass {
   background: var(--glass-bg);
   backdrop-filter: var(--glass-filter);
-  -webkit-backdrop-filter: var(--glass-filter);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-glass);
   box-shadow: var(--glass-shadow);
@@ -2983,7 +3002,7 @@ footer {
 }
 /* The eyebrow deliberately sits at the far end of that ratio. Almost too
    small, which is what makes the display size register as a decision. */
-.v2-phero .v2-eyebrow { font-size: 0.5625rem; letter-spacing: 0.22em; }
+.v2-phero .v2-eyebrow { font-size: 0.6875rem; letter-spacing: 0.22em; }
 
 @media (max-width: 900px) {
   .v2-phero .v2-phead { grid-template-columns: 1fr; align-items: start; }
@@ -3012,3 +3031,36 @@ footer {
    down past ~50% of the frame or across to the right and it moves onto the
    glow, where the lede drops to 3.75:1. That is a layout contract, and it is
    the price of having the copy bare on the field rather than on a panel. */
+
+
+/* ════════════════════════════════════════════════════════════════════════
+   ACCESSIBILITY FOR GLASS, 30 Sep 2026
+   Every glass surface reads its blur and fill from tokens, so overriding the
+   tokens here covers cards, seats, form fields and the marquee at once.
+   ════════════════════════════════════════════════════════════════════════ */
+@media (prefers-reduced-transparency: reduce) {
+  :root {
+    --glass-filter: none;
+    --glass-bg: linear-gradient(rgba(28, 38, 49, .97), rgba(28, 38, 49, .97));
+    --glass-bg-hover: linear-gradient(rgba(38, 51, 66, .98), rgba(38, 51, 66, .98));
+  }
+  .nav.scrolled { background: rgb(14, 12, 18); backdrop-filter: none;}
+  .nav.scrolled::after { display: none; }
+  .v2-ba-tag { backdrop-filter: none;background: rgba(0,0,0,.85); }
+}
+@media (prefers-contrast: more) {
+  :root {
+    --glass-filter: none;
+    --glass-bg: linear-gradient(rgba(20, 28, 37, .98), rgba(20, 28, 37, .98));
+    --glass-bg-hover: linear-gradient(rgba(30, 41, 54, .99), rgba(30, 41, 54, .99));
+    --glass-border: rgba(255, 255, 255, .7);
+    --glass-border-lit: rgba(255, 255, 255, .95);
+  }
+  .nav.scrolled { background: rgb(14, 12, 18); backdrop-filter: none;    box-shadow: inset 0 -1px 0 rgba(255,255,255,.7); }
+}
+
+/* Press feedback on interactive glass: instant, on pointer-down. */
+a.glass:active, button.glass:active, a.v2-seat:active {
+  transform: scale(0.985);
+  transition: transform 100ms ease-out;
+}

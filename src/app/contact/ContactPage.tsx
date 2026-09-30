@@ -310,7 +310,7 @@ export default function ContactPage() {
                 <span
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.625rem',
+                    fontSize: '0.6875rem',
                     letterSpacing: '0.16em',
                     color: 'var(--color-text-muted)',
                     fontWeight: 400,
@@ -357,7 +357,7 @@ export default function ContactPage() {
                 <span
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.625rem',
+                    fontSize: '0.6875rem',
                     letterSpacing: '0.16em',
                     color: 'var(--color-text-muted)',
                     fontWeight: 400,
@@ -387,7 +387,7 @@ export default function ContactPage() {
                 <span
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.625rem',
+                    fontSize: '0.6875rem',
                     letterSpacing: '0.16em',
                     color: 'var(--color-text-muted)',
                     fontWeight: 400,
@@ -417,7 +417,7 @@ export default function ContactPage() {
                 <span
                   style={{
                     fontFamily: 'var(--font-body)',
-                    fontSize: '0.625rem',
+                    fontSize: '0.6875rem',
                     letterSpacing: '0.16em',
                     color: 'var(--color-text-muted)',
                     fontWeight: 400,

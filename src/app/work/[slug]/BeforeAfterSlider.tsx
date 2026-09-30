@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, useCallback, useEffect } from 'react'
+import { useRef, useState, useCallback } from 'react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 
 interface Pair {
@@ -35,35 +35,48 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
     setPosition(clamp(((clientX - left) / width) * 100, 2, 98))
   }, [])
 
-  const onMouseDown = (e: React.MouseEvent) => {
-    e.preventDefault()
+  // Pointer Events + capture: one code path for mouse, touch and pen, and the
+  // drag keeps tracking when the pointer leaves the box. Feedback starts on
+  // pointer-down and follows 1:1 the whole way.
+  const onPointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    e.currentTarget.setPointerCapture(e.pointerId)
     setDragging(true)
     updatePosition(e.clientX)
   }
-
-  useEffect(() => {
-    if (!dragging) return
-    const onMove = (e: MouseEvent) => updatePosition(e.clientX)
-    const onUp = () => setDragging(false)
-    window.addEventListener('mousemove', onMove)
-    window.addEventListener('mouseup', onUp)
-    return () => {
-      window.removeEventListener('mousemove', onMove)
-      window.removeEventListener('mouseup', onUp)
-    }
-  }, [dragging, updatePosition])
-
-  const onTouchMove = (e: React.TouchEvent) => updatePosition(e.touches[0].clientX)
+  const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (dragging) updatePosition(e.clientX)
+  }
+  const endDrag = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (e.currentTarget.hasPointerCapture(e.pointerId)) e.currentTarget.releasePointerCapture(e.pointerId)
+    setDragging(false)
+  }
+  const onKeyDown = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    const step = e.shiftKey ? 10 : 2
+    if (e.key === 'ArrowLeft') { e.preventDefault(); setPosition(p => clamp(p - step, 2, 98)) }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); setPosition(p => clamp(p + step, 2, 98)) }
+    else if (e.key === 'Home') { e.preventDefault(); setPosition(2) }
+    else if (e.key === 'End') { e.preventDefault(); setPosition(98) }
+  }
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
       {/* Drag slider */}
       <div
         ref={containerRef}
-        onMouseDown={onMouseDown}
-        onTouchStart={onTouchMove}
-        onTouchMove={onTouchMove}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onKeyDown={onKeyDown}
+        role="slider"
+        tabIndex={0}
+        aria-label={`${label ?? `Slide ${index + 1}`}: drag to compare before and after`}
+        aria-valuemin={0}
+        aria-valuemax={100}
+        aria-valuenow={Math.round(position)}
+        aria-valuetext={`${Math.round(position)}% before`}
         style={{
+          touchAction: 'pan-y',
           position: 'relative',
           aspectRatio: '16/9',
           overflow: 'hidden',
@@ -111,37 +124,40 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
           position: 'absolute', top: '50%', left: `${position}%`,
           transform: 'translate(-50%, -50%)',
           width: '44px', height: '44px', borderRadius: '50%',
-          background: 'var(--color-on-dark)',
+          background: 'rgba(255,255,255,0.22)',
+          backdropFilter: 'blur(14px) saturate(190%)',
+          WebkitBackdropFilter: 'blur(14px) saturate(190%)',
+          border: '1px solid rgba(255,255,255,0.55)',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          boxShadow: '0 2px 16px rgba(0,0,0,0.5)',
+          boxShadow: '0 6px 24px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.6)',
           pointerEvents: 'none',
           transition: dragging ? 'none' : 'left 0.04s linear',
         }}>
           <svg width="18" height="10" viewBox="0 0 18 10" fill="none">
-            <path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="var(--color-canvas)" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+            <path d="M1 5H17M1 5L4 2M1 5L4 8M17 5L14 2M17 5L14 8" stroke="#fff" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </div>
 
         {/* Before label */}
         <span style={{
-          position: 'absolute', top: '12px', left: '14px',
-          fontFamily: 'var(--font-body)', fontSize: '0.5625rem',
+          position: 'absolute', bottom: '12px', left: '14px',
+          fontFamily: 'var(--font-body)', fontSize: '0.6875rem',
           letterSpacing: '0.14em', textTransform: 'uppercase',
           color: 'rgba(255,255,255,0.85)',
-          background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)', padding: '4px 8px',
+          background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(14px) saturate(170%)',
+          WebkitBackdropFilter: 'blur(14px) saturate(170%)', padding: '4px 8px',
           pointerEvents: 'none',
           opacity: position > 18 ? 1 : 0, transition: 'opacity 0.2s ease',
         }}>Before</span>
 
         {/* After label */}
         <span style={{
-          position: 'absolute', top: '12px', right: '14px',
-          fontFamily: 'var(--font-body)', fontSize: '0.5625rem',
+          position: 'absolute', bottom: '12px', right: '14px',
+          fontFamily: 'var(--font-body)', fontSize: '0.6875rem',
           letterSpacing: '0.14em', textTransform: 'uppercase',
           color: 'rgba(255,255,255,0.85)',
-          background: 'rgba(0,0,0,0.55)', backdropFilter: 'blur(8px)',
-          WebkitBackdropFilter: 'blur(8px)', padding: '4px 8px',
+          background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(14px) saturate(170%)',
+          WebkitBackdropFilter: 'blur(14px) saturate(170%)', padding: '4px 8px',
           pointerEvents: 'none',
           opacity: position < 82 ? 1 : 0, transition: 'opacity 0.2s ease',
         }}>After</span>
@@ -196,7 +212,7 @@ export default function BeforeAfterSlider({ pairs }: Props) {
           >
             <div>
               <p style={{
-                fontFamily: 'var(--font-body)', fontSize: '0.5625rem',
+                fontFamily: 'var(--font-body)', fontSize: '0.6875rem',
                 letterSpacing: '0.16em', textTransform: 'uppercase',
                 color: 'var(--color-on-dark-faint)', margin: '0 0 12px',
               }}>

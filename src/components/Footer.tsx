@@ -141,7 +141,7 @@ export default function Footer() {
             <p
               style={{
                 fontFamily: 'var(--font-body)',
-                fontSize: '0.625rem',
+                fontSize: '0.6875rem',
                 fontWeight: 400,
                 letterSpacing: '0.18em',
                 textTransform: 'uppercase',

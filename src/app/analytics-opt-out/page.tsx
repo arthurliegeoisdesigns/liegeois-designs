@@ -43,7 +43,7 @@ export default function AnalyticsOptOutPage() {
         <p
           style={{
             fontFamily: 'var(--font-body)',
-            fontSize: '0.5625rem',
+            fontSize: '0.6875rem',
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
             fontWeight: 500,
