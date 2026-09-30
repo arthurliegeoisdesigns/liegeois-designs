@@ -2,6 +2,7 @@ export const links = {
   calendly: 'https://calendly.com/arthur-liegeois/meet-with-arthur-liegeois',
   linkedin: 'https://www.linkedin.com/in/aliegeois/',
   youtube:  'https://www.youtube.com/@LiegeoisDesigns',
+  behance:  'https://www.behance.net/arthurliegeoisdesign',
 }
 
 export const SITE = 'https://www.liegeoisdesigns.com'
@@ -50,7 +51,9 @@ export const PERSON_ID = `${SITE}/#arthur`
  */
 export const PERSON_SAME_AS = [
   'https://www.linkedin.com/in/aliegeois/',
-  // Behance and Dribbble go here once live. See Todoist 6hQ785VxMCmXm2Ph.
+  // Added 30 Sep 2026. Profile root, not /projects: the root is the stable identity URL.
+  'https://www.behance.net/arthurliegeoisdesign',
+  // Dribbble goes here once live.
 ]
 
 export const ORG_SAME_AS = [
