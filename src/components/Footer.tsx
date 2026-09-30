@@ -36,6 +36,18 @@ const cols: Array<{
       { label: 'Blog', href: '/blog' },
     ],
   },
+  /* Site-wide links to the five service pages. Until 30 Sep 2026 only
+     /services linked to them and Google had never crawled one of them. */
+  {
+    heading: 'SERVICES',
+    links: [
+      { label: 'Pitch Decks', href: '/services/pitch-deck-design' },
+      { label: 'Executive Presentations', href: '/services/executive-presentations' },
+      { label: 'Sales Decks', href: '/services/sales-agency-decks' },
+      { label: 'Strategic Narrative', href: '/services/strategic-narrative' },
+      { label: 'Keynotes & Training', href: '/services/training-keynote-design' },
+    ],
+  },
   {
     heading: 'CONNECT',
     links: [

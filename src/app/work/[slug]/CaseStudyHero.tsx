@@ -7,6 +7,20 @@ import type { CaseStudy } from '@/content/types'
 import Link from 'next/link'
 import { industryByName } from '@/content/industries'
 
+/* Format tag -> service page. Added 30 Sep 2026: Search Console listed all
+   five service pages as "Discovered - currently not indexed", last crawled
+   1969-12-31 (never fetched). Nothing on the homepage, nav, footer or any
+   case study linked to them; only /services did. Every case study now links
+   to the service it is an example of. */
+const serviceByFormat: Record<string, string> = {
+  'Pitch & Investor Deck': 'pitch-deck-design',
+  'Executive Presentation': 'executive-presentations',
+  'Sales & Agency Deck': 'sales-agency-decks',
+  'Strategic Narrative': 'strategic-narrative',
+  'Training Presentation': 'training-keynote-design',
+  'Conference Keynote': 'training-keynote-design',
+}
+
 const ease = [0.16, 1, 0.3, 1] as const
 
 export default function CaseStudyHero({
@@ -145,6 +159,8 @@ export default function CaseStudyHero({
                  to a page that isn't there. Counted from the data, not by
                  hand, because I first wrote 31 here and was wrong. */
               const hub = tag === cs.industry ? industryByName[cs.industry] : undefined
+              const service = tag === cs.format ? serviceByFormat[cs.format] : undefined
+              const href = hub ? `/industries/${hub.slug}` : service ? `/services/${service}` : undefined
               const style = {
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.6875rem',
@@ -155,10 +171,10 @@ export default function CaseStudyHero({
                 border: '0.5px solid var(--color-border)',
                 color: 'var(--color-text-muted)',
               }
-              return hub ? (
+              return href ? (
                 <Link
                   key={tag}
-                  href={`/industries/${hub.slug}`}
+                  href={href}
                   style={{ ...style, textDecoration: 'none' }}
                 >
                   {tag}
