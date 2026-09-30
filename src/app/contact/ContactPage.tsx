@@ -514,7 +514,7 @@ export default function ContactPage() {
               style={{
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.75rem',
-                letterSpacing: '0.14em',
+                letterSpacing: '0.16em',
                 color: 'var(--color-text-secondary)',
                 textTransform: 'uppercase',
               }}

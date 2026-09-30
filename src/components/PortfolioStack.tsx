@@ -146,7 +146,7 @@ export default function PortfolioStack() {
                     fontFamily: 'var(--font-body)',
                     fontSize: '0.6875rem',
                     fontWeight: 400,
-                    letterSpacing: '0.15em',
+                    letterSpacing: '0.16em',
                     textTransform: 'uppercase',
                     color: 'var(--color-on-dark-faint)',
                     margin: '0 0 14px',

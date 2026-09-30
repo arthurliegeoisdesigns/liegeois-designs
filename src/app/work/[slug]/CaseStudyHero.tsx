@@ -125,7 +125,7 @@ export default function CaseStudyHero({
               fontFamily: 'var(--font-body)',
               fontSize: '0.6875rem',
               fontWeight: 400,
-              letterSpacing: '0.1em',
+              letterSpacing: '0.10em',
               color: 'var(--color-text-secondary)',
               textTransform: 'uppercase',
             }}
@@ -165,7 +165,7 @@ export default function CaseStudyHero({
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.6875rem',
                 fontWeight: 400,
-                letterSpacing: '0.08em',
+                letterSpacing: '0.10em',
                 textTransform: 'uppercase' as const,
                 padding: '5px 14px',
                 border: '0.5px solid var(--color-border)',

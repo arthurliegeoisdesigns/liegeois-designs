@@ -415,7 +415,7 @@ export default function AboutPage() {
                   fontFamily: 'var(--font-body)',
                   fontSize: '0.6875rem',
                   fontWeight: 500,
-                  letterSpacing: '0.14em',
+                  letterSpacing: '0.16em',
                   textTransform: 'uppercase',
                   color: 'var(--color-accent-text)',
                   margin: '0 0 16px',
@@ -516,7 +516,7 @@ export default function AboutPage() {
                     fontFamily: 'var(--font-body)',
                     fontSize: '0.6875rem',
                     fontWeight: 500,
-                    letterSpacing: '0.13em',
+                    letterSpacing: '0.16em',
                     textTransform: 'uppercase',
                     color: item.level === 'Primary' ? 'var(--color-accent-text)'
                          : item.level === 'Expert'   ? 'var(--color-text-secondary)'

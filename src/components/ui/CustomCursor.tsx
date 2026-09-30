@@ -66,9 +66,17 @@ export default function CustomCursor() {
     document.addEventListener('mouseenter', onEnter)
     document.addEventListener('mouseover',  onOver,  { passive: true })
 
-    const SPRING = 0.10
+    // Time-based, not per-frame: a fixed 0.10 per frame runs twice as fast on a
+    // 120Hz display as on 60Hz. TAU is the time constant in ms (about 80 to feel
+    // like the old 60Hz value), and the reduced-motion case snaps 1:1.
+    const TAU = 80
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    let last = performance.now()
 
-    function loop() {
+    function loop(now: number) {
+      const dt = Math.min(64, now - last)
+      last = now
+      const SPRING = reduceMotion ? 1 : 1 - Math.exp(-dt / TAU)
       const dot  = dotRef.current
       const ring = ringRef.current
       if (dot && ring) {
@@ -125,8 +133,8 @@ export default function CustomCursor() {
           opacity: visible ? 1 : 0,
           transition: [
             'opacity 200ms ease',
-            'width 250ms cubic-bezier(0.34,1.56,0.64,1)',
-            'height 250ms cubic-bezier(0.34,1.56,0.64,1)',
+            'width 250ms cubic-bezier(0.16,1,0.3,1)',
+            'height 250ms cubic-bezier(0.16,1,0.3,1)',
             'background 250ms ease',
             'box-shadow 250ms ease',
           ].join(', '),
@@ -160,8 +168,8 @@ export default function CustomCursor() {
           justifyContent: 'center',
           transition: [
             'opacity 200ms ease',
-            'width 350ms cubic-bezier(0.34,1.56,0.64,1)',
-            'height 350ms cubic-bezier(0.34,1.56,0.64,1)',
+            'width 350ms cubic-bezier(0.16,1,0.3,1)',
+            'height 350ms cubic-bezier(0.16,1,0.3,1)',
             'border-color 250ms ease',
             'background 250ms ease',
           ].join(', '),
@@ -173,7 +181,7 @@ export default function CustomCursor() {
             fontFamily: 'var(--font-body)',
             fontSize: '0.6875rem',
             fontWeight: 500,
-            letterSpacing: '0.14em',
+            letterSpacing: '0.16em',
             textTransform: 'uppercase',
             color: '#F7F4EF',
             opacity: label ? 1 : 0,

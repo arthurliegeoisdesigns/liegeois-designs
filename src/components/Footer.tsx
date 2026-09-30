@@ -143,7 +143,7 @@ export default function Footer() {
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.6875rem',
                 fontWeight: 400,
-                letterSpacing: '0.18em',
+                letterSpacing: '0.16em',
                 textTransform: 'uppercase',
                 color: 'var(--color-on-dark-hint)',
                 margin: '0 0 16px',

@@ -75,7 +75,7 @@ function NavCard({
             fontFamily: 'var(--font-body)',
             fontSize: '0.6875rem',
             fontWeight: 400,
-            letterSpacing: '0.1em',
+            letterSpacing: '0.10em',
             textTransform: 'uppercase',
             color: 'var(--color-on-dark-faint)',
             margin: '0 0 10px',

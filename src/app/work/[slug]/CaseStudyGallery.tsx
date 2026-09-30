@@ -84,7 +84,7 @@ export default function CaseStudyGallery({
             style={{
               fontFamily: 'var(--font-body)',
               fontSize: '0.75rem',
-              letterSpacing: '0.12em',
+              letterSpacing: '0.10em',
               textTransform: 'uppercase',
               color: 'rgba(255,255,255,0.80)',
             }}
@@ -188,7 +188,7 @@ export default function CaseStudyGallery({
                 color: 'rgba(255,255,255,0.60)',
                 fontFamily: 'var(--font-body)',
                 fontSize: '0.75rem',
-                letterSpacing: '0.08em',
+                letterSpacing: '0.10em',
                 padding: '8px 16px',
                 cursor: 'pointer',
                 textTransform: 'uppercase',

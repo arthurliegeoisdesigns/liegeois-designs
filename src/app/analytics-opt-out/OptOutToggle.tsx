@@ -54,7 +54,7 @@ export default function OptOutToggle() {
   const label: React.CSSProperties = {
     fontFamily: 'var(--font-body)',
     fontSize: '0.6875rem',
-    letterSpacing: '0.18em',
+    letterSpacing: '0.16em',
     textTransform: 'uppercase',
     fontWeight: 500,
     color: 'var(--color-text-muted)',

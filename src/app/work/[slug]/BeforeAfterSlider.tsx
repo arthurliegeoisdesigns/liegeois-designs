@@ -142,7 +142,7 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
         <span style={{
           position: 'absolute', bottom: '12px', left: '14px',
           fontFamily: 'var(--font-body)', fontSize: '0.6875rem',
-          letterSpacing: '0.14em', textTransform: 'uppercase',
+          letterSpacing: '0.16em', textTransform: 'uppercase',
           color: 'rgba(255,255,255,0.85)',
           background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(14px) saturate(170%)',
           WebkitBackdropFilter: 'blur(14px) saturate(170%)', padding: '4px 8px',
@@ -154,7 +154,7 @@ function Slider({ before, after, label, index }: Pair & { index: number }) {
         <span style={{
           position: 'absolute', bottom: '12px', right: '14px',
           fontFamily: 'var(--font-body)', fontSize: '0.6875rem',
-          letterSpacing: '0.14em', textTransform: 'uppercase',
+          letterSpacing: '0.16em', textTransform: 'uppercase',
           color: 'rgba(255,255,255,0.85)',
           background: 'rgba(0,0,0,0.42)', backdropFilter: 'blur(14px) saturate(170%)',
           WebkitBackdropFilter: 'blur(14px) saturate(170%)', padding: '4px 8px',

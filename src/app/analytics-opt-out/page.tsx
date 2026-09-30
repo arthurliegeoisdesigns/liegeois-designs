@@ -44,7 +44,7 @@ export default function AnalyticsOptOutPage() {
           style={{
             fontFamily: 'var(--font-body)',
             fontSize: '0.6875rem',
-            letterSpacing: '0.22em',
+            letterSpacing: '0.16em',
             textTransform: 'uppercase',
             fontWeight: 500,
             color: 'var(--color-eyebrow)',

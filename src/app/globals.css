@@ -624,7 +624,7 @@ html { overflow-x: clip; background: var(--color-void); }
   font-size: 0.6875rem;
   font-weight: 500;
   line-height: 1;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
@@ -706,7 +706,7 @@ html { overflow-x: clip; background: var(--color-void); }
   font-family: var(--font-body);
   font-size: 0.6875rem;
   font-weight: 400;
-  letter-spacing: 0.18em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   margin-bottom: 14px;
@@ -987,7 +987,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   gap: clamp(16px, 2vw, 32px);
   font-family: var(--font-body);
   font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   white-space: nowrap;
@@ -1060,7 +1060,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
 .blog-ed-row-date {
   font-family: var(--font-body);
   font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -1089,7 +1089,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   align-items: flex-end;
   font-family: var(--font-body);
   font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   white-space: nowrap;
@@ -1102,7 +1102,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   border-radius: 9999px;
   font-family: var(--font-body);
   font-size: 0.6875rem;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-text-secondary);
   vertical-align: middle;
@@ -1160,7 +1160,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   font-family: var(--font-body);
   font-size: 0.6875rem;
   font-weight: 500;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-on-dark-faint);
   margin: 0;
@@ -1212,7 +1212,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   margin-top: 14px;
   font-family: var(--font-body);
   font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-on-dark-muted);
 }
@@ -1333,7 +1333,7 @@ html.is-first-load .page-transition-wrapper { animation: none; }
   flex-wrap: wrap;
   font-family: var(--font-body);
   font-size: 0.75rem;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-on-dark-muted);
 }
@@ -1599,7 +1599,7 @@ section[id] {
   flex-wrap: wrap;
   font-family: var(--font-body);
   font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-on-dark-faint);
 }
@@ -1666,7 +1666,7 @@ footer {
   font-family: var(--font-body);
   font-size: 0.6875rem;
   font-weight: 400;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.10em;
   text-transform: uppercase;
   color: var(--color-text-muted);
 }
@@ -2408,7 +2408,7 @@ footer {
   flex-wrap: wrap;
   font-family: var(--font-body);
   font-size: 0.6875rem;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--color-text-muted);
   margin: 0;
@@ -2433,7 +2433,7 @@ footer {
    exactly the trap: it is still 10px to a contrast checker. */
 .v2-eyebrow {
   font-family: var(--font-body); font-size: 0.6875rem; font-weight: 500;
-  letter-spacing: 0.2em; text-transform: uppercase; color: var(--color-label); margin: 0;
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-label); margin: 0;
 }
 .v2-h2 {
   font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -2448,7 +2448,7 @@ footer {
      colour is allowed to act as a surface, because it reads as a lit object. */
   display: inline-flex; align-items: center; gap: 11px; background: var(--color-paper);
   color: var(--color-ink); text-decoration: none; font-family: var(--font-body);
-  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase;
+  font-size: 0.75rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
   padding: 18px 36px; transition: transform 450ms var(--ease-out, cubic-bezier(.16,1,.3,1)), background 450ms ease;
 }
 /* void, not #fff: white on the accent is 3.98:1. Introduced and caught in the
@@ -2457,7 +2457,7 @@ footer {
 .v2-ghost {
   display: inline-flex; align-items: center; gap: 9px; color: var(--color-on-dark);
   text-decoration: none; font-family: var(--font-body); font-size: 0.75rem; font-weight: 500;
-  letter-spacing: 0.14em; text-transform: uppercase; padding: 18px 2px;
+  letter-spacing: 0.16em; text-transform: uppercase; padding: 18px 2px;
   border-bottom: 1px solid var(--color-on-dark);
 }
 
@@ -2518,11 +2518,11 @@ footer {
 .v2-ba-handle::before { content: '\27E8 \27E9'; position: absolute; top: 50%; left: 50%;
   transform: translate(-50%,-50%); z-index: 2; color: #fff; font-size: .72rem; letter-spacing: .06em; }
 .v2-ba-tag { position: absolute; bottom: 16px; backdrop-filter: blur(14px) saturate(170%);box-shadow: inset 0 1px 0 rgba(255,255,255,.28); font-family: var(--font-body); font-size: .6875rem;
-  letter-spacing: .16em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.42);
+  letter-spacing: 0.16em; text-transform: uppercase; color: #fff; background: rgba(0,0,0,.42);
   padding: 7px 12px; pointer-events: none; }
 .v2-ba-tag.is-l { left: 16px; } .v2-ba-tag.is-r { right: 16px; }
 .v2-ba-foot { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
-  margin-top: 14px; font-family: var(--font-body); font-size: .6875rem; letter-spacing: .14em;
+  margin-top: 14px; font-family: var(--font-body); font-size: .6875rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--color-text-muted); }
 
 /* ── seats ── */
@@ -2553,7 +2553,7 @@ footer {
 }
 .v2-seat:hover { transform: translateY(-4px); border-color: var(--glass-border-lit); }
 .v2-seat i { font-style: normal; font-family: var(--font-body); font-size: .6875rem;
-  letter-spacing: .15em; text-transform: uppercase; color: var(--color-label);
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-label);
   display: block; margin-bottom: 9px; }
 .v2-seat b { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: 1.4rem; display: block; color: var(--color-text-primary); }
@@ -2578,7 +2578,7 @@ footer {
   font-size: 1.2rem; margin: 13px 0 3px; color: var(--color-text-primary); }
 .v2-wcard span { font-family: var(--font-body); font-size: .75rem; color: var(--color-text-muted); }
 .v2-wcard em { font-style: normal; font-family: var(--font-body); font-size: .6875rem;
-  letter-spacing: .14em; text-transform: uppercase; color: var(--color-label);
+  letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-label);
   display: block; margin-top: 8px; opacity: 0; transform: translateY(4px);
   transition: opacity 400ms ease, transform 400ms ease; }
 .v2-wcard:hover em { opacity: 1; transform: none; }
@@ -2591,7 +2591,7 @@ footer {
   font-size: clamp(1.7rem, 4vw, 3.1rem); line-height: 1.12; letter-spacing: -.02em;
   max-width: 24ch; margin: 20px 0 22px; }
 .v2-bigq em { font-style: italic; }
-.v2-attr { font-family: var(--font-body); font-size: .6875rem; letter-spacing: .16em;
+.v2-attr { font-family: var(--font-body); font-size: .6875rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--color-on-dark-faint); margin: 0; }
 .v2-qgrid > div {
   padding: clamp(28px, 3vw, 40px);
@@ -2607,7 +2607,7 @@ footer {
 .v2-qgrid p { font-family: var(--font-body); font-size: .9375rem; line-height: 1.7;
   color: var(--color-on-dark-muted); margin: 0; }
 .v2-qgrid u { text-decoration: none; display: block; margin-top: 12px; font-family: var(--font-body);
-  font-size: .6875rem; letter-spacing: .14em; text-transform: uppercase; color: var(--color-on-dark-faint); }
+  font-size: .6875rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--color-on-dark-faint); }
 
 /* ── journal + end ── */
 .v2-journal { padding: clamp(52px, 7vw, 100px) 0; }
@@ -2618,7 +2618,7 @@ footer {
 .v2-jrow:hover { padding-left: 12px; }
 .v2-jrow h3 { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
   font-size: clamp(1.05rem, 1.9vw, 1.5rem); color: var(--color-text-primary); margin: 0; }
-.v2-jrow span { font-family: var(--font-body); font-size: .6875rem; letter-spacing: .14em;
+.v2-jrow span { font-family: var(--font-body); font-size: .6875rem; letter-spacing: 0.16em;
   text-transform: uppercase; color: var(--color-text-muted); white-space: nowrap; }
 .v2-end { padding: clamp(70px, 9vw, 140px) 0; text-align: center; border-top: 0.5px solid var(--color-border); }
 .v2-endh { font-family: var(--font-display); font-weight: var(--font-display-weight, 400);
@@ -3063,4 +3063,118 @@ footer {
 a.glass:active, button.glass:active, a.v2-seat:active {
   transform: scale(0.985);
   transition: transform 100ms ease-out;
+}
+
+/* ════════════════════════════════════════════════════════════════════════
+   BUTTONS, 30 Sep 2026. Supersedes the earlier .btn-*, .nav-cta, .v2-cta,
+   .v2-ghost and .contact-submit rules above (kept there; this block wins).
+
+   The Apple pattern: pills sitting on rounded cards, sentence case, medium
+   weight, a lit surface rather than a flat fill.
+   PRIMARY   bone, with a top-down sheen and a hairline highlight, so it reads
+             as a lit object. Depth from a soft two-layer shadow.
+   SECONDARY liquid glass pill: frost, rim light, same tokens as the cards.
+   PRESS     instant on pointer-down (90ms), released on a critically damped
+             curve. No bounce: nothing about a press carries momentum.
+   ════════════════════════════════════════════════════════════════════════ */
+.btn-primary, .v2-cta, .contact-submit {
+  background-color: var(--color-paper);
+  background-image: linear-gradient(180deg, rgba(255,255,255,.62) 0%, rgba(255,255,255,0) 55%);
+  color: var(--color-ink);
+  border: 0;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.9375rem;
+  letter-spacing: -0.005em;
+  text-transform: none;
+  line-height: 1;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.85),
+              inset 0 -1px 0 rgba(0,0,0,.10),
+              0 1px 2px rgba(0,0,0,.30),
+              0 10px 28px rgba(0,0,0,.30);
+  transition: transform 500ms var(--ease-out-expo),
+              background-color 300ms ease,
+              box-shadow 300ms ease,
+              color 300ms ease;
+}
+.btn-primary { padding: 14px 26px; }
+.v2-cta      { padding: 17px 32px; gap: 10px; }
+.contact-submit { padding: 16px 32px; }
+.btn-primary:hover, .v2-cta:hover, .contact-submit:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  background-color: var(--color-paper);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.95),
+              inset 0 -1px 0 rgba(0,0,0,.10),
+              0 2px 4px rgba(0,0,0,.30),
+              0 16px 36px rgba(0,0,0,.36);
+}
+/* The homepage CTA keeps its brand moment: it lights to the accent on hover.
+   Label swaps to void (white on the accent is 3.98:1, see the rule above). */
+.v2-cta:hover { background-color: var(--color-accent); color: var(--color-void); }
+.btn-primary:active, .v2-cta:active, .contact-submit:active {
+  transform: scale(0.97);
+  transition-duration: 90ms;
+}
+
+.btn-ghost, .nav-cta {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(16px) saturate(180%);
+  color: var(--color-on-dark);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: -0.005em;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.22), 0 6px 20px rgba(0, 0, 0, 0.22);
+  transition: transform 500ms var(--ease-out-expo),
+              background 250ms ease, border-color 250ms ease;
+}
+.btn-ghost { padding: 13px 26px; }
+.nav-cta   { padding: 9px 20px; }
+.btn-ghost:hover, .nav-cta:hover,
+.nav.scrolled .nav-cta:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
+}
+.nav.scrolled .nav-cta { border-color: rgba(255, 255, 255, 0.16); }
+.btn-ghost:active, .nav-cta:active { transform: scale(0.97); transition-duration: 90ms; }
+
+/* Text link: sentence case, a quiet underline that draws in. */
+.v2-ghost {
+  text-transform: none;
+  letter-spacing: -0.005em;
+  font-size: 0.9375rem;
+  border-bottom: 0;
+  padding: 17px 4px;
+  background: linear-gradient(currentColor, currentColor) left calc(100% - 13px) / 100% 1px no-repeat;
+  opacity: .92;
+  transition: opacity 250ms ease, background-size 500ms var(--ease-out-expo);
+}
+.v2-ghost:hover { opacity: 1; }
+
+/* Form fields follow the cards: soft corners, glass rim. */
+.contact-input, .contact-select, textarea.contact-input {
+  border-radius: 12px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.10);
+}
+
+/* Keyboard focus on the new shapes. */
+.btn-primary:focus-visible, .btn-ghost:focus-visible, .nav-cta:focus-visible,
+.v2-cta:focus-visible, .v2-ghost:focus-visible, .contact-submit:focus-visible {
+  outline: 2px solid var(--color-focus-ring);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .btn-ghost, .nav-cta { backdrop-filter: none; background: rgba(28, 31, 52, 0.96); }
+}
+@media (prefers-contrast: more) {
+  .btn-ghost, .nav-cta { backdrop-filter: none; background: rgb(20, 22, 38); border-color: rgba(255,255,255,.7); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .btn-primary, .btn-ghost, .nav-cta, .v2-cta, .contact-submit { transition-duration: 1ms; }
+  .btn-primary:hover, .btn-ghost:hover, .nav-cta:hover, .v2-cta:hover, .contact-submit:hover { transform: none; }
 }

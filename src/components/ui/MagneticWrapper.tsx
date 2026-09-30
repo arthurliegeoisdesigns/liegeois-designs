@@ -1,6 +1,7 @@
 'use client'
 
 import { useRef, useCallback } from 'react'
+import { animate } from 'motion'
 
 interface MagneticWrapperProps {
   children: React.ReactNode
@@ -11,12 +12,15 @@ interface MagneticWrapperProps {
 
 /**
  * MagneticWrapper
- * Wraps any element and pulls it toward the cursor on hover.
- * Snaps back on mouse leave with a spring-like CSS transition.
+ * Pulls the child toward the cursor on hover.
  *
- * willChange is set only on mouseenter and cleared on mouseleave —
- * setting it permanently on every instance creates unnecessary GPU layers,
- * hurting mobile compositing even though there's no mouse on touch devices.
+ * Springs, not CSS transitions: every pointer move re-targets the spring from
+ * the element's LIVE position and velocity, so the pull never jumps or lags
+ * behind the cursor (the old 100ms linear transition did both). X and Y are
+ * animated independently. The release is the one place a little bounce is
+ * earned, because the pull had momentum.
+ *
+ * willChange is set only while hovered, so idle instances cost no GPU layer.
  */
 export default function MagneticWrapper({
   children,
@@ -25,6 +29,7 @@ export default function MagneticWrapper({
   style,
 }: MagneticWrapperProps) {
   const ref = useRef<HTMLDivElement>(null)
+  const reduced = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches
 
   const onMouseEnter = useCallback(() => {
     const el = ref.current
@@ -35,14 +40,11 @@ export default function MagneticWrapper({
   const onMouseMove = useCallback(
     (e: React.MouseEvent<HTMLDivElement>) => {
       const el = ref.current
-      if (!el) return
+      if (!el || reduced()) return
       const rect = el.getBoundingClientRect()
-      const cx = rect.left + rect.width  / 2
-      const cy = rect.top  + rect.height / 2
-      const dx = (e.clientX - cx) / (rect.width  / 2)   // -1 … 1
-      const dy = (e.clientY - cy) / (rect.height / 2)   // -1 … 1
-      el.style.transform  = `translate(${dx * strength}px, ${dy * strength}px)`
-      el.style.transition = 'transform 100ms linear'
+      const dx = (e.clientX - (rect.left + rect.width / 2)) / (rect.width / 2)   // -1 to 1
+      const dy = (e.clientY - (rect.top + rect.height / 2)) / (rect.height / 2)  // -1 to 1
+      animate(el, { x: dx * strength, y: dy * strength }, { type: 'spring', bounce: 0, duration: 0.3 })
     },
     [strength]
   )
@@ -50,9 +52,8 @@ export default function MagneticWrapper({
   const onMouseLeave = useCallback(() => {
     const el = ref.current
     if (!el) return
-    el.style.transform  = 'translate(0, 0)'
-    el.style.transition = 'transform 500ms cubic-bezier(0.34, 1.56, 0.64, 1)'
-    el.style.willChange = 'auto'
+    animate(el, { x: 0, y: 0 }, { type: 'spring', bounce: 0.25, duration: 0.5 })
+    window.setTimeout(() => { if (ref.current) ref.current.style.willChange = 'auto' }, 600)
   }, [])
 
   return (
